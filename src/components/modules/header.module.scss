@@ -1,52 +1,69 @@
 .header {
-    padding-top: 1rem;
-    width: 100%;
+	width: 100%;
+	height: auto;
 }
 
-.navContainer {
-    position: absolute;
-    top: 95px;
-    padding-left: 80px;
-    left: 0;
-    width: 100%;
-    border-top: 1px solid #d9d9d9;
-    border-bottom: 1px solid #d9d9d9;
+.logoAndDetails {
+	margin: 20px 80px;
+	display: flex;
+	flex-direction: row;
+}
+.logo {
+	width: 250px;
+}
+
+.headerLink {
+	align-items: flex-end;
+	display: flex;
+	flex-direction: row;
+	max-height: 95px;
+	text-decoration: none;
+	color: #000000cc;
 }
 
 .imageLogo {
-    width: 95px;
+	width: 95px;
+	height: auto;
+	margin: 0;
 }
 
-.title {
-    display: flex;
-    color: #000000;
-    font-size: 3rem;
-    text-decoration: none;
-    flex-direction: row;
-    max-height: 95px;
-    align-items: flex-end;
+.textLogo {
+	height: auto;
+	letter-spacing: 3px;
+	margin: 0px 0px 0px 20px; // didnt have exact numbers
+}
+
+.navContainer {
+	padding-left: 80px;
+	left: 0;
+	width: 100%;
+	border-top: 1px solid #d9d9d9;
+	border-bottom: 1px solid #d9d9d9;
 }
 
 .navList {
-    display: flex;
-    list-style-type: none;
-    margin: 0;
+	display: flex;
+	list-style-type: none;
+	margin: 0;
 }
+
 .navList li {
-    margin: 0;
+	margin: 0;
 }
 
 .navItem {
-    color: #999;
-    font-size: 0.9rem;
-    margin-right: 1.3rem;
-    text-decoration: none;
+	color: #999;
+	font-size: 0.9rem;
+	margin-right: 1.3rem;
+	text-decoration: none;
 }
 
 .activeNavItem {
-    color: #333333;
+	color: #333333;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #333333;
 }
 
 .navItem:hover {
-    color: #666666;
+	color: #666666;
 }
