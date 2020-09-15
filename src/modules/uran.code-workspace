@@ -1,0 +1,16 @@
+{
+    "folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../NaruDev"
+		}
+	],
+    "settings": {
+        "emmet.excludeLanguages": ["markdown"],
+        "emmet.includeLanguages": {
+            "javascript": "javascriptreact"
+        }
+    }
+}
