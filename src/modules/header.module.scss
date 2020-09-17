@@ -40,16 +40,17 @@
 }
 
 .imageLogo {
-    width: 40%;
-    height: auto;
+    width: auto;
+    height: 50px;
     margin: 0;
 }
 
 .textLogo {
-    width: 60%;
+    width: 100%;
     height: auto;
     letter-spacing: 3px;
     margin: 0px 0px 0px 20px; // didnt have exact numbers
+    color: #565656;
 }
 
 .navContainer {
