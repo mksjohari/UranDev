@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{f6x9:function(e,n,l){"use strict";l.r(n);var t=l("q1tI"),a=l.n(t),r=l("xMEK");n.default=function(){return a.a.createElement(r.a,null,a.a.createElement("h1",null,"Hello,"),a.a.createElement("p",null,"I'm Exploring"))}}}]);
-//# sourceMappingURL=component---src-pages-explore-js-b0ae1f8b5cd869b9bbdf.js.map

@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{"9Emu":function(e,n,l){"use strict";l.r(n);var t=l("q1tI"),a=l.n(t),u=l("xMEK");n.default=function(){return a.a.createElement(u.a,null,a.a.createElement("h1",null,"Hello,"),a.a.createElement("p",null,"I'm profile"))}}}]);
-//# sourceMappingURL=component---src-pages-profile-js-7a9094b95ba36fe9006b.js.map

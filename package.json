@@ -1,41 +1,42 @@
 {
-    "name": "uran",
-    "private": true,
-    "description": "A simplified bare-bones starter for Gatsby",
-    "version": "0.1.0",
-    "license": "0BSD",
-    "scripts": {
-        "build": "gatsby build",
-        "develop": "gatsby develop",
-        "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-        "start": "npm run develop",
-        "serve": "gatsby serve",
-        "clean": "gatsby clean",
-        "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-    },
-    "dependencies": {
-        "@material-ui/core": "^4.11.0",
-        "firebase": "^7.19.1",
-        "gatsby": "^2.24.50",
-        "gatsby-image": "^2.4.18",
-        "gatsby-plugin-material-ui": "^2.1.10",
-        "gatsby-plugin-sass": "^2.3.12",
-        "gatsby-plugin-sharp": "^2.6.36",
-        "gatsby-source-filesystem": "^2.3.30",
-        "gatsby-transformer-sharp": "^2.5.15",
-        "node-sass": "^4.14.1",
-        "react": "^16.12.0",
-        "react-dom": "^16.12.0",
-        "tailwindcss": "^1.8.5"
-    },
-    "devDependencies": {
-        "prettier": "2.1.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/mksjohari/urandev"
-    },
-    "bugs": {
-        "url": "https://github.com/mksjohari/urandev/issues"
-    }
+	"name": "test",
+	"homepage": ".",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@material-ui/core": "^4.11.0",
+		"@testing-library/jest-dom": "^4.2.4",
+		"@testing-library/react": "^9.5.0",
+		"@testing-library/user-event": "^7.2.1",
+		"firebase": "^7.21.0",
+		"node-sass": "^4.14.1",
+		"react": "^16.13.1",
+		"react-dom": "^16.13.1",
+		"react-redux": "^7.2.1",
+		"react-router-dom": "^5.2.0",
+		"react-scripts": "3.4.3",
+		"redux": "^4.0.5",
+		"redux-thunk": "^2.3.0"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }

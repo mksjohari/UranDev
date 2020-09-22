@@ -1,0 +1,17 @@
+.loginContainer {
+	flex-grow: 1;
+	display: flex;
+	padding: 10px;
+	align-content: center;
+	justify-content: center;
+	background-color: teal;
+}
+
+.loginForm {
+	display: block;
+}
+
+.label {
+	padding: 0px 20px 10px 0px;
+	text-align: right;
+}
