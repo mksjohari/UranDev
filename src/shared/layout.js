@@ -2,8 +2,6 @@ import React from 'react';
 
 import Header from './header';
 import Footer from './footer';
-import SignIn from './signIn';
-import Login from "./Login";
 
 import './modules/layout.scss';
 
@@ -15,7 +13,6 @@ const Layout = (props) => {
 			<div className={`content ${page}`}>
 				{props.children}
 			</div>
-			{/* <Login /> */}
 			<Footer />
 		</div>
 	);
