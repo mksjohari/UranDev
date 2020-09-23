@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BubbleChart from "./bubbleChart";
+import Button from "../../shared/Button";
 
 const profile = () => {
     return (
@@ -7,6 +8,11 @@ const profile = () => {
             <h1>Hello,</h1>
             <p>I'm profile</p>
             {/* <BubbleChart data={data} /> */}
+            <Button
+                colour="yellow"
+                iconR={<i className="fas fa-check"/>}
+                text="Accept"
+            />
         </div>
     );
 };

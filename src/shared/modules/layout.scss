@@ -1,0 +1,22 @@
+@import "variable";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.content {
+	background-color: $grey;
+	box-shadow: 0px 0px 40px 0px $shadow;
+	width: 90%;
+	flex-grow: 1;
+	margin: 63px 83px 63px 83px;
+	padding: 27px 24px 27px 7px;
+	overflow: visible;
+	align-self: center;
+}
+
+.content.profile {
+	border-radius: 700px 700px 700px 50px;
+}

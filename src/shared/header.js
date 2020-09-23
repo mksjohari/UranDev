@@ -49,18 +49,18 @@ const Header = () => {
 							<NavLink
 								activeClassName={styles.activeNavItem}
 								className={styles.navItem}
-								to="/projects"
+								to="/profile"
 							>
-								Projects
+								My Profile
 							</NavLink>
 						</li>
 						<li>
 							<NavLink
 								activeClassName={styles.activeNavItem}
 								className={styles.navItem}
-								to="/profile"
+								to="/projects"
 							>
-								Profile
+								Manage Projects
 							</NavLink>
 						</li>
 					</ul>
