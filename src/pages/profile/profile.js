@@ -6,7 +6,7 @@ const profile = () => {
         <div>
             <h1>Hello,</h1>
             <p>I'm profile</p>
-            <BubbleChart data={data} />
+            {/* <BubbleChart data={data} /> */}
         </div>
     );
 };

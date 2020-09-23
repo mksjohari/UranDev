@@ -5,7 +5,8 @@ import Home from './pages/home/home';
 import explore from './pages/explore/explore';
 import projects from './pages/projects/projects';
 import profile from './pages/profile/profile';
-import './shared/modules/style.scss';
+import "./styles/index.scss";
+require("typeface-poppins");
 
 const Index = () => {
 	return (

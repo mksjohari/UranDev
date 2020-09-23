@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "./Button";
-import "./loginform.scss";
+import ".//modules/loginform.scss";
 
 function Login(props) {
   const [email, setEmail] = useState("");
