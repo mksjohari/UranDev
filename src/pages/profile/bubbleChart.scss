@@ -1,0 +1,38 @@
+/* Center the contents of the bubble chart */
+/* Center text in the circle, and hide any overflow */
+/* Show the overflow when hovering over a label */
+/* Optional, but recommended - reduce the size of text on medium bubbles */
+/* Optional, but recommended - hide the text on small bubbles */
+/* Make sure to unhide the text when hovering */
+.bubble-chart-container {
+	flex: 1;
+	position: relative;
+	display: flex;
+	user-select: none;
+	justify-content: center;
+	.bubble-chart-text {
+		.bubble-label {
+			text-align: center;
+			overflow: hidden;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			border-radius: 50%;
+			will-change: left, top, height, width;
+			&:hover {
+				overflow: visible;
+				font-weight: bold;
+			}
+		}
+		.bubble-label.medium {
+			font-size: 0.8em;
+		}
+		.bubble-label.small {
+			font-size: 0;
+			&:hover {
+				font-size: 0.8em;
+			}
+		}
+	}
+}
