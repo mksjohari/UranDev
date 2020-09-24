@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/functions';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import { getFirebase } from './firebase';
+import { getFirebase, getFunctions } from './firebase';
 import styles from './modules/signIn.module.scss';
 
 import { updateUser } from '../actions/userAction.js';
 
-const signInWithGoogle = async (updateUser) => {
+var addMe = getFunctions(firebase).httpsCallable('testCall');
+
+const signInWithGoogle = async () => {
 	getFirebase(firebase)
 		.auth()
 		.signInWithPopup(googleProvider)
 		.then(function (result) {
-			updateUser(result);
+			console.log(result);
 		})
 		.catch(function (error) {
 			// Handle Errors here.
@@ -116,8 +119,12 @@ const SignIn = (props) => {
 				<Button
 					color="default"
 					variant="contained"
-					onClick={() => {
-						console.log(getFirebase(firebase).auth().currentUser);
+					onClick={async () => {
+						addMe().then(function (result) {
+							// Read result of the Cloud Function.
+							console.log(result);
+							// ...
+						});
 					}}
 				>
 					Test Log
