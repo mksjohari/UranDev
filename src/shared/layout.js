@@ -12,7 +12,6 @@ const Layout = (props) => {
     const [signUp, setSignUp] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
     const toLogin = () => {
         handleShow();
         setSignUp(false);
@@ -24,17 +23,13 @@ const Layout = (props) => {
     var page = props.page.slice(1, props.page.length);
     return (
         <div className={`container`}>
-            <Header
-                toLogin={toLogin}
-                toSignUp={toSignUp}
-            />
+            <Header toLogin={toLogin} toSignUp={toSignUp} />
             <div className={`content ${page}`}>{props.children}</div>
             <Footer />
             {show ? (
                 <div id="modal">
                     <Login
                         onClose={handleClose}
-                        onSwitch={handleShow}
                         signUp={signUp}
                         toLogin={toLogin}
                         toSignUp={toSignUp}

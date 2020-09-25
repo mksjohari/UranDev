@@ -6,8 +6,6 @@ import ".//modules/loginform.scss";
 const Login = React.memo(props => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    // const [signUp, setSignUp] = useState(false);
-    // var signUp = props.signUp;
     const handleSubmit = (e) => {
         e.preventDefault();
         alert(`Submitting Form ${email + password}`);
