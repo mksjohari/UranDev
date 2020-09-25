@@ -1,13 +1,21 @@
 @import "variable";
 
 .container {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
+	min-height: 100vh;	
 }
+
+// .modal {
+// 	@extend .container;
+// 	position: absolute;
+// 	background-color: rgba(0,0,0, 0.1) !important;
+// }
 
 .content {
 	width: 90%;
+	z-index: -1;
 	flex-grow: 1;
 	margin: 63px 83px 63px 83px;
 	padding: 27px 24px 27px 7px;

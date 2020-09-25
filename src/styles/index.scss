@@ -12,7 +12,8 @@
 }
 .inp-text,
 #date {
-    font: $font;
+    font-size: 15px;
+    font-family: "Font Awesome 5 Free", $font;
     border-radius: 10px;
     border: 1px solid $ivory;
     background: $ivory;
@@ -37,10 +38,12 @@
 
 #login {
     width: 250px;
-    margin-top: 50px;
+    margin-top: 20px;
+    font-size: 16px;
 }
 
 #google {
+    font-size: 16px;
     width: 250px;
     color: white;
     background: #ea4335;
@@ -238,7 +241,7 @@ textarea {
     font: inherit;
 }
 html {
-    font: 112.5%/1.45em georgia, serif;
+    font: 112.5%/1.45em $font;
     box-sizing: border-box;
     overflow-y: scroll;
 }
@@ -522,6 +525,7 @@ hr {
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
+    margin-top: calc(1.45rem - 1px);
     margin-bottom: calc(1.45rem - 1px);
     background: hsla(0, 0%, 0%, 0.2);
     border: none;

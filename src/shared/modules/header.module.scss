@@ -20,7 +20,8 @@
 }
 
 .signUp {
-	height: 20px;
+	font-size: 100%;
+	margin-right: 30px;
 }
 .login {
 	margin-left: 50px;
@@ -79,9 +80,9 @@
 }
 
 .activeNavItem {
-	color: #906A64;
+	color: #906A64 !important;
 	padding-bottom: 3px;
-	border-bottom: 2px solid #333333;
+	border-bottom: 2px solid #906A64;
 	font-weight: bold;
 }
 

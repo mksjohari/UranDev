@@ -3,8 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 
 import styles from "./modules/header.module.scss";
 import Logo from "../images/logo.png";
+import Button from "./Button";
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header className={styles.header}>
             <div className={styles.logoAndDetails}>
@@ -19,28 +20,21 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className={styles.details}>
-                    <Link className={styles.signUp} to="/">Sign Up</Link>
-                    <Link className={styles.login} to="/">Login</Link>
+                    <Link className={styles.signUp} onClick={(props.handleShow()) (props.toSignUp())}>
+                        Sign Up
+                    </Link>
+                    <Button colour="yellow" text="Sign In" onClick={(props.handleShow()) (props.toLogin())}/>
                 </div>
             </div>
             <div className={styles.navContainer}>
                 <nav>
                     <ul className={styles.navList}>
-                        {/* <li>
-							<NavLink
-								activeClassName={styles.activeNavItem}
-								className={styles.navItem}
-								exact
-								to="/"
-							>
-								Home
-							</NavLink>
-						</li> */}
                         <li>
                             <NavLink
                                 activeClassName={styles.activeNavItem}
                                 className={styles.navItem}
-                                to="/explore"
+                                exact
+                                to="/"
                             >
                                 Explore
                             </NavLink>

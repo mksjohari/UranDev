@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import Layout from './shared/layout';
-import Home from './pages/home/home';
+import signUp from './pages/home/signUp';
 import explore from './pages/explore/explore';
 import projects from './pages/projects/projects';
 import profile from './pages/profile/profile';
@@ -13,8 +13,8 @@ const Index = () => {
 	return (
 		<Layout page={location.pathname}>
 			<Switch>
-				<Route component={Home} exact path="/" />
-				<Route component={explore} path="/explore" />
+				<Route component={explore} exact path="/" />
+				<Route component={signUp} path="/signUp" />
 				<Route component={projects} path="/projects" />
 				<Route component={profile} path="/profile" />
 			</Switch>
