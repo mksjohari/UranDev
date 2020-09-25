@@ -56,3 +56,13 @@ export const testCall = functions
             console.log(err);
         }
     });
+
+export const getUser = functions
+    .region("australia-southeast1")
+    .https.onCall(async (data, context) => {
+        console.log(context);
+        console.log("data", data);
+        const uid = data.uid;
+        const connection = await connect();
+        return connection.query(`SELECT * FROM USER WHERE UID=${uid}`);
+    });

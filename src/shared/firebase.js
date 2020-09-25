@@ -23,13 +23,15 @@ export const getFirebase = (firebase) => {
 };
 export const getFunctions = (firebase) => {
     if (functionsInstance) {
-        return firebaseInstance;
+        return functionsInstance;
     }
     if (firebaseInstance) {
-        return firebase.app().functions("australia-southeast1");
+        functionsInstance = firebase.app().functions("localhost:5001");
+        return functionsInstance;
     } else {
         firebase.initializeApp(firebaseConfig);
         firebaseInstance = firebase;
-        return firebase.app().functions("australia-southeast1");
+        functionsInstance = firebase.app().functions("localhost:5001");
+        return functionsInstance;
     }
 };
