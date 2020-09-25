@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "./Button";
 import ".//modules/loginform.scss";
 
@@ -6,7 +7,7 @@ const Login = React.memo(props => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     // const [signUp, setSignUp] = useState(false);
-    const signUp = props.signUp;
+    // var signUp = props.signUp;
     const handleSubmit = (e) => {
         e.preventDefault();
         alert(`Submitting Form ${email + password}`);
@@ -15,7 +16,7 @@ const Login = React.memo(props => {
         <form className="login-form" onSubmit={handleSubmit}>
             <i className="fas fa-times" onClick={props.onClose} />
             <h2 style={{ margin: "0 0 12px 0" }}>
-                {signUp ? "Sign Up" : "Sign In"}
+                {props.signUp ? "Sign Up" : "Sign In"}
             </h2>
             <input
                 className="inp-text"
@@ -31,7 +32,7 @@ const Login = React.memo(props => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
-            {!signUp && (
+            {!props.signUp && (
                 <a
                     className="small-text"
                     href="http://www.google.com"
@@ -44,7 +45,7 @@ const Login = React.memo(props => {
                 className="pink login button"
                 id="login"
                 type="submit"
-                value={signUp ? "Create account" : "Login"}
+                value={props.signUp ? "Create account" : "Login"}
             />
             <span className="divider">
                 <hr style={{ width: "100px" }} />
@@ -55,31 +56,31 @@ const Login = React.memo(props => {
                 type="button"
                 iconL={<i className="fab fa-google-plus-g" />}
                 id="google"
-                text={signUp ? "Sign up with Google" : "Sign in with Google"}
+                text={props.signUp ? "Sign up with Google" : "Sign in with Google"}
             />
-            {signUp ? (
+            {props.signUp ? (
                 <text className="small-text">
                     Already have an account?{" "}
-                    <a
+                    <Link
                         className="link"
                         href="/"
-                        onClick={() => props.toLogin}
+                        onClick={() => props.toLogin()}
                         style={{ textAlign: "right" }}
                     >
                         Login.
-                    </a>
+                    </Link>
                 </text>
             ) : (
                 <text className="small-text">
                     Don't have an account?{" "}
-                    <a
+                    <Link
                         className="link"
                         href="/"
-                        onClick={() => props.toSignUp}
+                        onClick={() => props.toSignUp()}
                         style={{ textAlign: "right" }}
                     >
                         Create one.
-                    </a>
+                    </Link>
                 </text>
             )}
         </form>

@@ -20,10 +20,10 @@ const Header = (props) => {
                     </Link>
                 </div>
                 <div className={styles.details}>
-                    <Link className={styles.signUp} onClick={(props.handleShow()) (props.toSignUp())}>
+                    <Link className={styles.signUp} onClick={props.toSignUp}>
                         Sign Up
                     </Link>
-                    <Button colour="yellow" text="Sign In" onClick={(props.handleShow()) (props.toLogin())}/>
+                    <Button colour="yellow" text="Sign In" onClick={props.toLogin}/>
                 </div>
             </div>
             <div className={styles.navContainer}>
