@@ -3,6 +3,32 @@ import { Link } from "react-router-dom";
 import Button from "./Button";
 import ".//modules/loginform.scss";
 
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/functions';
+import { getFirebase } from './firebase';
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+
+const signInWithGoogle = async () => {
+	getFirebase(firebase)
+		.auth()
+		.signInWithPopup(googleProvider)
+		.then(function (result) {
+			console.log(result);
+		})
+		.catch(function (error) {
+			// Handle Errors here.
+			const errorCode = error.code;
+			const errorMessage = error.message;
+			// The email of the user's account used.
+			const email = error.email;
+			// The firebase.auth.AuthCredential type that was used.
+			const credential = error.credential;
+			console.log(email, credential, errorCode, errorMessage);
+			// ...
+		});
+};
+
 const Login = React.memo(props => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -55,6 +81,9 @@ const Login = React.memo(props => {
                 iconL={<i className="fab fa-google-plus-g" />}
                 id="google"
                 text={props.signUp ? "Sign up with Google" : "Sign in with Google"}
+                onClick={() => {
+					signInWithGoogle();
+				}}
             />
             {props.signUp ? (
                 <text className="small-text">
