@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./tab.scss";
+import "./modules/tab.scss";
 
 function SegmentedTab() {
   const [role, setRole] = useState("Jobseeker");

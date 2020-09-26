@@ -15,7 +15,6 @@ const Header = () => {
                             src={Logo}
                             alt="Uran Logo ..."
                         />
-                        <h1 className={styles.textLogo}>URAN</h1>
                     </Link>
                 </div>
                 <div className={styles.details}>

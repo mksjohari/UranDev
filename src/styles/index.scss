@@ -4,12 +4,6 @@
 @import "../shared/modules/button";
 @import "../shared/modules/uploadbtn";
 
-.App {
-    font: 100% $font;
-    color: $darkgrey;
-    padding: 20px;
-    font-size: 12px;
-}
 .inp-text,
 #date {
     font: $font;
@@ -56,6 +50,7 @@ html {
 }
 body {
     margin: 0;
+    font-size: 12px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -285,7 +280,7 @@ h1 {
     color: inherit;
     font-family: $font;
     text-rendering: optimizeLegibility;
-    font-size: 2.25rem;
+    font-size: 2rem;
     line-height: 1.1;
 }
 h2 {
@@ -300,7 +295,7 @@ h2 {
     color: inherit;
     font-family: $font;
     text-rendering: optimizeLegibility;
-    font-size: 1.62671rem;
+    font-size: 1.45rem;
     line-height: 1.1;
 }
 h3 {
@@ -315,7 +310,7 @@ h3 {
     color: inherit;
     font-family: $font;
     text-rendering: optimizeLegibility;
-    font-size: 1.38316rem;
+    font-size: 1.3rem;
     line-height: 1.1;
 }
 h4 {
@@ -330,7 +325,7 @@ h4 {
     color: inherit;
     font-family: $font;
     text-rendering: optimizeLegibility;
-    font-size: 1rem;
+    font-size: 1.1rem;
     line-height: 1.1;
 }
 h5 {
@@ -345,7 +340,7 @@ h5 {
     color: inherit;
     font-family: $font;
     text-rendering: optimizeLegibility;
-    font-size: 0.85028rem;
+    font-size: 0.95rem;
     line-height: 1.1;
 }
 h6 {
@@ -360,7 +355,7 @@ h6 {
     color: inherit;
     font-family: $font;
     text-rendering: optimizeLegibility;
-    font-size: 0.78405rem;
+    font-size: 0.8rem;
     line-height: 1.1;
 }
 hgroup {

@@ -6,7 +6,6 @@ import explore from './pages/explore/explore';
 import projects from './pages/projects/projects';
 import profile from './pages/profile/profile';
 import "./styles/index.scss";
-require("typeface-poppins");
 
 const Index = () => {
 	let location = useLocation();

@@ -3,7 +3,7 @@ import Dropdown from "./Dropdown";
 import Button from "./Button";
 import SubjectOptions from "./SubjectOptions";
 import SkillOptions from "./SkillOptions";
-import "./tab.scss";
+import "./modules/tab.scss";
 
 function Tab() {
   const [tabOne, setTabOne] = useState(true);
