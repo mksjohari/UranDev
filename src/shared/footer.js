@@ -4,7 +4,7 @@ import styles from './modules/footer.module.scss';
 
 const Footer = () => {
 	return (
-		<div className={styles.container}>
+		<div className={styles.footer}>
 			<h3>Created by Uran</h3>
 		</div>
 	);

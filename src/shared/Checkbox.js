@@ -9,6 +9,7 @@ function Checkbox(props) {
         type="checkbox"
         style={{ display: "none" }}
         defaultChecked={props.checked}
+        onChange={props.onChange}
       />
       <label className="cbx" htmlFor={props.id}>
         <span>

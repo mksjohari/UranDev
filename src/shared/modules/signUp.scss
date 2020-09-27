@@ -1,0 +1,65 @@
+@import "variable";
+
+.sign-up-container {
+    height: 100%;
+    width: auto;
+  }
+
+.tip {
+  font-weight: 300;
+  font-size: 11px;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: row;
+  gap: 4%;
+}
+
+.preview-controls {
+  display: flex;
+  flex-direction: column;
+}
+
+#img-placeholder {
+  display: flex;
+  background: #ededed;
+  height: 140px;
+  width: 140px;
+  border-radius: 20px;
+  font-size: 40px;
+  color: $midgrey;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-preview {
+  max-width: 160px;
+  max-height: 160px;
+}
+
+.social-icon {
+  width: auto;
+  max-width: 35px;
+  max-height: 35px;
+  margin: 0 20px 0 0;
+}
+
+.social-icon-span input {
+  width: 300px;
+  height: 32px;
+}
+
+.social-icon-span {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  margin: 3% 0;
+}
+
+caption {
+  font-size: 13px;
+  font-weight: 500;
+  width: 120px;
+  text-align: left;
+}

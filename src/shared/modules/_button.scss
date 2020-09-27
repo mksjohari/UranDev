@@ -23,6 +23,17 @@ button, .button {
   }
 }
 
+[type="file"] {
+  display: none;
+}
+
+.upload-btn {
+  background-color: $lightgrey;
+  display: inline-flex;
+  gap: 16px;
+  width: 140px;
+}
+
 button i, button span {
 padding: 0 8px;
 }

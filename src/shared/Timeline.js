@@ -1,7 +1,7 @@
 import React from "react";
 import { ProgressBar, Step } from "react-step-progress-bar";
 import "react-step-progress-bar/styles.css";
-import "./timeline.scss";
+import "./modules/timeline.scss";
 
 function Timeline(props) {
   return (
@@ -19,7 +19,7 @@ function Timeline(props) {
               }`}
             >
               {props.percent > position ? <i className="fas fa-check" /> : ""}
-              <p className="timeline-label">ACCOUNT INFORMATION</p>
+              <p className="timeline-label">{props.label[0]}</p>
             </div>
           )}
         </Step>
@@ -31,7 +31,7 @@ function Timeline(props) {
               }`}
             >
               {props.percent > position ? <i className="fas fa-check" /> : ""}
-              <p className="timeline-label">BACKGROUND INFORMATION</p>
+              <p className="timeline-label">{props.label[1]}</p>
             </div>
           )}
         </Step>
@@ -43,7 +43,7 @@ function Timeline(props) {
               }`}
             >
               {props.percent > position ? <i className="fas fa-check" /> : ""}
-              <p className="timeline-label">PERSONAL DETAILS</p>
+              <p className="timeline-label">{props.label[2]}</p>
             </div>
           )}
         </Step>
@@ -55,7 +55,7 @@ function Timeline(props) {
               }`}
             >
               {props.percent > position ? <i className="fas fa-check" /> : ""}
-              <p className="timeline-label">SKILLS</p>
+              <p className="timeline-label">{props.label[3]}</p>
             </div>
           )}
         </Step>
