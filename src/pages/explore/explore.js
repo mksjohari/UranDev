@@ -6,6 +6,8 @@ import StepOne from "../signUp/stepOne";
 import StepTwo from "../signUp/stepTwo";
 import StepThree from "../signUp/stepThree";
 import StepFour from "../signUp/stepFour";
+import jobsearch from "../../images/jobsearch.png";
+import typing from "../../images/typing.png";
 import "../../shared/modules/signUp.scss";
 import "react-step-progress-bar/styles.css";
 
@@ -27,54 +29,60 @@ const Explore = () => {
   }
   return (
     <>
-      <h2>Welcome to URAN,</h2>
-      <p>Create your e-portfolio today!</p>
+      <h1>Welcome to URAN,</h1>
+      <p style={{ fontSize: "16px" }}>Create your e-portfolio today!</p>
+      <img className="jobsearch-img" src={jobsearch} alt="jobsearch" />
       <Tab />
-      <div className="timeline">
-        <Timeline
-          label={[
-            "ACCOUNT SETUP",
-            "BACKGROUND INFORMATION",
-            "SOCIAL ACCOUNTS",
-            "CONFIRMATION",
-          ]}
-          percent={percent}
-        />
-      </div>
-      <section className="sign-up-container">
-        {step === 0 ? (
-          <StepOne />
-        ) : step === 1 ? (
-          <StepTwo />
-        ) : step === 2 ? (
-          <StepThree />
-        ) : step === 3 ? (
-          <StepFour />
-        ) : (
-          ""
-        )}
-      </section>
-      <div className="btn-controls">
-        {
-          step === 0 ? (
-            <p> </p>
+      <div className="sign-up-container">
+        <div className="sign-up-side-panel">
+          <h1>Create account</h1>
+          <p>Sign up to create your e-portfolio</p>
+          <img className="typing-img" src={typing} alt="typing" />
+        </div>
+        <section className="sign-up-form">
+          <div className="timeline">
+            <Timeline label={label} percent={percent} />
+          </div>
+          {step === 0 ? (
+            <StepOne />
+          ) : step === 1 ? (
+            <StepTwo />
+          ) : step === 2 ? (
+            <StepThree />
+          ) : step === 3 ? (
+            <StepFour />
           ) : (
+            ""
+          )}
+          <div className="btn-controls">
+            {step === 0 ? (
+              <p> </p>
+            ) : (
+              <Button
+                iconL={<i className="fas fa-arrow-left" />}
+                text="Back"
+                onClick={prevStep}
+              />
+            )}
+            {step === 2 ? <a>Skip</a> : ""}
             <Button
-              iconL={<i className="fas fa-arrow-left" />}
-              text="Back"
-              onClick={prevStep}
+              colour="blue"
+              iconR={<i className="fas fa-arrow-right" />}
+              text="Next"
+              onClick={nextStep}
             />
-          )
-        }
-        <Button
-          colour="blue"
-          iconR={<i className="fas fa-arrow-right" />}
-          text="Next"
-          onClick={nextStep}
-        />
+          </div>
+        </section>
       </div>
     </>
   );
 };
 
 export default Explore;
+
+const label = [
+  "ACCOUNT SETUP",
+  "BACKGROUND INFORMATION",
+  "SOCIAL ACCOUNTS",
+  "CONFIRMATION",
+];

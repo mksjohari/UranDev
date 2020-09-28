@@ -9,7 +9,7 @@ import slack from "../../images/slack.png";
 
 const StepThree = () => {
   return (
-    <>
+    <div className="step">
       <span className="social-icon-span">
         <img className="social-icon" src={linkedin} alt="Linkedin" />
         <caption>Linkedin</caption>
@@ -46,7 +46,7 @@ const StepThree = () => {
         <input className="inp-text" placeholder="URL to account" />
       </span>
     
-    </>
+    </div>
   );
 };
 

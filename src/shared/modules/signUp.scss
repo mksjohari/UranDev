@@ -1,13 +1,102 @@
 @import "variable";
 
+.personal-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.btn-controls {
+  margin: 2rem;
+  width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+}
+
+.jobsearch-img {
+  width: 400px;
+  height: auto;
+}
+
+.sign-up-side-panel {
+  width: 30%;
+  background: $ivory;
+  position: relative;
+}
+
+.typing-img {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+}
+
 .sign-up-container {
-    height: 100%;
-    width: auto;
-  }
+  display: flex;
+  flex-direction: row;
+  height: 670px;
+}
+
+.sign-up-form {
+  height: 100%;
+  width: 70%;
+  position: relative;
+}
+
+.step {
+  width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.step.one {
+  width: 400px;
+}
+
+.background-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.background-info h6 {
+  margin: 30px 0 0 0;
+}
+
+.background-info .inp-text {
+  width: 100%;
+}
+
+.span-others {
+  display: flex;
+  align-items: center;
+}
+
+.span-others .cbx {
+  margin: 0 10px 0 0;
+}
+
+.inp-text.step-one {
+  width: 380px;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  width: 50%;
+}
 
 .tip {
   font-weight: 300;
   font-size: 11px;
+  margin: 0;
 }
 
 .preview-container {
@@ -19,6 +108,7 @@
 .preview-controls {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 #img-placeholder {
@@ -46,7 +136,7 @@
 }
 
 .social-icon-span input {
-  width: 300px;
+  width: 380px;
   height: 32px;
 }
 

@@ -9,26 +9,28 @@ const StepOne = () => {
     setImg(URL.createObjectURL(event.target.files[0]));
   }
   return (
-    <>
-      <h6>Personal details:</h6>
+    <div className="step one">
+      <h6>Personal Details:</h6>
+      <div className="personal-details">
       <SegmentedTab />
       <input
-        className="inp-text"
+        className="inp-text step-one"
         placeholder="First name"
         onChange={(e) => setFname(e.target.value)}
         required
       />
       <input
-        className="inp-text"
+        className="inp-text step-one"
         placeholder="Last name"
         onChange={(e) => setLname(e.target.value)}
         required
       />
+      </div>
       <h6>Profile Picture:</h6>
 
       <div className="preview-container">
         {img ? (
-          <img className="img-preview" src={img} />
+          <img className="img-preview" src={img} alt="Profile pic" />
         ) : (
           <div id="img-placeholder">
             <i className="fas fa-image" />
@@ -42,7 +44,7 @@ const StepOne = () => {
           <p className="tip">At least 256px x 256px PNG or JPG file</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
