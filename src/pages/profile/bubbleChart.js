@@ -1,58 +1,70 @@
-import React            from 'react';
-import ReactBubbleChart from 'react-bubble-chart';
+import React from "react";
+import BubbleChart from '@weknow/react-bubble-chart-d3';
 import "react-bubble-chart/src/style.css";
 // import Actions          from '../Actions';
 
-var colorLegend = [
-  //reds from dark to light
-  {color: "#67000d", text: 'Negative', textColor: "#ffffff"}, "#a50f15", "#cb181d", "#ef3b2c", "#fb6a4a", "#fc9272", "#fcbba1", "#fee0d2",
-  //neutral grey
-  {color: "#f0f0f0", text: 'Neutral'},
-  // blues from light to dark
-  "#deebf7", "#c6dbef", "#9ecae1", "#6baed6", "#4292c6", "#2171b5", "#08519c", {color: "#08306b", text: 'Positive', textColor: "#ffffff"}
-];
-
-var tooltipProps = [{
-  css: 'symbol',
-  prop: '_id'
-}, {
-  css: 'value',
-  prop: 'value',
-  display: 'Last Value'
-}, {
-  css: 'change',
-  prop: 'colorValue',
-  display: 'Change'
-}];
-
-
-  
-class BubbleChart extends React.Component {
-    
-  render () {
-    console.log(this.props.data);
-    var data = this.props.data.map(d => ({
-      _id: d._id,
-      value: d.value,
-      colorValue: d.sentiment,
-      selected: d.selected
-    }));
-
-    return <ReactBubbleChart
-      className="my-cool-chart"
-      colorLegend={colorLegend}
-      data={data}
-      selectedColor="#737373"
-      selectedTextColor="#d9d9d9"
-      fixedDomain={{min: -1, max: 1}}
-    //   onClick={Actions.doStuff.bind(Actions)}
-      legend={true}
-      legendSpacing={0}
-      tooltip={true}
-      tooltipProps={tooltipProps}
-    //   tooltipFunc={tooltipFunc}
-    />;
-  }
+function WordBubble(props) {
+    const bubbleClick = (label) =>{
+        console.log("Custom bubble click func")
+      }
+    const legendClick = (label) =>{
+        console.log("Customer legend click func")
+      }
+    return (
+          <BubbleChart
+            graph= {{
+              zoom: 1.1,
+              offsetX: -0.05,
+              offsetY: -0.01,
+            }}
+            width={1000}
+            height={800}
+            overflow={true}
+            padding={0} // optional value, number that set the padding between bubbles
+            showLegend={true} // optional value, pass false to disable the legend.
+            legendPercentage={20} // number that represent the % of with that legend going to use.
+            legendFont={{
+                  family: 'Arial',
+                  size: 12,
+                  color: '#000',
+                  weight: 'bold',
+                }}
+            valueFont={{
+                  family: 'Arial',
+                  size: 12,
+                  color: '#fff',
+                  weight: 'bold',
+                }}
+            labelFont={{
+                  family: 'Arial',
+                  size: 16,
+                  color: '#fff',
+                  weight: 'bold',
+                }}
+            //Custom bubble/legend click functions such as searching using the label, redirecting to other page
+            bubbleClickFunc={bubbleClick}
+            legendClickFun={legendClick}
+            data={[
+              { label: 'CRM', value: 1 },
+              { label: 'API', value: 1 },
+              { label: 'Data', value: 1 },
+              { label: 'Commerce', value: 1 },
+              { label: 'AI', value: 3 },
+              { label: 'Management', value: 5 },
+              { label: 'Testing', value: 6 },
+              { label: 'Mobile', value: 9 },
+              { label: 'Conversion', value: 9 },
+              { label: 'Misc', value: 21 },
+              { label: 'Databases', value: 22 },
+              { label: 'DevOps', value: 22 },
+              { label: 'Javascript', value: 23 },
+              { label: 'Languages / Frameworks', value: 25 },
+              { label: 'Front End', value: 26 },
+              { label: 'Content', value: 26 },
+            ]}
+          />
+    );
 }
 
-export default BubbleChart;
+export default WordBubble;
+
