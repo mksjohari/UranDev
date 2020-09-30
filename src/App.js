@@ -7,6 +7,9 @@ import profile from './pages/profile/profile';
 import signUp from './pages/home/signUp';
 import tempUser from './pages/profile/tempUser';
 import signIn from './shared/signIn';
+
+import tmpTest from './pages/tmp/tmpTest';
+
 import './styles/index.scss';
 require('typeface-poppins');
 
@@ -21,6 +24,7 @@ const Index = () => {
 				<Route component={profile} path="/profile" />
 				<Route component={signIn} path="/signin" />
 				<Route component={tempUser} path="/u/:id" />
+				<Route component={tmpTest} path="/tmp" />
 			</Switch>
 		</Layout>
 	);

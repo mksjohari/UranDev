@@ -56,6 +56,15 @@ const Header = (props) => {
                                 Manage Projects
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink
+                                activeClassName={styles.activeNavItem}
+                                className={styles.navItem}
+                                to="/tmp"
+                            >
+                                HY's wall of shame
+                            </NavLink>
+                        </li>
                     </ul>
                 </nav>
             </div>
