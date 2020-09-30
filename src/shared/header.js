@@ -19,7 +19,7 @@ const Header = (props) => {
                     </Link>
                 </div>
                 <div className={styles.details}>
-                    <Link className={styles.signUp} onClick={props.toSignUp}>
+                    <Link className={styles.signUp} to="#" onClick={props.toSignUp}>
                         Sign Up
                     </Link>
                     <Button colour="yellow" text="Sign In" onClick={props.toLogin}/>

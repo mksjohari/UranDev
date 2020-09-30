@@ -1,42 +1,119 @@
-.root {
-    display: grid;
-    grid-template-rows: 266px 40px auto;
-}
+@import "../../shared/modules/variable";
 
 .profile-details {
-    display: grid;
-    grid-template: 50px auto auto 60px / 250px 420px auto ;
-    grid-gap: 50px / 0px;
+    display: flex;
+    color: $navy;
 }
 
+.detail {
+    width: 100%;
+    margin-left: 50px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
 .dp {
-    grid-row: 1 / 5;
-    grid-column: 1 / 2;
+    height: 250px;
+    width: 250px;
     background-color: #cccccc;
     border-radius: 40px;
 }
 
+.heading {
+    grid-column: 1 / 13;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .user-name {
-    grid-row: 1 / 2;
-    grid-column: 2 / 3;
+    flex: inherit;
+    color: black;
+    font-weight: 500;
 }
 
 .user-buttons {
-    grid-row: 1 / 2;
-    grid-column: 3;
+    flex: 0 1 240px;
+    align-self: flex-start;
+    display: inline-flex;
+    justify-content: space-between;
 }
-
 .user-links {
-    grid-row: 2 / 3;
-    grid-column: 2 / 4;
+    display: block;
+    flex-direction: column;
 }
 
 .user-bio { 
-    grid-row: 3 / 4;
-    grid-column: 2 / 4;
+    overflow-wrap: normal;
+    color: $darkgrey;
 }
 
 .user-socials {
-    grid-row: 4 / 5;
-    grid-column: 3 / 4;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    margin-top: 0.5em;
+}
+
+.text-detail {
+    margin-left: 10px;
+}
+
+.social-icon {
+    margin-left: 0.5%;
+}
+
+.section {
+    margin-bottom: 1.5em;
+    grid-column: 1 / 13;
+}
+
+.about {
+    display: flow-root;
+    color: $darkgrey;
+}
+.large-section {
+    padding-top: 5em;
+}
+.text-heading {
+    display: inline-flex;
+}
+
+.text-title {
+    font-weight: 500;
+}
+.text-biography {
+    padding-left: 2%;
+    padding-right: 2%;
+}
+.endorse-button {
+    align-self: flex-start;
+}
+.column-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    // grid-template-columns: 1fr 1fr;
+}
+.column-left {
+    flex: 1 1;
+    // grid-column: 1 / 2;
+}
+.column-right {
+    flex: 1 1;
+    // grid-column: 2 / 3;
+}
+.progress-section {
+    margin-bottom: 3em;
+}
+.progress-column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.progress-text {
+    font-size: 14px;
+}
+.progress-endorsers {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: end;
 }
