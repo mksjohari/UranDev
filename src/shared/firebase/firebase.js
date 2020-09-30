@@ -1,3 +1,7 @@
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/functions';
+
 const firebaseConfig = {
 	apiKey: 'AIzaSyCb3O3mwrZnycpDs8sv7XJKbPE0gvRsqD4',
 	authDomain: 'uran-28-12-98.firebaseapp.com',
@@ -11,7 +15,7 @@ const firebaseConfig = {
 
 let firebaseInstance;
 let functionsInstance;
-export const getFirebase = (firebase) => {
+export const getFirebase = () => {
 	if (firebaseInstance) {
 		return firebaseInstance;
 	}
@@ -22,7 +26,7 @@ export const getFirebase = (firebase) => {
 
 	return firebase;
 };
-export const getFunctions = (firebase) => {
+export const getFunctions = () => {
 	if (functionsInstance) {
 		return functionsInstance;
 	}

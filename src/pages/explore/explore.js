@@ -1,7 +1,7 @@
 import React from 'react';
 
 import JobSearch from '../../images/jobsearch.png';
-import '../../shared/modules/signUp.scss';
+import '../../modules/signUp.module.scss';
 import 'react-step-progress-bar/styles.css';
 
 const Explore = () => {

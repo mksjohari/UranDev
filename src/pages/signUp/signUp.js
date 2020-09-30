@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import Timeline from '../../shared/Timeline';
-import Button from '../../shared/Button';
-import StepOne from '../signUp/stepOne';
-import StepTwo from '../signUp/stepTwo';
-import StepThree from '../signUp/stepThree';
-import StepFour from '../signUp/stepFour';
+import Timeline from '../../shared/sandbox/Timeline';
+import Button from '../../shared/sandbox/Button';
+import StepOne from './stepOne';
+import StepTwo from './stepTwo';
+import StepThree from './stepThree';
+import StepFour from './stepFour';
 import Typing from '../../images/typing.png';
-
+import styles from '../../modules/signUp.module.scss';
 const mapStateToProps = (state) => {
 	return { user: state.user };
 };
 
-const Home = (props) => {
-	console.log(props.user);
+const SignUp = () => {
 	const [step, setStep] = useState(0);
 	const [percent, setPercent] = useState(0);
 
@@ -30,13 +29,15 @@ const Home = (props) => {
 		}
 	}
 	return (
-		<div className="sign-up-container">
-			<div className="sign-up-side-panel">
+		<div className={styles.sign_up_container}>
+			<div className={styles.sign_up_side_panel}>
 				<h1>Create account</h1>
 				<p>Sign up to create your e-portfolio</p>
-				<img className="typing-img" src={Typing} alt="typing" />
-				<section className="sign-up-form">
-					<div className="timeline">
+				<img className={styles.typing_img} src={Typing} alt="typing" />
+			</div>
+			<div className={styles.sign_up_process}>
+				<section className={styles.sign_up_form}>
+					<div className={styles.timeline}>
 						<Timeline label={label} percent={percent} />
 					</div>
 					{step === 0 ? (
@@ -50,7 +51,7 @@ const Home = (props) => {
 					) : (
 						''
 					)}
-					<div className="btn-controls">
+					<div className={styles.btn_controls}>
 						{step === 0 ? (
 							<p> </p>
 						) : (
@@ -74,7 +75,7 @@ const Home = (props) => {
 	);
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(SignUp);
 
 const label = [
 	'ACCOUNT SETUP',

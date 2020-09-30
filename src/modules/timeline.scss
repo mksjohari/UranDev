@@ -1,0 +1,42 @@
+@import 'variable';
+
+.indexedStep {
+	color: white;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	font-size: 10px;
+	line-height: 120%;
+	background-color: rgb(216, 216, 216);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.indexedStep i {
+	position: absolute;
+}
+
+.indexedStep.accomplished {
+	background-color: $orange;
+	border: 1px solid $orange;
+}
+
+.indexedStep.current {
+	background-color: $yellow;
+	border: 2px solid $orange;
+	font-weight: 600;
+}
+
+.timeline {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.timeline-label {
+	position: relative;
+	color: $darkgrey;
+	text-align: center;
+	top: 40px;
+}

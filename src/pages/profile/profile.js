@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import WordBubble from './bubbleChart';
-import Button from '../../shared/Button';
+import Button from '../../shared/sandbox/Button';
 import ProfileDetails from './profileDetails';
 
 const profile = () => {
