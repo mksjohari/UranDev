@@ -3,7 +3,7 @@ import Dropdown from './Dropdown';
 import Button from './Button';
 import SubjectOptions from './SubjectOptions';
 import SkillOptions from './SkillOptions';
-import '../modules/tab.scss';
+import styles from '../../modules/tab.module.scss';
 
 function Tab() {
 	const [tabOne, setTabOne] = useState(true);
@@ -17,26 +17,26 @@ function Tab() {
 		setTabOne(!tabOne);
 	}
 	return (
-		<div className="tab-div">
-			<div className="tab-list">
+		<div className={styles.tab_div}>
+			<div className={styles.tab_list}>
 				<button
-					className={`tab ${tabOne ? 'active' : ''}`}
+					className={`${styles.tab} ${tabOne ? 'active' : ''}`}
 					onClick={tabOne ? null : handleToggle}
 				>
 					Find a candidate
 				</button>
 				<button
-					className={`tab ${tabOne ? '' : 'active'}`}
+					className={`${styles.tab} ${tabOne ? '' : 'active'}`}
 					onClick={tabOne ? handleToggle : null}
 				>
 					Find a project
 				</button>
 			</div>
 			{tabOne ? (
-				<div className="tab-panel">
+				<div className={styles.tab_panel}>
 					<input
 						name="name"
-						className="inp-text search"
+						className={`${styles.inp_text} ${styles.search}`}
 						placeholder="Name"
 						value={name}
 						onChange={(e) => setName(e.target.value)}
@@ -51,7 +51,7 @@ function Tab() {
 					/>
 					<input
 						name="location"
-						className="inp-text search"
+						className={`${styles.inp_text} ${styles.search}`}
 						placeholder="Location"
 						value={location}
 						onChange={(e) => setLocation(e.target.value)}
@@ -70,10 +70,10 @@ function Tab() {
 					/>
 				</div>
 			) : (
-				<div className="tab-panel">
+				<div className={styles.tab_panel}>
 					<input
 						name="code"
-						className="inp-text search"
+						className={`${styles.inp_text} ${styles.search}`}
 						placeholder="Project code"
 						value={code}
 						onChange={(e) => setCode(e.target.value)}

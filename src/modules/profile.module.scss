@@ -1,6 +1,6 @@
-@import "../../shared/modules/variable";
+@import "variable";
 
-.profile-details {
+.profile_details {
     display: flex;
     color: $navy;
 }
@@ -20,45 +20,44 @@
 
 .heading {
     grid-column: 1 / 13;
-    display: inline-flex;
-    flex-direction: row;
+    display: flex;
     justify-content: space-between;
 }
 
-.user-name {
+.user_name {
     flex: inherit;
     color: black;
     font-weight: 500;
 }
 
-.user-buttons {
+.user_buttons {
     flex: 0 1 240px;
     align-self: flex-start;
     display: inline-flex;
     justify-content: space-between;
 }
-.user-links {
+.user_links {
     display: block;
     flex-direction: column;
 }
 
-.user-bio { 
+.user_bio { 
     overflow-wrap: normal;
     color: $darkgrey;
 }
 
-.user-socials {
+.user_socials {
     display: inline-flex;
     flex-direction: row-reverse;
     margin-top: 0.5em;
 }
 
-.text-detail {
+.text_detail {
     margin-left: 10px;
 }
 
-.social-icon {
-    margin-left: 0.5%;
+.social_icon {
+    margin-left: 20px;
 }
 
 .section {
@@ -67,52 +66,58 @@
 }
 
 .about {
-    display: flow-root;
+    // display: flow-root;
+    display: grid;
+    grid-template-columns: auto / 1fr / auto;
     color: $darkgrey;
 }
-.large-section {
-    padding-top: 5em;
+.large_section {
+    grid-column: 2 / 3;
+    padding: 4em 1em;
 }
-.text-heading {
+.text_heading {
     display: inline-flex;
 }
 
-.text-title {
+.text_title {
     font-weight: 500;
 }
-.text-biography {
-    padding-left: 2%;
-    padding-right: 2%;
-}
-.endorse-button {
+.endorse_button {
     align-self: flex-start;
+    justify-self: flex-end;
 }
-.column-section {
+
+.heading_endorse {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    // grid-template-columns: 1fr 1fr;
-}
-.column-left {
-    flex: 1 1;
-    // grid-column: 1 / 2;
-}
-.column-right {
-    flex: 1 1;
-    // grid-column: 2 / 3;
-}
-.progress-section {
-    margin-bottom: 3em;
-}
-.progress-column {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
 }
-.progress-text {
-    font-size: 14px;
+.column_section {
+    width: clamp(700px, 80%, 1200px);
+    padding: 1rem;
+    display: flex;
+    justify-self: center;
+    grid-template-columns: auto 1fr 1fr auto;
 }
-.progress-endorsers {
+.progress_name {
+    flex: 0 1;
+    grid-column: 2 / 3;
+}
+.progress_bar {
+    flex: 0 1;
+    grid-column: 3 / 4;
+}
+.progress_section {
+    margin-bottom: 3em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.progress_text {
+    font-size: 14px;
+    margin-right: 40px;
+}
+.progress_endorsers {
     font-size: 12px;
     font-weight: bold;
     text-align: end;

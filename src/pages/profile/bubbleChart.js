@@ -397,15 +397,15 @@ function wrap(text) {
             y = text.attr("y"),
             dy = 0, //parseFloat(text.attr("dy")),
             tspan = text
-                // .text(null)
-                // .append("tspan")
-                // .attr("x", x)
-                // .attr("y", y)
-                // .attr("dy", dy + "em");
+                .text(null)
+                .append("tspan")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("dy", dy + "em");
 
         while ((word = words.pop())) {
             line.push(word);
-            
+            tspan.text(line.join(" "))
             // console.log(x)
             if (tspan.node().getComputedTextLength() > width) {
                 // console.log(text)
@@ -417,17 +417,6 @@ function wrap(text) {
                     .attr("x", -tspan.node().getBBox().width / 2)
                     .attr("y", y)
                     .attr("dy", ++lineNumber * lineHeight + dy + "em")
-                    .text(word);
-            }
-            else {
-                
-                line.pop();
-                tspan.text(line.join(" "))
-                line = [word];
-                tspan = text
-                    .attr("x", x)
-                    .attr("y", y)
-                    .attr("dy", dy + "em")
                     .text(word);
             }
         }

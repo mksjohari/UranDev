@@ -59,7 +59,7 @@
 	padding-left: 80px;
 	left: 0;
 	width: 100%;
-	border-top: 1px solid #d9d9d9;
+	// border-top: 1px solid #d9d9d9;
 	border-bottom: 1px solid #d9d9d9;
 }
 
@@ -92,10 +92,19 @@
 	border-bottom: 2px solid $darkpink;
 	font-weight: bold;
 }
-
+.tabTop {
+	// padding-left: 80px;
+	left: 0;
+	width: 100%;
+	border-top: 1px solid #d9d9d9;
+}
 .activeTabItem {
 	color: $navy !important;
 	padding-bottom: 3px;
 	border-top: 2px solid $navy;
-	font-weight: bold;
+	font-weight: 500;
+}
+
+.section {
+	margin: 3em 0em;
 }

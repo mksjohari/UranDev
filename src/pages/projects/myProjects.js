@@ -1,16 +1,16 @@
 import React from "react";
 
-import FindProjects from "../../shared/FindProjects";
+import FindProjects from "../../shared/sandbox/FindProjects";
 import CardSmall from "./cardSmall";
-import "./projects.scss";
+import styles from "../../modules/projects.module.scss";
 
 function MyProjects(props) {
     return (
-        <div className="root">
+        <div className={styles.root}>
             <FindProjects view={props.view} />
-            <div className="project-section">
-                <h3 className="section-title">2020</h3>
-                <div className="flex-grid">
+            <div className={styles.project_section}>
+                <h3 className={styles.section_title}>2020</h3>
+                <div className={styles.flex_grid}>
                     <CardSmall view={props.view}/>
                     <CardSmall view={props.view}/>
                     <CardSmall view={props.view}/>

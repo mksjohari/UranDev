@@ -1,61 +1,61 @@
 import React from "react";
 
-import "./projects.scss";
+import styles from "../../modules/projects.module.scss";
 
 function CardSmall(props) {
     return (
-        <div className="card-small">
-            <div className="row-section">
-                <div className="row-top">
+        <div className={styles.card_small}>
+            <div className={styles.row_section}>
+                <div className={styles.row_top}>
                     <img
-                        className="cover-photo"
+                        className={styles.cover_photo}
                         src={require("../../images/jobsearch.png")}
                         alt="project"
                     />
                 </div>
-                <div className="row-bottom">
-                    <div className="card-title card-text">
+                <div className={styles.row_bottom}>
+                    <div className={styles.card_title}>
                         Reacto development with friends
                     </div>
-                    <div className="card-detail">
-                        <div className="card-text">
-                            <i className="fas fa-map-marked-alt"></i>
-                            <text className="text-detail">
+                    <div className={styles.card_detail}>
+                        <div className={styles.card_text}>
+                            <i className="far fa-calendar"></i>
+                            <text className={styles.card_text}>
                                 01/01/2011 - 20/03/2020
                             </text>
                         </div>
-                        <div className="card-text">
-                            <i className="fas fa-map-marked-alt"></i>
-                            <text className="text-detail">
+                        <div className={styles.card_text}>
+                            <i className="fas fa-suitcase"></i>
+                            <text className={styles.card_text}>
                                 Full-stack developer
                             </text>
                         </div>
                     </div>
-                    <div className="card-tags">
+                    <div className={styles.card_tags}>
                         <span
-                            className={`tag-type ${
-                                props.view === "profile" ? "Skill" : "Edit"
+                            className={`${styles.tag_type} ${
+                                props.view === "profile" ? styles.Skill : styles.Edit
                             }`}
                         >
                             Web development
                         </span>
                         <span
-                            className={`tag-type ${
-                                props.view === "profile" ? "Tool" : "Edit"
+                            className={`${styles.tag_type} ${
+                                props.view === "profile" ? styles.Tool : styles.Edit
                             }`}
                         >
                             SQL
                         </span>
                         <span
-                            className={`tag-type ${
-                                props.view === "profile" ? "Tool" : "Edit"
+                            className={`${styles.tag_type} ${
+                                props.view === "profile" ? styles.Tool : styles.Edit
                             }`}
                         >
                             React
                         </span>
                         <span
-                            className={`tag-type ${
-                                props.view === "profile" ? "Tool" : "Edit"
+                            className={`${styles.tag_type} ${
+                                props.view === "profile" ? styles.Tool : styles.Edit
                             }`}
                         >
                             React

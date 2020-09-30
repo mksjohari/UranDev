@@ -1,56 +1,60 @@
-@import "../../shared/modules/variable";
+@import "variable";
 
 .root {
     display: flow-root;
 }
 
-.project-section {
+.project_section {
     padding: 5%;
 }
 
-.section-title {
+.section_title {
     color: $darkgrey;
     font-weight: 500;
 }
 
-.flex-grid {
+.flex_grid {
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(366px, 1fr));
 }
 
-.card-small {
+.card_small {
     // height: 345px;
     margin: 5px;
     background-color: white;
     border-radius: 20px;
     box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.25);
 }
-.cover-photo {
+.cover_photo {
     margin-top: -100px;
 }
-.row-section {
+.row_section {
     display: grid;
     grid-template-rows: 1fr 1fr;
 }
-.row-top {
+.row_top {
     grid-row: 1 / 2;
     overflow: hidden;
     height: 169px;
 }
-.row-bottom {
+.row_bottom {
     grid-row: 2 / 3;
     padding: 3% 3% 5% 3%;
 }
-.card-text {
+.card_text {
+    display: flex-inline;
     line-height: 1.8em;
     padding-left: 12px;
+    margin-left: 10px;
 }
-.card-title {
+.card_title {
     font-size: 24px;
     font-weight: 500;
+    line-height: 1.1em;
+    padding: 12px 22px;
 }
-.card-detail {
+.card_detail {
     align-items: flex-start;
     color: $darkgrey;
     display: block;
@@ -58,31 +62,31 @@
     font-weight: 500;
 }
 
-.card-tags {
+.card_tags {
     display: flex;
     flex-wrap: wrap;
     justify-self: center;
     padding-top: 1em;
 }
-.tag-type {
+.tag_type {
     padding: 1px 15px;
     border-radius: 15px;
     font-size: 11px;
     font-style: italic;
     margin: 5px;
-  }
-  
-  .tag-type.Tool {
+}
+
+.tag_type.Tool {
     color: $darkblue;
     background: $blue;
-  }
-  
-  .tag-type.Skill {
+}
+
+.tag_type.Skill {
     color: $darkyellow;
     background: $yellow;
-  }
-  
-  .tag-type.Edit {
+}
+
+.tag_type.Edit {
     color: $darkpink;
     background: $pink;
-  }
+}

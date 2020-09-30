@@ -1,5 +1,4 @@
 import React from "react";
-// import BubbleChart from '@weknow/react-bubble-chart-d3';
 import BubbleChart from "./bubbleChart";
 // import Actions          from '../Actions';
 

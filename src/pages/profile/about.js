@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import WordBubble from "./wordBubble";
-import Button from "../../shared/Button";
+import Button from "../../shared/sandbox/Button";
 import SkillToolProgress from "./skillToolProgress";
-import "./profile.scss";
+import styles from "../../modules/profile.module.scss";
 
 const test = [
     { label: "CRM", value: 1 },
@@ -25,15 +25,17 @@ const test = [
 
 function About(props) {
     return (
-        <div className="about">
-            <div className="large-section">
-                <div className="heading">
-                    <div className="text-heading">
-                        <i className="far fa-user fa-2x"></i>
-                        <h2 className="text-detail text-title">Biography</h2>
-                    </div>
+        <div className={styles.about}>
+            <div className={styles.large_section}>
+                <div className={styles.text_heading}>
+                    <i className="far fa-user fa-2x"></i>
+                    <h2
+                        className={`${styles.text_detail} ${styles.text_title}`}
+                    >
+                        Biography
+                    </h2>
                 </div>
-                <div className="text-biography">
+                <div>
                     Longer description ayyyyyyy, Lorem ipsum dolor sit amet,
                     consectetur adipiscing elit, sed do eiusmod tempor
                     incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -56,13 +58,17 @@ function About(props) {
                     reprehenderit in voluptate velit esse
                 </div>
             </div>
-            <div className="large-section">
-                <div className="heading">
-                    <div className="text-heading">
+            <div className={styles.large_section}>
+                <div className={styles.heading_endorse}>
+                    <div className={styles.text_heading}>
                         <i className="far fa-star fa-2x"></i>
-                        <h2 className="text-detail text-title">Skills</h2>
+                        <h2
+                            className={`${styles.text_detail} ${styles.text_title}`}
+                        >
+                            Skills
+                        </h2>
                     </div>
-                    <div className="endorse-button">
+                    <div className={styles.endorse_button}>
                         <Button
                             colour="yellow"
                             iconR={<i className="fas fa-check"></i>}
@@ -70,13 +76,17 @@ function About(props) {
                         />
                     </div>
                 </div>
-                <div className="column-section">
-                    <div className="column-left">
+                <div className={styles.column_section}>
+                    <div>
                         <WordBubble type="skill" data={test} />
                     </div>
-                    <div className="column-right">
+                    <div>
                         {test.map((item, index) => (
-                            <SkillToolProgress key={index} type="skill" item={item} />
+                            <SkillToolProgress
+                                key={index}
+                                type="skill"
+                                item={item}
+                            />
                         ))}
                     </div>
                 </div>

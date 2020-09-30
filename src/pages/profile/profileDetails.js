@@ -1,19 +1,19 @@
 import React from 'react';
 import Button from '../../shared/sandbox/Button';
-import './profile.scss';
+import styles from '../../modules/profile.module.scss';
 
 const ProfileDetails = (props) => {
     return (
-        <div className="profile-details">
+        <div className={styles.profile_details}>
             <img
-                className="dp"
+                className={styles.dp}
                 src={require("../../images/Lost-amico.png")}
                 alt="profile"
             />
-            <div className="detail">
-                <div className="heading">
-                    <h1 className="user-name">Amirahha Doe</h1>
-                    <div className="user-buttons">
+            <div className={styles.detail}>
+                <div className={styles.heading}>
+                    <h1 className={styles.user_name}>Amirahha Doe</h1>
+                    <div className={styles.user_buttons}>
                         <Button
                             colour="yellow"
                             iconR={<i className="far fa-envelope"></i>}
@@ -26,28 +26,28 @@ const ProfileDetails = (props) => {
                         />
                     </div>
                 </div>
-                <div className="section">
-                    <div className="user-links">
+                <div className={styles.section}>
+                    <div className={styles.user_links}>
                         <i className="fas fa-map-marked-alt"></i>
-                        <text className="text-detail">
+                        <text className={styles.text_detail}>
                             Location: Melbourne, VIC, Australia
                         </text>
                     </div>
-                    <div className="user-links">
-                        <i className="fas fa-briefcase"></i>
-                        <text className="text-detail">
+                    <div className={styles.user_links}>
+                        <i className="fas fa-suitcase"></i>
+                        <text className={styles.text_detail}>
                             Occupation: Mathematics Professor at University of
                             Not Prestige
                         </text>
                     </div>
-                    <div className="user-links">
+                    <div className={styles.user_links}>
                         <i className="fas fa-pen-nib"></i>
-                        <text className="text-detail">
+                        <text className={styles.text_detail}>
                             Expertise: Engineering and Mathematics
                         </text>
                     </div>
                 </div>
-                <div className="user-bio section">
+                <div className={`${styles.user_bio} ${styles.section}`}>
                     <text>
                         Short description or qutoes of something idc. It is a
                         long established fact that a reader will be distracted
@@ -59,14 +59,14 @@ const ProfileDetails = (props) => {
                         to using 'Content here.
                     </text>
                 </div>
-                <div className="user-socials section">
-                    <i className="fab fa-github social-icon fa-3x"></i>
-                    <i className="fab fa-slack social-icon fa-3x"></i>
-                    <i className="fab fa-stack-overflow social-icon fa-3x"></i>
-                    <i className="fab fa-linkedin-in social-icon fa-3x"></i>
-                    <i className="fab fa-dribbble social-icon fa-3x"></i>
-                    <i className="fab fa-behance social-icon fa-3x"></i>
-                    <i className="fab fa-figma social-icon fa-3x"></i>
+                <div className={`${styles.user_socials} ${styles.section}`}>
+                    <div className={styles.social_icon}><i className="fab fa-github fa-3x"></i></div>
+                    <div className={styles.social_icon}><i className="fab fa-slack fa-3x"></i></div>
+                    <div className={styles.social_icon}><i className="fab fa-stack-overflow fa-3x"></i></div>
+                    <div className={styles.social_icon}><i className="fab fa-linkedin-in fa-3x"></i></div>
+                    <div className={styles.social_icon}><i className="fab fa-dribbble fa-3x"></i></div>
+                    <div className={styles.social_icon}><i className="fab fa-behance fa-3x"></i></div>
+                    <div className={styles.social_icon}><i className="fab fa-figma fa-3x"></i></div>
                 </div>
             </div>
         </div>
