@@ -7,6 +7,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { getFirebase } from './firebase/firebase';
 import { signInWithGoogle } from './signIn';
+import { checkUserExists, createAccount } from './firebase/functions';
 
 const sendVerification = () => {
 	const user = getFirebase().auth().currentUser;
@@ -32,9 +33,22 @@ const SignUp = React.memo((props) => {
 			getFirebase()
 				.auth()
 				.createUserWithEmailAndPassword(email, password)
-				.then((uid) => {
-					console.log(uid);
-					sendVerification();
+				.then(async (user) => {
+					let history = useHistory();
+
+					const exists = await checkUserExists(user.user.uid);
+					if (exists.data === false) {
+						await createAccount({
+							uid: user.user.uid,
+							firstName: firstName,
+							lastName: lastName,
+							email: email,
+						});
+						console.log('Created account', user.user.uid);
+					} else {
+						console.log('Account exists');
+					}
+					history.push('/signup', { firstName, lastName, email });
 				})
 				.catch(function (error) {
 					// Handle Errors here.
@@ -111,7 +125,7 @@ const SignUp = React.memo((props) => {
 				id="google"
 				text="Sign up with Google"
 				onClick={() => {
-					signInWithGoogle(firebase);
+					signInWithGoogle();
 				}}
 			/>
 			<text className="small-text">

@@ -43,20 +43,21 @@ export const createAccount = functions
 		}
 	});
 
-export const getUser = functions
+export const checkUserExists = functions
 	.region('australia-southeast1')
 	.https.onCall(async (data, context) => {
-		console.log('data', data);
 		try {
 			const uid = data.uid;
 			if (!connection || !connection.isConnected) {
 				connection = await connect();
 			}
-			const result = connection.query(
-				`SELECT * FROM user WHERE UID=${uid};`
+			const result = await connection.query(
+				`SELECT uid FROM user WHERE uid='${uid}';`
 			);
-			return result;
+			if (result.length > 0) return true;
+			return false;
 		} catch (err) {
 			console.log(err);
+			return false;
 		}
 	});

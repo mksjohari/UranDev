@@ -12,10 +12,10 @@ const mapStateToProps = (state) => {
 	return { user: state.user };
 };
 
-const SignUp = () => {
+const SignUp = (props) => {
 	const [step, setStep] = useState(0);
 	const [percent, setPercent] = useState(0);
-
+	console.log('props', props);
 	function nextStep() {
 		if (step < 3) {
 			setPercent((step * 100 + 100) / 3);

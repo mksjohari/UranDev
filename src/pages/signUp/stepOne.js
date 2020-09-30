@@ -38,17 +38,27 @@ const StepOne = () => {
 						alt="Profile pic"
 					/>
 				) : (
-					<div id="img-placeholder">
-						<i className={`${styles.fas} ${styles.fa_image}`} />
+					<div>
+						<img
+							className={styles.img_preview}
+							src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Leon_Sterling.jpg"
+							alt="Profile pic"
+						/>
+						<div id="img-placeholder">
+							<i className={`${styles.fas} ${styles.fa_image}`} />
+						</div>
 					</div>
 				)}
 				<div className={styles.preview_controls}>
 					<label
-						className={(buttonStyle.upload_btn, buttonStyle.button)}
+						className={`${buttonStyle.upload_btn} ${buttonStyle.button}`}
 					>
 						<input type="file" onChange={handleChange} />
-						<i className={(styles.fas, styles.fa_camera)} /> Upload
-						Photo
+						<i
+							className="fas fa-camera"
+							style={{ marginRight: 5 }}
+						/>
+						Upload Photo
 					</label>
 					<p className={styles.tip}>
 						At least 256px x 256px PNG or JPG file

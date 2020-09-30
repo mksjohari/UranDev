@@ -7,14 +7,27 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/functions';
 import { getFirebase } from './firebase/firebase';
-
-export const signInWithGoogle = async (firebase) => {
+import { checkUserExists, createAccount } from './firebase/functions';
+export const signInWithGoogle = async () => {
 	const googleProvider = new firebase.auth.GoogleAuthProvider();
 	getFirebase()
 		.auth()
 		.signInWithPopup(googleProvider)
-		.then(function (result) {
-			console.log(result);
+		.then(async (result) => {
+			const uid = getFirebase().auth().currentUser.uid;
+			const exists = await checkUserExists({ uid: uid });
+			console.log(exists);
+			if (exists.data === false) {
+				await createAccount({
+					uid: uid,
+					firstName: result.additionalUserInfo.profile.given_name,
+					lastName: result.additionalUserInfo.profile.family_name,
+					email: result.additionalUserInfo.profile.email,
+				});
+				console.log('Created account', uid);
+			} else {
+				console.log('Account exists');
+			}
 		})
 		.catch(function (error) {
 			// Handle Errors here.
@@ -78,7 +91,7 @@ const SignIn = React.memo((props) => {
 				id="google"
 				text="Sign in with Google"
 				onClick={() => {
-					signInWithGoogle(firebase);
+					signInWithGoogle();
 				}}
 			/>
 			<text className="small-text">

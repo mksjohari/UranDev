@@ -1,6 +1,9 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import { getUserInfo, createAccount } from '../../shared/firebase/functions';
+import {
+	checkUserExists,
+	createAccount,
+} from '../../shared/firebase/functions';
 
 const profile = (props) => {
 	const id = props.match.params.id;
@@ -14,7 +17,7 @@ const profile = (props) => {
 				color="secondary"
 				variant="contained"
 				onClick={() => {
-					getUserInfo({ uid: id })
+					checkUserExists({ uid: id })
 						.then(async (result) => {
 							console.log(result);
 						})
