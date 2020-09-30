@@ -1,6 +1,6 @@
-import React from "react";
-import Button from "../../shared/Button";
-import "./profile.scss";
+import React from 'react';
+import Button from '../../shared/sandbox/Button';
+import './profile.scss';
 
 const ProfileDetails = (props) => {
     return (
