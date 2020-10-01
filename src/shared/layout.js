@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import Header from './header';
 import Footer from './footer';
-import SignIn from './signIn';
-import SignUp from './signUp';
+import SignIn from './signInForm';
+import SignUp from './signUpForm';
 
 import '../modules/layout.scss';
 

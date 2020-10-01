@@ -61,3 +61,19 @@ export const checkUserExists = functions
 			return false;
 		}
 	});
+export const getBasicUser = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		try {
+			const uid = data.uid;
+			if (!connection || !connection.isConnected) {
+				connection = await connect();
+			}
+			const result = await connection.query(
+				`SELECT * FROM user WHERE uid='${uid}';`
+			);
+			return result;
+		} catch (err) {
+			console.log(err);
+		}
+	});

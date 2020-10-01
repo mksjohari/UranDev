@@ -15,7 +15,6 @@ const mapStateToProps = (state) => {
 const SignUp = (props) => {
 	const [step, setStep] = useState(0);
 	const [percent, setPercent] = useState(0);
-	console.log('props', props);
 	function nextStep() {
 		if (step < 3) {
 			setPercent((step * 100 + 100) / 3);
@@ -28,6 +27,7 @@ const SignUp = (props) => {
 			setStep(step - 1);
 		}
 	}
+	const fromSignUp = props.location.state.fromSignUp;
 	return (
 		<div className={styles.sign_up_container}>
 			<div className={styles.sign_up_side_panel}>
@@ -41,7 +41,10 @@ const SignUp = (props) => {
 						<Timeline label={label} percent={percent} />
 					</div>
 					{step === 0 ? (
-						<StepOne />
+						<StepOne
+							fromSignUp={fromSignUp}
+							info={props.location.state}
+						/>
 					) : step === 1 ? (
 						<StepTwo />
 					) : step === 2 ? (
