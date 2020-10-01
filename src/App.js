@@ -18,7 +18,7 @@ const Index = () => {
 	return (
 		<Layout page={location.pathname}>
 			<Switch>
-				<Route component={explore} path="/" />
+				{/* <Route component={explore} path="/" /> */}
 				<Route component={signUp} path="/signUp" />
 				<Route component={projects} path="/projects" />
 				<Route component={profile} path="/profile" />
