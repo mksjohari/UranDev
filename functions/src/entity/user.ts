@@ -4,6 +4,11 @@ export enum UserType {
 	MANAGER = 'manager',
 	SEEKER = 'seeker',
 }
+export enum StatusType {
+	INCOMPLETE = 'incomplete',
+	UNVERIFIED = 'unverified',
+	VERIFIED = 'verified',
+}
 
 @Entity()
 export class User {
@@ -18,14 +23,10 @@ export class User {
 
 	@Column({ type: String })
 	email: string;
-
-	@Column({ type: String })
-	photoUrl: String;
-
 	@Column({
 		type: 'enum',
-		enum: UserType,
-		default: UserType.SEEKER,
+		enum: StatusType,
+		default: StatusType.INCOMPLETE,
 	})
-	userType: UserType;
+	status: StatusType;
 }

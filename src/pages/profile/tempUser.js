@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/functions';
-import { getFirebase, getFunctions } from '../../shared/firebase';
+import React from 'react';
 import { Button } from '@material-ui/core';
-
-const getUserInfo = getFunctions(firebase).httpsCallable('getUser');
-const addMe = getFunctions(firebase).httpsCallable('testCall');
+import {
+	checkUserExists,
+	createAccount,
+} from '../../shared/firebase/functions';
 
 const profile = (props) => {
 	const id = props.match.params.id;
@@ -20,7 +17,7 @@ const profile = (props) => {
 				color="secondary"
 				variant="contained"
 				onClick={() => {
-					getUserInfo({ uid: id })
+					checkUserExists({ uid: id })
 						.then(async (result) => {
 							console.log(result);
 						})
@@ -33,7 +30,7 @@ const profile = (props) => {
 				color="secondary"
 				variant="contained"
 				onClick={async () => {
-					addMe()
+					createAccount()
 						.then((result) => {
 							console.log(result);
 						})
@@ -47,20 +44,3 @@ const profile = (props) => {
 };
 
 export default profile;
-
-var data = [
-	{
-		_id: 'bubble1', // unique id (required)
-		value: 50, // used to determine relative size of bubbles (required)
-		displayText: 'Number Theory', // will use _id if undefined
-		colorValue: 0, // used to determine color
-		selected: true, // if true will use selectedColor/selectedTextColor for circle/text
-	},
-	{
-		_id: 'bubble2', // unique id (required)
-		value: 5, // used to determine relative size of bubbles (required)
-		displayText: 'HTML', // will use _id if undefined
-		colorValue: 3, // used to determine color
-		selected: true, // if true will use selectedColor/selectedTextColor for circle/text
-	},
-];

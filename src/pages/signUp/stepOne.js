@@ -1,51 +1,72 @@
-import React, { useState } from "react";
-import SegmentedTab from "../../shared/SegmentedTab";
+import React, { useState } from 'react';
+import SegmentedTab from '../../shared/sandbox/SegmentedTab';
+import styles from '../../modules/signUp.module.scss';
+import buttonStyle from '../../modules/_button.module.scss';
 
 const StepOne = () => {
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [img, setImg] = useState("");
-  function handleChange(event) {
-    setImg(URL.createObjectURL(event.target.files[0]));
-  }
-  return (
-    <div className="step one">
-      <h6>Personal Details:</h6>
-      <div className="personal-details">
-      <SegmentedTab />
-      <input
-        className="inp-text step-one"
-        placeholder="First name"
-        onChange={(e) => setFname(e.target.value)}
-        required
-      />
-      <input
-        className="inp-text step-one"
-        placeholder="Last name"
-        onChange={(e) => setLname(e.target.value)}
-        required
-      />
-      </div>
-      <h6>Profile Picture:</h6>
+	const [fname, setFname] = useState('');
+	const [lname, setLname] = useState('');
+	const [img, setImg] = useState('');
+	function handleChange(event) {
+		setImg(URL.createObjectURL(event.target.files[0]));
+	}
+	return (
+		<div className={styles.step}>
+			<h6>Personal Details:</h6>
+			<div className={styles.personal_details}>
+				<SegmentedTab />
+				<input
+					className={`inp-text ${styles.step_one}`}
+					placeholder="First name"
+					onChange={(e) => setFname(e.target.value)}
+					required
+				/>
+				<input
+					className={`inp-text ${styles.step_one}`}
+					placeholder="Last name"
+					onChange={(e) => setLname(e.target.value)}
+					required
+				/>
+			</div>
+			<h6>Profile Picture:</h6>
 
-      <div className="preview-container">
-        {img ? (
-          <img className="img-preview" src={img} alt="Profile pic" />
-        ) : (
-          <div id="img-placeholder">
-            <i className="fas fa-image" />
-          </div>
-        )}
-        <div className="preview-controls">
-          <label className="upload-btn button">
-            <input type="file" onChange={handleChange} />
-            <i className="fas fa-camera" /> Upload Photo
-          </label>
-          <p className="tip">At least 256px x 256px PNG or JPG file</p>
-        </div>
-      </div>
-    </div>
-  );
+			<div className={styles.preview_container}>
+				{img ? (
+					<img
+						className={styles.img_preview}
+						src={img}
+						alt="Profile pic"
+					/>
+				) : (
+					<div>
+						<img
+							className={styles.img_preview}
+							src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Leon_Sterling.jpg"
+							alt="Profile pic"
+						/>
+						<div id="img-placeholder">
+							<i className={`${styles.fas} ${styles.fa_image}`} />
+						</div>
+					</div>
+				)}
+				<div className={styles.preview_controls}>
+					<label
+						className={`${buttonStyle.upload_btn} ${buttonStyle.button}`}
+					>
+						<input type="file" onChange={handleChange} />
+						<i
+							className="fas fa-camera"
+							style={{ marginRight: 5 }}
+						/>
+						Upload Photo
+					</label>
+					<p className={styles.tip}>
+						At least 256px x 256px PNG or JPG file
+					</p>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default StepOne;

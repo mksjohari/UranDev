@@ -1,10 +1,10 @@
 import React from 'react';
+import MyProjects from "./myProjects";
 
 const Projects = () => {
 	return (
 		<div>
-			<h1>Hello,</h1>
-			<p>I'm Projects</p>
+			<MyProjects view="Edit"/>
 		</div>
 	);
 };
