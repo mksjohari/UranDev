@@ -9,11 +9,16 @@ const Data = {
     cols: {
         'col-1': {
             id: 'col-1',
-            title: 'todo',
+            title: 'Task 1',
             taskIds: ['task-1', 'task-2', 'task-3', 'task-4'],
+        },
+        'col-2': {
+            id: 'col-2',
+            title: 'Task 2',
+            taskIds: [],
         }
     },
-    colOrder: ['col-1'],
+    colOrder: ['col-1', 'col-2'],
 };
 
 export default Data;
