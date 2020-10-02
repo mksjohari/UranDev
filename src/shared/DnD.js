@@ -1,11 +1,20 @@
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import React, { Component, useState } from "react";
-import ReactDOM from "react-router-dom";
+import React, { Component, PureComponent } from "react";
 import TaskCol from "./TaskCol";
 import Data from "./sampleData";
 
 import styles from "./modules/tmp.module.scss";
-import Logo from "../images/logo.png";
+
+
+// saves computational time
+class InnerList extends PureComponent {
+    render() {
+        const { col, taskMap, index } = this.props;
+        const tasks = col.taskIds.map(taskId => taskMap[taskId]);
+
+        return <TaskCol col={col} tasks={tasks} index={index}/>;
+    }
+}
 
 
 class DnD extends Component {
@@ -23,6 +32,21 @@ class DnD extends Component {
             destination.index === source.index
         ) {
             return;            
+        }
+
+        if (type === "column") {
+            const newColOrder = Array.from(this.state.colOrder);
+            newColOrder.splice(source.index, 1);
+            newColOrder.splice(destination.index, 0, draggableId);
+
+            const newState = {
+                ...this.state,
+                colOrder: newColOrder,
+            };
+
+            this.setState(newState);
+
+            return;
         }
 
         const start = this.state.cols[source.droppableId];
@@ -97,9 +121,14 @@ class DnD extends Component {
                         > 
                             {this.state.colOrder.map((colId, index) => {
                                 const col = this.state.cols[colId];
-                                const tasks = col.taskIds.map(taskId => this.state.tasks[taskId]);
-
-                                return (<TaskCol key={col.id} col={col} tasks={tasks} index={index} />) 
+                                
+                                return (
+                                    <InnerList 
+                                        key={col.id} 
+                                        col={col} 
+                                        taskMap={this.state.tasks} 
+                                        index={index} 
+                                    />) 
                                 })
                             }
                             {provided.placeholder}

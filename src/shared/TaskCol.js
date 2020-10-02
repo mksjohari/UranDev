@@ -1,17 +1,11 @@
-import React from "react";
+import React, { Component, PureComponent } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 import ActionCard from "./ActionCard";
 import styles from "./modules/tmp.module.scss";
 
 // selective rendering to save computation timee
-class InnerList extends React.Component {
-    shouldComponentUpdate(nextProps) {
-        if (nextProps.tasks === this.props.tasks) {
-            return false;
-        }
-        return true;
-    }
+class InnerList extends PureComponent {
 
     render () {
         return (
@@ -23,7 +17,7 @@ class InnerList extends React.Component {
 
 }
 
-class TaskCol extends React.Component {
+class TaskCol extends Component {
 
     render() {
         return (
