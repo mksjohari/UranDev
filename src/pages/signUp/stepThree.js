@@ -1,69 +1,114 @@
-import React from "react";
-import behance from "../../images/behance.png";
-import codesandbox from "../../images/codesandbox.png";
-import dribbble from "../../images/dribbble.png";
-import figma from "../../images/figma.png";
-import github from "../../images/github.png";
-import linkedin from "../../images/linkedin.png";
-import slack from "../../images/slack.png";
-import styles from "../../modules/signUp.module.scss";
+import React from 'react';
+import styles from '../../modules/signUp.module.scss';
+import Button from '../../shared/sandbox/Button';
 
-const StepThree = () => {
-    return (
-        <div className={styles.step}>
-            <span className={styles.social_icon_span}>
-                <img
-                    className={styles.social_icon}
-                    src={linkedin}
-                    alt="Linkedin"
-                />
-                <caption>Linkedin</caption>
-                <input className="inp-text" placeholder="URL to account" />
-            </span>
-            <span className={styles.social_icon_span}>
-                <img className={styles.social_icon} src={github} alt="Github" />
-                <caption>Github</caption>
-                <input className="inp-text" placeholder="URL to account" />
-            </span>
-            <span className={styles.social_icon_span}>
-                <img className={styles.social_icon} src={slack} alt="Slack" />
-                <caption>Slack</caption>
-                <input className="inp-text" placeholder="URL to account" />
-            </span>
-            <span className={styles.social_icon_span}>
-                <img
-                    className={styles.social_icon}
-                    src={codesandbox}
-                    alt="Codesandbox"
-                />
-                <caption>Codesandbox</caption>
-                <input className="inp-text" placeholder="URL to account" />
-            </span>
-            <span className={styles.social_icon_span}>
-                <img
-                    className={styles.social_icon}
-                    src={behance}
-                    alt="Behance"
-                />
-                <caption>Behance</caption>
-                <input className="inp-text" placeholder="URL to account" />
-            </span>
-            <span className={styles.social_icon_span}>
-                <img className={styles.social_icon} src={figma} alt="Figma" />
-                <caption>Figma</caption>
-                <input className="inp-text" placeholder="URL to account" />
-            </span>
-            <span className={styles.social_icon_span}>
-                <img
-                    className={styles.social_icon}
-                    src={dribbble}
-                    alt="Dribbble"
-                />
-                <caption>Dribbble</caption>
-                <input className="inp-text" placeholder="URL to account" />
-            </span>
-        </div>
-    );
+const StepThree = (props) => {
+	const onChange = (value, id) => {
+		props.setStepThree({
+			...props.data,
+			[id]: value,
+		});
+	};
+	return (
+		<div className={styles.step}>
+			<span className={styles.social_icon_span}>
+				<caption>Linkedin</caption>
+				<input
+					className="inp-text"
+					type="url"
+					onChange={(e) => {
+						onChange(e.target.value, 'linkedIn');
+					}}
+					placeholder="URL to account"
+				/>
+			</span>
+			<span className={styles.social_icon_span}>
+				<caption>Github</caption>
+				<input
+					className="inp-text"
+					type="url"
+					onChange={(e) => {
+						onChange(e.target.value, 'github');
+					}}
+					placeholder="URL to account"
+				/>
+			</span>
+			<span className={styles.social_icon_span}>
+				<caption>Slack</caption>
+				<input
+					className="inp-text"
+					type="url"
+					onChange={(e) => {
+						onChange(e.target.value, 'slack');
+					}}
+					placeholder="URL to account"
+				/>
+			</span>
+			<span className={styles.social_icon_span}>
+				<caption>Codesandbox</caption>
+				<input
+					className="inp-text"
+					type="url"
+					onChange={(e) => {
+						onChange(e.target.value, 'codeSandBox');
+					}}
+					placeholder="URL to account"
+				/>
+			</span>
+			<span className={styles.social_icon_span}>
+				<caption>Behance</caption>
+				<input
+					className="inp-text"
+					type="url"
+					onChange={(e) => {
+						onChange(e.target.value, 'behance');
+					}}
+					placeholder="URL to account"
+				/>
+			</span>
+			<span className={styles.social_icon_span}>
+				<caption>Figma</caption>
+				<input
+					className="inp-text"
+					type="url"
+					onChange={(e) => {
+						onChange(e.target.value, 'figma');
+					}}
+					placeholder="URL to account"
+				/>
+			</span>
+			<span className={styles.social_icon_span}>
+				<caption>Dribbble</caption>
+				<input
+					className="inp-text"
+					type="url"
+					onChange={(e) => {
+						onChange(e.target.value, 'dribble');
+					}}
+					placeholder="URL to account"
+				/>
+			</span>
+			<div className={styles.btn_controls}>
+				<Button
+					iconL={<i className="fas fa-arrow-left" />}
+					text="Back"
+					onClick={() => {
+						// props.setStepTwo({});
+						props.prevStep();
+					}}
+				/>
+				<Button
+					colour="blue"
+					iconR={<i className="fas fa-arrow-right" />}
+					text="Next"
+					onClick={() => {
+						// props.setStepTwo({});
+						props.nextStep();
+					}}
+				/>
+			</div>
+		</div>
+	);
 };
 
 export default StepThree;
