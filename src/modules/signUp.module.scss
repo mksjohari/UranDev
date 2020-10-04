@@ -1,159 +1,159 @@
-@import 'variable';
+@import "variable";
 
 .personal_details {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
 }
 
 .btn_controls {
-	margin: 2rem;
-	width: 700px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	position: absolute;
-	bottom: 0;
+    margin: 2rem;
+    width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
 }
 
 .jobsearch_img {
-	width: 400px;
-	height: auto;
+    width: 400px;
+    height: auto;
 }
 
 .sign_up_container {
-	width: 70%;
-	display: flex;
-	flex-direction: row;
-	height: 670px;
-	background: rgb(240, 252, 198);
-	padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 670px;
+    background: rgb(240, 252, 198);
+    padding: 20px;
 }
 
 .sign_up_form {
-	height: 100%;
-	width: 100%;
-	position: relative;
-	align-content: flex-end;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    align-content: flex-end;
 }
 
 .sign_up_side_panel {
-	width: 30%;
-	position: relative;
+    width: 30%;
+    position: relative;
 }
 
 .sign_up_process {
-	padding: 50px;
-	width: 70%;
-	margin-left: 50px;
+    padding: 50px;
+    width: 70%;
+    margin-left: 50px;
 }
 
 .typing_img {
-	width: 250px;
-	height: 250px;
-	position: absolute;
-	top: 45%;
-	left: 50%;
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
 }
 
 .step {
-	width: 550px;
-	margin: 50px;
+    width: 550px;
+    margin: 50px;
 }
 .step_one {
-	width: 300px;
+    width: 300px;
 }
 
 .background_info {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .background_info h6 {
-	margin: 30px 0 0 0;
+    margin: 30px 0 0 0;
 }
 
 .background-info .inp-text {
-	width: 100%;
+    width: 100%;
 }
 
 .span_others {
-	display: flex;
-	align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .span_others .cbx {
-	margin: 0 10px 0 0;
+    margin: 0 10px 0 0;
 }
 
 .row {
-	display: flex;
+    display: flex;
 }
 
 .column {
-	width: 50%;
+    width: 50%;
 }
 
 .tip {
-	font-weight: 300;
-	font-size: 11px;
-	margin: 0;
+    font-weight: 300;
+    font-size: 11px;
+    margin: 0;
 }
 
 .preview_container {
-	display: flex;
-	flex-direction: row;
-	gap: 8%;
+    display: flex;
+    flex-direction: row;
+    gap: 8%;
 }
 
 .preview_controls {
-	display: flex;
-	flex-direction: column;
-	padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 25px;
 }
 
 #img-placeholder {
-	display: flex;
-	background: #ededed;
-	height: 140px;
-	width: 140px;
-	border-radius: 20px;
-	font-size: 40px;
-	color: $midgrey;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    background: #ededed;
+    height: 140px;
+    width: 140px;
+    border-radius: 20px;
+    font-size: 40px;
+    color: $midgrey;
+    align-items: center;
+    justify-content: center;
 }
 
 .img_preview {
-	max-width: 160px;
-	max-height: 160px;
-	border-radius: 16px;
+    max-width: 160px;
+    max-height: 160px;
+    border-radius: 16px;
 }
 
 .social_icon {
-	width: auto;
-	max-width: 35px;
-	max-height: 35px;
-	margin: 0 20px 0 0;
+    width: auto;
+    max-width: 35px;
+    max-height: 35px;
+    margin: 0 20px 0 0;
 }
 
 .social_icon_span input {
-	width: 380px;
-	height: 32px;
+    width: 380px;
+    height: 32px;
 }
 
 .social_icon_span {
-	width: 600px;
-	display: flex;
-	align-items: center;
-	margin: 3% 0;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    margin: 3% 0;
 }
 
 caption {
-	font-size: 13px;
-	font-weight: 500;
-	width: 120px;
-	text-align: left;
+    font-size: 13px;
+    font-weight: 500;
+    width: 120px;
+    text-align: left;
 }
