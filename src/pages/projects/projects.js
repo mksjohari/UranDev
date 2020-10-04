@@ -4,7 +4,7 @@ import MyProjects from "./myProjects";
 const Projects = () => {
 	return (
 		<div>
-			<MyProjects view="Edit"/>
+			<MyProjects view="edit"/>
 		</div>
 	);
 };

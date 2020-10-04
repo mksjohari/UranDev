@@ -90,3 +90,19 @@
     color: $darkpink;
     background: $pink;
 }
+
+.add_project {
+    width: 350px;
+    height: 150px;
+    background-color: $pink;
+    color: $darkpink;
+    font-size: 20px;
+    align-content: center;
+    line-height: 2em;
+    border-radius: 20px;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    padding-top: 3em;
+}

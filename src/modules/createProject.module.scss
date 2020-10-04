@@ -1,0 +1,27 @@
+@import "variable";
+
+.root {
+    display: flex;
+    justify-content: center;
+}
+
+.frame {
+    width: 1142px;
+    height: 622px;
+    overflow: visible;
+    background: var(--White, #ffffff);
+    box-shadow: 0px 0px 30px 0px var(--Shadow, rgba(0, 0, 0, 0.08));
+    border-radius: 30px;
+    color: $darkgrey;
+  }
+
+ .round {
+    display: flex;
+    width: 191px;
+    height: 191px;
+    overflow: visible;
+    background: var(--Grey_2, #ededed);
+    border-radius: 300px;
+    align-items: center;
+    justify-content: center;
+  }

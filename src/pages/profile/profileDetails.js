@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '../../shared/sandbox/Button';
 import styles from '../../modules/profile.module.scss';
 
 const ProfileDetails = (props) => {
+    const [shortlisted, setShortlisted] = useState(false);
+    const toggleShortlisted = () => setShortlisted(previousState => !previousState);
     return (
         <div className={styles.profile_details}>
             <img
@@ -12,17 +14,18 @@ const ProfileDetails = (props) => {
             />
             <div className={styles.detail}>
                 <div className={styles.heading}>
-                    <h1 className={styles.user_name}>Amirahha Doe</h1>
+                    <div className={styles.user_name}>Amirahha Doe</div>
                     <div className={styles.user_buttons}>
                         <Button
-                            colour="yellow"
+                            className={styles.endorse_skill}
                             iconR={<i className="far fa-envelope"></i>}
                             text="Message"
                         />
                         <Button
-                            colour="yellow"
+                            className={shortlisted ? styles.shortlisted_button : styles.shortlist_button}
                             iconR={<i className="far fa-bookmark"></i>}
-                            text="Shortlist"
+                            text={ shortlisted ? "Shortlisted!" : "Shortlist"}
+                            onClick={toggleShortlisted}
                         />
                     </div>
                 </div>
