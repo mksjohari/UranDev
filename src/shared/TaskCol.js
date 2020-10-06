@@ -77,8 +77,10 @@ class TaskCol extends Component {
     resetHeight = this.resetHeight.bind(this);
 
     dropHeight(event) {
-        console.log(event.target.style.height);
-        return true;
+        if (event.target.style.height < 300) {
+            return true;
+        }
+        return false;
     }
 
     render() {
@@ -127,7 +129,7 @@ class TaskCol extends Component {
                                 <div 
                                     ref={provided.innerRef}
                                     {...provided.droppableProps}
-                                    className={`${styles.dropArea} ${this.dropHeight ? styles.blank : ''}`}
+                                    className={styles.dropArea}
                                 >
                                     <div className={snapshot.isDraggingOver ? styles.draggingOver: ''}>
                                         <InnerList tasks={this.props.tasks} />

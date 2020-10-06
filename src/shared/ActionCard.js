@@ -1,6 +1,8 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
+import Options from "./sampleOptions";
+import Dropdown from "./sandbox/Dropdown";
 import styles from "../modules/tmp.module.scss";
 
 class ActionCard extends React.Component {
@@ -17,7 +19,15 @@ class ActionCard extends React.Component {
                         className={styles.actionsCard}
                     >
                         <span className={styles.actionsContent}>
-                            {this.props.task.content}
+                            <div className={styles.tools} >
+                                Used
+                                <Dropdown 
+                                    options={Options} 
+                                    isMulti={true} 
+                                    isCreatable={true} 
+                                    keyColour="#AFDEE9"
+                                />
+                            </div>
                         </span>
                         <span {...provided.dragHandleProps} className={styles.dragHandle}>
                             <i class="fas fa-grip-lines"></i>
