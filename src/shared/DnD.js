@@ -3,7 +3,7 @@ import React, { Component, PureComponent } from "react";
 import TaskCol from "./TaskCol";
 import Data from "./sampleData";
 
-import styles from "./modules/tmp.module.scss";
+import styles from "../modules/tmp.module.scss";
 
 
 // saves computational time

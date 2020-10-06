@@ -1,7 +1,7 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
-import styles from "./modules/tmp.module.scss";
+import styles from "../modules/tmp.module.scss";
 
 class ActionCard extends React.Component {
     render() {
@@ -19,8 +19,8 @@ class ActionCard extends React.Component {
                         <span className={styles.actionsContent}>
                             {this.props.task.content}
                         </span>
-                        <span {...provided.dragHandleProps} className={styles.actionsHandle}>
-                            pull here
+                        <span {...provided.dragHandleProps} className={styles.dragHandle}>
+                            <i class="fas fa-grip-lines"></i>
                         </span>
                     </div>
                 )}
