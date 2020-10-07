@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import styles from '../modules/header.module.scss';
 import Logo from '../images/logo.png';
 import Button from './sandbox/Button';
+import { getFirebase } from './firebase/config';
 
 const Header = (props) => {
+	const [user, setUser] = useState();
+	useEffect(() => {
+		setUser(getFirebase().auth().currentUser);
+	}, []);
 	return (
 		<header className={styles.header}>
 			<div className={styles.logoAndDetails}>

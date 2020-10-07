@@ -17,7 +17,7 @@ const Index = () => {
 				<Route component={explore} exact path="/" />
 				<Route component={signUp} path="/signUp" />
 				<Route component={projects} path="/projects" />
-				<Route component={profile} path="/profile" />
+				<Route component={profile} exact path="/profile" />
 				<Route component={tempUser} path="/u/:id" />
 			</Switch>
 		</Layout>

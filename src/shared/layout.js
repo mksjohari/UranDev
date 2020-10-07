@@ -21,6 +21,7 @@ const Layout = (props) => {
 		setSignUp(true);
 	};
 	var page = props.page.slice(1, props.page.length);
+	console.log(props.children);
 	return (
 		<div className={`container`}>
 			<Header toLogin={toSignIn} toSignUp={toSignUp} />
