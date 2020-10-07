@@ -1,24 +1,24 @@
 
 const Data = {
-    tasks: {
-        'task-1': {id: 'task-1', content: 'do tutorial'},
-        'task-2': {id: 'task-2', content: 'try things'},
-        'task-3': {id: 'task-3', content: 'garuvo'},
-        'task-4': {id: 'task-4', content: 'adfs'},
+  actions: {
+    'action-1': {id: 'action-1', tools: ['git', 'weh'], skills: ['backend dev'], description: ''},
+    'action-2': {id: 'action-2', tools: [], skills: ['web dev', 'app design', 'number theory'], description: ''},
+    'action-3': {id: 'action-3', tools: ['MATLAB', 'adobe XD', 'Rhino3D'], skills :['web dev', 'app design', 'number theory'], description: 'I did somethin'},
+    'action-4': {id: 'action-4', tools: [], skills: [], description: 'yeh this that blah'},
+  },
+  tasks: {
+    'task-1': {
+      id: 'task-1',
+      title: 'Task 1',
+      actionIds: ['action-1', 'action-2', 'action-3', 'action-4'],
     },
-    cols: {
-        'col-1': {
-            id: 'col-1',
-            title: 'Task 1',
-            taskIds: ['task-1', 'task-2', 'task-3', 'task-4'],
-        },
-        'col-2': {
-            id: 'col-2',
-            title: 'Task 2',
-            taskIds: [],
-        }
-    },
-    colOrder: ['col-1', 'col-2'],
+    'task-2': {
+      id: 'task-2',
+      title: 'Task 2',
+      actionIds: [],
+    }
+  },
+  taskOrder: ['task-1', 'task-2'],
 };
 
 export default Data;

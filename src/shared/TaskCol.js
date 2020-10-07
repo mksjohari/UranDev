@@ -10,8 +10,8 @@ class InnerList extends PureComponent {
 
   render () {
   return (
-    this.props.tasks.map((task, index) => (
-    <ActionCard key={task.id} task={task} index={index}/>
+    this.props.actions.map((action, index) => (
+    <ActionCard key={action.id} action={action} index={index}/>
     )) 
   )
   }
@@ -86,7 +86,7 @@ class TaskCol extends Component {
   render() {
 
     return (
-    <Draggable draggableId={this.props.col.id} index={this.props.index}>
+    <Draggable draggableId={this.props.task.id} index={this.props.index}>
       {(provided) => (
         <div 
         className={styles.taskCol}
@@ -124,7 +124,7 @@ class TaskCol extends Component {
               />
             </div>
 
-            <Droppable droppableId={this.props.col.id} type="actions">
+            <Droppable droppableId={this.props.task.id} type="actions">
               {(provided, snapshot) => (
                 <div 
                   ref={provided.innerRef}
@@ -132,7 +132,7 @@ class TaskCol extends Component {
                   className={styles.dropArea}
                 >
                   <div className={snapshot.isDraggingOver ? styles.draggingOver: ''}>
-                    <InnerList tasks={this.props.tasks} />
+                    <InnerList actions={this.props.actions} />
                     {provided.placeholder}
                   </div>
                   <AddActionBtn />
