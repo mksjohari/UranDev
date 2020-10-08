@@ -108,6 +108,7 @@ class ActionCard extends React.Component {
             {...provided.draggableProps}
             ref={provided.innerRef}
             className={styles.actionsCard}
+            id={this.props.action.id}
           >
             <span className={styles.actions}>
               <div className={styles.actionContent} id={`${this.props.action.id}_content`} >

@@ -11,7 +11,7 @@ class InnerList extends Component {
     const { task, actionMap, index } = this.props;
     const actions = task.actionIds.map(actionId => actionMap[actionId]);
     
-    return <TaskCol task={task} actions={actions} index={index} actionsize={this.props.actionsize} />;
+    return <TaskCol task={task} actions={actions} index={index} addAction={this.props.addAction} />;
   }
 }
 
@@ -21,14 +21,14 @@ class DnD extends Component {
   actionsize = Object.keys(this.state.actions).length;
 
   addTask(event) {
-    const currLen = Object.keys(this.props.tasks).length;
+    const currLen = Object.keys(this.state.tasks).length;
     const newTask = {
       id: "task-" + (currLen + 1),
       title: "", 
       actionIds: [], 
     }
 
-    const newList = Object.assign(this.props.tasks, {[newTask.id]: newTask});
+    const newList = Object.assign(this.state.tasks, {[newTask.id]: newTask});
 
     const newState = {
       ...this.state,
@@ -38,6 +38,34 @@ class DnD extends Component {
     newState.taskOrder.push(newTask.id);
 
     this.state = this.setState(newState);
+  }
+
+  addAction(event) {
+    const currLen = Object.keys(this.state.actions).length;
+    const taskId = event.target.id.replace(/_add/g, '');
+
+    const newAction = {
+      id: "action-" + (currLen + 1),
+      description: "", 
+      skills: [], 
+      tools: [],
+    }
+
+    const newList = Object.assign(this.state.actions, {[newAction.id]: newAction});
+
+    console.log(newAction);
+    const newState = {
+      ...this.state,
+      actions: newList,
+    }
+
+    newState.tasks[taskId].actionIds.push(newAction.id);
+
+    console.log(this.state.actions);
+    this.state = this.setState(newState);
+
+    // test test
+
   }
 
   onDragEnd = result => {
@@ -74,7 +102,7 @@ class DnD extends Component {
     if (start === end) {
       const newActionIds = Array.from(start.actionIds);
 
-      newActionIds.splice(source.index, 1);
+      newActionIds.splice(source.index, 1); 
       newActionIds.splice(destination.index, 0, draggableId);
 
       const newTask = {
@@ -123,6 +151,7 @@ class DnD extends Component {
   }
 
   addTask = this.addTask.bind(this);
+  addAction = this.addAction.bind(this);
 
   render() {
     return (
@@ -149,7 +178,7 @@ class DnD extends Component {
                       task={task} 
                       actionMap={this.state.actions} 
                       index={index}
-                      actionsize={this.actionsize} 
+                      addAction={this.addAction} 
                     />) 
                   })
                 }
