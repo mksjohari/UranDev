@@ -5,7 +5,6 @@ import ActionCard from "./ActionCard";
 import Button from "./sandbox/Button";
 import AddBtn from "./sandbox/AddBtn";
 import styles from "../modules/tmp.module.scss";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 // selective rendering to save computation timee
 class InnerList extends Component {
@@ -24,19 +23,29 @@ class TaskCol extends Component {
   state = this.props;
 
   addAction(event) {
-    const currLen = this.state.actions.length;
+    var taskcols = document.getElementsByClassName(styles.taskCol);
+    const currLen = Number(taskcols[0].getAttribute("actionsize"));
+
     const newAction = {
       id: "action-" + (currLen + 1),
       description: "", 
       skills: [], 
       tools: [],
     }
-
+    console.log(newAction);
     const newState = {
       ...this.state,
-      ...this.state.actions.push(newAction),
+      actionsize: currLen + 1,
     }
 
+    newState.actions.push(newAction);
+    newState.task.actionIds.push(newAction.id);
+
+    for (let i = 0; i < taskcols.length; i++) {
+      taskcols[i].setAttribute('actionSize', currLen + 1);
+      
+    }
+    console.log(newState.actions);
     this.state = this.setState(newState);
   }
   
@@ -103,8 +112,10 @@ class TaskCol extends Component {
       {(provided) => (
         <div 
         className={styles.taskCol}
+        id={this.props.task.id}
         {...provided.draggableProps}
         ref={provided.innerRef}
+        actionsize={this.props.actionsize}
         >
         {/* <div {...provided.dragHandleProps}>{this.props.col.title}</div> */}
         <div className={styles.taskHeader}>
@@ -148,7 +159,7 @@ class TaskCol extends Component {
                     <InnerList actions={this.props.actions} />
                     {provided.placeholder}
                   </div>
-                  <AddBtn className={styles.addActionBtn} onClick={this.addAction}/>
+                  <AddBtn id={this.props.task.id + '_add'} className={styles.addActionBtn} onClick={this.addAction}/>
                 </div>
               )}
             </Droppable>

@@ -2,7 +2,6 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import React, { Component, PureComponent } from "react";
 
 import TaskCol from "./TaskCol";
-import Data from "./sampleData";
 import AddBtn from "./sandbox/AddBtn";
 import styles from "../modules/tmp.module.scss";
 
@@ -11,14 +10,15 @@ class InnerList extends Component {
   render() {
     const { task, actionMap, index } = this.props;
     const actions = task.actionIds.map(actionId => actionMap[actionId]);
-
-    return <TaskCol task={task} actions={actions} index={index}/>;
+    
+    return <TaskCol task={task} actions={actions} index={index} actionsize={this.props.actionsize} />;
   }
 }
 
 
 class DnD extends Component {
-  state = Data;
+  state = this.props;
+  actionsize = Object.keys(this.state.actions).length;
 
   addTask(event) {
     const currLen = Object.keys(this.props.tasks).length;
@@ -29,12 +29,13 @@ class DnD extends Component {
     }
 
     const newList = Object.assign(this.props.tasks, {[newTask.id]: newTask});
-    this.props.taskOrder.push(newTask.id);
 
     const newState = {
       ...this.state,
       tasks: newList,
-    }
+    };
+
+    newState.taskOrder.push(newTask.id);
 
     this.state = this.setState(newState);
   }
@@ -70,7 +71,6 @@ class DnD extends Component {
 
     const start = this.state.tasks[source.droppableId];
     const end = this.state.tasks[destination.droppableId];
-    
     if (start === end) {
       const newActionIds = Array.from(start.actionIds);
 
@@ -81,7 +81,7 @@ class DnD extends Component {
         ...start,
         actionIds: newActionIds,
       };
-
+      
       const newState = {
         ...this.state,
         tasks: {
@@ -94,7 +94,7 @@ class DnD extends Component {
       return;
     }
 
-    // moving between actions
+    // moving between tasks
     const startActionIds = Array.from(start.actionIds);
     startActionIds.splice(source.index, 1);
     const newStart = {
@@ -148,7 +148,8 @@ class DnD extends Component {
                       key={task.id} 
                       task={task} 
                       actionMap={this.state.actions} 
-                      index={index} 
+                      index={index}
+                      actionsize={this.actionsize} 
                     />) 
                   })
                 }

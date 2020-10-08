@@ -103,6 +103,7 @@
 
 .actions {
     padding: 10px 0px;
+    min-width: 70%;
 }
 
 .dragHandle {
@@ -120,13 +121,25 @@
     text-align: right;
     color: $midgrey;
     position: absolute;
-    float: right;
+    right: 0px;
     bottom: 10px;
     min-height: 30px;
     min-width: 60px;
 }
 
-.editBtn i {
+.deleteBtn {
+    font-size: 20px;
+    position: absolute;
+    float: right;
+    text-align: right;
+    color: $red;
+    bottom: 10px;
+    right: 50px;
+    min-height: 30px;
+    min-width: 30px;
+}
+
+.editBtn i, .deleteBtn i {
     &:hover {
 		transform: scale(1.05);
 		transition: transform 0.5s;
@@ -136,18 +149,6 @@
 		transform: scale(0.97);
 		transition: transform 0.3s, background-color 0.2s;
 	}
-}
-
-.deleteBtn {
-    font-size: 20px;
-    position: absolute;
-    float: right;
-    text-align: right;
-    color: $red;
-    bottom: 50px;
-    right: 5px;
-    min-height: 30px;
-    min-width: 50px;
 }
 
 .addActionBtn {
@@ -185,7 +186,7 @@
 }
 
 .actionContent {
-    width: 260px;
+    width: 240px;
 }
 
 .tools, .skills {
@@ -214,4 +215,5 @@
 
 .btnCol {
     position: relative;
+    min-width: 30%;
 }
