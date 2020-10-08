@@ -1,15 +1,18 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Seeker {
-    @PrimaryGeneratedColumn("uuid")
-    jid: string;
-
-    @Column({ type: String })
+    @PrimaryColumn({ type: String })
     uid: string;
 
     @Column({ type: String })
     photo: URL;
+
+    @Column({ type: String, default: "https://www.youtube.com/" })
+    introduction: string;
+
+    @Column({ type: String })
+    occupation: string;
 
     @Column({ type: String })
     location: string;

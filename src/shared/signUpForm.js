@@ -36,7 +36,7 @@ const SignUp = React.memo((props) => {
                 .createUserWithEmailAndPassword(email, password)
                 .then(async (user) => {
                     const exists = await checkUserExists(user.user.uid);
-                    if (exists.data === false) {
+                    if (exists.data[0] === false) {
                         await createAccount({
                             uid: user.user.uid,
                             firstName: firstName,
@@ -130,7 +130,7 @@ const SignUp = React.memo((props) => {
                 id="google"
                 text="Sign up with Google"
                 onClick={() => {
-                    signInWithGoogle();
+                    signInWithGoogle(props.onClose, history);
                 }}
             />
             <span className="small-text">

@@ -1,32 +1,39 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from "typeorm";
 
 export enum UserType {
-	NONE = 'incomplete',
-	MANAGER = 'manager',
-	SEEKER = 'seeker',
+    NONE = "none",
+    MANAGER = "manager",
+    SEEKER = "seeker",
+}
+export enum StatusType {
+    INCOMPLETE = "incomplete",
+    UNVERIFIED = "unverified",
+    VERIFIED = "verified",
 }
 
 @Entity()
 export class Users {
-	@PrimaryColumn({ type: String })
-	uid: string;
+    @PrimaryColumn({ type: String })
+    uid: string;
 
-	@Column({ type: String })
-	firstName: string;
+    @Column({ type: String })
+    firstName: string;
 
-	@Column({ type: String })
-	lastName: string;
+    @Column({ type: String })
+    lastName: string;
 
-	@Column({ type: String })
-	email: string;
+    @Column({ type: String })
+    email: string;
 
-	@Column({ type: String })
-	photoUrl: String;
-
-	@Column({
-		type: 'enum',
-		enum: UserType,
-		default: UserType.SEEKER,
-	})
-	userType: UserType;
+    @Column({
+        type: "enum",
+        enum: UserType,
+        default: UserType.SEEKER,
+    })
+    @Column({
+        type: "enum",
+        enum: StatusType,
+        default: StatusType.INCOMPLETE,
+    })
+    status: UserType;
 }

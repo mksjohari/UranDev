@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Button from "./sandbox/Button";
 import "../modules/loginform.scss";
 
@@ -8,7 +8,7 @@ import "firebase/auth";
 import "firebase/functions";
 import { getFirebase } from "./firebase/config";
 import { checkUserExists, createAccount } from "./firebase/firebase";
-export const signInWithGoogle = async () => {
+export const signInWithGoogle = async (onClose, history) => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
     getFirebase()
         .auth()
@@ -16,17 +16,34 @@ export const signInWithGoogle = async () => {
         .then(async (result) => {
             const uid = getFirebase().auth().currentUser.uid;
             const exists = await checkUserExists({ uid: uid });
-            console.log(exists);
-            if (exists.data === false) {
-                await createAccount({
+            if (exists.data[0] === false) {
+                const firstName = result.additionalUserInfo.profile.given_name;
+                const lastName = result.additionalUserInfo.profile.family_name;
+                createAccount({
                     uid: uid,
-                    firstName: result.additionalUserInfo.profile.given_name,
-                    lastName: result.additionalUserInfo.profile.family_name,
+                    firstName,
+                    lastName,
                     email: result.additionalUserInfo.profile.email,
+                }).then(() => {
+                    onClose();
+                    console.log("going to signup form google");
+                    history.push("/signup", {
+                        fromSignUp: true,
+                        firstName,
+                        lastName,
+                    });
                 });
                 console.log("Created account", uid);
             } else {
                 console.log("Account exists");
+                if (exists.data[1] === "incomplete") {
+                    onClose();
+                    history.push("/signup", {
+                        fromSignUp: false,
+                    });
+                } else {
+                    onClose();
+                }
             }
         })
         .catch(function (error) {
@@ -49,6 +66,8 @@ const SignIn = React.memo((props) => {
         e.preventDefault();
         alert(`Submitting Form ${email + password}`);
     };
+    const history = useHistory();
+
     return (
         <form className="login-form" onSubmit={handleSubmit}>
             <i className="fas fa-times" onClick={props.onClose} />
@@ -91,7 +110,7 @@ const SignIn = React.memo((props) => {
                 id="google"
                 text="Sign in with Google"
                 onClick={() => {
-                    signInWithGoogle();
+                    signInWithGoogle(props.onClose, history);
                 }}
             />
             <span className="small-text">
