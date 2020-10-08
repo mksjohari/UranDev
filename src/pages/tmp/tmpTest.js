@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DnD from "../../shared/DnD";
-import data from "../../shared/sampleData"
+import Data from "../../shared/sampleData"
 
 const TmpTest = () => {
   const [fname, setFname] = useState("");
@@ -11,9 +11,9 @@ const TmpTest = () => {
   }
   return (
     <div className="tmp">
-      <DnD tasks={data.tasks}
-      col={data.cols}
-      colOrder={data.colOrder}/>
+      <DnD actions={Data.actions}
+      tasks={Data.tasks}
+      taskOrder={Data.taskOrder}/>
       <div className="">
       <p>hello</p>
       </div>

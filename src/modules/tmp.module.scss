@@ -25,6 +25,7 @@
     margin: 8px 150px;
     background-color: white;
     display: flex;
+    flex-direction: row;
     overflow-x: scroll;
     overflow-y: show;
 };
@@ -147,6 +148,15 @@
     border-radius: 25px;
     text-align: center;
     
+}
+
+.addTaskBtn {
+    margin: 10px;
+    height: 80px;
+    min-width: 400px;
+    padding: 27px;
+    font-size: 20px;
+    border-radius: 25px;
 }
 
 .draggingOver {

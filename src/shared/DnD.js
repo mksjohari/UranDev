@@ -1,13 +1,13 @@
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import React, { Component, PureComponent } from "react";
+
 import TaskCol from "./TaskCol";
 import Data from "./sampleData";
-
+import AddBtn from "./sandbox/AddBtn";
 import styles from "../modules/tmp.module.scss";
 
 
-// saves computational time
-class InnerList extends PureComponent {
+class InnerList extends Component {
   render() {
     const { task, actionMap, index } = this.props;
     const actions = task.actionIds.map(actionId => actionMap[actionId]);
@@ -19,6 +19,25 @@ class InnerList extends PureComponent {
 
 class DnD extends Component {
   state = Data;
+
+  addTask(event) {
+    const currLen = Object.keys(this.props.tasks).length;
+    const newTask = {
+      id: "task-" + (currLen + 1),
+      title: "", 
+      actionIds: [], 
+    }
+
+    const newList = Object.assign(this.props.tasks, {[newTask.id]: newTask});
+    this.props.taskOrder.push(newTask.id);
+
+    const newState = {
+      ...this.state,
+      tasks: newList,
+    }
+
+    this.state = this.setState(newState);
+  }
 
   onDragEnd = result => {
     const { destination, source, draggableId, type } = result;
@@ -103,6 +122,8 @@ class DnD extends Component {
     
   }
 
+  addTask = this.addTask.bind(this);
+
   render() {
     return (
       <DragDropContext
@@ -119,20 +140,22 @@ class DnD extends Component {
               {...provided.droppableProps}
               ref={provided.innerRef}
             > 
-              {this.state.taskOrder.map((taskId, index) => {
-                const task = this.state.tasks[taskId];
-                
-                return (
-                  <InnerList 
-                    key={task.id} 
-                    task={task} 
-                    actionMap={this.state.actions} 
-                    index={index} 
-                  />) 
-                })
-              }
-              {provided.placeholder}
-            </div>
+                {this.state.taskOrder.map((taskId, index) => {
+                  const task = this.state.tasks[taskId];
+                  
+                  return (
+                    <InnerList 
+                      key={task.id} 
+                      task={task} 
+                      actionMap={this.state.actions} 
+                      index={index} 
+                    />) 
+                  })
+                }
+                {provided.placeholder}
+                <AddBtn className={styles.addTaskBtn} onClick={this.addTask}/>
+              </div>
+              
           )}
         </Droppable>
       </DragDropContext>

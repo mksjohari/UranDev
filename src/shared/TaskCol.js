@@ -5,9 +5,10 @@ import ActionCard from "./ActionCard";
 import Button from "./sandbox/Button";
 import AddBtn from "./sandbox/AddBtn";
 import styles from "../modules/tmp.module.scss";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 // selective rendering to save computation timee
-class InnerList extends PureComponent {
+class InnerList extends Component {
 
   render () {
   return (
@@ -20,11 +21,7 @@ class InnerList extends PureComponent {
 }
 
 class TaskCol extends Component {
-  state = {
-    ...this.props,
-    taskTitle: "", 
-    taskDesc: ""
-  };
+  state = this.props;
 
   addAction(event) {
     console.log(event.target.parentElement);
@@ -50,26 +47,44 @@ class TaskCol extends Component {
   handleChange(event) {
 
     if (event.target.className === styles.taskTitle) {
-    var newTitle = event.target.value.replace(/\n/g, "");
-    event.target.value = newTitle;
+      var newTitle = event.target.value.replace(/\n/g, "");
+      event.target.value = newTitle;
 
-    const newState = {
-      ...this.state,
-      taskTitle: newTitle,
-    };
+      const newTask = {
+        ...this.state.task,
+        title: newTitle,
+      };
 
-    this.setState(newState);
-    
-    return;
+      const newState = {
+        ...this.state,
+        tasks: {
+          ...this.state.tasks,
+          [newTask.id]: newTask,
+        }
+        
+      };
+
+      this.setState(newState);
+      
+      return;
     }
 
     // don't allow too many new lines
     var newEntry = event.target.value.replace(/\n\n/g, '\n');
     event.target.value = newEntry;
 
+    const newTask = {
+      ...this.state.task,
+      description: newEntry,
+    };
+
     const newState = {
-    ...this.state,
-    taskDesc: newEntry,
+      ...this.state,
+      tasks: {
+        ...this.state.tasks,
+        [newTask.id]: newTask,
+      }
+      
     };
 
     this.setState(newState);
