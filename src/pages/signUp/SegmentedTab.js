@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../modules/tab.scss';
+import styles from '../../modules/tab.module.scss';
 
 function SegmentedTab(props) {
 	function setEmployer() {
@@ -15,15 +15,19 @@ function SegmentedTab(props) {
 		});
 	}
 	return (
-		<div className="segmented-tab">
+		<div className={styles.segmented_tab}>
 			<button
-				className={`role ${props.role === 'Jobseeker' ? 'active' : ''}`}
+				className={`${styles.role} ${
+					props.role === 'Jobseeker' ? styles.active : ''
+				}`}
 				onClick={setJobseeker}
 			>
 				I'm a <span>Jobseeker</span>
 			</button>
 			<button
-				className={`role ${props.role === 'Employer' ? 'active' : ''}`}
+				className={`${styles.role} ${
+					props.role === 'Employer' ? styles.active : ''
+				}`}
 				onClick={setEmployer}
 			>
 				I'm an <span>Employer</span>

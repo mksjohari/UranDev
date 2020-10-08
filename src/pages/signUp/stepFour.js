@@ -15,6 +15,7 @@ const finishSetup = async (firstStep, secondStep, thirdStep) => {
 		await photoRef.put(firstStep.imgSrc);
 		photoURL = await photoRef.getDownloadURL();
 	}
+
 	await finishUserSignUp({
 		uid: uid,
 		photoURL,

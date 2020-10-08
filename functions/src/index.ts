@@ -1,11 +1,12 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-// import * as mysql from 'promise-mysql';
-
+import 'reflect-metadata';
 import { Connection, createConnection } from 'typeorm';
 import { StatusType, Users } from './entity/users';
 import { Seeker } from './entity/seeker';
-import 'reflect-metadata';
+import { Social } from './entity/social';
+import { Expertise } from './entity/expertise';
+import { getSocials } from './helperFunction';
 
 admin.initializeApp();
 
@@ -17,7 +18,7 @@ const connect = async () => {
 		username: functions.config().cloudsql.user,
 		password: functions.config().cloudsql.pass,
 		database: functions.config().cloudsql.database,
-		entities: [Users, Seeker],
+		entities: [Users, Seeker, Social, Expertise],
 		synchronize: true,
 	});
 };
@@ -88,17 +89,25 @@ export const finishUserSignUp = functions
 			if (!connection || !connection.isConnected) {
 				connection = await connect();
 			}
+			const firstStep = data.firstStep;
+			const secondStep = data.secondStep;
+			const thirdStep = data.thirdStep;
 			const seeker = new Seeker();
+			const socials = getSocials(data.uid, thirdStep);
 			seeker.uid = data.uid;
 			seeker.photo = data.photoURL;
-			seeker.location = data.secondStep.city;
+			seeker.location = secondStep.city;
+			seeker.occupation = secondStep.occupation;
 			await connection.manager.update(Users, seeker.uid, {
+				firstName: firstStep.firstName,
+				lastName: firstStep.lastName,
 				status: StatusType.UNVERIFIED,
 			});
+			await connection.manager.save(Social, socials);
 			await connection.manager.save(seeker);
-			return 'Added Seeker';
+			return;
 		} catch (err) {
 			console.log(err);
-			return false;
+			return;
 		}
 	});

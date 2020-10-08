@@ -1,13 +1,13 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
-export class Social {
+export class Expertise {
 	@PrimaryColumn({ type: String })
 	uid: String;
 
 	@PrimaryColumn({ type: String })
-	name: string;
+	eid: String;
 
 	@Column({ type: String })
-	url: URL;
+	expertise: String;
 }

@@ -109,6 +109,18 @@ const StepTwo = (props) => {
 				<h6>Background Information:</h6>
 				<input
 					className="inp-text"
+					value={props.data.occupation}
+					onChange={(e) => {
+						props.setStepTwo({
+							...props.data,
+							occupation: e.target.value,
+						});
+					}}
+					placeholder="Occupation"
+					required
+				/>
+				<input
+					className="inp-text"
 					value={props.data.city}
 					onChange={(e) => {
 						props.setStepTwo({

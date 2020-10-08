@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, CreateDateColumn } from 'typeorm';
 
 export enum UserType {
 	NONE = 'none',
@@ -31,10 +31,14 @@ export class Users {
 		default: UserType.NONE,
 	})
 	userType: UserType;
+
 	@Column({
 		type: 'enum',
 		enum: StatusType,
 		default: StatusType.INCOMPLETE,
 	})
 	status: StatusType;
+
+	@CreateDateColumn()
+	dateCreated: Date;
 }
