@@ -100,7 +100,7 @@
     display: none;
 }
 
-.actionsContent {
+.actions {
     padding: 10px 0px;
 }
 
@@ -153,8 +153,36 @@
     background-color: lightblue;
 }
 
-.tools, .skills {
+.toolsEdit, .skillsEdit {
     width: 100%;
+}
+
+.actionContent {
+    width: 260px;
+}
+
+.tools, .skills {
+    display: inline-block;
+    width: 260px;
+}
+
+.toolItem, .skillItem {
+    padding: 0px 15px;
+    margin: 2px 2px;
+    border-radius: 50px;
+    background-color: $blue;
+    color: $darkblue;
+    font-style: italic;
+    overflow-inline: normal;
+    float: left;
+}
+
+.skillItem {
+    background-color: $yellow;
+}
+
+.description {
+    padding: 10px 10px;
 }
 
 .btnCol {

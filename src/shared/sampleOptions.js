@@ -1,7 +1,13 @@
 const Options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
+    { value: 'git', label: 'git' },
+    { value: 'weh', label: 'weh' },
+    { value: 'MATLAB', label: 'MATLAB' },
+    { value: 'adobe XD', label: 'adobe XD' },
+    { value: 'Rhino3D', label: 'Rhino3D' },
+    { value: 'react', label: 'react' },
+    { value: 'web dev', label: 'web dev' },
+    { value: 'app design', label: 'app design' },
+    { value: 'number theory', label: 'number theory' },
   ];
 
 export default Options;

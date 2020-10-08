@@ -48,6 +48,7 @@ function Dropdown(props) {
           keyColour={props.keyColour}
           width={props.width}
           isMulti={props.isMulti}
+          defaultValue={props.defaultValue}
           components={{
             IndicatorSeparator: () => null
           }}
@@ -77,6 +78,7 @@ function Dropdown(props) {
           keyColour={props.keyColour}
           width={props.width}
           isMulti={props.isMulti}
+          defaultValue={props.defaultValue}
           components={{
             IndicatorSeparator: () => null
           }}

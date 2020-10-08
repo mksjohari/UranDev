@@ -1,9 +1,9 @@
 
 const Data = {
   actions: {
-    'action-1': {id: 'action-1', tools: ['git', 'weh'], skills: ['backend dev'], description: ''},
+    'action-1': {id: 'action-1', tools: ['git', 'weh'], skills: [], description: ''},
     'action-2': {id: 'action-2', tools: [], skills: ['web dev', 'app design', 'number theory'], description: ''},
-    'action-3': {id: 'action-3', tools: ['MATLAB', 'adobe XD', 'Rhino3D'], skills :['web dev', 'app design', 'number theory'], description: 'I did somethin'},
+    'action-3': {id: 'action-3', tools: ['MATLAB', 'adobe XD', 'Rhino3D', 'react'], skills :['web dev', 'app design', 'number theory'], description: 'I did somethin'},
     'action-4': {id: 'action-4', tools: [], skills: [], description: 'yeh this that blah'},
   },
   tasks: {
