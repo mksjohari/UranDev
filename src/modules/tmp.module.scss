@@ -93,7 +93,7 @@
     padding: 15px 20px;
     margin: 12px 0px;
     background-color: white;
-    min-height: 150px;
+    min-height: 160px;
     box-shadow: 0px 2px 5px $shadow;
 };
 
@@ -116,7 +116,7 @@
 }
 
 .editBtn {
-    font-size: 24px;
+    font-size: 20px;
     text-align: right;
     color: $midgrey;
     position: absolute;
@@ -136,6 +136,18 @@
 		transform: scale(0.97);
 		transition: transform 0.3s, background-color 0.2s;
 	}
+}
+
+.deleteBtn {
+    font-size: 20px;
+    position: absolute;
+    float: right;
+    text-align: right;
+    color: $red;
+    bottom: 50px;
+    right: 5px;
+    min-height: 30px;
+    min-width: 50px;
 }
 
 .addActionBtn {

@@ -174,6 +174,13 @@ class ActionCard extends React.Component {
                   onClick={this.handleClick}
                 ></i>
               </span>
+              <span className={styles.deleteBtn}>
+                <i 
+                  class="fas fa-trash-alt" 
+                  id={`${this.props.action.id}_deleteBtn`} 
+                  onClick={this.deleteAction}
+                ></i>
+              </span>
             </div>
           </div>
         )}

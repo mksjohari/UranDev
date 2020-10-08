@@ -145,7 +145,7 @@ class TaskCol extends Component {
                   className={styles.dropArea}
                 >
                   <div className={snapshot.isDraggingOver ? styles.draggingOver: ''}>
-                    <InnerList actions={this.state.actions} />
+                    <InnerList actions={this.props.actions} />
                     {provided.placeholder}
                   </div>
                   <AddBtn className={styles.addActionBtn} onClick={this.addAction}/>
