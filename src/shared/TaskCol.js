@@ -24,9 +24,7 @@ class TaskCol extends Component {
   state = this.props;
 
   addAction(event) {
-    console.log(event.target.parentElement);
-    console.log(this.props.actions);
-    const currLen = this.props.actions.length;
+    const currLen = this.state.actions.length;
     const newAction = {
       id: "action-" + (currLen + 1),
       description: "", 
@@ -34,11 +32,9 @@ class TaskCol extends Component {
       tools: [],
     }
 
-    const newList = this.props.actions.push(newAction);
-
     const newState = {
       ...this.state,
-      actions: newList,
+      ...this.state.actions.push(newAction),
     }
 
     this.state = this.setState(newState);
@@ -149,7 +145,7 @@ class TaskCol extends Component {
                   className={styles.dropArea}
                 >
                   <div className={snapshot.isDraggingOver ? styles.draggingOver: ''}>
-                    <InnerList actions={this.props.actions} />
+                    <InnerList actions={this.state.actions} />
                     {provided.placeholder}
                   </div>
                   <AddBtn className={styles.addActionBtn} onClick={this.addAction}/>

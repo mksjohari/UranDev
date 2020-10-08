@@ -15,11 +15,12 @@ class ActionCard extends React.Component {
 
     var newDesc = event.target.value.replace(/\n/g, "");
     event.target.value = newDesc;
-    this.state.action.description = newDesc;
-
     const newState = {
       ...this.state,
-      description: newDesc,
+      action: {
+        ...this.state.action,
+        description: newDesc,
+      }
     };
 
     this.setState(newState);
@@ -53,7 +54,6 @@ class ActionCard extends React.Component {
       }  
     }  
 
-    console.log(newArr);
     this.state.action.tools = newArr;
 
     const newState = {
@@ -75,7 +75,6 @@ class ActionCard extends React.Component {
       }  
     }  
 
-    console.log(newArr);
     this.state.action.skills = newArr;
 
     const newState = {
@@ -113,9 +112,9 @@ class ActionCard extends React.Component {
             <span className={styles.actions}>
               <div className={styles.actionContent} id={`${this.props.action.id}_content`} >
                 <ActionContent 
-                  tools={this.props.action.tools} 
-                  skills={this.props.action.skills}
-                  description={this.props.action.description}
+                  tools={this.state.action.tools} 
+                  skills={this.state.action.skills}
+                  description={this.state.action.description}
                 />
               </div>
 
@@ -127,7 +126,7 @@ class ActionCard extends React.Component {
                     options={Options.tools} 
                     isMulti={true} 
                     isCreatable={true} 
-                    defaultValue={this.props.action.tools.map(
+                    defaultValue={this.state.action.tools.map(
                       (tool) => (
                         { value: tool, label: tool }
                       )) }
@@ -143,7 +142,7 @@ class ActionCard extends React.Component {
                     options={Options.skills} 
                     isMulti={true} 
                     isCreatable={true}
-                    defaultValue={this.props.action.skills.map(
+                    defaultValue={this.state.action.skills.map(
                       (skill) => (
                         { value: skill, label: skill }
                       )) }
@@ -156,8 +155,8 @@ class ActionCard extends React.Component {
                   <textarea 
                     id={`${this.props.action.id}_desc`}
                     className={styles.descEdit}
-                    placeHolder={this.props.action.description.length ? "" : "Type..."}
-                    value={this.props.action.description.length ? this.props.action.description : ""}
+                    placeHolder={this.state.action.description.length ? "" : "Type..."}
+                    value={this.state.action.description.length ? this.state.action.description : ""}
                     onChange={this.handleChange}
                     onKeyUp={this.resetHeight}
                   ></textarea>
