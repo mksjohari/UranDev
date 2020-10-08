@@ -40,6 +40,7 @@ function Dropdown(props) {
     return (
       <>
         <CreatableSelect
+          id={props.id}
           placeholder={props.text}
           onChange={props.onChange}
           options={props.options}
@@ -70,6 +71,7 @@ function Dropdown(props) {
     return (
       <>
         <Select
+          id={props.id}
           placeholder={props.text}
           onChange={props.onChange}
           options={props.options}

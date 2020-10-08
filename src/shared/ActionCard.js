@@ -9,9 +9,25 @@ import styles from "../modules/tmp.module.scss";
 
 class ActionCard extends React.Component {
 
+  state = this.props;
+
+  handleChange(event) {
+
+    var newDesc = event.target.value.replace(/\n/g, "");
+    event.target.value = newDesc;
+    this.state.action.description = newDesc;
+
+    const newState = {
+      ...this.state,
+      description: newDesc,
+    };
+
+    this.setState(newState);
+  }
+
   handleClick(event) {
-    const edit = document.getElementById(event.target.id.replace(/_editBtn/g,'') + '_edit');
-    const task = document.getElementById(event.target.id.replace(/_editBtn/g,'') + '_content');
+    const edit = document.getElementById(event.target.id.replace(/_editBtn/g,'_edit'));
+    const task = document.getElementById(event.target.id.replace(/_editBtn/g, '_content'));
     const type = event.target.className;
 
     if (type == "fas fa-edit") {
@@ -19,18 +35,68 @@ class ActionCard extends React.Component {
       edit.style.display = "block";
       event.target.className = "fas fa-save";
 
-      return;
-
     } else if (type == "fas fa-save") {
       edit.style.display = "none";
       task.style.display = "block";
       event.target.className = "fas fa-edit";
 
-      return;
     }
   }
 
+  handleSelectTool(event) {
+    var newArr = [];
+
+    if (event) {
+      for (let i = 0; i < event.length; i++) {
+      const newItem = event[i].label;
+        newArr[i] = newItem;
+      }  
+    }  
+
+    console.log(newArr);
+    this.state.action.tools = newArr;
+
+    const newState = {
+      ...this.state,
+      tools: newArr,
+    };
+
+    this.setState(newState);
+
+  }
+
+  handleSelectSkill(event) {
+    var newArr = [];
+    
+    if (event) {
+      for (let i = 0; i < event.length; i++) {
+      const newItem = event[i].label;
+        newArr[i] = newItem;
+      }  
+    }  
+
+    console.log(newArr);
+    this.state.action.skills = newArr;
+
+    const newState = {
+      ...this.state,
+      skills: newArr,
+    };
+
+    this.setState(newState);
+
+  }
+
+  resetHeight(event) {
+    event.target.style.height = 1 + "px";
+    event.target.style.height = (5 + event.target.scrollHeight) + "px";
+    // console.log(event.target.scrollHeight);
+  }
+
   handleClick = this.handleClick.bind(this);
+  handleChange = this.handleChange.bind(this);
+  handleSelectTool = this.handleSelectTool.bind(this);
+  handleSelectSkill = this.handleSelectSkill.bind(this);
 
   render() {
     return (
@@ -57,7 +123,8 @@ class ActionCard extends React.Component {
                 <div className={styles.toolsEdit} >
                   Used (tools)
                   <Dropdown 
-                    options={Options} 
+                    id={`${this.props.action.id}_tools`}
+                    options={Options.tools} 
                     isMulti={true} 
                     isCreatable={true} 
                     defaultValue={this.props.action.tools.map(
@@ -65,27 +132,34 @@ class ActionCard extends React.Component {
                         { value: tool, label: tool }
                       )) }
                     keyColour="#AFDEE9"
+                    onChange={this.handleSelectTool}
                   />
                 </div>
                 <br />
                 <div className={styles.skillsEdit} >
                   For (skills)
                   <Dropdown 
-                    options={Options} 
+                    id={`${this.props.action.id}_skills`}
+                    options={Options.skills} 
                     isMulti={true} 
                     isCreatable={true}
                     defaultValue={this.props.action.skills.map(
                       (skill) => (
                         { value: skill, label: skill }
                       )) }
+                    onChange={this.handleSelectSkill}
                   />
                 </div>
                 <br />
                 <div className={styles.actionDesc} >
                   Description (Optional)
-                  <textarea className="descArea"
+                  <textarea 
+                    id={`${this.props.action.id}_desc`}
+                    className={styles.descEdit}
                     placeHolder={this.props.action.description.length ? "" : "Type..."}
                     value={this.props.action.description.length ? this.props.action.description : ""}
+                    onChange={this.handleChange}
+                    onKeyUp={this.resetHeight}
                   ></textarea>
                 </div>
               </div>

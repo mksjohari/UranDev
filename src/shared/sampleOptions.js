@@ -1,13 +1,17 @@
-const Options = [
-    { value: 'git', label: 'git' },
-    { value: 'weh', label: 'weh' },
-    { value: 'MATLAB', label: 'MATLAB' },
-    { value: 'adobe XD', label: 'adobe XD' },
-    { value: 'Rhino3D', label: 'Rhino3D' },
-    { value: 'react', label: 'react' },
-    { value: 'web dev', label: 'web dev' },
-    { value: 'app design', label: 'app design' },
-    { value: 'number theory', label: 'number theory' },
-  ];
+const Options = {
+  tools: [
+    { value: 'tool', label: 'git' },
+    { value: 'tool', label: 'weh' },
+    { value: 'tool', label: 'MATLAB' },
+    { value: 'tool', label: 'adobe XD' },
+    { value: 'tool', label: 'Rhino3D' },
+    { value: 'tool', label: 'react' },
+  ],
+  skills: [
+    { value: 'skill', label: 'web dev' },
+    { value: 'skill', label: 'app design' },
+    { value: 'skill', label: 'number theory' },
+  ]
+};
 
 export default Options;

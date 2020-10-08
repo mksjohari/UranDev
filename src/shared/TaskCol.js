@@ -2,7 +2,8 @@ import React, { Component, PureComponent, useState } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 import ActionCard from "./ActionCard";
-import Button from "./sandbox/Button"
+import Button from "./sandbox/Button";
+import AddBtn from "./sandbox/AddBtn";
 import styles from "../modules/tmp.module.scss";
 
 // selective rendering to save computation timee
@@ -18,25 +19,34 @@ class InnerList extends PureComponent {
 
 }
 
-// add button?
-class AddActionBtn extends Component {
-  render () {
-    return (
-    <button className={styles.addBtn}>
-      <i class="fas fa-plus"></i>
-    </button>
-    )
-  }
-}
-
-// add action
-function AddAction(key, task, index) {
-  return;
-}
-
 class TaskCol extends Component {
-  state = {taskTitle: "", taskDesc: ""};
+  state = {
+    ...this.props,
+    taskTitle: "", 
+    taskDesc: ""
+  };
 
+  addAction(event) {
+    console.log(event.target.parentElement);
+    console.log(this.props.actions);
+    const currLen = this.props.actions.length;
+    const newAction = {
+      id: "action-" + (currLen + 1),
+      description: "", 
+      skills: [], 
+      tools: [],
+    }
+
+    const newList = this.props.actions.push(newAction);
+
+    const newState = {
+      ...this.state,
+      actions: newList,
+    }
+
+    this.state = this.setState(newState);
+  }
+  
   handleChange(event) {
 
     if (event.target.className === styles.taskTitle) {
@@ -69,19 +79,11 @@ class TaskCol extends Component {
   resetHeight(event) {
     event.target.style.height = 1 + "px";
     event.target.style.height = (5 + event.target.scrollHeight) + "px";
-    // console.log(event.target.scrollHeight);
   }
 
   // bind 'this'
   handleChange = this.handleChange.bind(this);
-  resetHeight = this.resetHeight.bind(this);
-
-  dropHeight(event) {
-    if (event.target.style.height < 300) {
-    return true;
-    }
-    return false;
-  }
+  addAction = this.addAction.bind(this);
 
   render() {
 
@@ -135,7 +137,7 @@ class TaskCol extends Component {
                     <InnerList actions={this.props.actions} />
                     {provided.placeholder}
                   </div>
-                  <AddActionBtn />
+                  <AddBtn className={styles.addActionBtn} onClick={this.addAction}/>
                 </div>
               )}
             </Droppable>
