@@ -6,67 +6,76 @@ import Logo from '../images/logo.png';
 import Button from './sandbox/Button';
 
 const Header = (props) => {
-	return (
-		<header className={styles.header}>
-			<div className={styles.logoAndDetails}>
-				<div className={styles.logo}>
-					<Link className={styles.headerLink} to="/">
-						<img
-							className={styles.imageLogo}
-							src={Logo}
-							alt="Uran Logo ..."
-						/>
-					</Link>
-				</div>
-				<div className={styles.details}>
-					<Button
-						className={styles.signUp}
-						text="Sign Up"
-						onClick={props.toSignUp}
-					/>
-					<Button
-						colour="yellow"
-						text="Sign In"
-						onClick={props.toLogin}
-					/>
-				</div>
-			</div>
-			<div className={styles.navContainer}>
-				<nav>
-					<ul className={styles.navList}>
-						<li>
-							<NavLink
-								activeClassName={styles.activeNavItem}
-								className={styles.navItem}
-								exact
-								to="/"
-							>
-								Explore
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								activeClassName={styles.activeNavItem}
-								className={styles.navItem}
-								to="/profile"
-							>
-								My Profile
-							</NavLink>
-						</li>
-						<li>
-							<NavLink
-								activeClassName={styles.activeNavItem}
-								className={styles.navItem}
-								to="/projects"
-							>
-								Manage Projects
-							</NavLink>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-	);
+  return (
+    <header className={styles.header}>
+      <div className={styles.logoAndDetails}>
+        <div className={styles.logo}>
+          <Link className={styles.headerLink} to="/">
+            <img
+              className={styles.imageLogo}
+              src={Logo}
+              alt="Uran Logo ..."
+            />
+          </Link>
+        </div>
+        <div className={styles.details}>
+          <Button
+            className={styles.signUp}
+            text="Sign Up"
+            onClick={props.toSignUp}
+          />
+          <Button
+            colour="yellow"
+            text="Sign In"
+            onClick={props.toLogin}
+          />
+        </div>
+      </div>
+      <div className={styles.navContainer}>
+        <nav>
+          <ul className={styles.navList}>
+            <li>
+              <NavLink
+                activeClassName={styles.activeNavItem}
+                className={styles.navItem}
+                exact
+                to="/"
+              >
+                Explore
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                activeClassName={styles.activeNavItem}
+                className={styles.navItem}
+                to="/profile"
+              >
+                My Profile
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                activeClassName={styles.activeNavItem}
+                className={styles.navItem}
+                to="/projects"
+              >
+                Manage Projects
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                activeClassName={styles.activeNavItem}
+                className={styles.navItem}
+                to="/tmp"
+              >
+                HY's Wall of Shame
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
 };
 
 export default Header;
