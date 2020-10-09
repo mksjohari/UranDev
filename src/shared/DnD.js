@@ -6,21 +6,7 @@ import AddBtn from "./sandbox/AddBtn";
 import styles from "../modules/tmp.module.scss";
 
 
-class InnerList extends Component {
-  render() {
-    const { task, actionMap, index } = this.props;
-    const actions = task.actionIds.map(actionId => actionMap[actionId]);
-    
-    return <TaskCol 
-              task={task} 
-              actions={actions} 
-              index={index} 
-              addAction={this.props.addAction} 
-              deleteAction={this.props.deleteAction} 
-              deleteTask={this.props.deleteTask} 
-            />;
-  }
-}
+
 
 
 class DnD extends Component {
@@ -242,12 +228,13 @@ class DnD extends Component {
             > 
                 {this.state.taskOrder.map((taskId, index) => {
                   const task = this.state.tasks[taskId];
+                  const actions = task.actionIds.map(actionId => this.state.actions[actionId]);
                   
                   return (
-                    <InnerList 
+                    <TaskCol 
                       key={task.id} 
                       task={task} 
-                      actionMap={this.state.actions} 
+                      actions={actions} 
                       index={index}
                       addAction={this.addAction}
                       deleteAction={this.deleteAction}
@@ -268,3 +255,19 @@ class DnD extends Component {
   
 }
 export default DnD;
+
+class InnerList extends Component {
+  render() {
+    const { task, actionMap, index } = this.props;
+    const actions = task.actionIds.map(actionId => actionMap[actionId]);
+    
+    return <TaskCol 
+              task={task} 
+              actions={actions} 
+              index={index} 
+              addAction={this.props.addAction} 
+              deleteAction={this.props.deleteAction} 
+              deleteTask={this.props.deleteTask} 
+            />;
+  }
+}
