@@ -119,8 +119,16 @@ class TaskCol extends Component {
                 text="Task Duration" 
                 iconL={<i class="fas fa-calendar"></i>} 
                 className={styles.taskDuration}
-              />
-            </div>
+          />
+
+          <span className={styles.deleteTaskBtn}>
+            <i 
+              class="fas fa-trash-alt" 
+              id={`${this.props.task.id}_deleteBtn`} 
+              onClick={this.props.deleteTask}>
+            </i>
+          </span>
+        </div>
 
             <Droppable droppableId={this.props.task.id} type="actions">
               {(provided, snapshot) => (

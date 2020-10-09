@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollContainer from "react-indiana-drag-scroll";
+// import ScrollContainer from "react-indiana-drag-scroll";
 import WordBubble from "./wordBubble";
 import Button from "../../shared/sandbox/Button";
 import SkillToolProgress from "./skillToolProgress";

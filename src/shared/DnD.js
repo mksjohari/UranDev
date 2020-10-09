@@ -1,5 +1,5 @@
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import React, { Component, PureComponent } from "react";
+import React, { Component } from "react";
 
 import TaskCol from "./TaskCol";
 import AddBtn from "./sandbox/AddBtn";
@@ -11,17 +11,16 @@ class InnerList extends Component {
     const { task, actionMap, index } = this.props;
     const actions = task.actionIds.map(actionId => actionMap[actionId]);
     
-    return <TaskCol task={task} actions={actions} index={index} addAction={this.props.addAction} />;
+    return <TaskCol task={task} actions={actions} index={index} addAction={this.props.addAction} deleteAction={this.props.deleteAction} />;
   }
 }
 
 
 class DnD extends Component {
   state = this.props;
-  actionsize = Object.keys(this.state.actions).length;
 
   addTask(event) {
-    const currLen = Object.keys(this.state.tasks).length;
+    const currLen = this.state.totalTasks;
     const newTask = {
       id: "task-" + (currLen + 1),
       title: "", 
@@ -29,19 +28,26 @@ class DnD extends Component {
     }
 
     const newList = Object.assign(this.state.tasks, {[newTask.id]: newTask});
+    const newOrder = Array.from(this.state.taskOrder);
+
+    newOrder.push(newTask.id);
 
     const newState = {
       ...this.state,
       tasks: newList,
+      taskOrder: newOrder,
+      totalTasks: currLen + 1,
     };
-
-    newState.taskOrder.push(newTask.id);
 
     this.state = this.setState(newState);
   }
 
   addAction(event) {
-    const currLen = Object.keys(this.state.actions).length;
+    if (event.target.className == "fas fa-plus") {
+      event.target = event.target.parentNode;
+    }
+
+    const currLen = this.state.totalActions;
     const taskId = event.target.id.replace(/_add/g, '');
 
     const newAction = {
@@ -56,9 +62,11 @@ class DnD extends Component {
     console.log(newAction);
     const newState = {
       ...this.state,
+      totalActions: currLen + 1,
       actions: newList,
     }
 
+    console.log(newState.tasks);
     newState.tasks[taskId].actionIds.push(newAction.id);
 
     this.state = this.setState(newState);
@@ -67,17 +75,49 @@ class DnD extends Component {
 
   deleteTask(event) {
     const taskId = event.target.id.replace(/_deleteBtn/g, '');
+
+    const newTaskOrder = Array.from(this.state.taskOrder);
+    const newTasks = this.state.tasks;
+    const taskIndex = newTaskOrder.findIndex(task => (task == taskId));
     
-    delete this.state.tasks[taskId];
-    console.log(this.state.tasks);
+    newTaskOrder.splice(taskIndex, 1);
+    delete newTasks.tasks[taskId];
+    
+    const newState = {
+      ...this.state,
+      tasks: newTasks,
+      taskOrder: newTaskOrder,
+    }
+
+    this.setState(newState);
   }
 
-  deleteAction(event) {
-    const actionId = event.target.id.replace(/_deleteBtn/g, '');
-    console.log(';-;');
-    delete this.state.actions[actionId];
-    console.log(this.state.actions);
+  deleteAction(e) {
+    const actionId = e.target.id.replace(/_deleteBtn/g, '');
+    // i stg there's a much better implementation for this
+    const taskId = document.getElementById(actionId).parentNode.parentNode.parentNode.id;
+    
+    const newActionIds = Array.from(this.state.tasks[taskId].actionIds);
+    const newActions = this.state.actions;
+    const actionIndex = newActionIds.findIndex(action => (action == actionId));
+    
+    newActionIds.splice(actionIndex, 1); 
+    delete newActions[actionId];
 
+    const newTask = {
+      ...this.state.tasks[taskId],
+      actionIds: newActionIds,
+    };
+
+    const newState = {
+      ...this.state,
+      tasks: {
+        ...this.state.tasks,
+        [newTask.id]: newTask
+      }
+    }
+
+    this.setState(newState);
   }
 
   onDragEnd = result => {

@@ -21,6 +21,8 @@ const Data = {
     }
   },
   taskOrder: ['task-1', 'task-2'],
+  totalActions: 4,
+  totalTasks: 2,
 };
 
 export default Data;
