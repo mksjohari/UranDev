@@ -8,7 +8,7 @@ class AddBtn extends Component {
       className={this.props.className} 
       onClick={this.props.onClick}
     >
-      <i class="fas fa-plus"></i>
+      <i class="fas fa-plus" ></i>
     </button>
     )
   }

@@ -12,7 +12,7 @@ class InnerList extends Component {
   render () {
   return (
     this.props.actions.map((action, index) => (
-    <ActionCard key={action.id} action={action} index={index}/>
+    <ActionCard key={action.id} action={action} index={index} deleteAction={this.props.deleteAction} />
     )) 
   )
   }
@@ -119,8 +119,16 @@ class TaskCol extends Component {
                 text="Task Duration" 
                 iconL={<i class="fas fa-calendar"></i>} 
                 className={styles.taskDuration}
-              />
-            </div>
+          />
+
+          <span className={styles.deleteTaskBtn}>
+            <i 
+              class="fas fa-trash-alt" 
+              id={`${this.props.task.id}_deleteBtn`} 
+              onClick={this.props.deleteTask}>
+            </i>
+          </span>
+        </div>
 
             <Droppable droppableId={this.props.task.id} type="actions">
               {(provided, snapshot) => (
@@ -130,7 +138,7 @@ class TaskCol extends Component {
                   className={styles.dropArea}
                 >
                   <div className={snapshot.isDraggingOver ? styles.draggingOver: ''}>
-                    <InnerList actions={this.props.actions} />
+                    <InnerList actions={this.props.actions} deleteAction={this.props.deleteAction} />
                     {provided.placeholder}
                   </div>
                   <AddBtn id={this.props.task.id + '_add'} className={styles.addActionBtn} onClick={this.props.addAction}/>
