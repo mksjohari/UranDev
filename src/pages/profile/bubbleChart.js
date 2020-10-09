@@ -156,8 +156,8 @@ export default class BubbleChart extends Component {
                 return valueFont.weight ? valueFont.weight : 600;
             })
             .style("font-family", valueFont.family)
-            .style("fill", () => {
-                return valueFont.color ? valueFont.color : "#000";
+            .style("fill", (d) => {
+                return d.data.text ? d.data.text : "#000";
             })
             .style("stroke", () => {
                 return valueFont.lineColor ? valueFont.lineColor : "#000";
@@ -179,8 +179,8 @@ export default class BubbleChart extends Component {
                 return labelFont.weight ? labelFont.weight : 600;
             })
             .style("font-family", labelFont.family)
-            .style("fill", () => {
-                return labelFont.color ? labelFont.color : "#000";
+            .style("fill", (d) => {
+                return d.data.text ? d.data.text : "#000";
             })
             .style("stroke", () => {
                 return labelFont.lineColor ? labelFont.lineColor : "#000";
@@ -405,7 +405,7 @@ function wrap(text) {
 
         while ((word = words.pop())) {
             line.push(word);
-            tspan.text(line.join(" "))
+            tspan.text(line.join(" "));
             // console.log(x)
             if (tspan.node().getComputedTextLength() > width) {
                 // console.log(text)

@@ -7,6 +7,7 @@ import reducers from "./reducers";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { DimsProvider } from "./shared/react-dims";
 import { createStore, compose, applyMiddleware } from "redux";
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
@@ -15,7 +16,9 @@ ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <App />
+                <DimsProvider>
+                    <App />
+                </DimsProvider>
             </Provider>
         </BrowserRouter>
     </React.StrictMode>,

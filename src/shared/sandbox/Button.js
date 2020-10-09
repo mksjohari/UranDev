@@ -1,4 +1,5 @@
 import React from "react";
+import { ProgressBar } from "react-bootstrap";
 
 function Button(props) {
   return (
@@ -6,12 +7,14 @@ function Button(props) {
       <button
         type="button"
         className={props.colour + " " + props.className}
+        style={{display:  `${props.iconB ? "grid" : "inline"}`}}
         id={props.id}
         onClick={props.onClick}
       >
         {props.iconL ? props.iconL : ""}
         <span>{props.text}</span>
         {props.iconR ? props.iconR : ""}
+        {props.iconB ? props.iconB : ""}
       </button>
     </>
   );
