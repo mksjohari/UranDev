@@ -10,3 +10,5 @@ firebase-debug.*.log*
 .firebase/
 .cache/
 node_modules/
+# DS Stores
+.DS_Store
