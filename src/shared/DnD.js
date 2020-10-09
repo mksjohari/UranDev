@@ -11,7 +11,14 @@ class InnerList extends Component {
     const { task, actionMap, index } = this.props;
     const actions = task.actionIds.map(actionId => actionMap[actionId]);
     
-    return <TaskCol task={task} actions={actions} index={index} addAction={this.props.addAction} deleteAction={this.props.deleteAction} />;
+    return <TaskCol 
+              task={task} 
+              actions={actions} 
+              index={index} 
+              addAction={this.props.addAction} 
+              deleteAction={this.props.deleteAction} 
+              deleteTask={this.props.deleteTask} 
+            />;
   }
 }
 
@@ -78,13 +85,23 @@ class DnD extends Component {
 
     const newTaskOrder = Array.from(this.state.taskOrder);
     const newTasks = this.state.tasks;
+    const actionList = newTasks[taskId].actionIds;
+    const newActions = this.state.actions;
     const taskIndex = newTaskOrder.findIndex(task => (task == taskId));
     
     newTaskOrder.splice(taskIndex, 1);
-    delete newTasks.tasks[taskId];
+    console.log(newTasks);
+
+    for (let i = 0; i < actionList.length; i++) {
+      delete newActions[actionList[i]];
+      
+    }
+
+    delete newTasks[taskId];
     
     const newState = {
       ...this.state,
+      actions: newActions,
       tasks: newTasks,
       taskOrder: newTaskOrder,
     }
