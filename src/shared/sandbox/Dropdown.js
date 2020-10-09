@@ -42,7 +42,7 @@ function Dropdown(props) {
         <CreatableSelect
           id={props.id}
           placeholder={props.text}
-          value={props.value ? props.value : null}
+          // value={props.value ? props.value : null}
           onChange={props.onChange}
           options={props.options}
           styles={customStyles}
