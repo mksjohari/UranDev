@@ -179,7 +179,7 @@ class ActionCard extends React.Component {
                 <i 
                   class="fas fa-trash-alt" 
                   id={`${this.props.action.id}_deleteBtn`} 
-                  onClick={this.deleteAction}
+                  onClick={this.props.deleteAction}
                 ></i>
               </span>
             </div>

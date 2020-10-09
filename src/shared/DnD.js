@@ -61,10 +61,22 @@ class DnD extends Component {
 
     newState.tasks[taskId].actionIds.push(newAction.id);
 
-    console.log(this.state.actions);
     this.state = this.setState(newState);
 
-    // test test
+  }
+
+  deleteTask(event) {
+    const taskId = event.target.id.replace(/_deleteBtn/g, '');
+    
+    delete this.state.tasks[taskId];
+    console.log(this.state.tasks);
+  }
+
+  deleteAction(event) {
+    const actionId = event.target.id.replace(/_deleteBtn/g, '');
+    console.log(';-;');
+    delete this.state.actions[actionId];
+    console.log(this.state.actions);
 
   }
 
@@ -152,6 +164,8 @@ class DnD extends Component {
 
   addTask = this.addTask.bind(this);
   addAction = this.addAction.bind(this);
+  deleteTask = this.deleteTask.bind(this);
+  deleteAction = this.deleteAction.bind(this);
 
   render() {
     return (
@@ -178,7 +192,9 @@ class DnD extends Component {
                       task={task} 
                       actionMap={this.state.actions} 
                       index={index}
-                      addAction={this.addAction} 
+                      addAction={this.addAction}
+                      deleteAction={this.deleteAction}
+                      deleteTask={this.deleteTask}
                     />) 
                   })
                 }

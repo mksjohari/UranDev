@@ -12,7 +12,7 @@ class InnerList extends Component {
   render () {
   return (
     this.props.actions.map((action, index) => (
-    <ActionCard key={action.id} action={action} index={index}/>
+    <ActionCard key={action.id} action={action} index={index} deleteAction={this.props.deleteAction} />
     )) 
   )
   }
@@ -130,7 +130,7 @@ class TaskCol extends Component {
                   className={styles.dropArea}
                 >
                   <div className={snapshot.isDraggingOver ? styles.draggingOver: ''}>
-                    <InnerList actions={this.props.actions} />
+                    <InnerList actions={this.props.actions} deleteAction={this.props.deleteAction} />
                     {provided.placeholder}
                   </div>
                   <AddBtn id={this.props.task.id + '_add'} className={styles.addActionBtn} onClick={this.props.addAction}/>
