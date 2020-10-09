@@ -26,6 +26,7 @@ function Dropdown(props) {
     <>
       <Select
         placeholder={props.text}
+        value={props.value ? props.value : null}
         onChange={props.onChange}
         options={props.options}
         styles={customStyles}

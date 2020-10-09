@@ -5,11 +5,12 @@ import '../../modules/timeline.scss';
 
 function Timeline(props) {
 	return (
-		<>
+		<div className="timeline">
 			<ProgressBar
 				percent={props.percent}
 				filledBackground="#bbbbbb"
 				height="3px"
+				width={props.width ? props.width : 600}
 			>
 				<Step>
 					{({ accomplished, position }) => (
@@ -76,7 +77,7 @@ function Timeline(props) {
 					)}
 				</Step>
 			</ProgressBar>
-		</>
+		</div>
 	);
 }
 

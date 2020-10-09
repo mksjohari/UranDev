@@ -1,27 +1,97 @@
 @import "variable";
 
-.root {
-    display: flex;
-    justify-content: center;
+/* If the screen size is 768 or more */
+@media only screen and (min-width: 768px) {
 }
 
-.frame {
-    width: 1142px;
-    height: 622px;
-    overflow: visible;
-    background: var(--White, #ffffff);
-    box-shadow: 0px 0px 30px 0px var(--Shadow, rgba(0, 0, 0, 0.08));
-    border-radius: 30px;
-    color: $darkgrey;
-  }
+/* If the screen size is 768 or less */
+@media only screen and (max-width: 767px) {
+}
 
- .round {
+.root {
+    color: $darkgrey;
+}
+.header {
+    flex-wrap: wrap;
     display: flex;
-    width: 191px;
-    height: 191px;
-    overflow: visible;
-    background: var(--Grey_2, #ededed);
-    border-radius: 300px;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row-reverse;
+}
+.button_header {
+    align-self: flex-start;
+    display: inline-flex;
+    justify-content: space-between;
+}
+.save_draft {
+    color: $navy;
+    background-color: $pink;
+}
+
+.delete_project {
+    color: $grey;
+    background-color: $reddo;
+    margin-left: 20px;
+}
+
+.project_title {
+    width: 335px;
+    height: 40px;
+    font-size: 40px;
+    line-height: 1;
+    font-weight: 600;
+}
+
+.title_help {
+    width: 299px;
+    height: 19px;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+.section {
+    padding: 2rem 0rem;
+}
+
+.form {
+    width: 60%;
+}
+
+.heading {
+    width: 160px;
+    height: 36px;
+    font-size: 36px;
+    line-height: 1;
+    font-weight: 400;
+}
+.section_question {
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 1em 0em;
   }
+.section_input {
+    flex-direction: column;
+    display: flex;
+    padding: 1em 3%;
+}
+
+.input_situation {
+    height: 5em;
+}
+.input_teamsize {
+    display: flex-inline;
+}
+.teamsize_button {
+    min-width: 60px;
+    margin-right: 10px;
+}
+.teamsize_selected {
+    background-color: $yellow;
+}
+.budget_input {
+    display: inline-flex;
+}
+.dropdown_currency {
+    margin-right: 10px;
+}
