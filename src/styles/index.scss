@@ -21,6 +21,24 @@
 	}
 }
 
+.inp-field {
+	color: hsl(0, 0%, 20%);
+	border: 1px solid $lightgrey;
+	border-radius: 10px;
+	background-color: white;
+	padding: 5px 10px;
+	min-width: 60px;
+	::placeholder {
+		color: #aaa;
+	}
+	&:focus,
+	&:hover {
+		outline: none;
+		border: 1px solid $midgrey; 
+		transition: border ease 0.3s;
+	}
+}
+
 .search {
 	width: 40%;
 	background-color: white;
@@ -58,13 +76,30 @@
 	font-size: 16px;
 }
 
-.timeline {
-	width: 600px;
-	padding: 2rem 2rem 4rem 2rem;
-	margin-left: auto;
-	margin-right: auto;
-}
-
+::-webkit-scrollbar {
+	display: block;
+	overflow: auto;
+	width: 5px;
+	height: 8px;
+	border-radius: 5px;
+	}
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: $grey;
+	border-radius: 5px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: $midgrey;
+	border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: $darkgrey;
+  }
+  
 html {
 	font-family: $font;
 	-ms-text-size-adjust: 100%;

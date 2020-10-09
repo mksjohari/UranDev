@@ -1,0 +1,126 @@
+@import "variable";
+
+@media only screen and (min-width: 768px) {
+  .text {
+    width: 50%;
+  }
+  .drafts_line {
+    border-right: 1px solid $darkgrey;
+    padding-right: 5%;
+  }
+  .drafts_row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1em 0em;
+  }
+
+  .drafts_scroll {
+    display: flex;
+    flex-direction: row;
+    padding: 5% 0px;
+    overflow: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+  }
+}
+
+/* If the screen size is 768 or less */
+@media only screen and (max-width: 767px) {
+  .text {
+    width: 100%;
+  }
+  .drafts_line {
+    border-bottom: 1px solid $darkgrey;
+    padding-bottom: 3%;
+  }
+  .drafts_row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1em 0em;
+  }
+
+  .drafts_scroll {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 0px;
+  }
+}
+
+.root {
+    display: flex;
+    justify-content: center;
+}
+
+.frame {
+    // width: 1142px;
+    // height: 622px;
+    flex: 1 1;
+    background: var(--White, #ffffff);
+    box-shadow: 0px 0px 30px 0px var(--Shadow, rgba(0, 0, 0, 0.08));
+    border-radius: 30px;
+    color: $darkgrey;
+  }
+
+ .round {
+    display: flex;
+    width: 191px;
+    height: 191px;
+    background: var(--Grey_2, #ededed);
+    border-radius: 300px;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 10px;
+  }
+
+  .back_link {
+    font-size: 20px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    width: 80px;
+    margin: 20px 26px;
+  }
+
+  .drafts_bg {
+    flex: 1 1 500px;
+    background-image: url("../images/resume.svg");
+    background-repeat: no-repeat;
+    background-position: right;
+    padding: 5% 10%;
+  }
+
+  .add_project {
+    color: #000000;
+    font-size: 36px;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+  .text {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.2;
+    font-weight: 400;
+    // background-color: #ffffff;
+    padding: 5px;
+  }
+
+  .project_round {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5%;
+  }
+
+  .draft_text {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 400;
+    margin-top: 20px;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 50px;
+  }

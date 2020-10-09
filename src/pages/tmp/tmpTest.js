@@ -7,7 +7,7 @@ const TmpTest = () => {
   return (
     <div className="tmp">
       <DateSelect />
-      <DnD 
+      <DnD
         actions={Data.actions}
         tasks={Data.tasks}
         taskOrder={Data.taskOrder}
