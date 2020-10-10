@@ -63,3 +63,11 @@ button span {
 		background-color: $deepyellow;
 	}
 }
+
+.reddo {
+	background-color: $reddo;
+	color: white;
+	&:active {
+		background-color: $darkpink;
+	}
+}

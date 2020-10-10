@@ -3,6 +3,7 @@ import DnD from "../../shared/DnD";
 import DateSelect from "../../shared/DateSelect";
 import Data from "../../shared/sampleData";
 import Popup from "../../shared/sandbox/popup";
+import AddActionForm from '../../shared/AddActionForm'
 
 const TmpTest = () => {
   return (
@@ -10,6 +11,7 @@ const TmpTest = () => {
       <Popup text='Popip' id='tmpBtn' content={<DateSelect/>} />
       <br/>
       <br/>
+      <AddActionForm  />
       <DateSelect />
       <DnD
         actions={Data.actions}

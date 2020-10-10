@@ -1,0 +1,25 @@
+@import 'variable';
+
+.container {
+  background-color: $ivory;
+  padding: 60px;
+  min-width: 700px;
+  border-radius: 25px;
+}
+
+.descEdit {
+  width: 100%;
+  resize: none;
+}
+
+.title {
+  padding: 10px 0px;
+}
+
+.btnRow {
+  padding: 40px 20px 0px 20px;
+}
+
+.btnRow button {
+  margin: 0px 80px !important;
+}
