@@ -1,11 +1,15 @@
 import React from "react";
 import DnD from "../../shared/DnD";
 import DateSelect from "../../shared/DateSelect";
-import Data from "../../shared/sampleData"
+import Data from "../../shared/sampleData";
+import Popup from "../../shared/sandbox/popup";
 
 const TmpTest = () => {
   return (
     <div className="tmp">
+      <Popup text='Popip' id='tmpBtn' content={<DateSelect/>} />
+      <br/>
+      <br/>
       <DateSelect />
       <DnD
         actions={Data.actions}
