@@ -4,6 +4,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import ActionCard from "./ActionCard";
 import Button from "./sandbox/Button";
 import AddBtn from "./sandbox/AddBtn";
+import DateSelect from "./DateSelect";
 import styles from "../modules/tmp.module.scss";
 
 // selective rendering to save computation timee
@@ -114,12 +115,7 @@ class TaskCol extends Component {
             onChange={this.handleChange} 
             className={styles.taskDesc}
           />
-          <Button 
-            color="white" 
-                text="Task Duration" 
-                iconL={<i class="fas fa-calendar"></i>} 
-                className={styles.taskDuration}
-          />
+          <DateSelect taskId={this.props.task.id} />
 
           <span className={styles.deleteTaskBtn}>
             <i 

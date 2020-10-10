@@ -7,7 +7,6 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import '../modules/react_dates_overrides.css'
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
-import styles from '../modules/react_dates_overrides.module.scss';
 
 // ThemedStyleSheet.registerInterface(aphroditeInterface);
 // ThemedStyleSheet.registerTheme({
@@ -32,7 +31,7 @@ class DateSelect extends React.Component {
   
   render() {
     return(
-      <div className={styles.popUpContainer}>
+      <>
         <DateRangePicker
           startDate={this.state.startDate} // momentPropTypes.momentObj or null,
           startDateId={this.props.taskId + "_startDate"} // PropTypes.string.isRequired,
@@ -49,7 +48,7 @@ class DateSelect extends React.Component {
           minimumNights={0}
           isOutsideRange={() => false}
         />
-      </div>
+      </>
     )
   }
 }
