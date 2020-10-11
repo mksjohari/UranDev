@@ -1,5 +1,15 @@
 @import "variable";
 
+.error {
+  color: red;
+  font-style: italic;
+  font-size: 11px;
+  margin: 0;
+  text-align: left;
+  width: 250px;
+  line-height: 15px;
+}
+
 #modal {
   position: fixed;
     top: 0;

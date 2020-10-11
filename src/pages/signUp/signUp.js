@@ -61,7 +61,6 @@ const SignUp = (props) => {
 								onClick={prevStep}
 							/>
 						)}
-						{step === 2 ? <a>Skip</a> : ''}
 						<Button
 							colour="blue"
 							iconR={<i className="fas fa-arrow-right" />}

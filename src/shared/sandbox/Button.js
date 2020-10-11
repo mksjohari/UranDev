@@ -1,5 +1,4 @@
 import React from "react";
-import { ProgressBar } from "react-bootstrap";
 
 function Button(props) {
   return (

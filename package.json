@@ -23,7 +23,9 @@
 		"react-bubble-chart": "^0.4.0",
 		"react-dom": "^16.13.1",
 		"react-dropzone": "^11.2.0",
+		"react-feather": "^2.0.8",
 		"react-indiana-drag-scroll": "^1.7.0",
+		"react-places-autocomplete": "^7.3.0",
 		"react-redux": "^7.2.1",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "3.4.3",
@@ -31,7 +33,8 @@
 		"react-step-progress-bar": "^1.0.3",
 		"redux": "^4.0.5",
 		"redux-thunk": "^2.3.0",
-		"typeface-poppins": "0.0.72"
+		"typeface-poppins": "0.0.72",
+		"zxcvbn": "^4.4.2"
 	},
 	"scripts": {
 		"start": "react-scripts start",

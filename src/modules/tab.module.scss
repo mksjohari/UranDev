@@ -1,5 +1,22 @@
 @import "variable";
 
+.inp_text {
+  font-size: 12px;
+	font-family: "Font Awesome 5 Free", $font;
+	border-radius: 10px;
+	padding: 5px 10px;
+  height: 36px;
+  width: 200px;
+	background: white;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	&:focus,
+	&:hover {
+		outline: none;
+		border: 1px solid $midgrey;
+		transition: border ease 0.3s;
+	}
+}
+
 .tab_div {
   width: 65%;
   margin-left: auto;

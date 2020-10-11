@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import styles from '../modules/header.module.scss';
 import Logo from '../images/logo.png';
 import Button from './sandbox/Button';
+// import Logout from "../shared/sandbox/Logout";
 
 const Header = (props) => {
 	return (
@@ -29,6 +30,7 @@ const Header = (props) => {
 						text="Sign In"
 						onClick={props.toLogin}
 					/>
+					{/* <Logout /> */}
 				</div>
 			</div>
 			<div className={styles.navContainer}>

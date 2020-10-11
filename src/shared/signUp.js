@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Button from './sandbox/Button';
+import PasswordStrengthMeter from '../shared/sandbox/PasswordStrengthMeter';
 import '../modules/loginform.scss';
 
 import firebase from 'firebase/app';
@@ -27,6 +28,7 @@ const SignUp = React.memo((props) => {
 	const [confirmPass, setConfirmPass] = useState('');
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
+	const [errormsg, setErrormsg] = useState('');
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (password === confirmPass) {
@@ -55,14 +57,12 @@ const SignUp = React.memo((props) => {
 					var errorCode = error.code;
 					var errorMessage = error.message;
 					if (errorCode == 'auth/email-already-in-use') {
-						alert('email already in use, make this pretty uwu');
+						setErrormsg("This email address is already in use. Please log in instead.");
 					}
 					// ...
 				});
 		} else {
-			alert(
-				'passwords dont match, front team i believe in u make this pretty'
-			);
+			setErrormsg("The passwords don't match. Try again.")
 		}
 	};
 	return (
@@ -95,6 +95,7 @@ const SignUp = React.memo((props) => {
 			</span>
 			<input
 				className="inp-text"
+				autoComplete="off"
 				placeholder="&#xf070;   Password"
 				type="password"
 				onChange={(e) => setPassword(e.target.value)}
@@ -107,7 +108,8 @@ const SignUp = React.memo((props) => {
 				onChange={(e) => setConfirmPass(e.target.value)}
 				required
 			/>
-
+			<PasswordStrengthMeter password={password} />
+			{ errormsg ? <p className="error">{errormsg}</p> : ""}
 			<input
 				className="pink login button"
 				id="login"

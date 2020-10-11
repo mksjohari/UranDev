@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import behance from '../../images/behance.png';
 import codesandbox from '../../images/codesandbox.png';
 import dribbble from '../../images/dribbble.png';

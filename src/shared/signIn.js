@@ -45,6 +45,7 @@ export const signInWithGoogle = async () => {
 const SignIn = React.memo((props) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [errormsg, setErrormsg] = useState(''); //Error message: 'Invalid email or password. Try again.'
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		alert(`Submitting Form ${email + password}`);
@@ -74,6 +75,7 @@ const SignIn = React.memo((props) => {
 			>
 				Forgot password?
 			</a>
+			{ errormsg ? <p className="error">{errormsg}</p> : ""}
 			<input
 				className="pink login button"
 				id="login"
