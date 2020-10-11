@@ -31,7 +31,7 @@ const SignUp = React.memo((props) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (password.length < 8) {
-			alert("password needs to be at least 8 characters");
+			setErrormsg("Password must be at least 8 characters");
 		} else if (password === confirmPass) {
 			getFirebase()
 				.auth()
@@ -101,7 +101,7 @@ const SignUp = React.memo((props) => {
 				<hr style={{ width: "100%" }} />
 			</span>
 			<input
-				className='inp-text'
+				className={!errormsg ? "inp-text" : "inp-text inp_error"}
 				placeholder='&#xf070;   Password'
 				type='password'
 				onChange={(e) => setPassword(e.target.value)}
@@ -114,8 +114,8 @@ const SignUp = React.memo((props) => {
 				onChange={(e) => setConfirmPass(e.target.value)}
 				required
 			/>
-            <PasswordStrengthMeter password={password} />
-			{ errormsg ? <p className="error">{errormsg}</p> : ""}
+			<PasswordStrengthMeter password={password} />
+			{errormsg && <p className='error'>{errormsg}</p>}
 			<input
 				className='pink login button'
 				id='login'

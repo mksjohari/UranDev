@@ -10,6 +10,16 @@
   line-height: 15px;
 }
 
+.inp_error {
+  animation: redoutline 4s;
+}
+
+@keyframes redoutline {
+  0% { box-shadow: 0 0 5px 1px rgba(255, 0, 0, 0.7); }
+  60% { box-shadow: 0 0 5px 1px rgba(255, 0, 0, 0.7); }
+  100% { box-shadow: none; }
+}
+
 #modal {
   position: fixed;
     top: 0;
