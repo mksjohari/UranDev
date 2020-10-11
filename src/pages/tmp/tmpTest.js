@@ -8,9 +8,11 @@ import AddActionForm from '../../shared/AddActionForm'
 const TmpTest = () => {
 
   function close(e) {
-    if (e.target.tagName == 'SPAN') {
+    if (e.target.tagName == 'SPAN' || e.target.tagName == 'I') {
       e.target = e.target.parentNode;
     }
+
+    console.log(e.target);
 
     const overlay = document.getElementById(e.target.id.replace(/_close/g , '_popContent'));
 
