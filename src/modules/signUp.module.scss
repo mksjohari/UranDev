@@ -124,12 +124,15 @@
 	margin: 0 20px 0 0;
 }
 
-.social_icon_span input {
+.social_icon_div input {
 	width: 380px;
 	height: 32px;
 }
 
-.social_icon_span {
+.social_icon_div span {
+	width: 100px;
+}
+.social_icon_div {
 	width: 600px;
 	display: flex;
 	align-items: center;

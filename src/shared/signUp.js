@@ -98,6 +98,7 @@ const SignUp = React.memo((props) => {
 				autoComplete="off"
 				placeholder="&#xf070;   Password"
 				type="password"
+				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 				required
 			/>

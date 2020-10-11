@@ -47,6 +47,7 @@
     line-height: 1.8em;
     padding-left: 12px;
     margin-left: 10px;
+    font-weight: 400;
 }
 .card_title {
     font-size: 24px;
@@ -59,7 +60,6 @@
     color: $darkgrey;
     display: block;
     flex-direction: column;
-    font-weight: 500;
 }
 
 .card_tags {
