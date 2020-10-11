@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Formik, Field, Form, useField, withFormik } from "formik";
+import React from "react";
+import { Formik, Field, useField } from "formik";
 
 import Button from "../../shared/sandbox/Button";
 import Dropdown from "../../shared/sandbox/Dropdown";
-import Timeline from "../../shared/sandbox/Timeline";
 import { withContext } from "../../shared/react-dims";
 import styles from "../../modules/createProject.module.scss";
 

@@ -2,11 +2,8 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import React, { Component } from "react";
 
 import TaskCol from "./TaskCol";
-import AddBtn from "./sandbox/AddBtn";
-import styles from "../modules/tmp.module.scss";
-
-
-
+import AddBtn from "../../shared/reactDnD/DnD";
+import styles from "../../modules/tmp.module.scss";
 
 
 class DnD extends Component {
@@ -32,11 +29,11 @@ class DnD extends Component {
       totalTasks: currLen + 1,
     };
 
-    this.state = this.setState(newState);
+    this.setState(newState);
   }
 
   addAction(event) {
-    if (event.target.className == "fas fa-plus") {
+    if (event.target.className === "fas fa-plus") {
       event.target = event.target.parentNode;
     }
 
@@ -62,7 +59,7 @@ class DnD extends Component {
     console.log(newState.tasks);
     newState.tasks[taskId].actionIds.push(newAction.id);
 
-    this.state = this.setState(newState);
+    this.setState(newState);
 
   }
 
@@ -73,7 +70,7 @@ class DnD extends Component {
     const newTasks = this.state.tasks;
     const actionList = newTasks[taskId].actionIds;
     const newActions = this.state.actions;
-    const taskIndex = newTaskOrder.findIndex(task => (task == taskId));
+    const taskIndex = newTaskOrder.findIndex(task => (task === taskId));
     
     newTaskOrder.splice(taskIndex, 1);
     console.log(newTasks);
@@ -102,7 +99,7 @@ class DnD extends Component {
     
     const newActionIds = Array.from(this.state.tasks[taskId].actionIds);
     const newActions = this.state.actions;
-    const actionIndex = newActionIds.findIndex(action => (action == actionId));
+    const actionIndex = newActionIds.findIndex(action => (action === actionId));
     
     newActionIds.splice(actionIndex, 1); 
     delete newActions[actionId];
@@ -226,6 +223,7 @@ class DnD extends Component {
               {...provided.droppableProps}
               ref={provided.innerRef}
             > 
+                {/* {console.log(this.state.taskOrder)} */}
                 {this.state.taskOrder.map((taskId, index) => {
                   const task = this.state.tasks[taskId];
                   const actions = task.actionIds.map(actionId => this.state.actions[actionId]);
@@ -255,19 +253,3 @@ class DnD extends Component {
   
 }
 export default DnD;
-
-class InnerList extends Component {
-  render() {
-    const { task, actionMap, index } = this.props;
-    const actions = task.actionIds.map(actionId => actionMap[actionId]);
-    
-    return <TaskCol 
-              task={task} 
-              actions={actions} 
-              index={index} 
-              addAction={this.props.addAction} 
-              deleteAction={this.props.deleteAction} 
-              deleteTask={this.props.deleteTask} 
-            />;
-  }
-}

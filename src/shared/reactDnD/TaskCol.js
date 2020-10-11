@@ -2,9 +2,9 @@ import React, { Component, PureComponent, useState } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 import ActionCard from "./ActionCard";
-import Button from "./sandbox/Button";
-import AddBtn from "./sandbox/AddBtn";
-import styles from "../modules/tmp.module.scss";
+import Button from "../../shared/sandbox/Button";
+import AddBtn from "../../shared/sandbox/AddBtn";
+import styles from "../../modules/tmp.module.scss";
 
 // selective rendering to save computation timee
 class InnerList extends Component {

@@ -2,9 +2,9 @@ import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 import Options from "./sampleOptions";
-import Dropdown from "./sandbox/Dropdown";
+import Dropdown from "../../shared/sandbox/Dropdown";
 import ActionContent from "./ActionContent";
-import styles from "../modules/tmp.module.scss";
+import styles from "../../modules/tmp.module.scss";
 
 
 class ActionCard extends React.Component {
