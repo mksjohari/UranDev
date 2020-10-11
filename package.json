@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@weknow/react-bubble-chart-d3": "^1.0.12",
     "aphrodite": "^2.4.0",
+    "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "d3": "^6.2.0",
     "d3-scale-chromatic": "^2.0.0",
