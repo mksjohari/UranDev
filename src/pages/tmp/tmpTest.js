@@ -6,12 +6,24 @@ import Popup from "../../shared/sandbox/popup";
 import AddActionForm from '../../shared/AddActionForm'
 
 const TmpTest = () => {
+
+  function close(e) {
+    if (e.target.tagName == 'SPAN') {
+      e.target = e.target.parentNode;
+    }
+
+    const overlay = document.getElementById(e.target.id.replace(/_close/g , '_popContent'));
+
+    overlay.style.display = 'none';
+
+  }
+
   return (
     <div className="tmp">
-      <Popup text='Popip' id='tmpBtn' content={<DateSelect/>} />
+      <Popup text='Popip' id='tmpBtn' content={<AddActionForm id='tmpBtn' actionId='test' close={close} />} />
       <br/>
       <br/>
-      <AddActionForm  />
+      
       <DateSelect />
       <DnD
         actions={Data.actions}

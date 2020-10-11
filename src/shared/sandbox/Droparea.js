@@ -35,7 +35,7 @@ const Droparea = (props) => {
   }, [files]);
 
   return (
-    <section className="container">
+    <section className={styles.container}>
       <div {...getRootProps({className: `${props.className + ' ' + styles.droparea}`})}>
         <input {...getInputProps()} />
         <div>Drag and drop your files here, or click to select files</div>
