@@ -4,6 +4,7 @@ import DateSelect from "../../shared/DateSelect";
 import Data from "../../shared/sampleData";
 import Popup from "../../shared/sandbox/popup";
 import AddActionForm from '../../shared/AddActionForm'
+import EndorseList from '../../shared/EndorseList';
 
 const TmpTest = () => {
 
@@ -22,6 +23,20 @@ const TmpTest = () => {
 
   return (
     <div className="tmp">
+      <Popup 
+        text='Endorse a skill' 
+        colour='yellow' 
+        id='endorseSkill' 
+        iconR={<i className='fas fa-medal'></i>}
+        content={<EndorseList id='endorseSkill' isSkill={true} />} 
+      />
+      <Popup 
+        text='Endorse a tool' 
+        colour='blue' 
+        id='endorseTool' 
+        iconR={<i className='fas fa-medal'></i>}
+        content={<></>} 
+      />
       <Popup text='Popip' id='tmpBtn' content={<AddActionForm id='tmpBtn' actionId='test' close={close} />} />
       <br/>
       <br/>
