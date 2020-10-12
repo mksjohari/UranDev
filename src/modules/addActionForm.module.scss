@@ -3,7 +3,8 @@
 .container {
   background-color: $ivory;
   padding: 60px;
-  min-width: 700px;
+  width: 700px;
+  height: fit-content;
   border-radius: 25px;
 }
 

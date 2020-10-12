@@ -28,7 +28,7 @@ class Popup extends React.Component {
     const overlayId = e.target.id + '_popContent';
     const overlay = document.getElementById(overlayId);
 
-    overlay.style.display = 'block';
+    overlay.style.display = 'flex';
     body.style.height = `${window.innerHeight}px`;
     body.style.overflow = 'hidden';
     
