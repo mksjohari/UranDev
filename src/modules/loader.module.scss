@@ -1,0 +1,98 @@
+@import "variable";
+
+#loader {
+	overflow: visible;
+	enable-background: new 0 0 60 67.2;
+	display: block;
+	margin: 0 auto;
+}
+
+#pencil {
+	animation: swing 1.5s infinite;
+	transform-origin: 0% 50%;
+}
+
+#line1,
+#line2 {
+	stroke-dasharray: 20;
+	stroke-dashoffset: 20;
+	animation: write 2s infinite;
+}
+
+#line3 {
+	stroke-dasharray: 10;
+	stroke-dashoffset: 10;
+	animation: write 2s infinite;
+}
+
+.loading {
+    font-size: 16px;
+	font-weight: 600;
+	display: flex;
+	justify-content: center;
+    align-items: baseline;
+}
+
+@keyframes swing {
+	50% {
+		transform: rotate(-4deg);
+	}
+}
+
+@keyframes write {
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+.st0 {
+	fill: none;
+	stroke: $deepgrey;
+	stroke-width: 3;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+.st1 {
+	stroke: $deepgrey;
+	stroke-width: 3;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+.st2 {
+	fill: #ffffff;
+	stroke: $deepgrey;
+	stroke-width: 3;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+#dot1, #dot2, #dot3 {
+	background-color: $deepgrey;
+	height:3px;
+    width:3px;
+	border-radius:50%;
+	margin:0 2.5px;
+	float: left;
+	opacity: 100%;
+}
+
+#dot1 {
+    animation: bounce 2.5s infinite ease-in-out;
+}
+
+#dot2 {
+    animation: bounce 2.5s infinite ease-in-out;
+    animation-delay: 0.5s;
+}
+
+#dot3 {
+    animation: bounce 2.5s infinite ease-in-out;
+    animation-delay: 1s;
+}
+
+
+@keyframes bounce {
+    0%, 15% {transform: translate(0,0);}
+    50% {transform: translate(0,-9px);opacity: 50%;}
+    85%, 100% {transform: translate(0,0);};
+}
