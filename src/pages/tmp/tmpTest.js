@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DnD from "../../shared/DnD";
 import DateSelect from "../../shared/DateSelect";
 import Data from "../../shared/sampleData";
@@ -7,6 +7,30 @@ import AddActionForm from '../../shared/AddActionForm'
 import EndorseList from '../../shared/EndorseList';
 
 const TmpTest = () => {
+  const skillsDefault = {
+    'web dev': false,
+    'leech': false,
+    'wireframing': false,
+    list: {
+      'web dev': 10,
+      'leech': 0,
+      'wireframing': 5000000,
+    },
+  };
+  
+  const toolsDefault = {
+    git: false,
+    weh: false,
+    react: false,
+    list: {
+      'git': 10,
+      'weh': 0,
+      'react': 5000000,
+    },
+  };
+
+  const [skills, setSkills] = useState(skillsDefault);
+  const [tools, setTools] = useState(toolsDefault);
 
   function close(e) {
     if (e.target.tagName == 'SPAN' || e.target.tagName == 'I') {
@@ -28,14 +52,14 @@ const TmpTest = () => {
         colour='yellow' 
         id='endorseSkill' 
         iconR={<i className='fas fa-medal'></i>}
-        content={<EndorseList id='endorseSkill' isSkill={true} />} 
+        content={<EndorseList id='endorseSkill' isSkill={true} data={skills} setItem={setSkills} close={close} />} 
       />
       <Popup 
         text='Endorse a tool' 
         colour='blue' 
         id='endorseTool' 
         iconR={<i className='fas fa-medal'></i>}
-        content={<></>} 
+        content={<EndorseList id='endorseTool' isSkill={false} data={tools} setItem={setTools} close={close} />} 
       />
       <Popup text='Popip' id='tmpBtn' content={<AddActionForm id='tmpBtn' actionId='test' close={close} />} />
       <br/>
@@ -53,5 +77,7 @@ const TmpTest = () => {
     </div>
   );
 };
+
+
 
 export default TmpTest;

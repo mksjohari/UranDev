@@ -20,7 +20,7 @@ class Popup extends React.Component {
 
   lockBg(e) {
 
-    if (e.target.tagName == 'SPAN') {
+    if (e.target.tagName == 'SPAN' || e.target.tagName == 'I') {
       e.target = e.target.parentNode;
     }
 
