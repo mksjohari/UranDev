@@ -36,6 +36,8 @@ class Popup extends React.Component {
     document.addEventListener('keydown', (event) => {
       if (event.key == 'Escape') {
         overlay.style.display = 'none';
+        body.style.overflow = 'scroll';
+        body.style.height = '100%';
       }
     })
   }

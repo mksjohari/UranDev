@@ -41,8 +41,11 @@ const TmpTest = () => {
     console.log(e.target);
 
     const overlay = document.getElementById(e.target.id.replace(/_close/g , '_popContent'));
+    const body = document.getElementsByTagName('body')[0];
 
     overlay.style.display = 'none';
+    body.style.overflow = 'scroll';
+    body.style.height = '100%';
 
   }
 
