@@ -4,28 +4,38 @@ import { useDropzone } from 'react-dropzone';
 import { Formik } from "formik";
 
 
-import styles from '../../modules/dropzone.module.scss'
+import styles from '../../modules/dropzone.module.scss';
+import logo from '../../images/logo.png';
+import { style } from 'd3';
 
 const Droparea = (props) => {
 
   const [files, setFiles] = useState([]);
+  const filetype = /image/g;
   const {getRootProps, getInputProps} = useDropzone({
-    accept: 'image/*',
+    maxFiles: 10,
     onDrop: acceptedFiles => {
       setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: URL.createObjectURL(file)
+        preview: (file.type.match(filetype) ? URL.createObjectURL(file): logo)
       })));
       console.log(acceptedFiles);
     }
   });
   
   const thumbs = files.map(file => (
-    <div className={styles.thumb} key={file.name}>
-      <div className={styles.thumbInner}>
-        <img
-          src={file.preview}
-          className={styles.thumbImg}
-        />
+    <div className={styles.thumbsWrapper}>
+      <div className={styles.thumb} key={file.name}>
+        <div className={styles.thumbInner}>
+          <img
+            src={file.preview}
+            className={styles.thumbImg}
+          />
+        </div>
+      </div>
+      <div className={styles.fileName}>
+        {file.name.length > 14 ? 
+          file.name.substr(0, 5) + ' . . . ' + file.name.substr(file.name.length - 7, 7)
+          : file.name }
       </div>
     </div>
   ));

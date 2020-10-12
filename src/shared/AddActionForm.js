@@ -84,7 +84,7 @@ class AddActionForm extends React.Component {
           </div>
           <br/>
           <div className={styles.actionFiles} >
-            <div className={styles.title} >Add files to showcase your work in progress. (Optional)</div>
+            <div className={styles.title} >Add files to showcase your work in progress. (Optional, max 10 files)</div>
             <Droparea className={styles.actionFiles} />
           </div>
 

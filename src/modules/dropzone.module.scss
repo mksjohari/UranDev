@@ -42,15 +42,27 @@
   box-sizing: border-box;
   background-color: white;
   overflow: hidden;
+  position: relative;
 };
 
 .thumbInner {
   display: flex;
   min-width: 0px;
   overflow: hidden !important;
+  
 };
 
 .container {
   display: flex;
   flex-direction: column;
+}
+
+.thumbsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.fileName {
+  overflow: wrap;
+  
 }
