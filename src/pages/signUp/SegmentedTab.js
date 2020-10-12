@@ -18,7 +18,7 @@ function SegmentedTab(props) {
 		<div className={styles.segmented_tab}>
 			<button
 				className={`${styles.role} ${
-					props.role === 'Jobseeker' ? styles.active : ''
+					props.role === 'Jobseeker' ? styles.role_active : ''
 				}`}
 				onClick={setJobseeker}
 			>
@@ -26,7 +26,7 @@ function SegmentedTab(props) {
 			</button>
 			<button
 				className={`${styles.role} ${
-					props.role === 'Employer' ? styles.active : ''
+					props.role === 'Employer' ? styles.role_active : ''
 				}`}
 				onClick={setEmployer}
 			>

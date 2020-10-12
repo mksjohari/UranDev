@@ -39,6 +39,7 @@
 .transparent {
   background: transparent;
 }
+
 .tab {
   background: $lightgrey;
   padding: 8px 20px;
@@ -52,9 +53,9 @@
   }
 }
 
-.tab.active {
-  color: $darkgrey;
+.tab_active {
   background: $ivory;
+  color: $darkgrey;
   transition: background ease 0.4s;
 }
 
@@ -72,7 +73,7 @@
   font-size: 15px;
 }
 
-.role.active {
+.role_active {
   background: $orange;
   color: $darkyellow;
   transition: background ease 0.6s;
