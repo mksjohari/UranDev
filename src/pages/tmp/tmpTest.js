@@ -5,6 +5,7 @@ import Data from "../../shared/sampleData";
 import Popup from "../../shared/sandbox/popup";
 import AddActionForm from '../../shared/AddActionForm'
 import EndorseList from '../../shared/EndorseList';
+import Alert from '../../shared/sandbox/Alert';
 
 const TmpTest = () => {
   const skillsDefault = {
@@ -47,6 +48,27 @@ const TmpTest = () => {
 
   return (
     <div className="tmp">
+      <Popup 
+        text='Basic delete btn' 
+        colour='reddo' 
+        id='delTut' 
+        iconR={<i className='fas fa-trash-alt'></i>}
+        content={<Alert id='delTut' type='(type of thing you want to delete)' close={close} onConfirm={() => console.log('your own confirm func')} />} 
+      />
+      <Popup 
+        text='Delete Action' 
+        colour='reddo' 
+        id='delAction' 
+        iconR={<i className='fas fa-trash-alt'></i>}
+        content={<Alert id='delAction' type='action' close={close} onConfirm={() => console.log('your own confirm func')} />} 
+      />
+      <Popup 
+        text='Delete Project' 
+        colour='reddo' 
+        id='delProject' 
+        iconR={<i className='fas fa-trash-alt'></i>}
+        content={<Alert id='delProject' type='project' close={close} onConfirm={() => console.log('your own confirm func')} />} 
+      />
       <Popup 
         text='Endorse a skill' 
         colour='yellow' 

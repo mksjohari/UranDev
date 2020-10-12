@@ -35,31 +35,33 @@ class EndorseList extends React.Component {
       <>
         <div 
           className={styles.container + ' ' + this.props.className}
-          id={this.props.id}
+          id={this.props.id + '_container'}
         >
-        <h3>Endorse {this.props.isSkill ? 'Skills' : 'Tools'} </h3>
-        <p>
-          Check the {this.props.isSkill ? 'skills' : 'tool'}(s) you would wish to endorse, 
-          and un-check them if you wish to revoke your endorsement.
-        </p>
-        <div className={styles.listContainer}>
-          {this.itemList.map(item => {
-            console.log(item);
-            return (
-              <div className={styles.checkContainer}>
-                <CheckBox id={item} label={item} onChange={this.setChecked} setCheck={this.props.setItem} />
-                {this.props.data.list[item]} {this.props.data.list[item] == 1 ? 'endorser' : 'endorsers'}
-              </div>
-              );
-          })}
-        </div>
-        <Button 
-          text='close' 
-          id={this.props.id + '_close'} 
-          colour={this.props.isSkill ? 'yellow': 'blue' }
-          className={styles.closeBtn}
-          onClick={this.props.close} 
-        />
+          <div className={styles.title}>
+            <i className={' fas fa-medal'}></i>
+            <h3>Select {this.props.isSkill ? 'skill(s)' : 'tool(s)'} to endorse </h3>
+          </div>
+          <p>
+            Un-check them if you wish to revoke your endorsement.
+          </p>
+          <div className={styles.listContainer}>
+            {this.itemList.map(item => {
+              console.log(item);
+              return (
+                <div className={styles.checkContainer}>
+                  <CheckBox id={item} label={item} onChange={this.setChecked} setCheck={this.props.setItem} />
+                  {this.props.data.list[item]} {this.props.data.list[item] == 1 ? 'endorser' : 'endorsers'}
+                </div>
+                );
+            })}
+          </div>
+          <Button 
+            text='close' 
+            id={this.props.id + '_close'} 
+            colour={this.props.isSkill ? 'yellow': 'blue' }
+            className={styles.closeBtn}
+            onClick={this.props.close} 
+          />
 
         </div>
       </>
