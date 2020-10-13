@@ -60,7 +60,8 @@ class Popup extends React.Component {
   }
 
   close(e) {
-    if (e.target.tagName == 'SPAN' || e.target.tagName == 'I') {
+    console.log(e)
+    if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
       e.target = e.target.parentNode;
     }
 
@@ -99,7 +100,10 @@ class Popup extends React.Component {
                   colour={this.props.confirmColour ? this.props.confirmColour : 'reddo' }
                   iconR={<i className="fas fa-check" ></i>}
                   className={styles.closeBtn}
-                  onClick={this.props.onConfirm} 
+                  onClick={() => {
+                    this.props.onConfirm();
+                    this.close()
+                  }}
                 />  
                 : ''
               }

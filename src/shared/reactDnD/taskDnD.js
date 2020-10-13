@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "../../modules/DnD.module.scss";
-import projects from "../../modules/projects.module.scss";
+
 import Button from "../../shared/sandbox/Button";
-import DateSelect from "../../shared/DateSelect";
+import ActionCard from "./action";
+import TaskCard from "./task";
 
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -17,140 +18,6 @@ function TaskDnD(props) {
     const [taskList, setTaskList] = useState(props.data);
     const [currentTask, setCurrentTask] = useState(0); // index of currentTask object
     // console.log(taskList);
-    const TaskCard = (props) => {
-        return (
-            <div className={styles.task_card}>
-                <div
-                    className={`${styles.card} ${
-                        props.index === currentTask &&
-                        !props.snapshot.isDragging &&
-                        styles.task_current
-                    } ${props.snapshot.isDragging && styles.task_dragging}`}
-                >
-                    <div className={styles.title}>
-                        Task {props.index + 1}: {props.task.title}
-                    </div>
-                    <div className={styles.description_title}>
-                        {props.task.description}
-                    </div>
-                    <div className={styles.task_footer}>
-                        {/* <Button
-                            className={`${styles.duration_button}`}
-                            iconL={<i className="far fa-calendar"></i>}
-                            text="Task Duration"
-                        /> */}
-                        <DateSelect />
-                        {/* <Button
-                            className={`${styles.delete_button}`}
-                            iconL={<i className="far fa-calendar"></i>}
-                            text="Delete task"
-                        /> */}
-                        {/* <a className={styles.edit_button} href="##">
-                            <i className="fas fa-edit"></i>
-                            Edit
-                        </a> */}
-                    </div>
-                </div>
-                {props.index === currentTask && (
-                    <div className={styles.task_chevron}>
-                        <i className="fas fa-chevron-left"></i>
-                    </div>
-                )}
-            </div>
-        );
-    };
-
-    const ActionCard = (props) => {
-        return (
-            <div className={styles.action_card}>
-                <div className={styles.title}>
-                    Action {props.index + 1}: {props.action.title}
-                </div>
-                <div className={styles.description_action}>
-                    {props.action.description}
-                </div>
-                <div className={styles.action_tags}>
-                    {props.action.skills.length ? (
-                        <div className={styles.action_files}>
-                            Skills:
-                            <div className={styles.col_right}>
-                                <div className={styles.project_tags}>
-                                    {props.action.skills.map((skill, index) => (
-                                        <span
-                                            className={`${projects.tag_type} ${projects.Skill}`}
-                                        >
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                    {props.action.tools.length ? (
-                        <div className={styles.action_files}>
-                            Tools:
-                            <div className={styles.col_right}>
-                                <div className={styles.project_tags}>
-                                    {props.action.tools.map((tool, index) => (
-                                        <span
-                                            className={`${projects.tag_type} ${projects.Tool}`}
-                                        >
-                                            {tool}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    ) : (
-                        ""
-                    )}
-                    <div>
-                        <div className={styles.action_files}>
-                            Files:
-                            <div className={styles.col_right}>
-                                <div className={styles.project_tags}>
-                                    <a className={styles.file_link} href="##">
-                                        somepicture.jpg
-                                    </a>
-                                    <a className={styles.file_link} href="##">
-                                        anotherfile.pdf
-                                    </a>
-                                    <a className={styles.file_link} href="##">
-                                        anotherfile.pdf
-                                    </a>
-                                    <a className={styles.file_link} href="##">
-                                        anotherfile.pdf
-                                    </a>
-                                    <a className={styles.file_link} href="##">
-                                        anotherfile.pdf
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.task_footer}>
-                    
-                    {/* <Button
-                        className={`${styles.delete_button}`}
-                        iconL={<i className="far fa-trash-alt"></i>}
-                        text="Delete action"
-                    /> */}
-                    <div></div>
-                    <a className={styles.edit_button} href="##">
-                        <i className="fas fa-edit"></i>
-                        Edit
-                    </a>
-                </div>
-                {/* <button type="button" onClick={() => deleteAction(props.index)}>
-                    delete
-                </button> */}
-            </div>
-        );
-    };
-
     function addTask() {
         const newTask = {
             taskId: `task-${new Date().getTime()}`,
@@ -172,6 +39,9 @@ function TaskDnD(props) {
         const newTaskList = [...taskList];
         newTaskList[currentTask].actions = newActionList;
         setTaskList(newTaskList);
+    }
+    function deleteTask(index) {
+        setTaskList(taskList.splice(index, 1));
     }
     function deleteAction(index) {
         const newActionList = taskList[currentTask].actions;
@@ -238,6 +108,8 @@ function TaskDnD(props) {
                                                     task={task}
                                                     index={index}
                                                     snapshot={snapshot}
+                                                    currentTask={currentTask}
+                                                    deleteTask={deleteTask}
                                                 />
                                             </div>
                                         )}
