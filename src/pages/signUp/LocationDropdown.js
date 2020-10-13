@@ -9,7 +9,7 @@ export default function LocationDropdown(props) {
 	const [address, setAddress] = useState('');
 	useEffect(() => {
 		setAddress(props.data.location);
-	}, []);
+	}, [props.data.location]);
 	const handleChange = (address) => {
 		setAddress(address);
 	};

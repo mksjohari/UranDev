@@ -2,7 +2,7 @@ import React from 'react';
 import Checkbox from './Checkbox';
 import Button from '../../shared/sandbox/Button';
 import styles from '../../modules/signUp.module.scss';
-import LocationDropdown from '../../shared/sandbox/LocationDropdown';
+import LocationDropdown from './LocationDropdown';
 
 const StepTwo = (props) => {
 	const setChecked = (id, setId) => {

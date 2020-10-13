@@ -6,8 +6,6 @@ import StepThree from './stepThree';
 import StepFour from './stepFour';
 import Typing from '../../images/typing.png';
 import styles from '../../modules/signUp.module.scss';
-import { getBasicUser } from '../../shared/firebase/firebase';
-import { getFirebase } from '../../shared/firebase/config';
 import { useHistory } from 'react-router-dom';
 
 const SignUp = (props) => {
@@ -19,28 +17,13 @@ const SignUp = (props) => {
 	const state = props.location.state;
 	const history = useHistory();
 	useEffect(() => {
-		if (state && state.fromSignUp) {
+		if (state) {
 			setStepOne({
 				...stepOneDefault,
 				firstName: state.firstName,
 				lastName: state.lastName,
 			});
-		} else if (state && !state.fromSignUp) {
-			const unsubscribe = getFirebase()
-				.auth()
-				.onAuthStateChanged(function (user) {
-					if (user) {
-						getBasicUser({ uid: user.uid }).then((result) => {
-							user = result.data[0];
-							setStepOne({
-								...stepOneDefault,
-								firstName: user.firstName,
-								lastName: user.lastName,
-							});
-						});
-						unsubscribe();
-					}
-				});
+		
 		} else {
 			console.log('redirect to main page');
 			history.push('/');

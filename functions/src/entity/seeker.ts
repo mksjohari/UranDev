@@ -14,6 +14,9 @@ export class Seeker {
 	@Column({ type: String })
 	occupation: string;
 
+	@Column({ type: String, nullable: true })
+	description: string;
+
 	@Column({ type: String })
 	location: string;
 }

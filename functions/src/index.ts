@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 import 'reflect-metadata';
 import { Connection, createConnection } from 'typeorm';
-import { StatusType, Users } from './entity/users';
+import { StatusType, Users, UserType } from './entity/users';
 import { Seeker } from './entity/seeker';
 import { Social } from './entity/social';
 import { Expertise } from './entity/expertise';
@@ -36,6 +36,7 @@ export const createAccount = functions
 			user.firstName = data.firstName;
 			user.lastName = data.lastName;
 			user.email = data.email;
+			user.dateCreated = new Date().getTime().toString()
 			await connection.manager.save(user);
 			console.log('user has been saved. user id is', user.uid);
 			return `Successfully added ${user.uid}`;
@@ -56,7 +57,7 @@ export const checkUserExists = functions
 			const result = await connection.query(
 				`SELECT * FROM users WHERE uid='${uid}';`
 			);
-			if (result.length > 0) return [true, result[0].status];
+			if (result.length > 0) return [true, result[0]];
 			return [false, 'incomplete'];
 		} catch (err) {
 			console.log(err);
@@ -64,7 +65,7 @@ export const checkUserExists = functions
 		}
 	});
 
-export const getBasicUser = functions
+export const getUserInfo = functions
 	.region('australia-southeast1')
 	.https.onCall(async (data, context) => {
 		try {
@@ -73,7 +74,41 @@ export const getBasicUser = functions
 				connection = await connect();
 			}
 			const result = await connection.query(
-				`SELECT * FROM users WHERE uid='${uid}';`
+				`SELECT * FROM users inner join seeker on users.uid = seeker.uid where users.uid = '${uid}';`
+			);
+			return result[0];
+		} catch (err) {
+			console.log(err);
+		}
+	});
+
+export const getUserSocials = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		try {
+			const uid = data.uid;
+			if (!connection || !connection.isConnected) {
+				connection = await connect();
+			}
+			const result = await connection.query(
+				`SELECT * FROM social where uid = '${uid}';`
+			);
+			return result;
+		} catch (err) {
+			console.log(err);
+		}
+	});
+
+export const getUserExpertise = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		try {
+			const uid = data.uid;
+			if (!connection || !connection.isConnected) {
+				connection = await connect();
+			}
+			const result = await connection.query(
+				`SELECT * FROM expertise where uid = '${uid}';`
 			);
 			return result;
 		} catch (err) {
@@ -94,14 +129,30 @@ export const finishUserSignUp = functions
 			const seeker = new Seeker();
 			const expertise = getExpertise(data.uid, secondStep);
 			const socials = getSocials(data.uid, thirdStep);
+			var description 
 			seeker.uid = data.uid;
 			seeker.photo = data.photoURL;
 			seeker.location = secondStep.location;
 			seeker.occupation = secondStep.occupation;
+			if (secondStep.personalDesc.length > 0){
+				description = secondStep.personalDesc
+			}
+			else {
+				description = null
+			}
+			seeker.description = description;
+			var userType;
+			if (firstStep.role === "Jobseeker"){
+				userType = UserType.SEEKER
+			}
+			else {
+				userType = UserType.MANAGER
+			}
 			await connection.manager.update(Users, seeker.uid, {
 				firstName: firstStep.firstName,
 				lastName: firstStep.lastName,
 				status: StatusType.UNVERIFIED,
+				userType: userType
 			});
 			await connection.manager.save(Expertise, expertise);
 			await connection.manager.save(Social, socials);

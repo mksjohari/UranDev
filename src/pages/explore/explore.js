@@ -7,12 +7,11 @@ import Checkbox from "../signUp/Checkbox";
 import "../../modules/signUp.module.scss";
 import "react-step-progress-bar/styles.css";
 import styles from "../../modules/explore.module.scss";
-import Loader from "../../shared/Loader";
 
-const Explore = () => {
+const Explore = (props) => {
+	console.log(props)
 	return (
 		<div>
-			<Loader />
 			<h1>Welcome to URAN,</h1>
 			<p style={{ fontSize: "16px" }}>Create your e-portfolio today!</p>
 			<div className={styles.imgctn}>

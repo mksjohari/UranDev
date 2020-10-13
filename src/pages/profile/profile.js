@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import tab from "../../modules/header.module.scss";
@@ -6,7 +7,13 @@ import ProfileDetails from "./profileDetails";
 import About from "./about";
 import MyProjects from "../projects/myProjects";
 
+function mapStateToProps(state){
+    console.log(state)
+    return {user: state.user}
+}
+
 const profile = React.memo((props) => {
+    console.log(props)
     const [about, setAbout] = useState(true);
     return (
         <div className="parent">
@@ -45,4 +52,4 @@ const profile = React.memo((props) => {
     );
 });
 
-export default profile;
+export default connect(mapStateToProps)(profile);

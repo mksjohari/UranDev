@@ -5,15 +5,22 @@ import { getFunctions, getStorage } from "./config";
 
 // FUNCTIONS //
 
-export const checkUserExists = getFunctions(firebase).httpsCallable(
-    "checkUserExists"
-);
 export const createAccount = getFunctions(firebase).httpsCallable(
     "createAccount"
 );
 
-export const getBasicUser = getFunctions(firebase).httpsCallable(
-    "getBasicUser"
+export const checkUserExists = getFunctions(firebase).httpsCallable(
+    "checkUserExists"
+);
+
+export const getUserInfo = getFunctions(firebase).httpsCallable(
+    "getUserInfo"
+);
+export const getUserSocials = getFunctions(firebase).httpsCallable(
+    "getUserSocials"
+);
+export const getUserExpertise = getFunctions(firebase).httpsCallable(
+    "getUserExpertise"
 );
 
 export const finishUserSignUp = getFunctions(firebase).httpsCallable(
