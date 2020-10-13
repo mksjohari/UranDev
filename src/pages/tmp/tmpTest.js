@@ -52,41 +52,80 @@ const TmpTest = () => {
   return (
     <div className="tmp">
       <Popup 
-        text='Basic delete btn' 
-        colour='reddo' 
-        id='delTut' 
-        iconR={<i className='fas fa-trash-alt'></i>}
-        content={<Alert id='delTut' type='(type of thing you want to delete)' close={close} onConfirm={() => console.log('your own confirm func')} />} 
+        BtnText='Basic delete btn' 
+        BtnColour='reddo' 
+        BtnId='delTut' 
+        BtnIconR={<i className='fas fa-trash-alt'></i>}
+        contentBGColour={'white'}
+        closeBtnLabel="cancel"
+        hasConfirm
+        confirmBtnLabel='yee'
+        onConfirm={() => console.log('your own confirm func')}
+        width={500}
+        content={<Alert id='delTut' type='(type of thing you want to delete)' />} 
       />
       <Popup 
-        text='Delete Action' 
-        colour='reddo' 
-        id='delAction' 
-        iconR={<i className='fas fa-trash-alt'></i>}
-        content={<Alert id='delAction' type='action' close={close} onConfirm={() => console.log('your own confirm func')} />} 
+        BtnText='Delete Action' 
+        BtnColour='reddo' 
+        BtnId='delAction' 
+        BtnIconR={<i className='fas fa-trash-alt'></i>}
+        contentBGColour={'white'}
+        closeBtnLabel="No, go back"
+        hasConfirm
+        confirmBtnLabel='Yes, delete'
+        onConfirm={() => console.log('your own confirm func')}
+        width={500}
+        content={<Alert id='delAction' type='action' />} 
       />
       <Popup 
-        text='Delete Project' 
-        colour='reddo' 
-        id='delProject' 
-        iconR={<i className='fas fa-trash-alt'></i>}
-        content={<Alert id='delProject' type='project' close={close} onConfirm={() => console.log('your own confirm func')} />} 
+        BtnText='Delete Project' 
+        BtnColour='reddo' 
+        BtnId='delProject' 
+        BtnIconR={<i className='fas fa-trash-alt'></i>}
+        contentBGColour={'white'}
+        closeBtnLabel="No, go back"
+        hasConfirm
+        confirmBtnLabel='Yes, delete'
+        onConfirm={() => console.log('your own confirm func')}
+        width={500}
+        content={<Alert id='delProject' type='project' />} 
       />
       <Popup 
-        text='Endorse a skill' 
-        colour='yellow' 
-        id='endorseSkill' 
-        iconR={<i className='fas fa-medal'></i>}
-        content={<EndorseList id='endorseSkill' isSkill={true} data={skills} setItem={setSkills} close={close} />} 
+        BtnText='Endorse a skill' 
+        BtnColour='yellow' 
+        BtnId='endorseSkill' 
+        BtnIconR={<i className='fas fa-medal'></i>}
+        contentBGColour={'#faf6f1'}
+        closeBtnLabel="Close"
+        closeColour='yellow'
+        width={600}
+        content={<EndorseList id='endorseSkill' isSkill={true} data={skills} setItem={setSkills}/>} 
       />
       <Popup 
-        text='Endorse a tool' 
-        colour='blue' 
-        id='endorseTool' 
-        iconR={<i className='fas fa-medal'></i>}
-        content={<EndorseList id='endorseTool' isSkill={false} data={tools} setItem={setTools} close={close} />} 
+        BtnText='Endorse a tool' 
+        BtnColour='blue' 
+        BtnId='endorseTool' 
+        BtnIconR={<i className='fas fa-medal'></i>}
+        contentBGColour={'#faf6f1'}
+        closeBtnLabel="Close"
+        closeColour='blue'
+        width={600}
+        content={<EndorseList id='endorseTool' isSkill={false} data={tools} setItem={setTools}/>}
       />
-      <Popup text='Popip' id='tmpBtn' content={<AddActionForm id='tmpBtn' actionId='test' close={close} />} />
+      <Popup 
+        BtnText='Add Action' 
+        BtnColour='pink' 
+        BtnId='addAction' 
+        contentBGColour={'#faf6f1'}
+        closeBtnLabel="Cancel"
+        closeColour='reddo'
+        hasConfirm
+        confirmBtnLabel='Confirm'
+        confirmColour='pink'
+        onConfirm={() => console.log('your own confirm func')}
+        width={700}
+        content={<AddActionForm id='addAction' />}
+      />
       <br/>
       <br/>
       

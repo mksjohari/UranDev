@@ -1,17 +1,5 @@
 @import 'variable';
 
-.container {
-  background-color: white;
-  padding: 60px;
-  width: 550px;
-  height: fit-content;
-  border-radius: 25px;
-}
-
-.container p {
-  padding: 15px 70px;
-}
-
 .alert {
   font-size: 40px;
   color: $reddo;
@@ -27,12 +15,6 @@
   margin: auto 5px !important;
 }
 
-.btnsRow {
-  padding: 20px 50px 0px 50px;
-  display: flex;
-}
-
-.closeBtn {
-  margin: auto !important;
-  display: block !important;
+.msg {
+  padding: 15px 70px;
 }

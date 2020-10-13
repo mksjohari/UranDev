@@ -5,14 +5,30 @@ import Button from './Button';
 
 /* 
 takes in these props:
+
+  **open popup button
   className (for button)
-  id (for button, the popup container has id '(buttonId)_popContent')
-  colour
-  iconL (left icon)
-  iconR (right icon)
-  iconB (???)
-  text (button text)
+  BtnId (for button, the popup container has id '(buttonId)_popContent')
+  BtnColour
+  BtnIconL (left icon)
+  BtnIconR (right icon)
+  BtnIconB (???)
+  BtnText (button text)
+
+  **popup content
   content(what should be in the popup)
+
+  **other buttons
+  hasConfirm (boolean) (do you need an extra confirm button) 
+  onConfirm (the confirm function if you have the confirm btn)
+  confirmBtnLabel (text for the confirm button)
+  confirmColour (button colour. defaults to red)
+
+  !!(i did not put in the delete thing cause of alert popups)
+
+  **close button
+  closeBtnLabel (text for the close button)
+  closeColour (colour of close button defaults to grey)
 */
 
 class Popup extends React.Component {
@@ -23,6 +39,7 @@ class Popup extends React.Component {
     if (e.target.tagName == 'SPAN' || e.target.tagName == 'I') {
       e.target = e.target.parentNode;
     }
+    console.log(e.target);
 
     const body = document.getElementsByTagName('body')[0];
     const overlayId = e.target.id + '_popContent';
@@ -42,21 +59,60 @@ class Popup extends React.Component {
     })
   }
 
+  close(e) {
+    if (e.target.tagName == 'SPAN' || e.target.tagName == 'I') {
+      e.target = e.target.parentNode;
+    }
+
+    console.log(e.target);
+
+    const overlay = document.getElementById(e.target.id.replace(/_close/g , '_popContent'));
+    const body = document.getElementsByTagName('body')[0];
+
+    overlay.style.display = 'none';
+    body.style.overflow = 'scroll';
+    body.style.height = '100%';
+
+  }
+
   render() {
     return (
       <>
         <Button 
           className={this.props.className} 
-          id={this.props.id}
-          colour={this.props.colour}
-          iconL={this.props.iconL}
-          iconR={this.props.iconR}
-          iconB={this.props.iconB}
-          text={this.props.text}
+          id={this.props.BtnId}
+          colour={this.props.BtnColour}
+          iconL={this.props.BtnIconL}
+          iconR={this.props.BtnIconR}
+          iconB={this.props.BtnIconB}
+          text={this.props.BtnText}
           onClick={this.lockBg}
         />
-        <div className={styles.popupContainer} id={this.props.id + '_popContent'} >
-          {this.props.content}
+        <div className={styles.popupContainer} id={this.props.BtnId + '_popContent'} >
+          <div className={styles.contentContainer} style={{width: this.props.width + 'px', backgroundColor: this.props.contentBGColour}}>
+            {this.props.content}
+
+            <div className={styles.btnsRow}>
+              {this.props.hasConfirm ? <Button 
+                  text={this.props.confirmBtnLabel} 
+                  id={this.props.id + '_confirm'} 
+                  colour={this.props.confirmColour ? this.props.confirmColour : 'reddo' }
+                  iconR={<i className="fas fa-check" ></i>}
+                  className={styles.closeBtn}
+                  onClick={this.props.onConfirm} 
+                />  
+                : ''
+              }
+              <Button
+                colour={this.props.closeColour}
+                id={this.props.BtnId + '_close'}
+                text={this.props.closeBtnLabel}
+                className={styles.closeBtn}
+                iconR={<i className="fas fa-times" ></i>}
+                onClick={this.close}
+              />
+            </div>
+          </div>
         </div>
       </>
     )
