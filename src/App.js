@@ -9,6 +9,7 @@ import tempUser from "./pages/profile/tempUser";
 import createProject from "./pages/projects/createProject";
 import draftProjects from "./pages/projects/draftProjects";
 import tmpTest from "./pages/tmp/tmpTest";
+import Page404 from "./pages/404/404";
 
 import "./styles/index.scss";
 require("typeface-poppins");
@@ -26,6 +27,7 @@ const Index = () => {
                 <Route component={profile} path="/profile" />
                 <Route component={tempUser} path="/u/:id" />
                 <Route component={tmpTest} path="/tmp" />
+                <Route component={Page404} path="/*" />
             </Switch>
         </Layout>
     );

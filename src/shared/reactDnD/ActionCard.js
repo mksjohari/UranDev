@@ -1,7 +1,7 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
-import Options from "./sampleOptions";
+import Options from "../sampleOptions";
 import Dropdown from "../../shared/sandbox/Dropdown";
 import ActionContent from "./ActionContent";
 import styles from "../../modules/tmp.module.scss";

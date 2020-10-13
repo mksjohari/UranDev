@@ -2,9 +2,16 @@ import React, { Component, PureComponent, useState } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
 import ActionCard from "./ActionCard";
+<<<<<<< HEAD:src/shared/reactDnD/TaskCol.js
 import Button from "../../shared/sandbox/Button";
 import AddBtn from "../../shared/sandbox/AddBtn";
 import styles from "../../modules/tmp.module.scss";
+=======
+import Button from "./sandbox/Button";
+import AddBtn from "./sandbox/AddBtn";
+import DateSelect from "./DateSelect";
+import styles from "../modules/tmp.module.scss";
+>>>>>>> feature/Cheang/components:src/shared/TaskCol.js
 
 // selective rendering to save computation timee
 class InnerList extends Component {
@@ -114,12 +121,7 @@ class TaskCol extends Component {
             onChange={this.handleChange} 
             className={styles.taskDesc}
           />
-          <Button 
-            color="white" 
-                text="Task Duration" 
-                iconL={<i class="fas fa-calendar"></i>} 
-                className={styles.taskDuration}
-          />
+          <DateSelect taskId={this.props.task.id} />
 
           <span className={styles.deleteTaskBtn}>
             <i 
