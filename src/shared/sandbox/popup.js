@@ -100,9 +100,9 @@ class Popup extends React.Component {
                   colour={this.props.confirmColour ? this.props.confirmColour : 'reddo' }
                   iconR={<i className="fas fa-check" ></i>}
                   className={styles.closeBtn}
-                  onClick={() => {
+                  onClick={(e) => {
                     this.props.onConfirm();
-                    this.close()
+                    this.close(e)
                   }}
                 />  
                 : ''

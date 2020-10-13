@@ -6,7 +6,7 @@ import TaskDnD from "../../shared/reactDnD/taskDnD";
 import Popup from "../../shared/sandbox/popup";
 import AddActionForm from '../../shared/AddActionForm'
 import EndorseList from '../../shared/EndorseList';
-import Alert from '../../shared/sandbox/Alert';
+import Alert from '../../shared/sandbox/alert';
 
 const TmpTest = () => {
   const skillsDefault = {
