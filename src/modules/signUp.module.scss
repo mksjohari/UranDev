@@ -1,5 +1,11 @@
 @import 'variable';
 
+.typing_img {
+	width: 250px;
+	margin-top: 150px;
+	float: right;
+}
+
 .personal_details {
 	display: flex;
 	flex-direction: column;
@@ -13,8 +19,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	position: absolute;
-	bottom: 0;
 }
 
 .jobsearch_img {
@@ -23,38 +27,24 @@
 }
 
 .sign_up_container {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	height: 670px;
-	background: rgb(240, 252, 198);
-	padding: 20px;
+	display: grid;
+    grid-template-columns: 30% 65%;
 }
 
 .sign_up_form {
 	height: 100%;
 	width: 100%;
-	position: relative;
-	align-content: flex-end;
+	display: grid;
+    grid-template-rows: 10% 80% 10%;
 }
 
 .sign_up_side_panel {
-	width: 30%;
 	position: relative;
 }
 
 .sign_up_process {
-	padding: 50px;
-	width: 70%;
-	margin-left: 50px;
-}
-
-.typing_img {
-	width: 250px;
-	height: 250px;
-	position: absolute;
-	top: 45%;
-	left: 50%;
+	padding: 40px 70px;
+	height: 700px;
 }
 
 .step {
@@ -75,13 +65,8 @@
 	margin: 30px 0 0 0;
 }
 
-.background-info .inp-text {
-	width: 100%;
-}
-
 .span_others {
-	display: flex;
-	align-items: center;
+	display: inline-flex;
 }
 
 .span_others .cbx {

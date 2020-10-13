@@ -37,7 +37,6 @@ class AddActionForm extends React.Component {
   render() {
     return (
       <>
-        <div className={styles.container}>
           <h3>Add Action</h3>
           <div className={styles.toolsEdit} >
             <div className={styles.title} >What tool(s) did you use?</div>
@@ -87,33 +86,6 @@ class AddActionForm extends React.Component {
             <div className={styles.title} >Add files to showcase your work in progress. (Optional, max 10 files)</div>
             <Droparea className={styles.actionFiles} />
           </div>
-
-          <div className={styles.btnRow} >
-            
-            <Button
-              colour='reddo'
-              id={this.props.id + '_close'}
-              text="Delete Action"
-              iconR={<i className="fas fa-times" ></i>}
-              onClick={this.props.close}
-            />
-            <Button
-              colour='pink'
-              id={this.props.id + '_add'}
-              text="Confirm"
-              iconR={<i className="fas fa-check" ></i>}
-              onClick={this.props.addAction}
-            />
-            <Button
-              // colour='reddo'
-              id={this.props.id + '_close'}
-              text="Cancel"
-              iconR={<i className="fas fa-times" ></i>}
-              onClick={this.props.close}
-            />
-          </div>
-
-        </div>
       </>
     )
   }

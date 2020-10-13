@@ -1,5 +1,5 @@
-import React from 'react';
-import '../../modules/searchresult.scss';
+import React from "react";
+import "../../modules/searchresult.scss";
 
 function SearchResult(props) {
 	return (

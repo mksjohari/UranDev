@@ -20,13 +20,13 @@ function Tab() {
 		<div className={styles.tab_div}>
 			<div className={styles.tab_list}>
 				<button
-					className={`${styles.tab} ${tabOne ? 'active' : ''}`}
+					className={`${styles.tab} ${tabOne ? styles.tab_active : ''}`}
 					onClick={tabOne ? null : handleToggle}
 				>
 					Find a candidate
 				</button>
 				<button
-					className={`${styles.tab} ${tabOne ? '' : 'active'}`}
+					className={`${styles.tab} ${tabOne ? '' : styles.tab_active}`}
 					onClick={tabOne ? handleToggle : null}
 				>
 					Find a project

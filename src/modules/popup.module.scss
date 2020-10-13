@@ -25,13 +25,24 @@
   justify-content: center;
 }
 
-.visible {
-  display: block;
-  animation: overlay;
-  animation-duration: 300ms;
+.contentContainer {
+  padding: 60px;
+  height: fit-content;
+  border-radius: 25px;
 }
 
-  .lock {
-    overflow: hidden;
-    z-index: -1;
-  }
+.btnsRow {
+  padding: 20px 50px 0px 50px;
+  display: flex;
+}
+
+.closeBtn {
+  margin: auto !important;
+  display: block !important;
+}
+
+
+.lock {
+  overflow: hidden;
+  z-index: -1;
+}
