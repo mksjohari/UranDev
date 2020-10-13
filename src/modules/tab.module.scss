@@ -1,5 +1,22 @@
 @import "variable";
 
+.inp_text {
+  font-size: 12px;
+	font-family: "Font Awesome 5 Free", $font;
+	border-radius: 10px;
+	padding: 5px 10px;
+  height: 36px;
+  width: 200px;
+	background: white;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	&:focus,
+	&:hover {
+		outline: none;
+		border: 1px solid $midgrey;
+		transition: border ease 0.3s;
+	}
+}
+
 .tab_div {
   width: 65%;
   margin-left: auto;
@@ -22,6 +39,7 @@
 .transparent {
   background: transparent;
 }
+
 .tab {
   background: $lightgrey;
   padding: 8px 20px;
@@ -35,9 +53,9 @@
   }
 }
 
-.tab.active {
-  color: $darkgrey;
+.tab_active {
   background: $ivory;
+  color: $darkgrey;
   transition: background ease 0.4s;
 }
 
@@ -55,7 +73,7 @@
   font-size: 15px;
 }
 
-.role.active {
+.role_active {
   background: $orange;
   color: $darkyellow;
   transition: background ease 0.6s;

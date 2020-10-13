@@ -2,6 +2,7 @@ import React from 'react';
 import Checkbox from '../../shared/Checkbox';
 import Button from '../../shared/sandbox/Button';
 import styles from '../../modules/signUp.module.scss';
+import LocationDropdown from "../../shared/sandbox/LocationDropdown";
 
 const StepTwo = (props) => {
 	const setChecked = (id, setId) => {
@@ -131,6 +132,7 @@ const StepTwo = (props) => {
 					placeholder="City"
 					required
 				/>
+				<LocationDropdown />
 				<input
 					className="inp-text"
 					placeholder="Country"
