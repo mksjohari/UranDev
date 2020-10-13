@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import DnD from "../../shared/DnD";
 import DateSelect from "../../shared/DateSelect";
 // import Data from "../../shared/reactDnD/sampleData";
+import TaskDnD from "../../shared/reactDnD/taskDnD";
 import Popup from "../../shared/sandbox/popup";
 import AddActionForm from '../../shared/AddActionForm'
 import EndorseList from '../../shared/EndorseList';
@@ -34,7 +35,7 @@ const TmpTest = () => {
   const [tools, setTools] = useState(toolsDefault);
 
   function close(e) {
-    if (e.target.tagName == 'SPAN' || e.target.tagName == 'I') {
+    if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
       e.target = e.target.parentNode;
     }
 
@@ -91,6 +92,7 @@ const TmpTest = () => {
       <br/>
       
       <DateSelect />
+      <TaskDnD data={taskData}/>
       {/* <DnD
         actions={Data.actions}
         tasks={Data.tasks}

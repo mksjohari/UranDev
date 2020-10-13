@@ -20,7 +20,7 @@ class Popup extends React.Component {
 
   lockBg(e) {
 
-    if (e.target.tagName == 'SPAN' || e.target.tagName == 'I') {
+    if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
       e.target = e.target.parentNode;
     }
 
@@ -34,7 +34,7 @@ class Popup extends React.Component {
     
     // close on esc
     document.addEventListener('keydown', (event) => {
-      if (event.key == 'Escape') {
+      if (event.key === 'Escape') {
         overlay.style.display = 'none';
         body.style.overflow = 'scroll';
         body.style.height = '100%';

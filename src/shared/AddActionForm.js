@@ -89,6 +89,14 @@ class AddActionForm extends React.Component {
           </div>
 
           <div className={styles.btnRow} >
+            
+            <Button
+              colour='reddo'
+              id={this.props.id + '_close'}
+              text="Delete Action"
+              iconR={<i className="fas fa-times" ></i>}
+              onClick={this.props.close}
+            />
             <Button
               colour='pink'
               id={this.props.id + '_add'}
@@ -97,7 +105,7 @@ class AddActionForm extends React.Component {
               onClick={this.props.addAction}
             />
             <Button
-              colour='reddo'
+              // colour='reddo'
               id={this.props.id + '_close'}
               text="Cancel"
               iconR={<i className="fas fa-times" ></i>}

@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "../../modules/DnD.module.scss";
 import projects from "../../modules/projects.module.scss";
 import Button from "../../shared/sandbox/Button";
+import DateSelect from "../../shared/DateSelect";
 
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -33,15 +34,21 @@ function TaskDnD(props) {
                         {props.task.description}
                     </div>
                     <div className={styles.task_footer}>
-                        <Button
+                        {/* <Button
                             className={`${styles.duration_button}`}
                             iconL={<i className="far fa-calendar"></i>}
                             text="Task Duration"
-                        />
-                        <a className={styles.edit_button} href="##">
+                        /> */}
+                        <DateSelect />
+                        {/* <Button
+                            className={`${styles.delete_button}`}
+                            iconL={<i className="far fa-calendar"></i>}
+                            text="Delete task"
+                        /> */}
+                        {/* <a className={styles.edit_button} href="##">
                             <i className="fas fa-edit"></i>
                             Edit
-                        </a>
+                        </a> */}
                     </div>
                 </div>
                 {props.index === currentTask && (
@@ -125,6 +132,7 @@ function TaskDnD(props) {
                     </div>
                 </div>
                 <div className={styles.task_footer}>
+                    
                     {/* <Button
                         className={`${styles.delete_button}`}
                         iconL={<i className="far fa-trash-alt"></i>}
@@ -209,11 +217,6 @@ function TaskDnD(props) {
                             <div
                                 ref={provided.innerRef}
                                 className={styles.task_col}
-                                // style={{
-                                //     background: snapshot.isDraggingOver
-                                //         ? "#EDEDED"
-                                //         : "transparent",
-                                // }}
                                 {...provided.droppableProps}
                             >
                                 {taskList.map((task, index) => (
@@ -275,16 +278,12 @@ function TaskDnD(props) {
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}
-                                                    // style={getActionStyle(
-                                                    //     snapshot.isDragging,
-                                                    //     provided.draggableProps
-                                                    //         .style
-                                                    // )}
                                                 >
                                                     <ActionCard
                                                         action={action}
                                                         index={index}
                                                         snapshot={snapshot}
+                                                        delete={deleteAction}
                                                     />
                                                 </div>
                                             )}
