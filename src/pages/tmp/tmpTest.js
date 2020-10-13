@@ -23,7 +23,7 @@ const TmpTest = () => {
 
 export default TmpTest;
 
-const taskData = [
+export const taskData = [
     {
         taskId: "task-1",
         title: "yes",
@@ -31,24 +31,28 @@ const taskData = [
         actions: [
             {
                 actionId: "action-1",
+                title: "Source control",
                 tools: ["git", "weh"],
                 skills: [],
                 description: "git and weh",
             },
             {
                 actionId: "action-2",
+                title: "Development",
                 tools: [],
                 skills: ["web dev", "app design", "number theory"],
                 description: "happy days are aheard",
             },
             {
                 actionId: "action-3",
+                title: "More development",
                 tools: ["MATLAB", "adobe XD", "Rhino3D", "react"],
                 skills: ["web dev", "app design", "number theory"],
                 description: "I did somethin",
             },
             {
                 actionId: "action-4",
+                title: "Something else",
                 tools: [],
                 skills: [],
                 description: "yeh this that blah",
