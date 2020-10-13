@@ -39,7 +39,7 @@ class Popup extends React.Component {
     if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
       e.target = e.target.parentNode;
     }
-    console.log(e.target);
+    // console.log(e.target);
 
     const body = document.getElementsByTagName('body')[0];
     const overlayId = e.target.id + '_popContent';
@@ -59,21 +59,21 @@ class Popup extends React.Component {
     })
   }
 
-  close(e) {
-    console.log(e)
+  close(e, str) {
+    var re = new RegExp(str);
+    // console.log(e, re)
     if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
       e.target = e.target.parentNode;
     }
 
-    console.log(e.target);
+    // console.log(e.target);
 
-    const overlay = document.getElementById(e.target.id.replace(/_close/g , '_popContent'));
+    const overlay = document.getElementById(e.target.id.replace(re , '_popContent'));
     const body = document.getElementsByTagName('body')[0];
 
     overlay.style.display = 'none';
     body.style.overflow = 'scroll';
     body.style.height = '100%';
-
   }
 
   render() {
@@ -96,13 +96,13 @@ class Popup extends React.Component {
             <div className={styles.btnsRow}>
               {this.props.hasConfirm ? <Button 
                   text={this.props.confirmBtnLabel} 
-                  id={this.props.id + '_confirm'} 
+                  id={this.props.BtnId + '_confirm'} 
                   colour={this.props.confirmColour ? this.props.confirmColour : 'reddo' }
                   iconR={<i className="fas fa-check" ></i>}
                   className={styles.closeBtn}
                   onClick={(e) => {
                     this.props.onConfirm();
-                    this.close(e)
+                    this.close(e, '_confirm')
                   }}
                 />  
                 : ''

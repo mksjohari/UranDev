@@ -126,9 +126,6 @@ const TmpTest = () => {
         </div>
     );
 };
-
-
-
 export default TmpTest;
 
 export const taskData = [

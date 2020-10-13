@@ -18,6 +18,8 @@ function TaskDnD(props) {
     const [taskList, setTaskList] = useState(props.data);
     const [currentTask, setCurrentTask] = useState(0); // index of currentTask object
     // console.log(taskList);
+    console.log("now ", currentTask, taskList);
+    // console.log(currentTask);
     function addTask() {
         const newTask = {
             taskId: `task-${new Date().getTime()}`,
@@ -41,7 +43,16 @@ function TaskDnD(props) {
         setTaskList(newTaskList);
     }
     function deleteTask(index) {
-        setTaskList(taskList.splice(index, 1));
+        if (taskList.length > 1) {
+            const newTaskList = [...taskList];
+            newTaskList.splice(index, 1);
+            setTaskList(newTaskList);
+            // setCurrentTask(index-1);
+            
+            console.log(currentTask);
+        } else {
+            console.log("Alert: Must have at least one task.");
+        }
     }
     function deleteAction(index) {
         const newActionList = taskList[currentTask].actions;
@@ -73,7 +84,6 @@ function TaskDnD(props) {
             );
             const newTaskList = [...taskList];
             newTaskList[currentTask].actions = newActionList;
-            console.log(newTaskList);
             setTaskList(newTaskList);
         }
     }
@@ -105,11 +115,15 @@ function TaskDnD(props) {
                                                 }
                                             >
                                                 <TaskCard
-                                                    task={task}
+                                                    key={task.taskId}
                                                     index={index}
+                                                    task={task}
                                                     snapshot={snapshot}
                                                     currentTask={currentTask}
-                                                    deleteTask={deleteTask}
+                                                    deleteTask={() => {
+                                                        setCurrentTask(0);
+                                                        console.log(currentTask)
+                                                        deleteTask(index);}}
                                                 />
                                             </div>
                                         )}
@@ -152,8 +166,9 @@ function TaskDnD(props) {
                                                     {...provided.dragHandleProps}
                                                 >
                                                     <ActionCard
-                                                        action={action}
+                                                        key={action.actionId}
                                                         index={index}
+                                                        action={action}
                                                         snapshot={snapshot}
                                                         delete={deleteAction}
                                                     />
