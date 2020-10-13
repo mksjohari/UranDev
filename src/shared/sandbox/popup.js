@@ -59,7 +59,8 @@ class Popup extends React.Component {
     })
   }
 
-  close(e) {
+  close(e, str) {
+    var re = new RegExp(str);
     console.log(e)
     if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
       e.target = e.target.parentNode;
@@ -67,7 +68,7 @@ class Popup extends React.Component {
 
     console.log(e.target);
 
-    const overlay = document.getElementById(e.target.id.replace(/_close/g , '_popContent'));
+    const overlay = document.getElementById(e.target.id.replace(re , '_popContent'));
     const body = document.getElementsByTagName('body')[0];
 
     overlay.style.display = 'none';
@@ -96,13 +97,13 @@ class Popup extends React.Component {
             <div className={styles.btnsRow}>
               {this.props.hasConfirm ? <Button 
                   text={this.props.confirmBtnLabel} 
-                  id={this.props.id + '_confirm'} 
+                  id={this.props.BtnId + '_confirm'} 
                   colour={this.props.confirmColour ? this.props.confirmColour : 'reddo' }
                   iconR={<i className="fas fa-check" ></i>}
                   className={styles.closeBtn}
-                  onClick={() => {
+                  onClick={(e) => {
                     this.props.onConfirm();
-                    this.close()
+                    this.close(e, '_confirm');
                   }}
                 />  
                 : ''
