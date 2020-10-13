@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import DnD from "../../shared/DnD";
-import DateSelect from "../../shared/DateSelect";
+import DateSelect from "../../shared/input/DateSelect";
 // import Data from "../../shared/reactDnD/sampleData";
 import TaskDnD from "../../shared/reactDnD/taskDnD";
 import Popup from "../../shared/sandbox/popup";
@@ -133,6 +133,8 @@ export const taskData = [
         taskId: "task-1",
         title: "yes",
         description: "yessir",
+        // startDate: ,
+        // endDate: ,
         actions: [
             {
                 actionId: "action-1",

@@ -5,7 +5,7 @@ import React from 'react';
 
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import '../modules/react_dates_overrides.css'
+import '../../modules/react_dates_overrides.css'
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 
 // ThemedStyleSheet.registerInterface(aphroditeInterface);

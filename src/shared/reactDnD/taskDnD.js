@@ -42,13 +42,18 @@ function TaskDnD(props) {
         newTaskList[currentTask].actions = newActionList;
         setTaskList(newTaskList);
     }
+    function editTask(index, values) {
+        const newTaskList = [...taskList];
+        newTaskList[index].title = values.taskTitle;
+        newTaskList[index].description = values.taskDescription;
+        setTaskList(newTaskList);
+    }
     function deleteTask(index) {
         if (taskList.length > 1) {
             const newTaskList = [...taskList];
             newTaskList.splice(index, 1);
             setTaskList(newTaskList);
             // setCurrentTask(index-1);
-            
             console.log(currentTask);
         } else {
             console.log("Alert: Must have at least one task.");
@@ -120,10 +125,14 @@ function TaskDnD(props) {
                                                     task={task}
                                                     snapshot={snapshot}
                                                     currentTask={currentTask}
+                                                    editTask={editTask}
                                                     deleteTask={() => {
                                                         setCurrentTask(0);
-                                                        console.log(currentTask)
-                                                        deleteTask(index);}}
+                                                        console.log(
+                                                            currentTask
+                                                        );
+                                                        deleteTask(index);
+                                                    }}
                                                 />
                                             </div>
                                         )}
@@ -144,7 +153,6 @@ function TaskDnD(props) {
                     <div className={styles.heading}>
                         Task {currentTask + 1}: {taskList[currentTask].title}
                     </div>
-
                     <Droppable droppableId="ActionList" type="ActionList">
                         {(provided, snapshot) => (
                             <div
@@ -187,6 +195,7 @@ function TaskDnD(props) {
                             </div>
                         )}
                     </Droppable>
+                    )
                 </div>
             </div>
         </DragDropContext>
