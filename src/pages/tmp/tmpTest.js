@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 // import DnD from "../../shared/DnD";
-import DateSelect from "../../shared/input/DateSelect";
+// import DateSelect from "../../shared/input/DateSelect";
 // import Data from "../../shared/reactDnD/sampleData";
 import TaskDnD from '../../shared/reactDnD/taskDnD';
 import Popup from '../../shared/sandbox/popup';
 import AddActionForm from '../../shared/AddActionForm';
 import EndorseList from '../../shared/EndorseList';
-import Alert from '../../shared/sandbox/Alert';
+import Alert from '../../shared/sandbox/alert';
 
 const TmpTest = () => {
 	const skillsDefault = {
@@ -132,7 +132,7 @@ const TmpTest = () => {
 			/>
 			<br />
 			<br />
-			<DateSelect />
+			{/* <DateSelect /> */}
 			<TaskDnD data={taskData} />
 			{/* <DnD
         actions={Data.actions}
@@ -151,8 +151,8 @@ export const taskData = [
         taskId: "task-1",
         title: "yes",
         description: "yessir",
-        // startDate: ,
-        // endDate: ,
+        startDate: null,
+        endDate: null,
         actions: [
             {
                 actionId: "action-1",
@@ -187,7 +187,9 @@ export const taskData = [
     {
         taskId: "task-2",
         title: "no",
-        description: "no sir",
+		description: "no sir",
+		startDate: null,
+        endDate: null,
         actions: [
             {
                 actionId: "action-4",

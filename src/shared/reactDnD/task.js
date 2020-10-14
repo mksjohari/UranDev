@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Formik, Field, useField } from 'formik';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { Formik, Field, useField } from "formik";
 
 import DateSelect from "../../shared/input/DateSelect";
 import Popup from "../../shared/sandbox/popup";
-import Alert from "../sandbox/alert";
+import Alert from "../../shared/sandbox/alert";
 import styles from "../../modules/DnD.module.scss";
 
 const TaskCard = (props) => {
     const [edit, setEdit] = useState(false);
-    // console.log(props.index)
+    const deleteTask = () => props.deleteTask(props.index);
+
+    const selectDates = () => {
+        return <DateSelect taskId={props.task.taskId} />;
+    };
+    // console.log(props)
     const saveTask = () => {
         return (
             <Formik
                 initialValues={{
                     taskTitle: props.task.title,
                     taskDescription: props.task.description,
+                    taskDates: {
+                        startDate: props.task.startDate,
+                        endDate: props.task.endDate,
+                    },
                 }}
                 onSubmit={(values, actions) => {
                     setTimeout(() => {
@@ -50,13 +59,14 @@ const TaskCard = (props) => {
                                 className={`${styles.description_title} ${styles.text_input}`}
                                 placeholder="Give this task a summary."
                             />
+                            <br />
                             <label
-                                htmlFor="taskTitle"
+                                htmlFor="taskDates"
                                 className={styles.description_title}
                             >
                                 Task duration:
                             </label>
-                            <DateSelect />
+                            <Field as={selectDates} name="taskDates" />
                         </div>
                         <div className={styles.task_footer}>
                             <Popup
@@ -68,7 +78,7 @@ const TaskCard = (props) => {
                                 closeBtnLabel="No, go back"
                                 hasConfirm
                                 confirmBtnLabel="Yes, delete"
-                                onConfirm={props.deleteTask}
+                                onConfirm={deleteTask}
                                 width={500}
                                 content={<Alert id="delTask" type="task" />}
                             />
@@ -77,7 +87,7 @@ const TaskCard = (props) => {
                                 className={styles.edit_button}
                                 to="#"
                                 onClick={() => {
-                                    props.submitForm()
+                                    props.submitForm();
                                     setEdit(false);
                                 }}
                             >
@@ -90,7 +100,7 @@ const TaskCard = (props) => {
             </Formik>
         );
     };
-    const editTask = () => {
+    const viewTask = () => {
         return (
             <>
                 <div className={styles.title}>
@@ -100,6 +110,11 @@ const TaskCard = (props) => {
                     {props.task.description}
                 </div>
                 <div className={styles.task_footer}>
+                    {/* <DateSelect
+                        taskId={props.task.taskId}
+                        taskDates={taskDates}
+                        setTaskDates={setTaskDates}
+                    /> */}
                     <div></div>
                     <NavLink
                         className={styles.edit_button}
@@ -122,7 +137,7 @@ const TaskCard = (props) => {
                     styles.task_current
                 } ${props.snapshot.isDragging && styles.task_dragging}`}
             >
-                {edit ? saveTask() : editTask()}
+                {edit ? saveTask() : viewTask()}
             </div>
             {props.index === props.currentTask && (
                 <div className={styles.task_chevron}>

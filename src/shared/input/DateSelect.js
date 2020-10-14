@@ -1,45 +1,30 @@
-import React from 'react';
-//import ThemedStyleSheet from 'react-with-styles/lib/ThemedStyleSheet';
-//import aphroditeInterface from 'react-with-styles-interface-aphrodite';
-//import DefaultTheme from 'react-dates/lib/theme/DefaultTheme';
-
+import React, {useState} from 'react';
+import { useField } from "formik";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import '../../modules/react_dates_overrides.css'
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 
-// ThemedStyleSheet.registerInterface(aphroditeInterface);
-// ThemedStyleSheet.registerTheme({
-//   reactDates: {
-//     ...DefaultTheme.reactDates,
-//     color: {
-//       ...DefaultTheme.reactDates.color,
-//       highlighted: {
-//         backgroundColor: 'lightblue',
-//         backgroundColor_active: 'lightblue',
-//         backgroundColor_hover: 'lightblue',
-//         color: 'lightblue',
-//         color_active: 'lightblue',
-//         color_hover: 'lightblue',
-//       },
-//     },
-//   },
-// });
+function DateSelect (props){
+  const [field, meta, helpers] = useField(props.name);
+  const [focus, setFocus] = useState("startDate");
 
-class DateSelect extends React.Component {
-  state = {};
   
-  render() {
+  const { value } = meta;
+  const { setValue } = helpers;
+  // const [startDate, setStartDate] = useState(value.startDate);
+  
     return(
       <>
+      {console.log(meta, value)}
         <DateRangePicker
-          startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-          startDateId={this.props.taskId + "_startDate"} // PropTypes.string.isRequired,
-          endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-          endDateId={this.props.taskId + "_endDate"} // PropTypes.string.isRequired,
-          onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
-          focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-          onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+          startDate={value.startDate} // momentPropTypes.momentObj or null,
+          startDateId={props.taskId + "_startDate"} // PropTypes.string.isRequired,
+          endDate={value.endDate} // momentPropTypes.momentObj or null,
+          endDateId={props.taskId + "_endDate"} // PropTypes.string.isRequired,
+          onDatesChange={({ startDate, endDate }) => setValue({ startDate: startDate, endDate: endDate }, false)} // PropTypes.func.isRequired,
+          focusedInput={focus} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+          onFocusChange={focusedInput => setFocus(focusedInput)} // PropTypes.func.isRequired,
           disableScroll={true}
           showClearDates
           reopenPickerOnClearDates
@@ -49,8 +34,7 @@ class DateSelect extends React.Component {
           isOutsideRange={() => false}
         />
       </>
-    )
-  }
+    );
 }
 
 export default DateSelect;
