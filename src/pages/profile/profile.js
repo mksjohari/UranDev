@@ -6,18 +6,21 @@ import tab from "../../modules/header.module.scss";
 import ProfileDetails from "./profileDetails";
 import About from "./about";
 import MyProjects from "../projects/myProjects";
-
-function mapStateToProps(state){
-    console.log(state)
-    return {user: state.user}
+import DevButton from "../../shared/sandbox/devButton";
+function mapStateToProps(state) {
+    return { user: state.user };
 }
 
 const profile = React.memo((props) => {
-    console.log(props)
     const [about, setAbout] = useState(true);
     return (
         <div className="parent">
             {/* <WordBubble /> */}
+            <DevButton
+                onClick={() => {
+                    console.log(props);
+                }}
+            />
             <ProfileDetails />
             <div className={`${tab.tabTop} ${tab.section}`}>
                 <nav>
