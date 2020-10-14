@@ -61,7 +61,7 @@ class Popup extends React.Component {
 
   close(e, str) {
     var re = new RegExp(str);
-    // console.log(e, re)
+    // console.log(e.target, re);
     if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
       e.target = e.target.parentNode;
     }
@@ -113,7 +113,7 @@ class Popup extends React.Component {
                 text={this.props.closeBtnLabel}
                 className={styles.closeBtn}
                 iconR={<i className="fas fa-times" ></i>}
-                onClick={this.close}
+                onClick={(e)=> this.close(e, '_close')}
               />
             </div>
           </div>
