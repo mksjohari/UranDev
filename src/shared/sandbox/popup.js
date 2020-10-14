@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../../modules/popup.module.scss'
 import Button from './Button';
 
-/* 
+/*
 takes in these props:
 
   **open popup button
@@ -19,7 +19,7 @@ takes in these props:
   content(what should be in the popup)
 
   **other buttons
-  hasConfirm (boolean) (do you need an extra confirm button) 
+  hasConfirm (boolean) (do you need an extra confirm button)
   onConfirm (the confirm function if you have the confirm btn)
   confirmBtnLabel (text for the confirm button)
   confirmColour (button colour. defaults to red)
@@ -48,7 +48,7 @@ class Popup extends React.Component {
     overlay.style.display = 'flex';
     body.style.height = `${window.innerHeight}px`;
     body.style.overflow = 'hidden';
-    
+
     // close on esc
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
@@ -61,7 +61,7 @@ class Popup extends React.Component {
 
   close(e, str) {
     var re = new RegExp(str);
-    // console.log(e, re)
+    // console.log(e.target, re);
     if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
       e.target = e.target.parentNode;
     }
@@ -79,8 +79,8 @@ class Popup extends React.Component {
   render() {
     return (
       <>
-        <Button 
-          className={this.props.className} 
+        <Button
+          className={this.props.className}
           id={this.props.BtnId}
           colour={this.props.BtnColour}
           iconL={this.props.BtnIconL}
@@ -94,9 +94,9 @@ class Popup extends React.Component {
             {this.props.content}
 
             <div className={styles.btnsRow}>
-              {this.props.hasConfirm ? <Button 
-                  text={this.props.confirmBtnLabel} 
-                  id={this.props.BtnId + '_confirm'} 
+              {this.props.hasConfirm ? <Button
+                  text={this.props.confirmBtnLabel}
+                  id={this.props.BtnId + '_confirm'}
                   colour={this.props.confirmColour ? this.props.confirmColour : 'reddo' }
                   iconR={<i className="fas fa-check" ></i>}
                   className={styles.closeBtn}
@@ -104,7 +104,7 @@ class Popup extends React.Component {
                     this.props.onConfirm();
                     this.close(e, '_confirm')
                   }}
-                />  
+                />
                 : ''
               }
               <Button
@@ -113,7 +113,7 @@ class Popup extends React.Component {
                 text={this.props.closeBtnLabel}
                 className={styles.closeBtn}
                 iconR={<i className="fas fa-times" ></i>}
-                onClick={this.close}
+                onClick={(e)=> this.close(e, '_close')}
               />
             </div>
           </div>
