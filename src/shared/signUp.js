@@ -4,7 +4,6 @@ import Button from './sandbox/Button';
 import PasswordStrengthMeter from '../shared/sandbox/PasswordStrengthMeter';
 import '../modules/loginform.scss';
 
-import firebase from 'firebase/app';
 import 'firebase/auth';
 import { getFirebase } from './firebase/firebase';
 import { signInWithGoogle } from './signIn';
@@ -57,12 +56,14 @@ const SignUp = React.memo((props) => {
 					var errorCode = error.code;
 					var errorMessage = error.message;
 					if (errorCode == 'auth/email-already-in-use') {
-						setErrormsg("This email address is already in use. Please log in instead.");
+						setErrormsg(
+							'This email address is already in use. Please log in instead.'
+						);
 					}
 					// ...
 				});
 		} else {
-			setErrormsg("The passwords don't match. Try again.")
+			setErrormsg("The passwords don't match. Try again.");
 		}
 	};
 	return (
@@ -110,7 +111,7 @@ const SignUp = React.memo((props) => {
 				required
 			/>
 			<PasswordStrengthMeter password={password} />
-			{ errormsg ? <p className="error">{errormsg}</p> : ""}
+			{errormsg ? <p className="error">{errormsg}</p> : ''}
 			<input
 				className="pink login button"
 				id="login"
