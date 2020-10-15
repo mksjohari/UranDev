@@ -132,4 +132,3 @@ function Situation(props) {
     );
 }
 export default withContext(Situation);
-

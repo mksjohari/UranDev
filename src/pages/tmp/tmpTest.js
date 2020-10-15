@@ -7,6 +7,7 @@ import Popup from '../../shared/sandbox/popup';
 import AddActionForm from '../../shared/AddActionForm';
 import EndorseList from '../../shared/EndorseList';
 import Alert from '../../shared/sandbox/Alert';
+import GanttChart from '../../shared/GanttChart';
 
 const TmpTest = () => {
 	const skillsDefault = {
@@ -36,6 +37,7 @@ const TmpTest = () => {
 
 	return (
 		<div className="tmp">
+      <GanttChart data={projectData} />
 			<Popup
 				BtnText="Basic delete btn"
 				BtnColour="reddo"
@@ -222,3 +224,15 @@ export const taskData = [
 		],
 	},
 ];
+
+export const projectData = {
+  name:"test project",
+  situation: "the world is in chaos",
+  role: "",
+  teamSize: "2-5",
+  budget: "300000",
+  currency: "aud",
+  startDate: new Date(),
+  endDate: new Date(),
+  taskData: taskData,
+}
