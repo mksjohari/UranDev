@@ -50,8 +50,12 @@ function TaskDnD(props) {
         const newTaskList = [...taskList];
         newTaskList[index].title = values.taskTitle;
         newTaskList[index].description = values.taskDescription;
-        newTaskList[index].startDate = values.taskDates.startDate;
-        newTaskList[index].endDate = values.taskDates.endDate;
+        setTaskList(newTaskList);
+    }
+    function setTaskDates(index, dates) {
+        const newTaskList = [...taskList];
+        newTaskList[index].startDate = dates.taskDates.startDate;
+        newTaskList[index].endDate = dates.taskDates.endDate;
         setTaskList(newTaskList);
     }
     function deleteTask(index) {
@@ -142,6 +146,7 @@ function TaskDnD(props) {
                                                     snapshot={snapshot}
                                                     currentTask={currentTask}
                                                     editTask={editTask}
+                                                    setTaskDates={setTaskDates}
                                                     deleteTask={deleteTask}
                                                 />
                                             </div>

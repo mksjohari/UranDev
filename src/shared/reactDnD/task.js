@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Formik, Field, useField } from "formik";
+import { Formik, Field } from "formik";
 
 import DateSelect from "../../shared/input/DateSelect";
 import Popup from "../../shared/sandbox/popup";
-import Alert from "../../shared/sandbox/alert";
+import Alert from "../sandbox/alert";
 import styles from "../../modules/DnD.module.scss";
 
 const TaskCard = (props) => {
     const [edit, setEdit] = useState(false);
     const deleteTask = () => props.deleteTask(props.index);
 
-    const selectDates = () => {
-        return <DateSelect taskId={props.task.taskId} />;
-    };
     // console.log(props)
     const saveTask = () => {
         return (
@@ -21,10 +18,6 @@ const TaskCard = (props) => {
                 initialValues={{
                     taskTitle: props.task.title,
                     taskDescription: props.task.description,
-                    taskDates: {
-                        startDate: props.task.startDate,
-                        endDate: props.task.endDate,
-                    },
                 }}
                 onSubmit={(values, actions) => {
                     setTimeout(() => {
@@ -59,14 +52,6 @@ const TaskCard = (props) => {
                                 className={`${styles.description_title} ${styles.text_input}`}
                                 placeholder="Give this task a summary."
                             />
-                            <br />
-                            <label
-                                htmlFor="taskDates"
-                                className={styles.description_title}
-                            >
-                                Task duration:
-                            </label>
-                            <Field as={selectDates} name="taskDates" />
                         </div>
                         <div className={styles.task_footer}>
                             <Popup
@@ -82,7 +67,6 @@ const TaskCard = (props) => {
                                 width={500}
                                 content={<Alert id="delTask" type="task" />}
                             />
-                            {/* <button onClick={() => props.deleteTask(props.index)}/> */}
                             <NavLink
                                 className={styles.edit_button}
                                 to="#"
@@ -110,12 +94,38 @@ const TaskCard = (props) => {
                     {props.task.description}
                 </div>
                 <div className={styles.task_footer}>
-                    {/* <DateSelect
-                        taskId={props.task.taskId}
-                        taskDates={taskDates}
-                        setTaskDates={setTaskDates}
-                    /> */}
-                    <div></div>
+                    <Formik
+                        initialValues={{
+                            taskDates: {
+                                startDate: props.task.startDate,
+                                endDate: props.task.endDate,
+                            },
+                        }}
+                        onSubmit={async (values) => {
+                            await new Promise((r) => setTimeout(r, 500));
+                            alert(JSON.stringify(values, null, 2));
+                            props.setTaskDates(props.index, values);
+                        }}
+                    >
+                        {(props) => (
+                            <form onSubmit={props.handleSubmit}>
+                                <Field name="taskDates">
+                                    {({
+                                        field: { value },
+                                        form: { setFieldValue },
+                                    }) => (
+                                        <DateSelect
+                                            value={value}
+                                            handleClick={(v) =>
+                                                setFieldValue("taskDates", v)
+                                            }
+                                            onSubmit={props.handleSubmit}
+                                        />
+                                    )}
+                                </Field>
+                            </form>
+                        )}
+                    </Formik>
                     <NavLink
                         className={styles.edit_button}
                         to="#"
