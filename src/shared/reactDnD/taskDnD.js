@@ -39,6 +39,7 @@ function TaskDnD(props) {
             tools: [],
             skills: [],
             description: "",
+            files: [],
         };
         const actionList = taskList[currentTask].actions;
         const newActionList = [...actionList, newAction];
@@ -56,6 +57,17 @@ function TaskDnD(props) {
         const newTaskList = [...taskList];
         newTaskList[index].startDate = dates.taskDates.startDate;
         newTaskList[index].endDate = dates.taskDates.endDate;
+        setTaskList(newTaskList);
+    }
+    function editAction(index, values, tools, skills) {
+        const newActionList = taskList[currentTask].actions;
+        newActionList[index].title = values.title;
+        newActionList[index].description = values.description;
+        newActionList[index].tools = tools;
+        newActionList[index].skills = skills;
+        newActionList[index].files = values.files;
+        const newTaskList = [...taskList];
+        newTaskList[currentTask].actions = newActionList;
         setTaskList(newTaskList);
     }
     function deleteTask(index) {
@@ -102,7 +114,7 @@ function TaskDnD(props) {
         }
     }
     function onDragStart(result) {
-        const { source, destination } = result;
+        const { source } = result;
         setCurrentTask(source.index);
     }
     return (
@@ -156,7 +168,7 @@ function TaskDnD(props) {
                                 {provided.placeholder}
                                 <Button
                                     className={styles.button_add_task}
-                                    iconL={<i className="far fa-plus"></i>}
+                                    iconL={<i className="fas fa-plus"></i>}
                                     text="Add new task"
                                     onClick={() => addTask()}
                                 />
@@ -200,6 +212,7 @@ function TaskDnD(props) {
                                                             index={index}
                                                             action={action}
                                                             snapshot={snapshot}
+                                                            editAction={editAction}
                                                             delete={
                                                                 deleteAction
                                                             }
@@ -212,7 +225,7 @@ function TaskDnD(props) {
                                 {provided.placeholder}
                                 <Button
                                     className={styles.button_add_action}
-                                    iconL={<i className="far fa-plus"></i>}
+                                    iconL={<i className="fas fa-plus"></i>}
                                     text="Add new action"
                                     onClick={() => addAction()}
                                 />

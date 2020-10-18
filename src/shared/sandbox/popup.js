@@ -34,48 +34,6 @@ takes in these props:
 class Popup extends React.Component {
   state = this.props;
 
-  lockBg(e) {
-
-    if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
-      e.target = e.target.parentNode;
-    }
-    // console.log(e.target);
-
-    const body = document.getElementsByTagName('body')[0];
-    const overlayId = e.target.id + '_popContent';
-    const overlay = document.getElementById(overlayId);
-
-    overlay.style.display = 'flex';
-    body.style.height = `${window.innerHeight}px`;
-    body.style.overflow = 'hidden';
-
-    // close on esc
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        overlay.style.display = 'none';
-        body.style.overflow = 'scroll';
-        body.style.height = '100%';
-      }
-    })
-  }
-
-  close(e, str) {
-    var re = new RegExp(str);
-    // console.log(e.target, re);
-    if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
-      e.target = e.target.parentNode;
-    }
-
-    // console.log(e.target);
-
-    const overlay = document.getElementById(e.target.id.replace(re , '_popContent'));
-    const body = document.getElementsByTagName('body')[0];
-
-    overlay.style.display = 'none';
-    body.style.overflow = 'scroll';
-    body.style.height = '100%';
-  }
-
   render() {
     return (
       <>
@@ -87,7 +45,7 @@ class Popup extends React.Component {
           iconR={this.props.BtnIconR}
           iconB={this.props.BtnIconB}
           text={this.props.BtnText}
-          onClick={this.lockBg}
+          onClick={lockBg}
         />
         <div className={styles.popupContainer} id={this.props.BtnId + '_popContent'} >
           <div className={styles.contentContainer} style={{width: this.props.width + 'px', backgroundColor: this.props.contentBGColour}}>
@@ -102,7 +60,7 @@ class Popup extends React.Component {
                   className={styles.closeBtn}
                   onClick={(e) => {
                     this.props.onConfirm();
-                    this.close(e, '_confirm')
+                    close(e, '_confirm')
                   }}
                 />
                 : ''
@@ -113,7 +71,7 @@ class Popup extends React.Component {
                 text={this.props.closeBtnLabel}
                 className={styles.closeBtn}
                 iconR={<i className="fas fa-times" ></i>}
-                onClick={(e)=> this.close(e, '_close')}
+                onClick={(e)=> close(e, '_close')}
               />
             </div>
           </div>
@@ -124,3 +82,45 @@ class Popup extends React.Component {
 }
 
 export default Popup;
+
+export const lockBg = (e) =>{
+
+  if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
+    e.target = e.target.parentNode;
+  }
+  // console.log(e.target);
+
+  const body = document.getElementsByTagName('body')[0];
+  const overlayId = e.target.id + '_popContent';
+  const overlay = document.getElementById(overlayId);
+
+  overlay.style.display = 'flex';
+  body.style.height = `${window.innerHeight}px`;
+  body.style.overflow = 'hidden';
+
+  // close on esc
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      overlay.style.display = 'none';
+      body.style.overflow = 'scroll';
+      body.style.height = '100%';
+    }
+  })
+}
+
+export const close = (e, str) => {
+  var re = new RegExp(str);
+  // console.log(e.target, re);
+  if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
+    e.target = e.target.parentNode;
+  }
+
+  // console.log(e.target);
+
+  const overlay = document.getElementById(e.target.id.replace(re , '_popContent'));
+  const body = document.getElementsByTagName('body')[0];
+
+  overlay.style.display = 'none';
+  body.style.overflow = 'scroll';
+  body.style.height = '100%';
+}

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Formik, Field } from "formik";
 
-import DateSelect from "../../shared/input/DateSelect";
-import Popup from "../../shared/sandbox/popup";
-import Alert from "../sandbox/alert";
+import DateSelect from "../input/dateSelect";
+import Popup from "../sandbox/Popup";
+import Alert from "../sandbox/Alert";
+import Button from "../sandbox/Button";
 import styles from "../../modules/DnD.module.scss";
 
 const TaskCard = (props) => {
@@ -28,7 +29,7 @@ const TaskCard = (props) => {
                 }}
             >
                 {(props) => (
-                    <form onSubmit={props.handleSubmit}>
+                    <form onSubmit={props.handleSubmit} className={styles.form}>
                         <div className={styles.col_input}>
                             <label htmlFor="taskTitle" className={styles.title}>
                                 Task title:
@@ -67,17 +68,14 @@ const TaskCard = (props) => {
                                 width={500}
                                 content={<Alert id="delTask" type="task" />}
                             />
-                            <NavLink
-                                className={styles.edit_button}
-                                to="#"
+                            <Button
+                                iconL={<i className="fas fa-check"></i>}
+                                text="Save"
                                 onClick={() => {
                                     props.submitForm();
                                     setEdit(false);
                                 }}
-                            >
-                                <i className="fas fa-check"></i>
-                                <div className={styles.text_button}>Save</div>
-                            </NavLink>
+                            />
                         </div>
                     </form>
                 )}
@@ -86,56 +84,63 @@ const TaskCard = (props) => {
     };
     const viewTask = () => {
         return (
-            <>
+            <div className={styles.form}>
                 <div className={styles.title}>
                     Task {props.index + 1}: {props.task.title}
                 </div>
                 <div className={styles.description_title}>
                     {props.task.description}
                 </div>
-                <div className={styles.task_footer}>
-                    <Formik
-                        initialValues={{
-                            taskDates: {
-                                startDate: props.task.startDate,
-                                endDate: props.task.endDate,
-                            },
-                        }}
-                        onSubmit={async (values) => {
-                            await new Promise((r) => setTimeout(r, 500));
-                            alert(JSON.stringify(values, null, 2));
-                            props.setTaskDates(props.index, values);
-                        }}
-                    >
-                        {(props) => (
-                            <form onSubmit={props.handleSubmit}>
-                                <Field name="taskDates">
-                                    {({
-                                        field: { value },
-                                        form: { setFieldValue },
-                                    }) => (
-                                        <DateSelect
-                                            value={value}
-                                            handleClick={(v) =>
-                                                setFieldValue("taskDates", v)
-                                            }
-                                            onSubmit={props.handleSubmit}
-                                        />
-                                    )}
-                                </Field>
-                            </form>
-                        )}
-                    </Formik>
-                    <NavLink
+                <Formik
+                    initialValues={{
+                        taskDates: {
+                            startDate: props.task.startDate,
+                            endDate: props.task.endDate,
+                        },
+                    }}
+                    onSubmit={async (values) => {
+                        await new Promise((r) => setTimeout(r, 500));
+                        alert(JSON.stringify(values, null, 2));
+                        props.setTaskDates(props.index, values);
+                    }}
+                >
+                    {(props) => (
+                        <form
+                            onSubmit={props.handleSubmit}
+                            className={styles.task_footer}
+                        >
+                            <Field name="taskDates">
+                                {({
+                                    field: { value },
+                                    form: { setFieldValue },
+                                }) => (
+                                    <DateSelect
+                                        value={value}
+                                        handleClick={(v) =>
+                                            setFieldValue("taskDates", v)
+                                        }
+                                        onSubmit={props.handleSubmit}
+                                    />
+                                )}
+                            </Field>
+                        </form>
+                    )}
+                </Formik>
+                <Button
+                    className={styles.edit_button}
+                    iconL={<i className="fas fa-edit"></i>}
+                    text="Edit task"
+                    onClick={() => setEdit(true)}
+                />
+                {/* <NavLink
                         className={styles.edit_button}
                         to="#"
                         onClick={() => setEdit(true)}
                     >
                         <i className="fas fa-edit"></i>
                         <div className={styles.text_button}>Edit</div>
-                    </NavLink>
-                </div>
-            </>
+                    </NavLink> */}
+            </div>
         );
     };
     return (

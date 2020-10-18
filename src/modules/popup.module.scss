@@ -25,15 +25,10 @@
   justify-content: center;
 }
 
-.contentContainer {
-  padding: 60px;
-  height: fit-content;
-  border-radius: 25px;
-}
-
 .btnsRow {
   padding: 20px 50px 0px 50px;
   display: flex;
+  justify-content: space-around;
 }
 
 .closeBtn {
@@ -45,4 +40,23 @@
 .lock {
   overflow: hidden;
   z-index: -1;
+}
+
+.form_container {
+  background-color: $ivory;
+  padding: 2.4rem;
+  height: fit-content;
+  border-radius: 25px;
+  margin: 0;
+}
+.form{
+  margin: 0;
+}
+.descEdit {
+  width: 100%;
+  resize: none;
+}
+
+.subtitle {
+  padding: 10px 0px;
 }

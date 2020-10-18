@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkbox from '../../shared/Checkbox';
+import Checkbox from '../../shared/sandbox/Checkbox';
 import Button from '../../shared/sandbox/Button';
 import styles from '../../modules/signUp.module.scss';
 import LocationDropdown from "../../shared/sandbox/LocationDropdown";

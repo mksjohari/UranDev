@@ -1,96 +1,95 @@
-import React, { useState, useEffect } from 'react';
-import { useDropzone } from 'react-dropzone';
+import React, { useEffect } from "react";
+import { useDropzone } from "react-dropzone";
+import { useField } from "formik";
 
-import { Formik } from "formik";
+import Thumbs from "./Thumbs";
+import styles from "../../modules/dropzone.module.scss";
+import logo from "../../images/logo.png";
 
 
-import styles from '../../modules/dropzone.module.scss';
-import logo from '../../images/logo.png';
-import { style } from 'd3';
+function Droparea(props) {
+    const [field, meta, helpers] = useField(props.name);
 
-const Droparea = (props) => {
+    const { value } = meta;
+    const { setValue } = helpers;
 
-  const [files, setFiles] = useState([]);
-  const filetype = /image/g;
-  const {getRootProps, getInputProps} = useDropzone({
-    maxFiles: 10,
-    onDrop: acceptedFiles => {
-      setFiles(acceptedFiles.map(file => Object.assign(file, {
-        preview: (file.type.match(filetype) ? URL.createObjectURL(file): logo)
-      })));
-      console.log(acceptedFiles);
-    }
-  });
-  
-  const thumbs = files.map(file => (
-    <div className={styles.thumbsWrapper}>
-      <div className={styles.thumb} key={file.name}>
-        <div className={styles.thumbInner}>
-          <img
-            src={file.preview}
-            className={styles.thumbImg}
-          />
-        </div>
-      </div>
-      <div className={styles.fileName}>
-        {file.name.length > 14 ? 
-          file.name.substr(0, 5) + ' . . . ' + file.name.substr(file.name.length - 7, 7)
-          : file.name }
-      </div>
-    </div>
-  ));
+    // const [files, setFiles] = useState(props.files);
+    const filetype = /image/g;
+    const { getRootProps, getInputProps } = useDropzone({
+        maxFiles: 10,
+        onDrop: (acceptedFiles) => {
+          setValue(
+                acceptedFiles.map((file) =>
+                    Object.assign(file, {
+                        preview: file.type.match(filetype)
+                            ? URL.createObjectURL(file)
+                            : logo,
+                    })
+                )
+            );
+            console.log(acceptedFiles);
+        },
+    });
 
-  useEffect(() => () => {
-    // Make sure to revoke the data uris to avoid memory leaks
-    files.forEach(file => URL.revokeObjectURL(file.preview));
-  }, [files]);
+    useEffect(
+        () => () => {
+            // Make sure to revoke the data uris to avoid memory leaks
+            value.forEach((file) => {
+                URL.revokeObjectURL(file.preview);
+            });
+        },
+        [value]
+    );
 
-  return (
-    <section className={styles.container}>
-      <div {...getRootProps({className: `${props.className + ' ' + styles.droparea}`})}>
-        <input {...getInputProps()} />
-        <div>Drag and drop your files here, or click to select files</div>
-        <i className="fas fa-file-alt" ></i>
-      </div>
-      <aside className={styles.thumbsContainer}>
-        {thumbs}
-      </aside>
-    </section>
-  );
+    return (
+        <section className={styles.container}>
+            <div
+                {...getRootProps({
+                    className: `${props.className + " " + styles.droparea}`,
+                })}
+            >
+                <input {...getInputProps()} />
+                <div>
+                    Drag and drop your files here, or click to select files
+                </div>
+                <i className="fas fa-file-alt"></i>
+            </div>
+            <aside className={styles.thumbsContainer}>
+                {value && <Thumbs files={value} />}
+            </aside>
+        </section>
+    );
 }
 
-  // var state = useState({});
+export default Droparea;
 
-  // const onDrop = (acceptedFiles) => {
-  //   // do nothing if no files
-  //   if (acceptedFiles.length === 0) { 
-  //     return; 
-  //   }
-  
-  //   // on drop we add to the existing files
-  //   const newState = Object.assign(state, acceptedFiles);
-  //   console.log(acceptedFiles);
-  //   state = (newState);
-  // }
-  // const {getRootProps, getInputProps} = useDropzone({onDrop});
+// var state = useState({});
 
-  // return (
-  //   <div {...getRootProps({className: `${props.className + ' ' + styles.droparea}`} )} >
-  //     <input {...getInputProps()} />
-  //     <div>Drag 'n' drop some files here, or click to select files</div>
-  //     <img
-  //       className={styles.filePreview}
-  //       src=""
-  //       alt="file"
-  //     />
-  //     <i className="fas fa-file-alt" ></i>
+// const onDrop = (acceptedFiles) => {
+//   // do nothing if no files
+//   if (acceptedFiles.length === 0) {
+//     return;
+//   }
 
-  //   </div>
-  // )
+//   // on drop we add to the existing files
+//   const newState = Object.assign(state, acceptedFiles);
+//   console.log(acceptedFiles);
+//   state = (newState);
+// }
+// const {getRootProps, getInputProps} = useDropzone({onDrop});
+
+// return (
+//   <div {...getRootProps({className: `${props.className + ' ' + styles.droparea}`} )} >
+//     <input {...getInputProps()} />
+//     <div>Drag 'n' drop some files here, or click to select files</div>
+//     <img
+//       className={styles.filePreview}
+//       src=""
+//       alt="file"
+//     />
+//     <i className="fas fa-file-alt" ></i>
+
+//   </div>
+// )
 
 // }
-
-
-
-
-export default Droparea;
