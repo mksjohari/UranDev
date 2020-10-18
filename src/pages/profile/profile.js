@@ -15,7 +15,6 @@ const profile = React.memo((props) => {
     const [about, setAbout] = useState(true);
     return (
         <div className="parent">
-            {/* <WordBubble /> */}
             <DevButton
                 onClick={() => {
                     console.log(props);

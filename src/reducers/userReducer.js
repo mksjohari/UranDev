@@ -19,7 +19,6 @@ const userInfo = {
 export default (state = userInfo, action) => {
     switch (action.type) {
         case "UPDATE_USER_INFO":
-            console.log("ll", action.userInfo);
             return {
                 ...state,
                 uid: action.userInfo.uid,
