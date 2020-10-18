@@ -14,7 +14,7 @@ export class Seeker {
 	@Column({ type: String })
 	occupation: string;
 
-	@Column({ type: String, nullable: true })
+	@Column({ type: String, nullable: true, length: 1000 })
 	description: string;
 
 	@Column({ type: String })

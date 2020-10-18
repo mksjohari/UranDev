@@ -4,6 +4,7 @@ import Button from "../../shared/sandbox/Button";
 import { finishUserSignUp, storage } from "../../shared/firebase/firebase";
 import { getFirebase } from "../../shared/firebase/config";
 import { useHistory } from "react-router-dom";
+import { updateInfo } from "../../actions/userAction";
 
 const finishSetup = async (firstStep, secondStep, thirdStep, history) => {
     const uid = getFirebase().auth().currentUser.uid;

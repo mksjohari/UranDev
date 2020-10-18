@@ -35,7 +35,7 @@ export const signInWithGoogle = async (
         .then(async (result) => {
             setIndex(1);
             setOpacity(90);
-            const uid = getFirebase().auth().currentUser.uid;
+            const uid = result.user.uid
             const exists = await checkUserExists({ uid: uid });
             if (exists.data[0] === false) {
                 const firstName = result.additionalUserInfo.profile.given_name;
@@ -58,6 +58,7 @@ export const signInWithGoogle = async (
                 console.log("Created account", uid);
             } else {
                 console.log("Account exists");
+                console.log(uid)
                 if (exists.data[1].status === "incomplete") {
                     onClose();
                     history.push("/signup", {
@@ -69,6 +70,7 @@ export const signInWithGoogle = async (
                     const userInfo = await getUserInfo({ uid: uid });
                     const userSocials = await getUserSocials({ uid: uid });
                     const userExpertise = await getUserExpertise({ uid: uid });
+                    console.log('sir')
                     updateInfo({
                         userInfo: userInfo.data,
                         userSocials: userSocials.data,

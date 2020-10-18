@@ -1,6 +1,6 @@
-import { AccordionActions } from "@material-ui/core";
 
 const userInfo = {
+    loaded: false,
     uid: "",
     firstName: "",
     lastName: "",
@@ -23,7 +23,7 @@ export default (state = userInfo, action) => {
                 ...state,
                 uid: action.userInfo.uid,
                 firstName: action.userInfo.firstName,
-                lastName: action.userInfo.uid,
+                lastName: action.userInfo.lastName,
                 email: action.userInfo.email,
                 userType: action.userInfo.userType,
                 dateCreated: action.userInfo.dateCreated,
@@ -33,6 +33,7 @@ export default (state = userInfo, action) => {
                 occupation: action.userInfo.occupation,
                 description: action.userInfo.description,
                 location: action.userInfo.location,
+                logged: action.logged
             };
         case "UPDATE_SOCIALS":
             return {
