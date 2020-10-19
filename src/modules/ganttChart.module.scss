@@ -4,3 +4,11 @@
   padding: 20px;
   background-color: $ivory;
 }
+
+.ganttChart, 
+.ganttChart text,
+.ganttChart rect {
+  font-family: $font !important;
+  font-weight: normal !important;
+  color: $navy;
+}

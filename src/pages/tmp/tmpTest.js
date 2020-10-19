@@ -10,34 +10,18 @@ import Alert from '../../shared/sandbox/Alert';
 import GanttChart from '../../shared/GanttChart';
 
 const TmpTest = () => {
-	const skillsDefault = {
-		'web dev': false,
-		leech: false,
-		wireframing: false,
-		list: {
-			'web dev': 10,
-			leech: 0,
-			wireframing: 5000000,
-		},
-	};
-
-	const toolsDefault = {
-		git: false,
-		weh: false,
-		react: false,
-		list: {
-			git: 10,
-			weh: 0,
-			react: 5000000,
-		},
-	};
-
 	const [skills, setSkills] = useState(skillsDefault);
 	const [tools, setTools] = useState(toolsDefault);
 
+	function sampleChartFunc(id) {
+		console.log(id);
+	}
+
 	return (
 		<div className="tmp">
-      <GanttChart data={projectData} />
+
+      <GanttChart data={projectData} chartEvent={sampleChartFunc} />
+
 			<Popup
 				BtnText="Basic delete btn"
 				BtnColour="reddo"
@@ -153,6 +137,8 @@ export const taskData = [
 		taskId: 'task-1',
 		title: 'yes',
 		description: 'yessir',
+		startDate: new Date(2018, 0, 1),
+		endDate: new Date(2019, 0, 1),
 		actions: [
 			{
 				actionId: 'action-1',
@@ -188,6 +174,8 @@ export const taskData = [
 		taskId: 'task-2',
 		title: 'no',
 		description: 'no sir',
+		startDate: new Date(2019, 0, 2),
+		endDate: new Date(2019, 4, 9),
 		actions: [
 			{
 				actionId: 'action-4',
@@ -201,6 +189,8 @@ export const taskData = [
 		taskId: 'task-3',
 		title: 'no',
 		description: 'no sir',
+		startDate: new Date(2019, 2, 19),
+		endDate: new Date(2019, 4, 28),
 		actions: [
 			{
 				actionId: 'action-4',
@@ -214,6 +204,8 @@ export const taskData = [
 		taskId: 'task-4',
 		title: 'no',
 		description: 'no sir',
+		startDate: new Date(2019, 0, 1),
+		endDate: new Date(2020, 9, 9),
 		actions: [
 			{
 				actionId: 'action-4',
@@ -232,7 +224,29 @@ export const projectData = {
   teamSize: "2-5",
   budget: "300000",
   currency: "aud",
-  startDate: new Date(),
-  endDate: new Date(),
+  startDate: new Date(2020, 2, 1),
+  endDate: new Date(2020, 3, 3),
   taskData: taskData,
 }
+
+export const skillsDefault = {
+	'web dev': false,
+	leech: false,
+	wireframing: false,
+	list: {
+		'web dev': 10,
+		leech: 0,
+		wireframing: 5000000,
+	},
+};
+
+export const toolsDefault = {
+	git: false,
+	weh: false,
+	react: false,
+	list: {
+		git: 10,
+		weh: 0,
+		react: 5000000,
+	},
+};
