@@ -61,31 +61,35 @@ const ActionCard = (props) => {
                 ) : (
                     ""
                 )}
-                
-                    <div className={styles.action_subtitle}>
-                        Files:
-                        <Thumbs files={props.action.files}/>
-                        {/* <div className={styles.col_right}>
-                            <div className={styles.project_tags}>
-                                <a className={styles.file_link} href="##">
-                                    somepicture.jpg
-                                </a>
-                                <a className={styles.file_link} href="##">
-                                    anotherfile.pdf
-                                </a>
-                                <a className={styles.file_link} href="##">
-                                    anotherfile.pdf
-                                </a>
-                                <a className={styles.file_link} href="##">
-                                    anotherfile.pdf
-                                </a>
-                                <a className={styles.file_link} href="##">
-                                    anotherfile.pdf
-                                </a>
-                            </div>
-                        </div> */}
-                    </div>
-               
+                <div>
+                    {props.action.files.length ? (
+                        <div className={styles.action_subtitle}>
+                            Files:
+                            <Thumbs files={props.action.files} />
+                            {/* <div className={styles.col_right}>
+                     <div className={styles.project_tags}>
+                         <a className={styles.file_link} href="##">
+                             somepicture.jpg
+                         </a>
+                         <a className={styles.file_link} href="##">
+                             anotherfile.pdf
+                         </a>
+                         <a className={styles.file_link} href="##">
+                             anotherfile.pdf
+                         </a>
+                         <a className={styles.file_link} href="##">
+                             anotherfile.pdf
+                         </a>
+                         <a className={styles.file_link} href="##">
+                             anotherfile.pdf
+                         </a>
+                     </div>
+                 </div> */}
+                        </div>
+                    ) : (
+                        ""
+                    )}
+                </div>
             </div>
             <div className={styles.task_footer}>
                 <Popup
