@@ -12,6 +12,7 @@ import GanttChart from '../../shared/GanttChart';
 const TmpTest = () => {
 	const [skills, setSkills] = useState(skillsDefault);
 	const [tools, setTools] = useState(toolsDefault);
+	const [displayTasks, setDisplayTasks] = useState(projectData);
 
 	function sampleChartFunc(id) {
 		console.log(id);
