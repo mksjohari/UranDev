@@ -1,0 +1,46 @@
+@import "variable";
+
+.tab {
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0px 10px 20px 0px $shadow;
+    background: white;
+}
+
+
+.hide_btn {
+    margin-top: 16px;
+    padding: 2px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: $darkgrey;
+    border-radius: 0 0 25px 25px;
+    cursor: pointer;
+    &:hover {
+        background: $lightgrey;
+        transition: all 0.3s ease;
+    }
+}
+
+.skill {
+    background: $yellow;
+    padding: 1px 15px;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-style: italic;
+    color: $darkyellow;
+}
+
+.tool {
+    background: $blue;
+    padding: 1px 15px;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-style: italic;
+    color: $darkblue;
+}
+
+.p {
+    margin: 0;
+}
