@@ -7,28 +7,10 @@ import Checkbox from "../signUp/Checkbox";
 import "../../modules/signUp.module.scss";
 import "react-step-progress-bar/styles.css";
 import styles from "../../modules/explore.module.scss";
-import PreviewProject from "../../pages/projects/previewProject";
 
 const Explore = () => {
 	return (
 		<div>
-			<PreviewProject/>
-			<div className={styles.social_icon_div}>
-				<span>www.linkedin.com/in/&nbsp;</span>
-				<input
-					className="inp-text"
-					type="url"
-					placeholder="yourusername"
-				/>
-			</div>
-			<div className={styles.social_icon_div}>
-				<span>www.a1marketing.&nbsp;
-				<input
-					className="inp-text"
-					type="url"
-					placeholder="URL to account"
-				/>slack.com&nbsp;</span>
-			</div>
 			<h1>Welcome to URAN,</h1>
 			<p style={{ fontSize: "16px" }}>Create your e-portfolio today!</p>
 			<div className={styles.imgctn}>
