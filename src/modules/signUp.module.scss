@@ -28,14 +28,14 @@
 
 .sign_up_container {
 	display: grid;
-    grid-template-columns: 30% 65%;
+	grid-template-columns: 30% 65%;
 }
 
 .sign_up_form {
 	height: 100%;
 	width: 100%;
 	display: grid;
-    grid-template-rows: 10% 80% 10%;
+	grid-template-rows: 10% 80% 10%;
 }
 
 .sign_up_side_panel {
@@ -137,6 +137,10 @@
 	display: flex;
 	align-items: center;
 	margin: 3% 0;
+}
+.textarea {
+	width: 550px;
+	height: 200px;
 }
 
 caption {

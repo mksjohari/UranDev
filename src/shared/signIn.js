@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './sandbox/Button';
-import '../modules/loginform.scss';
+import '../modules/loginformz.scss';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';

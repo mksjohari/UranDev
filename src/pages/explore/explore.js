@@ -8,7 +8,8 @@ import "../../modules/signUp.module.scss";
 import "react-step-progress-bar/styles.css";
 import styles from "../../modules/explore.module.scss";
 
-const Explore = () => {
+const Explore = (props) => {
+	console.log(props)
 	return (
 		<div>
 			<h1>Welcome to URAN,</h1>

@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "../modules/loader.module.scss";
+import "../modules/loginform.scss";
 
-const Loader = () => {
+const Loader = (props) => {
     return(
-        <>
+        <div style={props.style}>
             <svg id={styles.loader} version="1.1" xmlns="http://www.w3.org/2000/svg" width="60px" height="67.2px" viewBox="0 0 60 67.2">
                 <path className={styles.st0} d="M41,50.9V21.3c0-2.7-2.2-4.9-4.9-4.9H6.4c-2.7,0-4.9,2.2-4.9,4.9v39.5c0,2.7,2.2,4.9,4.9,4.9h19.7L41,50.9z"/>
                 <polyline className={styles.st0} points="41,50.9 26.2,50.9 26.2,65.7 "/>
@@ -14,12 +15,12 @@ const Loader = () => {
                 <line className={styles.st2} id={styles.pencil} x1="49.6" y1="5" x2="55.1" y2="10.4"/>
             </svg>
             <br />
-            <p className={styles.loading}>Creating your account&nbsp;
+            <p className={styles.loading}>{props.loadMessage}&nbsp;
                 <div id={styles.dot1}></div>
                 <div id={styles.dot2}></div>
                 <div id={styles.dot3}></div>
             </p>
-        </>
+        </div>
     )
 }
 

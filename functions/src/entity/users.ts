@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 export enum UserType {
 	NONE = 'none',
@@ -39,6 +39,6 @@ export class Users {
 	})
 	status: StatusType;
 
-	@CreateDateColumn()
-	dateCreated: Date;
+	@Column({type: String})
+	dateCreated: String;
 }
