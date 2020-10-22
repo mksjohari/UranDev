@@ -8,6 +8,7 @@ import Dropdown from "../../shared/sandbox/Dropdown";
 import Timeline from "../../shared/sandbox/Timeline";
 import Situation from "./situation";
 import styles from "../../modules/createProject.module.scss";
+import PreviewProject from "./previewProject";
 
 function CreateProject(props) {
     const [percent, setPercent] = useState(0);
@@ -85,6 +86,9 @@ function CreateProject(props) {
                     <div className={styles.form}>
                         <Situation form={props} nextStep={nextStep} />
                     </div>
+                )}
+                {step === 3 && (
+                    <PreviewProject />
                 )}
                 {step !== 0 && (
                     <Button
