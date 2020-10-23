@@ -11,12 +11,16 @@ const Data = {
       id: 'task-1',
       title: '',
       description: '',
+      startDate: '',
+      endDate: '',
       actionIds: ['action-1', 'action-2', 'action-3', 'action-4'],
     },
     'task-2': {
       id: 'task-2',
       title: '',
       description: '',
+      startDate: '',
+      endDate: '',
       actionIds: [],
     }
   },

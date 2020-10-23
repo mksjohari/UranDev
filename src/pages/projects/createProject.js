@@ -7,6 +7,7 @@ import Button from "../../shared/sandbox/Button";
 import Dropdown from "../../shared/sandbox/Dropdown";
 import Timeline from "../../shared/sandbox/Timeline";
 import Situation from "./situation";
+import TasksActions from "./tasksActions";
 import styles from "../../modules/createProject.module.scss";
 import PreviewProject from "./previewProject";
 
@@ -83,8 +84,8 @@ function CreateProject(props) {
                     </div>
                 )}
                 {step === 1 && (
-                    <div className={styles.form}>
-                        <Situation form={props} nextStep={nextStep} />
+                    <div className={styles.full_width}>
+                        <TasksActions form={props} nextStep={nextStep} />
                     </div>
                 )}
                 {step === 3 && (
