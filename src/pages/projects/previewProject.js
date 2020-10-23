@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../modules/previewProject.module.scss";
+import styles from "../../modules/previewproject.module.scss";
 import SkillsTab from "./skillsTab";
 import JobSearch from "../../images/jobsearch.png";
 

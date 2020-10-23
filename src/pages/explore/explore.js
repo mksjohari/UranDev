@@ -7,6 +7,7 @@ import Checkbox from "../signUp/Checkbox";
 import "../../modules/signUp.module.scss";
 import "react-step-progress-bar/styles.css";
 import styles from "../../modules/explore.module.scss";
+import ProjectResult from '../../shared/sandbox/ProjectResult';
 
 const Explore = (props) => {
 	console.log(props)
@@ -29,7 +30,8 @@ const Explore = (props) => {
 					<Checkbox id='5' label='Most experienced' />
 				</div>
 				<div className={styles.results}>
-					<h6 style={{ margin: "0 60px" }}>Search results (4)</h6>
+					<h6 className={styles.h6}>Search results (4)</h6>
+					<ProjectResult />
 					<SearchResult
 						name='John Doe'
 						location='Melbourne, AU'
