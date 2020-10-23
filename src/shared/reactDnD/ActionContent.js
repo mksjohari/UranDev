@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../modules/tmp.module.scss";
+import styles from "../../modules/tmp.module.scss";
 
 function ActionContent(props) {
     return (

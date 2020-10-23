@@ -1,0 +1,20 @@
+@import 'variable';
+
+.container {
+  width: 100%;
+  text-align: center;
+}
+
+.main404 {
+  font-size: 144px;
+  color: $darkblue;
+  min-height: 144px;
+  line-height: initial;
+}
+
+.msg {
+  font-size: 24px;
+  color: $darkblue;
+  line-height: initial;
+  padding-bottom: 30px;
+}

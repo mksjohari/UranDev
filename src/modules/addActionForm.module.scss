@@ -1,0 +1,23 @@
+@import 'variable';
+
+.container {
+  background-color: $ivory;
+  padding: 60px;
+  width: 700px;
+  height: fit-content;
+  border-radius: 25px;
+}
+
+.descEdit {
+  width: 100%;
+  resize: none;
+}
+
+.title {
+  padding: 10px 0px;
+}
+
+.btnRow {
+  display: flex;
+  justify-content: space-around;
+}
