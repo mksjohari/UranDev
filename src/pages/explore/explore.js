@@ -2,15 +2,15 @@ import React from "react";
 
 import JobSearch from "../../images/jobsearch.png";
 import Tab from "../../shared/sandbox/Tab";
-import SearchResult from "../../shared/sandbox/SearchResult";
 import Checkbox from "../signUp/Checkbox";
 import "../../modules/signUp.module.scss";
 import "react-step-progress-bar/styles.css";
 import styles from "../../modules/explore.module.scss";
-import ProjectResult from '../../shared/sandbox/ProjectResult';
+import SearchResult from "../../shared/sandbox/SearchResult";
+import ProjectResult from "../../shared/sandbox/ProjectResult";
 
 const Explore = (props) => {
-	console.log(props)
+	console.log(props);
 	return (
 		<div>
 			<h1>Welcome to URAN,</h1>

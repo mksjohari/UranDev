@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../../shared/sandbox/Button";
 import styles from "../../modules/skillstab.module.scss";
 
-function SkillsTab() {
+function SkillsTab(props) {
 	const [showTab, setshowTab] = useState(true);
 	return (
 		<div className={styles.tab}>
@@ -10,9 +10,9 @@ function SkillsTab() {
 				<div className={styles.container}>
 					<div className={styles.skills_div}>
 						<p className={styles.p}>Skills developed:</p>
-						<span className={styles.skill}>Web Development</span>
-						<span className={styles.skill}>High-fidelity Prototyping</span>
-						<span className={styles.skill}>Frontend Development</span>
+						{skills.map((skill, index) => (
+							<span className={styles.skill}>{skill}</span>
+						))}
 					</div>
 					<div className={styles.skills_btn}>
 						<Button
@@ -23,9 +23,9 @@ function SkillsTab() {
 					</div>
 					<div className={styles.tools_div}>
 						<p className={styles.p}>Tools involved:</p>
-						<span className={styles.tool}>Git</span>
-						<span className={styles.tool}>Python</span>
-						<span className={styles.tool}>Framer</span>
+						{tools.map((tool, index) => (
+							<span className={styles.tool}>{tool}</span>
+						))}
 					</div>
 					<div className={styles.tools_btn}>
 						<Button
@@ -58,3 +58,6 @@ function SkillsTab() {
 }
 
 export default SkillsTab;
+
+const skills = ['Web Development', 'High-fidelity Prototyping', 'Frontend Development'];
+const tools = ['Git', 'Python', 'Framer'];
