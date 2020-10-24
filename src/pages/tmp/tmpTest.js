@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 // import DnD from "../../shared/DnD";
 import DateSelect from '../../shared/DateSelect';
+import * as moment from 'moment';
 // import Data from "../../shared/reactDnD/sampleData";
 import TaskDnD from '../../shared/reactDnD/taskDnD';
 import Popup from '../../shared/sandbox/popup';
@@ -138,8 +139,8 @@ export const taskData = [
 		taskId: 'task-1',
 		title: 'yes',
 		description: 'yessir',
-		startDate: new Date(2018, 0, 1),
-		endDate: new Date(2019, 0, 1),
+		startDate: moment([2018, 0, 1]), // to moment 
+		endDate: moment([2019, 0, 1]),
 		actions: [
 			{
 				actionId: 'action-1',
@@ -147,6 +148,7 @@ export const taskData = [
 				tools: ['git', 'weh'],
 				skills: [],
 				description: 'git and weh',
+				files: []
 			},
 			{
 				actionId: 'action-2',
@@ -154,6 +156,7 @@ export const taskData = [
 				tools: [],
 				skills: ['web dev', 'app design', 'number theory'],
 				description: 'happy days are aheard',
+				files: [],
 			},
 			{
 				actionId: 'action-3',
@@ -161,6 +164,7 @@ export const taskData = [
 				tools: ['MATLAB', 'adobe XD', 'Rhino3D', 'react'],
 				skills: ['web dev', 'app design', 'number theory'],
 				description: 'I did somethin',
+				files: [],
 			},
 			{
 				actionId: 'action-4',
@@ -168,6 +172,7 @@ export const taskData = [
 				tools: [],
 				skills: [],
 				description: 'yeh this that blah',
+				files: [],
 			},
 		],
 	},
@@ -175,14 +180,15 @@ export const taskData = [
 		taskId: 'task-2',
 		title: 'no',
 		description: 'no sir',
-		startDate: new Date(2019, 0, 2),
-		endDate: new Date(2019, 4, 9),
+		startDate: moment([2019, 0, 2]),
+		endDate: moment([2019, 4, 9]),
 		actions: [
 			{
 				actionId: 'action-4',
 				tools: [],
 				skills: [],
 				description: 'yeh this that blah',
+				files: [],
 			},
 		],
 	},
@@ -190,14 +196,15 @@ export const taskData = [
 		taskId: 'task-3',
 		title: 'no',
 		description: 'no sir',
-		startDate: new Date(2019, 2, 19),
-		endDate: new Date(2019, 4, 28),
+		startDate: moment([2019, 2, 19]),
+		endDate: moment([2019, 4, 28]),
 		actions: [
 			{
 				actionId: 'action-4',
 				tools: [],
 				skills: [],
 				description: 'yeh this that blah',
+				files: []
 			},
 		],
 	},
@@ -205,14 +212,15 @@ export const taskData = [
 		taskId: 'task-4',
 		title: 'no',
 		description: 'no sir',
-		startDate: new Date(2019, 0, 1),
-		endDate: new Date(2020, 9, 9),
+		startDate: moment([2019, 0, 1]),
+		endDate: moment([2020, 9, 9]),
 		actions: [
 			{
 				actionId: 'action-4',
 				tools: [],
 				skills: [],
 				description: 'yeh this that blah',
+				files:[],
 			},
 		],
 	},
@@ -225,8 +233,8 @@ export const projectData = {
   teamSize: "2-5",
   budget: "300000",
   currency: "aud",
-  startDate: new Date(2020, 2, 1),
-  endDate: new Date(2020, 3, 3),
+  startDate: moment([2020, 2, 1]), // change to moment.js
+  endDate: moment([2020, 3, 3]),
   taskData: taskData,
 }
 
