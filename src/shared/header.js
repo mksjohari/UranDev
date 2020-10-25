@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import Logout from "../shared/sandbox/Logout";
 
 import styles from "../modules/header.module.scss";
 import Logo from "../images/logo.png";

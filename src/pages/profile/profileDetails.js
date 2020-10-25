@@ -24,7 +24,7 @@ const ProfileDetails = (props) => {
         else{
             setExpertise(user.expertise[0].expertise)
         }
-    }, [])
+    }, [history, props, user.expertise, user.logged])
     const displayName = `${user.firstName} ${user.lastName}`
     const toggleShortlisted = () => setShortlisted(previousState => !previousState);
     return (

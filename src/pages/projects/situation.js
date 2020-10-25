@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Field, useField } from "formik";
+import { Formik, Field } from "formik";
 
 import Button from "../../shared/sandbox/Button";
 import TeamSize from "../../shared/input/teamSize";
@@ -134,44 +134,44 @@ function Situation(props) {
 export default withContext(Situation);
 
 // could use for endorse skill tag ?? https://hceris.com/custom-components-in-formik/
-const TeamSelect = (props) => {
-    const isSelected = (v) =>
-        `${styles.teamsize_button} ${
-            v === props.value ? styles.teamsize_selected : ""
-        }`;
+// const TeamSelect = (props) => {
+//     const isSelected = (v) =>
+//         `${styles.teamsize_button} ${
+//             v === props.value ? styles.teamsize_selected : ""
+//         }`;
 
-    return (
-        <div className={styles.input_teamsize}>
-            <button
-                onClick={() => props.handleClick("1")}
-                className={isSelected("1")}
-            >
-                1
-            </button>
-            <button
-                onClick={() => props.handleClick("2-5")}
-                className={isSelected("2-5")}
-            >
-                2-5
-            </button>
-            <button
-                onClick={() => props.handleClick("6-10")}
-                className={isSelected("6-10")}
-            >
-                6-10
-            </button>
-            <button
-                onClick={() => props.handleClick("11-20")}
-                className={isSelected("11-20")}
-            >
-                11-20
-            </button>
-            <button
-                onClick={() => props.handleClick("21+")}
-                className={isSelected("21+")}
-            >
-                21+
-            </button>
-        </div>
-    );
-};
+//     return (
+//         <div className={styles.input_teamsize}>
+//             <button
+//                 onClick={() => props.handleClick("1")}
+//                 className={isSelected("1")}
+//             >
+//                 1
+//             </button>
+//             <button
+//                 onClick={() => props.handleClick("2-5")}
+//                 className={isSelected("2-5")}
+//             >
+//                 2-5
+//             </button>
+//             <button
+//                 onClick={() => props.handleClick("6-10")}
+//                 className={isSelected("6-10")}
+//             >
+//                 6-10
+//             </button>
+//             <button
+//                 onClick={() => props.handleClick("11-20")}
+//                 className={isSelected("11-20")}
+//             >
+//                 11-20
+//             </button>
+//             <button
+//                 onClick={() => props.handleClick("21+")}
+//                 className={isSelected("21+")}
+//             >
+//                 21+
+//             </button>
+//         </div>
+//     );
+// };

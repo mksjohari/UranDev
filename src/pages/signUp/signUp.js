@@ -27,7 +27,7 @@ const SignUp = (props) => {
 			console.log("redirect to main page");
 			history.push("/");
 		}
-	}, [state]);
+	}, [state, history]);
 	function nextStep() {
 		if (step < 3) {
 			setPercent((step * 100 + 100) / 3);

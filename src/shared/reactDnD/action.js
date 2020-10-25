@@ -1,6 +1,6 @@
 import React from "react";
 
-import Popup, { lockBg } from "../sandbox/Popup";
+import Popup, { lockBg } from "../sandbox/popup";
 import AddActionForm from "../../shared/input/AddActionForm";
 import Alert from "../sandbox/Alert";
 import Button from "../sandbox/Button";

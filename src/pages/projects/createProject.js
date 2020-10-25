@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Formik, Field, Form, useField, withFormik } from "formik";
+import { withFormik } from "formik";
 import { withContext } from "../../shared/react-dims";
 
 import Button from "../../shared/sandbox/Button";
-import Dropdown from "../../shared/sandbox/Dropdown";
 import Timeline from "../../shared/sandbox/Timeline";
 import Situation from "./situation";
 import TasksActions from "./tasksActions";
@@ -14,12 +12,10 @@ import PreviewProject from "./previewProject";
 function CreateProject(props) {
     const [percent, setPercent] = useState(0);
     const [step, setStep] = useState(0);
-    const { situation, role, teamSize, budget, currency } = props; // draft ONLY
+    // const { situation, role, teamSize, budget, currency } = props; // draft ONLY
     const [project, setProject] = useState(props);
     const {
         values,
-        touched,
-        errors,
         handleChange,
         handleBlur,
         handleSubmit,

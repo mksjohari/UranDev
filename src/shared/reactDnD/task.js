@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
 import { Formik, Field } from "formik";
 
 import DateSelect from "../input/DateSelect";
-import Popup from "../sandbox/Popup";
+import Popup from "../sandbox/popup";
 import Alert from "../sandbox/Alert";
 import Button from "../sandbox/Button";
 import styles from "../../modules/DnD.module.scss";

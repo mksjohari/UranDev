@@ -3,7 +3,7 @@ import { Formik, Field } from "formik";
 
 import Dropdown from "../../shared/sandbox/Dropdown";
 import Button from "../../shared/sandbox/Button";
-import { close } from "../sandbox/Popup";
+import { close } from "../sandbox/popup";
 import Droparea from "../sandbox/Droparea";
 
 import styles from "../../modules/popup.module.scss";
