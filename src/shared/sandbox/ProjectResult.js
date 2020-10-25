@@ -6,7 +6,7 @@ function ProjectResult(props) {
 	return (
 		<div className={styles.project_result}>
 			<div className={styles.img_div}>
-				<img className={styles.img} src={JobSearch} />
+				<img className={styles.img} alt='project' src={JobSearch} />
 			</div>
 			<div className={styles.title_div}>{projectTitle}</div>
 			<div className={styles.desc_div}>{truncate(desc)}</div>

@@ -2,7 +2,7 @@ import React from "react";
 
 import JobSearch from "../../images/jobsearch.png";
 import Tab from "../../shared/sandbox/Tab";
-import Checkbox from "../signUp/Checkbox";
+import Checkbox from "../../shared/Checkbox";
 import "../../modules/signUp.module.scss";
 import "react-step-progress-bar/styles.css";
 import styles from "../../modules/explore.module.scss";

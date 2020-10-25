@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../modules/previewproject.module.scss";
+import styles from "../../modules/previewProject.module.scss";
 import SkillsTab from "./skillsTab";
 import JobSearch from "../../images/jobsearch.png";
 
@@ -7,7 +7,7 @@ function PreviewProject(props) {
 	return (
 		<div>
 			<div className={styles.cover_div}>
-				<img src={JobSearch}></img>
+				<img src={JobSearch} alt='jobsearch'></img>
 				<div className={styles.banner}>
 					<div className={styles.project_title}>{projectTitle}</div>
 					<div>
@@ -44,7 +44,7 @@ function PreviewProject(props) {
 						</div>
 					</div>
 					<div className={styles.user_div}>
-						<img src={JobSearch} className={styles.profile_pic}></img>
+						<img src={JobSearch} alt='jobsearch' className={styles.profile_pic}></img>
 						<p className={styles.name}>{name}</p>
 						<p className={styles.title}>{title}</p>
 					</div>
