@@ -1,4 +1,5 @@
 import React from 'react';
+import * as moment from 'moment';
 import { Chart } from 'react-google-charts';
 import styles from '../modules/ganttChart.module.scss';
 
@@ -46,8 +47,8 @@ function GanttChart(props)  {
       task.taskId,
       task.title,
       null,
-      (task.startDate ? task.startDate : props.startDate),
-      (task.endDate ? task.endDate : props.endDate),
+      (task.startDate ? task.startDate.toDate() : props.startDate.toDate() ),
+      (task.endDate ? task.endDate.toDate() : props.endDate.toDate() ),
       null,
       100,
       null,
@@ -116,7 +117,7 @@ function GanttChart(props)  {
       <div className={styles.chartContainer} >
         <Chart 
           chartType='Gantt'
-          loader={<p>Loading Chart...</p>}
+          loader={<center><p>Loading Chart...</p></center>}
           data={ganttChartData}
           width={'100%'}
           className={styles.ganttChart}
