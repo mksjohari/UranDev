@@ -1,0 +1,172 @@
+@import "variable";
+
+.section_task {
+    min-height: 50px;
+    min-width: 400px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    border: none;
+}
+
+.section_action {
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 0px 2px 16px $shadow;
+    overflow: hidden;
+    min-height: 50px;
+    width: 40%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+}
+
+.action_col {
+    display: flex;
+    min-height: 100%;
+    padding: 20px 10px;
+    flex-direction: column;
+    background-color: $navy;
+}
+
+.task_col {
+    display: flex;
+    flex-direction: column;
+}
+.task_card {
+    display: grid;
+    grid-template-columns: auto 50px;
+    margin-bottom: 8px;
+    padding: 8px;
+}
+.task_dragging {
+    border: 3px solid $navy;
+}
+.task_current {
+    background-color: $pink !important;
+}
+
+.card {
+    grid-column: 1 / 2;
+    min-height: 100px;
+    overflow: visible;
+    background: var(--White, #ffffff);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    padding: 1rem 1rem 1.2rem 1rem;
+    color: $darkgrey;
+}
+
+.form {
+    margin: 0;
+}
+.action_card {
+    min-height: 100px;
+    overflow: visible;
+    background: var(--White, #ffffff);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    padding: 1rem 1rem 1.2rem 1rem;
+    margin: 0 0 0.8rem 0;
+    color: $darkgrey;
+}
+.task_chevron {
+    grid-column: 2 / 3;
+    align-self: center;
+    padding-left: 30px;
+}
+.draggable_root {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.heading {
+    padding: 0.8rem 1rem;
+    font-family: "Poppins", serif;
+    color: #565656;
+    font-size: 24px;
+    line-height: 2;
+    font-weight: 500;
+}
+.title {
+    font-size: 18px;
+    line-height: 2;
+    font-weight: 500;
+}
+.text_input {
+    // background-color: rgba(0,0,0,0);
+    border: hidden;
+}
+
+.col_input {
+    display: flex;
+    flex-direction: column;
+}
+
+.description_title {
+    font-size: 14px;
+    line-height: 2;
+    font-weight: 400;
+    resize: none;
+}
+
+.description_action {
+    font-size: 14px;
+    line-height: 2;
+    font-weight: 400;
+    margin: 0em 0em 1em 0em;
+}
+
+.action_tags {
+    margin: 1em 1em 1em 1em;
+}
+.action_subtitle {
+    color: $navy;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 2;
+    margin-top: 1em;
+    display: table-cell;
+}
+
+.duration_button {
+    background-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    border: 1px solid #222;
+    border-radius: 10px;
+}
+.delete_button {
+    color: white;
+    margin-left: 0.5rem;
+    background-color: $reddo;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+.task_footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 0em 0em 0em;
+}
+.edit_button {
+    margin-top: 1em;
+}
+.text_button {
+    margin-left: 5px;
+}
+.button_add_task {
+    margin-right: 50px;
+    color: white;
+    background-color: $navy;
+}
+.button_add_action {
+    color: $navy;
+    background-color: $pink;
+}
+.files_display {
+    max-height: 200px;
+    overflow: scroll;
+}

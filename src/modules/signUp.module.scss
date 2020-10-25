@@ -1,4 +1,4 @@
-@import 'variable';
+@import "variable";
 
 .typing_img {
 	width: 250px;
@@ -14,11 +14,10 @@
 }
 
 .btn_controls {
-	margin: 2rem;
-	width: 700px;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+	grid-area: 3 / 1 / 4 / 2;
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .jobsearch_img {
@@ -28,14 +27,14 @@
 
 .sign_up_container {
 	display: grid;
-	grid-template-columns: 30% 65%;
+	grid-template-columns: 30% 70%;
 }
 
 .sign_up_form {
 	height: 100%;
 	width: 100%;
 	display: grid;
-	grid-template-rows: 10% 80% 10%;
+	grid-template-rows: 20% 80%;
 }
 
 .sign_up_side_panel {
@@ -43,16 +42,36 @@
 }
 
 .sign_up_process {
-	padding: 40px 70px;
 	height: 700px;
+	margin: 0 auto;
 }
 
-.step {
-	width: 550px;
-	margin: 50px;
-}
 .step_one {
-	width: 300px;
+	display: grid;
+	grid-template-columns: 550px;
+	grid-template-rows: 30px 480px 50px;
+}
+
+.step_two {
+	display: grid;
+	grid-template-columns: 550px;
+	grid-template-rows: 30px 480px 50px;
+}
+
+.step_three {
+	display: grid;
+	grid-template-columns: 550px;
+	grid-template-rows: 30px 480px 50px;
+}
+
+.link_div {
+	grid-area: 2 / 1 / 3 / 2;
+}
+
+.step_four {
+	width: 550px;
+	display: grid;
+	grid-template-rows: 30px 480px 50px;
 }
 
 .background_info {
@@ -148,4 +167,31 @@ caption {
 	font-weight: 500;
 	width: 120px;
 	text-align: left;
+}
+
+.preview_ctn {
+	margin-top: 8%;
+	display: grid;
+	grid-template-columns: 160px 490px;
+	grid-template-rows: 40px 60px 80px;
+	grid-column-gap: 40px;
+	grid-row-gap: 0px;
+}
+
+.img_div {
+	grid-area: 1 / 1 / 4 / 2;
+	height: 160px;
+	overflow: hidden;
+}
+.name_div {
+	grid-area: 1 / 2 / 2 / 3;
+	font-weight: 500;
+	font-size: 28px;
+}
+.details_div {
+	grid-area: 2 / 2 / 3 / 3;
+	color: $navy;
+}
+.desc_div {
+	grid-area: 3 / 2 / 4 / 3;
 }
