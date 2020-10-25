@@ -3,10 +3,12 @@ import { Link, useHistory } from "react-router-dom";
 import Button from "./sandbox/Button";
 import PasswordStrengthMeter from "../shared/sandbox/PasswordStrengthMeter";
 import "../modules/loginform.scss";
+import Loader from "./Loader";
 
 import { getFirebase } from "./firebase/config";
 import { signInWithGoogle } from "./signInForm";
 import { checkUserExists, createAccount } from "./firebase/firebase";
+import { Hidden, withTheme } from "@material-ui/core";
 
 // const sendVerification = () => {
 //     const user = getFirebase().auth().currentUser;
@@ -27,9 +29,13 @@ const SignUp = React.memo((props) => {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [errormsg, setErrormsg] = useState("");
+	const [svgIndex, setIndex] = useState(-1);
+	const [svgOpacity, setOpacity] = useState(0);
 	let history = useHistory();
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		setIndex(1);
+		setOpacity(90);
 		if (password.length < 8) {
 			setErrormsg("Password must be at least 8 characters");
 		} else if (password === confirmPass) {
@@ -74,6 +80,8 @@ const SignUp = React.memo((props) => {
 	};
 	return (
 		<form className='login-form' onSubmit={handleSubmit}>
+			<Loader loadMessage="Creating your account" style={{position: 'absolute', backgroundColor: 'white', opacity: `${svgOpacity}%`, zIndex: `${svgIndex}`,padding: '210px 50px'}}/>
+
 			<i className='fas fa-times' onClick={props.onClose} />
 			<h2 style={{ margin: "0 0 12px 0" }}>Sign Up</h2>
 			<input
@@ -133,7 +141,7 @@ const SignUp = React.memo((props) => {
 				id='google'
 				text='Sign up with Google'
 				onClick={() => {
-					signInWithGoogle(props.onClose, history);
+					signInWithGoogle(props.onClose, history, setIndex, setOpacity);
 				}}
 			/>
 			<span className='small-text'>

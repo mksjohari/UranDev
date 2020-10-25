@@ -2,7 +2,7 @@ import React from 'react';
 import Checkbox from '../../shared/sandbox/Checkbox';
 import Button from '../../shared/sandbox/Button';
 import styles from '../../modules/signUp.module.scss';
-import LocationDropdown from "../../shared/sandbox/LocationDropdown";
+import LocationDropdown from './LocationDropdown';
 
 const StepTwo = (props) => {
 	const setChecked = (id, setId) => {
@@ -120,41 +120,21 @@ const StepTwo = (props) => {
 					placeholder="Occupation"
 					required
 				/>
-				<input
-					className="inp-text"
-					value={props.data.city}
-					onChange={(e) => {
-						props.setStepTwo({
-							...props.data,
-							city: e.target.value,
-						});
-					}}
-					placeholder="City"
-					required
-				/>
-				<LocationDropdown />
-				<input
-					className="inp-text"
-					placeholder="Country"
-					value={props.data.country}
-					onChange={(e) => {
-						props.setStepTwo({
-							...props.data,
-							country: e.target.value,
-						});
-					}}
-					required
+				<LocationDropdown
+					setStepTwo={props.setStepTwo}
+					data={props.data}
 				/>
 				<textarea
-					className={`inp-text ${styles.textarea}`}
+					className={`inp-text-area ${styles.textarea}`}
 					value={props.data.personalDesc}
+					maxLength="1000"
 					onChange={(e) => {
 						props.setStepTwo({
 							...props.data,
 							personalDesc: e.target.value,
 						});
 					}}
-					placeholder="Personal Description (Optional)"
+					placeholder="Personal Description (Optional) - 1000 Characters Maximum"
 				/>
 			</div>
 			<div className={styles.btn_controls}>

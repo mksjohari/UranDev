@@ -1,16 +1,25 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import tab from "../../modules/header.module.scss";
 import ProfileDetails from "./profileDetails";
 import About from "./about";
 import MyProjects from "../projects/myProjects";
+import DevButton from "../../shared/sandbox/devButton";
+function mapStateToProps(state) {
+    return { user: state.user };
+}
 
 const profile = React.memo((props) => {
     const [about, setAbout] = useState(true);
     return (
         <div className="parent">
-            {/* <WordBubble /> */}
+            <DevButton
+                onClick={() => {
+                    console.log(props);
+                }}
+            />
             <ProfileDetails />
             <div className={`${tab.tabTop} ${tab.section}`}>
                 <nav>
@@ -45,4 +54,4 @@ const profile = React.memo((props) => {
     );
 });
 
-export default profile;
+export default connect(mapStateToProps)(profile);

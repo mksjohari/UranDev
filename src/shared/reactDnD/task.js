@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Formik, Field } from "formik";
 
-import DateSelect from "../input/dateSelect";
+import DateSelect from "../input/DateSelect";
 import Popup from "../sandbox/Popup";
 import Alert from "../sandbox/Alert";
 import Button from "../sandbox/Button";

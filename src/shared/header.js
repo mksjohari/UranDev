@@ -38,9 +38,9 @@ const Header = (props) => {
                             <Button
                                 className={styles.signUp}
                                 text="LogOut"
-                                onClick={() => {
+                                onClick={async () => {
+                                    await getFirebase().auth().signOut();
                                     window.location.reload();
-                                    getFirebase().auth().signOut();
                                     history.push("/");
                                 }}
                             />

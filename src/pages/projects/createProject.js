@@ -9,6 +9,7 @@ import Timeline from "../../shared/sandbox/Timeline";
 import Situation from "./situation";
 import TasksActions from "./tasksActions";
 import styles from "../../modules/createProject.module.scss";
+import PreviewProject from "./previewProject";
 
 function CreateProject(props) {
     const [percent, setPercent] = useState(0);
@@ -86,6 +87,9 @@ function CreateProject(props) {
                     <div className={styles.full_width}>
                         <TasksActions form={props} nextStep={nextStep} />
                     </div>
+                )}
+                {step === 3 && (
+                    <PreviewProject />
                 )}
                 {step !== 0 && (
                     <Button

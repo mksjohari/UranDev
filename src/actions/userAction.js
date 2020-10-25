@@ -1,21 +1,14 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import { getFirebase } from '../shared/firebase';
-
-export const updateUser = (results) => (dispatch) => {
-	var lastName;
-	if (results.additionalUserInfo.profile.family_name) {
-		lastName = results.additionalUserInfo.profile.family_name;
-	} else {
-		lastName = '';
-	}
-	console.log(results);
-
-	const initial = {
-		email: results.additionalUserInfo.profile.email,
-		firstName: results.additionalUserInfo.profile.given_name,
-		lastName: lastName,
-		photoUrl: results.additionalUserInfo.profile.picture,
-	};
-	console.log(initial);
+export const updateInfo = (results) => (dispatch) => {
+    dispatch({
+        type: "UPDATE_USER_INFO",
+        userInfo: results.userInfo,
+    });
+    dispatch({
+        type: "UPDATE_SOCIALS",
+        userSocials: results.userSocials,
+    });
+    dispatch({
+        type: "UPDATE_EXPERTISE",
+        userExpertise: results.userExpertise,
+    });
 };
