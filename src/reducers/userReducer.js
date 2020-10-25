@@ -1,7 +1,7 @@
-
 const userInfo = {
     loaded: false,
     uid: "",
+    pid: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -22,6 +22,7 @@ export default (state = userInfo, action) => {
             return {
                 ...state,
                 uid: action.userInfo.uid,
+                pid: action.userInfo.pid,
                 firstName: action.userInfo.firstName,
                 lastName: action.userInfo.lastName,
                 email: action.userInfo.email,
@@ -33,7 +34,7 @@ export default (state = userInfo, action) => {
                 occupation: action.userInfo.occupation,
                 description: action.userInfo.description,
                 location: action.userInfo.location,
-                logged: action.logged
+                logged: action.logged,
             };
         case "UPDATE_SOCIALS":
             return {
@@ -58,7 +59,7 @@ export default (state = userInfo, action) => {
                 description: action.firstStep.description,
                 location: action.firstStep.location,
                 socials: action.thirdStep,
-                logged: action.logged
+                logged: action.logged,
             };
         case "LOGOUT_USER":
             return userInfo;

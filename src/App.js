@@ -23,7 +23,7 @@ const Index = () => {
                 <Route component={projects} path="/projects" />
                 <Route component={createProject} path="/create" />
                 <Route component={draftProjects} path="/drafts" />
-                <Route component={profile} path="/profile/:id" />
+                <Route component={profile} path="/profile/:pid" />
                 <Route component={tmpTest} path="/tmp" />
                 <Route component={Page404} path="/*" />
             </Switch>

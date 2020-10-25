@@ -1,18 +1,23 @@
-export const getSocials = (uid: String, thirdStep: Object) => {
+export const getSocials = (uid: String, pid: String, thirdStep: Object) => {
     const socials: Object[] = [];
     Object.entries(thirdStep).forEach(([key, value]) => {
         if (value !== "") {
-            socials.push({ uid: uid, name: key, url: value });
+            socials.push({ uid: uid, pid: pid, name: key, url: value });
         }
     });
     return socials;
 };
 
-export const getExpertise = (uid: String, secondStep: Object) => {
+export const getExpertise = (uid: String, pid: String, secondStep: Object) => {
     const socials: Object[] = [];
     Object.entries(secondStep).forEach(([key, value]) => {
         if (value && key in expertise) {
-            socials.push({ uid: uid, eid: key, expertise: expertise[key] });
+            socials.push({
+                uid: uid,
+                pid: pid,
+                eid: key,
+                expertise: expertise[key],
+            });
         }
     });
     return socials;

@@ -31,14 +31,19 @@ export const signInWithGoogle = async (
         .then(async (result) => {
             setIndex(1);
             setOpacity(90);
-            const uid = result.user.uid
+            const uid = result.user.uid;
             const exists = await checkUserExists({ uid: uid });
-            console.log(exists)
+            console.log(exists);
             if (exists.data[0] === false) {
                 const firstName = result.additionalUserInfo.profile.given_name;
                 var lastName =
                     result.additionalUserInfo.profile.family_name || "";
-                console.log("si",firstName,lastName,result.additionalUserInfo.profile.email)
+                console.log(
+                    "si",
+                    firstName,
+                    lastName,
+                    result.additionalUserInfo.profile.email
+                );
                 createAccount({
                     uid: uid,
                     firstName,
@@ -56,7 +61,7 @@ export const signInWithGoogle = async (
                 console.log("Created account", uid);
             } else {
                 console.log("Account exists");
-                console.log(uid)
+                console.log(uid);
                 if (exists.data[1].status === "incomplete") {
                     onClose();
                     history.push("/signup", {
@@ -68,14 +73,14 @@ export const signInWithGoogle = async (
                     const userInfo = await getUserInfo({ uid: uid });
                     const userSocials = await getUserSocials({ uid: uid });
                     const userExpertise = await getUserExpertise({ uid: uid });
-                    console.log('sir')
+                    console.log("sir");
                     updateInfo({
                         userInfo: userInfo.data,
                         userSocials: userSocials.data,
                         userExpertise: userExpertise.data,
                     });
                     onClose();
-                    history.push("/profile");
+                    history.push(`/profile/${userInfo.data.pid}`);
                 }
             }
         })
