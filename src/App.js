@@ -5,7 +5,6 @@ import explore from "./pages/explore/explore";
 import projects from "./pages/projects/projects";
 import profile from "./pages/profile/profile";
 import signUp from "./pages/signUp/signUp";
-import tempUser from "./pages/profile/tempUser";
 import createProject from "./pages/projects/createProject";
 import draftProjects from "./pages/projects/draftProjects";
 import tmpTest from "./pages/tmp/tmpTest";
@@ -24,8 +23,7 @@ const Index = () => {
                 <Route component={projects} path="/projects" />
                 <Route component={createProject} path="/create" />
                 <Route component={draftProjects} path="/drafts" />
-                <Route component={profile} path="/profile" />
-                <Route component={tempUser} path="/u/:id" />
+                <Route component={profile} path="/profile/:id" />
                 <Route component={tmpTest} path="/tmp" />
                 <Route component={Page404} path="/*" />
             </Switch>

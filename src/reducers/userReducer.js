@@ -45,6 +45,23 @@ export default (state = userInfo, action) => {
                 ...state,
                 expertise: action.userExpertise,
             };
+        case "UPDATE_FROM_SIGNUP":
+            return {
+                ...state,
+                uid: action.firstStep.uid,
+                firstName: action.firstStep.firstName,
+                lastName: action.firstStep.lastName,
+                userType: action.firstStep.userType,
+                photoUrl: action.photoURL,
+                introduction: action.firstStep.introduction,
+                occupation: action.firstStep.occupation,
+                description: action.firstStep.description,
+                location: action.firstStep.location,
+                socials: action.thirdStep,
+                logged: action.logged
+            };
+        case "LOGOUT_USER":
+            return userInfo;
         default:
             return state;
     }

@@ -9,15 +9,29 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { DimsProvider } from './shared/react-dims';
 import { createStore, compose, applyMiddleware } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import { PersistGate } from 'redux-persist/integration/react'
 
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, reducers)
+const store = createStore(persistedReducer, compose(applyMiddleware(thunk)));
+const persistor = persistStore(store)
+
 
 ReactDOM.render(
 	<BrowserRouter>
 		<Provider store={store}>
-			<DimsProvider>
-				<App />
-			</DimsProvider>
+			<PersistGate loading={null} persistor={persistor}>
+				<DimsProvider>
+					<App />
+				</DimsProvider>
+			</PersistGate>
 		</Provider>
 	</BrowserRouter>,
 	document.getElementById('root')

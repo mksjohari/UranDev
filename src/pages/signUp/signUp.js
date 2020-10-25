@@ -15,6 +15,7 @@ const SignUp = (props) => {
 	const [stepTwo, setStepTwo] = useState(stepTwoDefault);
 	const [stepThree, setStepThree] = useState(stepThreeDefault);
 	const state = props.location.state;
+	console.log(state)
 	const history = useHistory();
 	useEffect(() => {
 		if (state) {

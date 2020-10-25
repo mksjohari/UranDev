@@ -1,11 +1,13 @@
 import React from "react";
+import {connect} from "react-redux"
 import styles from "../../modules/signUp.module.scss";
 import Button from "../../shared/sandbox/Button";
 import { finishUserSignUp, storage } from "../../shared/firebase/firebase";
 import { getFirebase } from "../../shared/firebase/config";
 import { useHistory } from "react-router-dom";
+import {updateInfoFromSignUp} from '../../actions/userAction'
 
-const finishSetup = async (firstStep, secondStep, thirdStep, history) => {
+const finishSetup = async (firstStep, secondStep, thirdStep, history, updateInfoFromSignUp) => {
 	const uid = getFirebase().auth().currentUser.uid;
 	const photoRef = storage.ref(`users/${uid}/photo`);
 	var photoURL;
@@ -16,6 +18,7 @@ const finishSetup = async (firstStep, secondStep, thirdStep, history) => {
 		await photoRef.put(firstStep.imgSrc);
 		photoURL = await photoRef.getDownloadURL();
 	}
+	updateInfoFromSignUp(photoURL,firstStep, secondStep, thirdStep);
 
 	await finishUserSignUp({
 		uid: uid,
@@ -24,7 +27,7 @@ const finishSetup = async (firstStep, secondStep, thirdStep, history) => {
 		secondStep,
 		thirdStep,
 	});
-	history.push("/profile");
+	history.push("/profile", {fromSignUp: true});
 };
 
 const StepFour = (props) => {
@@ -67,7 +70,7 @@ const StepFour = (props) => {
 				<Button
 					className='blue'
 					onClick={() => {
-						finishSetup(props.stepOne, props.stepTwo, props.stepThree, history);
+						finishSetup(props.stepOne, props.stepTwo, props.stepThree, history, props.updateInfoFromSignUp);
 					}}
 					text='Finish Sign Up!'
 				/>
@@ -76,4 +79,4 @@ const StepFour = (props) => {
 	);
 };
 
-export default StepFour;
+export default connect(null, {updateInfoFromSignUp})(StepFour);

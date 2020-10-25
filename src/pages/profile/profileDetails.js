@@ -17,12 +17,12 @@ const ProfileDetails = (props) => {
     const history = useHistory()
     useEffect(() => {
         if (!user.logged){
-            console.log('MOVE ME')
-            console.log(props)
             history.push('/')
         }
         else{
-            setExpertise(user.expertise[0].expertise)
+            if(user.expertise[0]){
+                setExpertise(user.expertise[0].expertise)
+            }
         }
     }, [history, props, user.expertise, user.logged])
     const displayName = `${user.firstName} ${user.lastName}`
@@ -55,27 +55,27 @@ const ProfileDetails = (props) => {
                 <div className={styles.section}>
                     <div className={styles.user_links}>
                         <i className="fas fa-map-marked-alt"></i>
-                        <text className={styles.text_detail}>
+                        <span className={styles.text_detail}>
                             Location: {user.location}
-                        </text>
+                        </span>
                     </div>
                     <div className={styles.user_links}>
                         <i className="fas fa-suitcase"></i>
-                        <text className={styles.text_detail}>
+                        <span className={styles.text_detail}>
                             Occupation: {user.occupation}
-                        </text>
+                        </span>
                     </div>
                     <div className={styles.user_links}>
                         <i className="fas fa-pen-nib"></i>
-                        <text className={styles.text_detail}>
+                        <span className={styles.text_detail}>
                             Expertise: {expertise}
-                        </text>
+                        </span>
                     </div>
                 </div>
                 <div className={`${styles.user_bio} ${styles.section}`}>
                 {user.description}
                 {!user.description &&
-                    <text>
+                    <span>
                         Short description or qutoes of something idc. It is a
                         long established fact that a reader will be distracted
                         by the readable content of a page when looking at its
@@ -84,7 +84,7 @@ const ProfileDetails = (props) => {
                         The point of using Lorem Ipsum is that it has a
                         more-or-less normal distribution of letters, as opposed
                         to using 'Content here.
-                    </text>
+                    </span>
                 }
                 </div>
                 <div className={`${styles.user_socials} ${styles.section}`}>

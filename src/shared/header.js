@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { connect } from 'react-redux'
 import { Link, NavLink, useHistory } from "react-router-dom";
-
 import styles from "../modules/header.module.scss";
 import Logo from "../images/logo.png";
 import Button from "./sandbox/Button";
 import { getFirebase } from "./firebase/config";
+import {logoutUser} from '../actions/userAction'
+import DevButton from "./sandbox/devButton";
 
 const Header = (props) => {
     const [user, setUser] = useState();
@@ -20,6 +22,7 @@ const Header = (props) => {
     const history = useHistory();
     return (
         <header className={styles.header}>
+        <DevButton onClick={()=>{console.log(props.user)}}/>
             <div className={styles.logoAndDetails}>
                 <div className={styles.logo}>
                     <Link className={styles.headerLink} to="/">
@@ -33,11 +36,11 @@ const Header = (props) => {
                 <div className={styles.details}>
                     {user && (
                         <div>
-                            {/* <Logout /> */}
                             <Button
                                 className={styles.signUp}
                                 text="LogOut"
                                 onClick={async () => {
+                                    props.logoutUser()
                                     await getFirebase().auth().signOut();
                                     window.location.reload();
                                     history.push("/");
@@ -108,4 +111,4 @@ const Header = (props) => {
     );
 };
 
-export default Header;
+export default connect (null, {logoutUser})(Header);

@@ -129,8 +129,11 @@ export const finishUserSignUp = functions
 			const seeker = new Seeker();
 			const expertise = getExpertise(data.uid, secondStep);
 			const socials = getSocials(data.uid, thirdStep);
+			const random = Math.floor(Math.random() * 100000000);
+
 			var description 
 			seeker.uid = data.uid;
+			seeker.pid = `${firstStep.firstName}-${firstStep.lastName}-${random}`;
 			seeker.photo = data.photoURL;
 			seeker.location = secondStep.location;
 			seeker.occupation = secondStep.occupation;

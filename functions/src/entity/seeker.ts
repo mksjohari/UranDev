@@ -4,6 +4,9 @@ import { Entity, Column, PrimaryColumn } from 'typeorm';
 export class Seeker {
 	@PrimaryColumn({ type: String })
 	uid: string;
+	
+	@PrimaryColumn({ type: String })
+	pid: string;
 
 	@Column({ type: String })
 	photo: URL;
