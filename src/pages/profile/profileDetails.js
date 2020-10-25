@@ -18,6 +18,7 @@ const ProfileDetails = (props) => {
     useEffect(() => {
         if (!user.logged){
             console.log('MOVE ME')
+            console.log(props)
             history.push('/')
         }
         else{

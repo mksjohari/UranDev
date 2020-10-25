@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+
 import { Link, useHistory } from "react-router-dom";
 import Button from "./sandbox/Button";
 import PasswordStrengthMeter from "../shared/sandbox/PasswordStrengthMeter";
@@ -8,7 +10,8 @@ import Loader from "./Loader";
 import { getFirebase } from "./firebase/config";
 import { signInWithGoogle } from "./signInForm";
 import { checkUserExists, createAccount } from "./firebase/firebase";
-import { Hidden, withTheme } from "@material-ui/core";
+import { updateInfo } from "../actions/userAction";
+
 
 // const sendVerification = () => {
 //     const user = getFirebase().auth().currentUser;
@@ -141,7 +144,7 @@ const SignUp = React.memo((props) => {
 				id='google'
 				text='Sign up with Google'
 				onClick={() => {
-					signInWithGoogle(props.onClose, history, setIndex, setOpacity);
+					signInWithGoogle(props.onClose, history, props.updateInfo, setIndex, setOpacity);
 				}}
 			/>
 			<span className='small-text'>
@@ -159,4 +162,4 @@ const SignUp = React.memo((props) => {
 	);
 });
 
-export default SignUp;
+export default connect(null, {updateInfo})(SignUp);

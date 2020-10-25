@@ -17,10 +17,6 @@ import "firebase/functions";
 import "../modules/loginform.scss";
 import { updateInfo } from "../actions/userAction";
 
-function mapStateToProps(state) {
-    return { state };
-}
-
 export const signInWithGoogle = async (
     onClose,
     history,
@@ -37,10 +33,12 @@ export const signInWithGoogle = async (
             setOpacity(90);
             const uid = result.user.uid
             const exists = await checkUserExists({ uid: uid });
+            console.log(exists)
             if (exists.data[0] === false) {
                 const firstName = result.additionalUserInfo.profile.given_name;
                 var lastName =
                     result.additionalUserInfo.profile.family_name || "";
+                console.log("si",firstName,lastName,result.additionalUserInfo.profile.email)
                 createAccount({
                     uid: uid,
                     firstName,
@@ -218,4 +216,4 @@ const SignIn = React.memo((props) => {
     );
 });
 
-export default connect(mapStateToProps, { updateInfo })(SignIn);
+export default connect(null, { updateInfo })(SignIn);
