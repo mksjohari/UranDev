@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import DnD from "../../shared/DnD";
-import DateSelect from '../../shared/DateSelect';
 import * as moment from 'moment';
 // import Data from "../../shared/reactDnD/sampleData";
 import TaskDnD from '../../shared/reactDnD/taskDnD';
-import Popup from '../../shared/sandbox/popup';
-import AddActionForm from '../../shared/AddActionForm';
-import EndorseList from '../../shared/EndorseList';
-import Alert from '../../shared/sandbox/Alert';
 import GanttChart from '../../shared/GanttChart';
 
 const TmpTest = () => {
@@ -23,7 +18,7 @@ const TmpTest = () => {
 		<div className="tmp">
 
       <GanttChart data={projectData} chartEvent={sampleChartFunc} />
-
+{/* 
 			<Popup
 				BtnText="Basic delete btn"
 				BtnColour="reddo"
@@ -117,20 +112,20 @@ const TmpTest = () => {
 				onConfirm={() => console.log('your own confirm func')}
 				width={700}
 				content={<AddActionForm id="addAction" />}
-			/>
-			<br />
-			<br />
-			<DateSelect />
-			<TaskDnD data={taskData} />
-			{/* <DnD
+			/> */}
+            <br />
+            <br />
+            {/* <DateSelect /> */}
+            <TaskDnD data={taskData} />
+            {/* <DnD
         actions={Data.actions}
         tasks={Data.tasks}
         taskOrder={Data.taskOrder}
         totalActions={Data.totalActions}
         totalTasks={Data.totalTasks}
       />  */}
-		</div>
-	);
+        </div>
+    );
 };
 export default TmpTest;
 

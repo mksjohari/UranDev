@@ -1,6 +1,6 @@
 import React from 'react';
-import CheckBox from './Checkbox';
-import styles from '../modules/endorseList.module.scss';
+import CheckBox from "../sandbox/Checkbox";
+import styles from "../../modules/endorseList.module.scss";
 
 class EndorseList extends React.Component {
 	itemList = Object.keys(this.props.data.list);

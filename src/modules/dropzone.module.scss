@@ -60,9 +60,15 @@
 .thumbsWrapper {
   display: flex;
   flex-direction: column;
+  margin: 0 5px;
 }
 
 .fileName {
   overflow: wrap;
   
+}
+
+.flexWrap {
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -1,48 +1,75 @@
-@import 'variable';
+@import "variable";
 
 @keyframes overlay {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .popupContainer {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  overflow-y: scroll;
-  z-index: 20;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  padding: 100px;
-  justify-content: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    overflow-y: scroll;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 100px;
+    justify-content: center;
+    pointer-events: auto;
 }
 
 .contentContainer {
-  padding: 60px;
-  height: fit-content;
-  border-radius: 25px;
+    padding: 2.4rem;
+    height: fit-content;
+    border-radius: 25px;
+    margin: 0;
+    z-index: 20;
+    pointer-events: auto;
 }
 
 .btnsRow {
-  padding: 20px 50px 0px 50px;
-  display: flex;
+    padding: 20px 50px 0px 50px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .closeBtn {
-  margin: auto !important;
-  display: block !important;
+    margin: auto !important;
+    display: block !important;
 }
 
-
 .lock {
-  overflow: hidden;
-  z-index: -1;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.form_container {
+    background-color: $ivory;
+    padding: 2.4rem;
+    height: fit-content;
+    border-radius: 25px;
+    margin: 0;
+    z-index: 20;
+    pointer-events: auto;
+}
+.form {
+    margin: 0;
+}
+.descEdit {
+    width: 100%;
+    resize: none;
+    border-radius: 10px;
+    border-style: unset;
+    padding: 2px 8px;
+}
+
+.subtitle {
+    padding: 10px 0px;
 }
