@@ -3,7 +3,7 @@ import styles from "../../modules/dropzone.module.scss";
 
 export function Thumbs(props) {
     return (
-        <div className={styles.scroll}>
+        <div className={styles.flexWrap}>
             {props.files.map((file) => (
                 <div className={styles.thumbsWrapper}>
                     <div className={styles.thumb} key={file.name}>

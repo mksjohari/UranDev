@@ -17,7 +17,6 @@ function TaskDnD(props) {
     const [taskList, setTaskList] = useState(props.data);
     const [currentTask, setCurrentTask] = useState(0); // index of currentTask object
     const [switching, setSwitch] = useState(false); // index of currentTask object
-
     useEffect(() => {
         setCurrentTask(0);
         setSwitch(false);
@@ -198,6 +197,7 @@ function TaskDnD(props) {
                                                 key={action.actionId}
                                                 draggableId={action.actionId}
                                                 index={index}
+                                                isDragDisabled={true}
                                             >
                                                 {(provided, snapshot) => (
                                                     <div
@@ -213,7 +213,7 @@ function TaskDnD(props) {
                                                             action={action}
                                                             snapshot={snapshot}
                                                             editAction={editAction}
-                                                            delete={
+                                                            deleteAction={
                                                                 deleteAction
                                                             }
                                                         />

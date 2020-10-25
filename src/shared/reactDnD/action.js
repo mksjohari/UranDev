@@ -1,6 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { Formik, Field } from "formik";
 
 import Popup, { lockBg } from "../sandbox/Popup";
 import AddActionForm from "../../shared/input/AddActionForm";
@@ -16,10 +14,11 @@ const ActionCard = (props) => {
     const actionId = props.action.actionId;
     const deleteAction = () => props.deleteAction(props.index);
     // console.log(props.action.files)
+    console.log(props)
     return (
         <div className={styles.action_card}>
             <div className={styles.title}>
-                Action {props.index + 1}: {props.action.title}
+                {props.action.title}
             </div>
             <div className={styles.description_action}>
                 {props.action.description}
@@ -65,26 +64,9 @@ const ActionCard = (props) => {
                     {props.action.files.length ? (
                         <div className={styles.action_subtitle}>
                             Files:
-                            <Thumbs files={props.action.files} />
-                            {/* <div className={styles.col_right}>
-                     <div className={styles.project_tags}>
-                         <a className={styles.file_link} href="##">
-                             somepicture.jpg
-                         </a>
-                         <a className={styles.file_link} href="##">
-                             anotherfile.pdf
-                         </a>
-                         <a className={styles.file_link} href="##">
-                             anotherfile.pdf
-                         </a>
-                         <a className={styles.file_link} href="##">
-                             anotherfile.pdf
-                         </a>
-                         <a className={styles.file_link} href="##">
-                             anotherfile.pdf
-                         </a>
-                     </div>
-                 </div> */}
+                            <div className={styles.files_display}>
+                                <Thumbs files={props.action.files} />
+                            </div>
                         </div>
                     ) : (
                         ""

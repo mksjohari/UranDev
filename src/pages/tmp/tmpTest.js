@@ -39,6 +39,11 @@ const TmpTest = () => {
     return (
         <div className="tmp">
             <>
+                {/* <Alert
+                    id="delTut"
+                    item="(type of thing you want to delete)"
+                    buttonText="Delete text"
+                /> */}
                 <Button
                     id="delTut"
                     colour="reddo"
@@ -188,32 +193,32 @@ export const taskData = [
                 title: "Source control",
                 tools: ["git", "weh"],
                 skills: [],
-				description: "git and weh",
-				files: [],
+                description: "git and weh",
+                files: [],
             },
             {
                 actionId: "action-2",
                 title: "Development",
                 tools: [],
                 skills: ["web dev", "app design", "number theory"],
-				description: "happy days are aheard",
-				files: [],
+                description: "happy days are aheard",
+                files: [],
             },
             {
                 actionId: "action-3",
                 title: "More development",
                 tools: ["MATLAB", "adobe XD", "Rhino3D", "react"],
                 skills: ["web dev", "app design", "number theory"],
-				description: "I did somethin",
-				files: [],
+                description: "I did somethin",
+                files: [],
             },
             {
                 actionId: "action-4",
                 title: "Something else",
                 tools: [],
                 skills: [],
-				description: "yeh this that blah",
-				files: [],
+                description: "yeh this that blah",
+                files: [],
             },
         ],
     },
@@ -228,8 +233,8 @@ export const taskData = [
                 actionId: "action-4",
                 tools: [],
                 skills: [],
-				description: "yeh this that blah",
-				files: [],
+                description: "yeh this that blah",
+                files: [],
             },
         ],
     },

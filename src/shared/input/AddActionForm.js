@@ -45,6 +45,7 @@ function AddActionForm(props) {
                     <form
                         onSubmit={props.handleSubmit}
                         className={styles.form}
+                        style={{width: window.innerWidth * 0.6}}
                     >
                         <h3>Add Action</h3>
                         <div className={styles.toolsEdit}>

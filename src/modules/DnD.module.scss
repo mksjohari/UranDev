@@ -133,9 +133,6 @@
     display: table-cell;
 }
 
-.col_right {
-    margin-left: 0.5rem;
-}
 .duration_button {
     background-color: rgba(0, 0, 0, 0);
     box-sizing: border-box;
@@ -169,13 +166,7 @@
     color: $navy;
     background-color: $pink;
 }
-.file_link {
-    border-bottom: 1px solid;
-    margin: 0 1em 0.5em 0;
-}
-.project_tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-self: center;
-    align-items: baseline;
+.files_display {
+    max-height: 200px;
+    overflow: scroll;
 }

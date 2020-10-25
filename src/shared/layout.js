@@ -27,7 +27,7 @@ const Layout = (props) => {
 			<div className={`content ${page}`}>{props.children}</div>
 			<Footer />
 			{show ? (
-				<div id="modal">
+				<div id="modal" scroll="no">
 					{signUp ? (
 						<SignUp
 							onClose={handleClose}
