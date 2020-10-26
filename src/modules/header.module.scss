@@ -1,4 +1,4 @@
-@import "variable";
+@import 'variable';
 
 .header {
 	width: 100%;
@@ -16,6 +16,7 @@
 }
 
 .details {
+	padding: 20px 0px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;

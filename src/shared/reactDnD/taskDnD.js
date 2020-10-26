@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "../../modules/DnD.module.scss";
 
-import Button from "../../shared/sandbox/Button";
+import Button from "../sandbox/Button";
 import ActionCard from "./action";
 import TaskCard from "./task";
 

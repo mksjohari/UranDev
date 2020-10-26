@@ -1,4 +1,5 @@
 export const updateInfo = (results) => (dispatch) => {
+    console.log("RESULTS", results)
     dispatch({
         type: "UPDATE_USER_INFO",
 		userInfo: results.userInfo,

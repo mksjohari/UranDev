@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import SegmentedTab from "./SegmentedTab";
-import styles from "../../modules/signUp.module.scss";
-import Button from "../../shared/sandbox/Button";
-import buttonStyle from "../../modules/_button.module.scss";
+import React, { useState, useEffect } from 'react';
+import SegmentedTab from './SegmentedTab';
+import styles from '../../modules/signUp.module.scss';
+import Button from '../../shared/sandbox/Button';
+import buttonStyle from '../../modules/_button.module.scss';
 
 const StepOne = (props) => {
 	const stepOne = props.stepOne;
-	const [firstName, setFirstName] = useState("");
-	const [lastName, setLastName] = useState("");
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
 	useEffect(() => {
 		if (stepOne) {
 			setFirstName(stepOne.firstName);
@@ -33,14 +33,14 @@ const StepOne = (props) => {
 					/>
 					<input
 						className={`inp-text ${styles.step_one}`}
-						placeholder='First name'
+						placeholder="First name"
 						onChange={(e) => setFirstName(e.target.value)}
 						value={firstName}
 						required
 					/>
 					<input
 						className={`inp-text ${styles.step_one}`}
-						placeholder='Last name'
+						placeholder="Last name"
 						onChange={(e) => setLastName(e.target.value)}
 						value={lastName}
 						required
@@ -52,26 +52,31 @@ const StepOne = (props) => {
 					<img
 						className={styles.img_preview}
 						src={props.stepOne.img}
-						alt='Profile pic'
+						alt="Profile pic"
 					/>
 					<div className={styles.preview_controls}>
 						<label
 							className={`${buttonStyle.upload_btn} ${buttonStyle.button}`}
 						>
-							<input type='file' onChange={handleChange} />
-							<i className='fas fa-camera' style={{ marginRight: 5 }} />
+							<input type="file" onChange={handleChange} />
+							<i
+								className="fas fa-camera"
+								style={{ marginRight: 5 }}
+							/>
 							Upload Photo
 						</label>
-						<p className={styles.tip}>At least 256px x 256px PNG or JPG file</p>
+						<p className={styles.tip}>
+							At least 256px x 256px PNG or JPG file
+						</p>
 					</div>
 				</div>
 			</div>
 			<div className={styles.btn_controls}>
-                <span></span>
+				<span></span>
 				<Button
-					colour='blue'
-					iconR={<i className='fas fa-arrow-right' />}
-					text='Next'
+					colour="blue"
+					iconR={<i className="fas fa-arrow-right" />}
+					text="Next"
 					onClick={() => {
 						props.setStepOne({
 							...props.stepOne,

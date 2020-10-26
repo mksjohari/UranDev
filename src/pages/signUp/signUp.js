@@ -15,7 +15,6 @@ const SignUp = (props) => {
 	const [stepTwo, setStepTwo] = useState(stepTwoDefault);
 	const [stepThree, setStepThree] = useState(stepThreeDefault);
 	const state = props.location.state;
-	console.log(state)
 	const history = useHistory();
 	useEffect(() => {
 		if (state) {
@@ -124,8 +123,8 @@ const stepTwoDefault = {
 };
 const stepThreeDefault = {
 	linkedIn: "https://www.linkedin.com/in/",
-	github: "https://github.com/",
-	slack: "https://www.",
+	github: "https://www.github.com/",
+	slack: "https://www.slack.com/",
 	codeSandBox: "https://codesandbox.io/u/",
 	behance: "https://www.behance.net/",
 	figma: "https://figma.com/",
