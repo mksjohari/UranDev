@@ -3,7 +3,7 @@ import { Formik, Field, useField } from "formik";
 
 import Button from "../../shared/sandbox/Button";
 import TeamSize from "../../shared/input/teamSize";
-import Currency from "../../shared/input/currency";
+import Currency from "../../shared/input/Currency";
 
 import { withContext } from "../../shared/react-dims";
 import styles from "../../modules/createProject.module.scss";
