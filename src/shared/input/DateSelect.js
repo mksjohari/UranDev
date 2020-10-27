@@ -19,7 +19,9 @@ function DateSelect(props) {
                 } // PropTypes.func.isRequired,
                 focusedInput={focus} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                 onFocusChange={(focusedInput) => {
-                    if (focusedInput === null) props.onSubmit();
+                    props.isSubmittable &&
+                        focusedInput === null &&
+                        props.onSubmit();
                     setFocus(focusedInput);
                 }} // PropTypes.func.isRequired,
                 disableScroll={true}

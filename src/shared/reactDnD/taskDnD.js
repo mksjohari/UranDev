@@ -21,6 +21,9 @@ function TaskDnD(props) {
         setCurrentTask(0);
         setSwitch(false);
     }, [switching]);
+    useEffect(() => {
+        props.handleClick(taskList);
+    }, [taskList]);
     function addTask() {
         const newTask = {
             taskId: `task-${new Date().getTime()}`,
@@ -204,7 +207,9 @@ function TaskDnD(props) {
                                                             index={index}
                                                             action={action}
                                                             snapshot={snapshot}
-                                                            editAction={editAction}
+                                                            editAction={
+                                                                editAction
+                                                            }
                                                             deleteAction={
                                                                 deleteAction
                                                             }

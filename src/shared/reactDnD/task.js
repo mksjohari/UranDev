@@ -118,6 +118,7 @@ const TaskCard = (props) => {
 										handleClick={(v) =>
 											setFieldValue('taskDates', v)
 										}
+										isSubmittable
 										onSubmit={props.handleSubmit}
 									/>
 								)}
@@ -131,14 +132,6 @@ const TaskCard = (props) => {
 					text="Edit task"
 					onClick={() => setEdit(true)}
 				/>
-				{/* <NavLink
-                        className={styles.edit_button}
-                        to="#"
-                        onClick={() => setEdit(true)}
-                    >
-                        <i className="fas fa-edit"></i>
-                        <div className={styles.text_button}>Edit</div>
-                    </NavLink> */}
 			</div>
 		);
 	};

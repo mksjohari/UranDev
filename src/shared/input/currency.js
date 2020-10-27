@@ -11,7 +11,7 @@ const CurrencyOptions = [
 ];
 
 function Currency(props) {
-    const [meta, helpers] = useField(props.name);
+    const [field, meta, helpers] = useField(props.name);
 
     const { value } = meta;
     const { setValue } = helpers;

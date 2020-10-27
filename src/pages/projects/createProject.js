@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Formik, Field, Form, useField, withFormik } from "formik";
+import * as moment from "moment";
 import { withContext } from "../../shared/react-dims";
 
 import Button from "../../shared/sandbox/Button";
@@ -20,8 +21,34 @@ const projectData = {
     status: "Ongoing",
     sharing: "Public",
     title: "New project",
-    situation: null,
-    tasks: [],
+    situation: {
+        summary: "",
+        role: "",
+        teamSize: "",
+        budget: 0,
+        currency: "",
+        startDate: moment(new Date()),
+        endDate: moment(new Date()),
+    },
+    tasks: [
+        {
+            taskId: `task-${new Date().getTime()}`,
+            title: "New task",
+            description: "",
+            startDate: moment(new Date()),
+            endDate: moment(new Date()),
+            actions: [
+                {
+                    actionId: `action-${new Date().getTime()}`,
+                    title: "New action",
+                    tools: [],
+                    skills: [],
+                    description: "",
+                    files: [],
+                },
+            ],
+        },
+    ],
     results: null,
 };
 
@@ -51,17 +78,27 @@ function CreateProject(props) {
         }
     }
     function editProjectDetails(values) {
-        const newProject = {...project};
+        const newProject = { ...project };
         newProject.status = values.status;
         newProject.sharing = values.sharing;
         newProject.title = values.title;
+        setProject(newProject);
+    }
+    function editSituation(values) {
+        const newProject = { ...project };
+        newProject.situation = values;
+        setProject(newProject);
+    }
+    function editTasks(values) {
+        const newProject = { ...project };
+        newProject.tasks = values;
         setProject(newProject);
     }
     return (
         <form onSubmit={handleSubmit}>
             <div className={styles.root}>
                 <div className={styles.header}>
-                    <div className={styles.button_header}>
+                    <div className={styles.button_row}>
                         <Button
                             type="submit"
                             className={styles.save_draft}
@@ -92,7 +129,6 @@ function CreateProject(props) {
                         editProjectDetails={editProjectDetails}
                     />
                 </div>
-                {/* <div className={styles.project_title}>Name of Project</div> */}
                 <div className={styles.title_help}>
                     Click on the title to edit project name.
                 </div>
@@ -103,30 +139,42 @@ function CreateProject(props) {
                         width={props.dims.width * 0.7}
                     />
                 </div>
-                <div className={styles.heading}>Situation</div>
+
                 {step === 0 && (
-                    <div className={styles.form}>
+                    <div className={styles.parent_form}>
+                        <div className={styles.heading}>Situation</div>
                         <Situation
-                            form={project}
+                            situation={project.situation}
                             nextStep={nextStep}
-                            setProject={setProject}
+                            editSituation={editSituation}
                         />
                     </div>
                 )}
                 {step === 1 && (
-                    <div className={styles.full_width}>
-                        <TasksActions form={props} nextStep={nextStep} />
+                    <div className={styles.parent_form}>
+                        <div className={styles.heading}>Tasks & Actions</div>
+                        <TasksActions
+                            tasks={project.tasks}
+                            nextStep={nextStep}
+                            editTasks={editTasks}
+                        />
+                    </div>
+                )}
+                {step === 2 && (
+                    <div className={styles.parent_form}>
+                        <div className={styles.heading}>Results</div>
                     </div>
                 )}
                 {step === 3 && <PreviewProject />}
-                {step !== 0 && (
-                    <Button
-                        iconL={<i className="fas fa-arrow-left" />}
-                        text="Back"
-                        onClick={prevStep}
-                    />
-                )}
-                {<button type="submit">Submit</button>}
+                <div className={styles.button_row}>
+                    {step !== 0 && (
+                        <Button
+                            iconL={<i className="fas fa-arrow-left" />}
+                            text="Back"
+                            onClick={prevStep}
+                        />
+                    )}
+                </div>
             </div>
         </form>
     );
@@ -135,27 +183,27 @@ function CreateProject(props) {
 const label = ["SITUATION", "TASKS & ACTIONS", "RESULTS", "PREVIEW"];
 
 const ProjectForm = withFormik({
-	mapPropsToValues: () => ({ name: '' }),
+    mapPropsToValues: () => ({ name: "" }),
 
-	// Custom sync validation
-	validate: (values) => {
-		const errors = {};
+    // Custom sync validation
+    validate: (values) => {
+        const errors = {};
 
-		if (!values.name) {
-			errors.name = 'Required';
-		}
+        if (!values.name) {
+            errors.name = "Required";
+        }
 
-		return errors;
-	},
+        return errors;
+    },
 
-	handleSubmit: (values, { setSubmitting }) => {
-		setTimeout(() => {
-			alert(JSON.stringify(values, null, 2));
-			setSubmitting(false);
-		}, 1000);
-	},
+    handleSubmit: (values, { setSubmitting }) => {
+        setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+        }, 1000);
+    },
 
-	displayName: 'ProjectForm',
+    displayName: "ProjectForm",
 })(CreateProject);
 
 export default withContext(ProjectForm);
