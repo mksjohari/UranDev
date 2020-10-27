@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import { Formik, Field, Form, useField, withFormik } from "formik";
 import * as moment from "moment";
 import { withContext } from "../../shared/react-dims";
 
 import Button from "../../shared/sandbox/Button";
-import Dropdown from "../../shared/sandbox/Dropdown";
 import Timeline from "../../shared/sandbox/Timeline";
-import Situation from "./situation";
-import TasksActions from "./tasksActions";
-import PreviewProject from "./previewProject";
 import { lockBg } from "../../shared/sandbox/Popup";
 import ProjectDetails from "../../shared/input/ProjectDetails";
+import Situation from "./situation";
+import TasksActions from "./tasksActions";
+import Results from "./results";
+import PreviewProject from "./previewProject";
 
 import popup from "../../modules/popup.module.scss";
 import styles from "../../modules/createProject.module.scss";
@@ -49,7 +48,25 @@ const projectData = {
             ],
         },
     ],
-    results: null,
+    results: {
+        conclusion: "",
+        links: [
+            {
+                url: "",
+                linkName: "",
+            },
+        ],
+        sections: [
+            {
+                sectionId: `section-${new Date().getTime()}`,
+                description: "",
+                sectionLink: {
+                    url: "",
+                    linkName: "",
+                }
+            },
+        ],
+    },
 };
 
 function CreateProject(props) {
@@ -92,6 +109,11 @@ function CreateProject(props) {
     function editTasks(values) {
         const newProject = { ...project };
         newProject.tasks = values;
+        setProject(newProject);
+    }
+    function editResults(values) {
+        const newProject = { ...project };
+        newProject.results = values;
         setProject(newProject);
     }
     return (
@@ -163,6 +185,11 @@ function CreateProject(props) {
                 {step === 2 && (
                     <div className={styles.parent_form}>
                         <div className={styles.heading}>Results</div>
+                        <Results
+                            results={project.results}
+                            nextStep={nextStep}
+                            editResults={editResults}
+                        />
                     </div>
                 )}
                 {step === 3 && <PreviewProject />}

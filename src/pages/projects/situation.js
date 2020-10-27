@@ -3,7 +3,7 @@ import { Formik, Field } from "formik";
 
 import Button from "../../shared/sandbox/Button";
 import TeamSize from "../../shared/input/teamSize";
-import Currency from "../../shared/input/Currency";
+import Currency from "../../shared/input/currency";
 import DateSelect from "../../shared/input/DateSelect";
 
 import { withContext } from "../../shared/react-dims";

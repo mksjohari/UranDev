@@ -1,16 +1,18 @@
 import React from "react";
 import { Formik, Field } from "formik";
-
-import TaskDnD from "../../shared/reactDnD/taskDnD";
-import Button from "../../shared/sandbox/Button";
 import { withContext } from "../../shared/react-dims";
+
+import Links from "../../shared/input/Links";
+import Button from "../../shared/sandbox/Button";
 import styles from "../../modules/createProject.module.scss";
 
-function TasksActions(props) {
+function Results(props) {
     return (
         <Formik
             initialValues={{
-                tasks: props.tasks,
+                conclusion: props.results.conclusion,
+                links: props.results.links,
+                sections: props.results.sections,
             }}
             // onSubmit={async (values) => {
             //     await new Promise((r) => setTimeout(r, 500));
@@ -20,8 +22,8 @@ function TasksActions(props) {
             // }}
             onSubmit={(values, actions) => {
                 setTimeout(() => {
-                    // alert(JSON.stringify(values, null, 2));
-                    props.editTasks(values);
+                    alert(JSON.stringify(values, null, 2));
+                    props.editResults(values);
                     props.nextStep();
                     actions.setSubmitting(false);
                 }, 1000);
@@ -31,29 +33,28 @@ function TasksActions(props) {
                 <form onSubmit={props.handleSubmit}>
                     <div className={styles.section_input}>
                         <label
-                            htmlFor="tasks"
+                            htmlFor="conclusion"
                             className={styles.section_question}
                         >
-                            This section highlights the general steps you took
-                            to complete your project and the skillsets obtained.
-                            The general steps will be the tasks you've
-                            completed. Break your tasks into smaller actions,
-                            outlining what you did and the skills you've
-                            learned.
+                            What are the results of your project? What did your
+                            project achieve? What did you learn?Please briefly
+                            reflect and conclude your project.
                         </label>
-                        <Field name="tasks">
-                            {({
-                                field: { value },
-                                form: { setFieldValue },
-                            }) => (
-                                <TaskDnD
-                                    data={value}
-                                    handleClick={(v) =>
-                                        setFieldValue("tasks", v)
-                                    }
-                                />
-                            )}
-                        </Field>
+                        <Field
+                            as="textarea"
+                            className={`inp-field ${styles.input_situation}`}
+                            name="conclusion"
+                            placeholder="Type here"
+                        />
+                    </div>
+                    <div className={styles.section_input}>
+                        <label
+                            htmlFor="links"
+                            className={styles.section_question}
+                        >
+                            1)
+                        </label>
+                        <Field as={Links} name="links" />
                     </div>
                     <Button
                         type="submit"
@@ -67,4 +68,4 @@ function TasksActions(props) {
         </Formik>
     );
 }
-export default withContext(TasksActions);
+export default withContext(Results);
