@@ -28,9 +28,6 @@
 - Drag and drop components
 - Added firebase storage
 
-### Changed
-- Removed gatsby
-
 ## [1.0.1] - 27th September 2020
 
 ### Added
