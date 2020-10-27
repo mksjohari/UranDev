@@ -15,11 +15,11 @@ const Loader = (props) => {
                 <line className={styles.st2} id={styles.pencil} x1="49.6" y1="5" x2="55.1" y2="10.4"/>
             </svg>
             <br />
-            <p className={styles.loading}>{props.loadMessage}&nbsp;
+            <div className={styles.loading}>{props.loadMessage}&nbsp;
                 <div id={styles.dot1}></div>
                 <div id={styles.dot2}></div>
                 <div id={styles.dot3}></div>
-            </p>
+            </div>
         </div>
     )
 }

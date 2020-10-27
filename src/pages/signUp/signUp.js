@@ -27,7 +27,7 @@ const SignUp = (props) => {
 			console.log("redirect to main page");
 			history.push("/");
 		}
-	}, [state]);
+	}, [state, history]);
 	function nextStep() {
 		if (step < 3) {
 			setPercent((step * 100 + 100) / 3);
@@ -123,8 +123,8 @@ const stepTwoDefault = {
 };
 const stepThreeDefault = {
 	linkedIn: "https://www.linkedin.com/in/",
-	github: "https://github.com/",
-	slack: "https://www.",
+	github: "https://www.github.com/",
+	slack: "https://www.slack.com/",
 	codeSandBox: "https://codesandbox.io/u/",
 	behance: "https://www.behance.net/",
 	figma: "https://figma.com/",

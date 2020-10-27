@@ -135,27 +135,27 @@ function CreateProject(props) {
 const label = ["SITUATION", "TASKS & ACTIONS", "RESULTS", "PREVIEW"];
 
 const ProjectForm = withFormik({
-    mapPropsToValues: () => ({ name: "" }),
+	mapPropsToValues: () => ({ name: '' }),
 
-    // Custom sync validation
-    validate: (values) => {
-        const errors = {};
+	// Custom sync validation
+	validate: (values) => {
+		const errors = {};
 
-        if (!values.name) {
-            errors.name = "Required";
-        }
+		if (!values.name) {
+			errors.name = 'Required';
+		}
 
-        return errors;
-    },
+		return errors;
+	},
 
-    handleSubmit: (values, { setSubmitting }) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 1000);
-    },
+	handleSubmit: (values, { setSubmitting }) => {
+		setTimeout(() => {
+			alert(JSON.stringify(values, null, 2));
+			setSubmitting(false);
+		}, 1000);
+	},
 
-    displayName: "ProjectForm",
+	displayName: 'ProjectForm',
 })(CreateProject);
 
 export default withContext(ProjectForm);

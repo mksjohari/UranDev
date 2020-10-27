@@ -1,15 +1,19 @@
-@import "variable";
+@import 'variable';
 
 .logout {
 	position: relative;
 	display: inline-block;
 }
 
+.crop {
+	width: 70px;
+	overflow: hidden;
+}
+
 .profile_pic {
-	background-color: grey;
-	width: 50px;
-	height: 50px;
+	width: 100%;
 	border-radius: 8px;
+	margin-bottom: 0;
 }
 
 .name {
@@ -20,14 +24,14 @@
 
 .logout_btn {
 	display: inline-flex;
-	gap: 18px;
+	gap: 15px;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	cursor: pointer;
 	background-color: white;
-	&:hover{
+	&:hover {
 		color: $midgrey;
-		transition: .3s color ease-in-out;
+		transition: 0.3s color ease-in-out;
 	}
 }
 
@@ -37,10 +41,10 @@
 	align-items: center;
 	cursor: pointer;
 	padding: 7px 12px;
-    margin: 0;
-	&:hover{
+	margin: 0;
+	&:hover {
 		background: $ivory;
-		transition: .2s background ease-in-out;
+		transition: 0.2s background ease-in-out;
 	}
 	&:hover:last-child {
 		border-radius: 0 0 10px 10px;

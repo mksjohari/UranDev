@@ -1,6 +1,4 @@
 import React from "react";
-import { close } from "../sandbox/Popup";
-import Button from "../sandbox/Button";
 import styles from "../../modules/alert.module.scss";
 
 function Alert(props) {

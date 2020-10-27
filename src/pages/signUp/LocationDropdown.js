@@ -45,7 +45,7 @@ export default function LocationDropdown(props) {
 					/>
 					<div className={styles.location_dropdown}>
 						{loading && <div>Loading...</div>}
-						{suggestions.map((suggestion) => {
+						{suggestions.map((suggestion,index) => {
 							const className = suggestion.active
 								? styles.location_active
 								: styles.location;
@@ -59,7 +59,7 @@ export default function LocationDropdown(props) {
 										cursor: 'pointer',
 								  };
 							return (
-								<div
+								<div key={index}
 									{...getSuggestionItemProps(suggestion, {
 										className,
 										style,

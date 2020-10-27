@@ -1,5 +1,4 @@
 import React from 'react';
-import * as moment from 'moment';
 import { Chart } from 'react-google-charts';
 import styles from '../modules/ganttChart.module.scss';
 

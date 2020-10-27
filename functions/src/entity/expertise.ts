@@ -1,13 +1,16 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Expertise {
-	@PrimaryColumn({ type: String })
-	uid: String;
+    @PrimaryColumn({ type: String })
+    uid: String;
 
-	@PrimaryColumn({ type: String })
-	eid: String;
+    @PrimaryColumn({ type: String })
+    pid: String;
 
-	@Column({ type: String })
-	expertise: String;
+    @PrimaryColumn({ type: String })
+    eid: String;
+
+    @Column({ type: String })
+    expertise: String;
 }

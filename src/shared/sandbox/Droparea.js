@@ -8,7 +8,7 @@ import logo from "../../images/logo.png";
 
 
 function Droparea(props) {
-    const [field, meta, helpers] = useField(props.name);
+    const [meta, helpers] = useField(props.name);
 
     const { value } = meta;
     const { setValue } = helpers;

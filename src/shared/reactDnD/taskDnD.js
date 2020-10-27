@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "../../modules/DnD.module.scss";
 
-import Button from "../../shared/sandbox/Button";
+import Button from "../sandbox/Button";
 import ActionCard from "./action";
 import TaskCard from "./task";
 
@@ -118,14 +118,6 @@ function TaskDnD(props) {
     }
     return (
         <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-            <br />
-            {"all taskes: " + taskList.length}
-            <br />
-
-            {"current active: " + currentTask}
-            <br />
-
-            {"switch: " + switching}
             <div className={styles.draggable_root}>
                 <div className={styles.section_task}>
                     <Droppable droppableId="TaskList" type="TaskList">
@@ -197,7 +189,7 @@ function TaskDnD(props) {
                                                 key={action.actionId}
                                                 draggableId={action.actionId}
                                                 index={index}
-                                                isDragDisabled={true}
+                                                isDragDisabled={false}
                                             >
                                                 {(provided, snapshot) => (
                                                     <div

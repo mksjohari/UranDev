@@ -25,7 +25,7 @@ function tasksActions(props) {
 			// }}
 			onSubmit={(values, actions) => {
 				setTimeout(() => {
-					alert(JSON.stringify(values, null, 2));
+					// alert(JSON.stringify(values, null, 2));
 					props.setProject(values);
 					props.nextStep();
 					actions.setSubmitting(false);

@@ -1,7 +1,7 @@
-import { AccordionActions } from "@material-ui/core";
-
 const userInfo = {
+    loaded: false,
     uid: "",
+    pid: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -22,8 +22,9 @@ export default (state = userInfo, action) => {
             return {
                 ...state,
                 uid: action.userInfo.uid,
+                pid: action.userInfo.pid,
                 firstName: action.userInfo.firstName,
-                lastName: action.userInfo.uid,
+                lastName: action.userInfo.lastName,
                 email: action.userInfo.email,
                 userType: action.userInfo.userType,
                 dateCreated: action.userInfo.dateCreated,
@@ -33,6 +34,7 @@ export default (state = userInfo, action) => {
                 occupation: action.userInfo.occupation,
                 description: action.userInfo.description,
                 location: action.userInfo.location,
+                logged: action.logged,
             };
         case "UPDATE_SOCIALS":
             return {
@@ -44,6 +46,23 @@ export default (state = userInfo, action) => {
                 ...state,
                 expertise: action.userExpertise,
             };
+        case "UPDATE_FROM_SIGNUP":
+            return {
+                ...state,
+                uid: action.firstStep.uid,
+                firstName: action.firstStep.firstName,
+                lastName: action.firstStep.lastName,
+                userType: action.firstStep.userType,
+                photoUrl: action.photoURL,
+                introduction: action.firstStep.introduction,
+                occupation: action.firstStep.occupation,
+                description: action.firstStep.description,
+                location: action.firstStep.location,
+                socials: action.thirdStep,
+                logged: action.logged,
+            };
+        case "LOGOUT_USER":
+            return userInfo;
         default:
             return state;
     }
