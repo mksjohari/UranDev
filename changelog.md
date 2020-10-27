@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.3] - 27th October 2020
+## [1.0.4] - 27th October 2020
 
 ### Added
 - Profile routes
