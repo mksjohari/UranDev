@@ -1,20 +1,19 @@
-import React from "react";
+import React from 'react';
 // import DnD from "../../shared/DnD";
 import * as moment from 'moment';
 // import Data from "../../shared/reactDnD/sampleData";
 import TaskDnD from '../../shared/reactDnD/taskDnD';
 import GanttChart from '../../shared/GanttChart';
 
-const TmpTest = () => {
+const TmpTest = (props) => {
 	function sampleChartFunc(id) {
 		console.log(id);
 	}
-
+	console.log('tmp props', props);
 	return (
 		<div className="tmp">
-
-      <GanttChart data={projectData} chartEvent={sampleChartFunc} />
-{/* 
+			<GanttChart data={projectData} chartEvent={sampleChartFunc} />
+			{/* 
 			<Popup
 				BtnText="Basic delete btn"
 				BtnColour="reddo"
@@ -109,19 +108,19 @@ const TmpTest = () => {
 				width={700}
 				content={<AddActionForm id="addAction" />}
 			/> */}
-            <br />
-            <br />
-            {/* <DateSelect /> */}
-            <TaskDnD data={taskData} />
-            {/* <DnD
+			<br />
+			<br />
+			{/* <DateSelect /> */}
+			<TaskDnD data={taskData} />
+			{/* <DnD
         actions={Data.actions}
         tasks={Data.tasks}
         taskOrder={Data.taskOrder}
         totalActions={Data.totalActions}
         totalTasks={Data.totalTasks}
       />  */}
-        </div>
-    );
+		</div>
+	);
 };
 export default TmpTest;
 
@@ -130,7 +129,7 @@ export const taskData = [
 		taskId: 'task-1',
 		title: 'yes',
 		description: 'yessir',
-		startDate: moment([2018, 0, 1]), // to moment 
+		startDate: moment([2018, 0, 1]), // to moment
 		endDate: moment([2019, 0, 1]),
 		actions: [
 			{
@@ -139,7 +138,7 @@ export const taskData = [
 				tools: ['git', 'weh'],
 				skills: [],
 				description: 'git and weh',
-				files: []
+				files: [],
 			},
 			{
 				actionId: 'action-2',
@@ -195,7 +194,7 @@ export const taskData = [
 				tools: [],
 				skills: [],
 				description: 'yeh this that blah',
-				files: []
+				files: [],
 			},
 		],
 	},
@@ -211,23 +210,23 @@ export const taskData = [
 				tools: [],
 				skills: [],
 				description: 'yeh this that blah',
-				files:[],
+				files: [],
 			},
 		],
 	},
 ];
 
 export const projectData = {
-  name:"test project",
-  situation: "the world is in chaos",
-  role: "",
-  teamSize: "2-5",
-  budget: "300000",
-  currency: "aud",
-  startDate: moment([2020, 2, 1]), // change to moment.js
-  endDate: moment([2020, 3, 3]),
-  taskData: taskData,
-}
+	name: 'test project',
+	situation: 'the world is in chaos',
+	role: '',
+	teamSize: '2-5',
+	budget: '300000',
+	currency: 'aud',
+	startDate: moment([2020, 2, 1]), // change to moment.js
+	endDate: moment([2020, 3, 3]),
+	taskData: taskData,
+};
 
 export const skillsDefault = {
 	'web dev': false,

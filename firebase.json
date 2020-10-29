@@ -5,6 +5,13 @@
 	"hosting": {
 		"public": "build",
 		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+		"redirects": [
+			{
+				"source": "/profile/:id",
+				"destination": "https://uran-28-12-98.web.app/redirect:id",
+				"type": 301
+			}
+		],
 		"rewrites": [
 			{
 				"source": "**",

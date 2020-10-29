@@ -1,14 +1,26 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import 'reflect-metadata';
+import * as express from 'express';
 import { Connection, createConnection } from 'typeorm';
 import { StatusType, Users, UserType } from './entity/users';
 import { Seeker } from './entity/seeker';
 import { Social } from './entity/social';
 import { Expertise } from './entity/expertise';
 import { getSocials, getExpertise } from './helperFunction';
+import 'reflect-metadata';
 
 admin.initializeApp();
+
+const app = express();
+
+app.get('/test', (request, response) => {
+	console.log('nani');
+	response.send('yeah');
+});
+
+export const test = functions
+	.region('australia-southeast1')
+	.https.onRequest(app);
 
 const connect = async () => {
 	return await createConnection({

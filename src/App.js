@@ -9,7 +9,7 @@ import createProject from './pages/projects/createProject';
 import draftProjects from './pages/projects/draftProjects';
 import tmpTest from './pages/tmp/tmpTest';
 import Page404 from './pages/404/404';
-
+import dummy from './pages/profile/dummy';
 import './styles/index.scss';
 import Home from './pages/home/home';
 require('typeface-poppins');
@@ -19,14 +19,14 @@ const Index = () => {
 	return (
 		<Layout page={location.pathname}>
 			<Switch>
-				<Route component={Home} exact path="/" />
 				<Route component={explore} path="/explore" />
 				<Route component={signUp} path="/signUp" />
 				<Route component={projects} path="/projects" />
 				<Route component={createProject} path="/create" />
 				<Route component={draftProjects} path="/drafts" />
 				<Route component={profile} path="/profile/:pid" />
-				<Route component={tmpTest} path="/tmp" />
+				<Route component={dummy} path="/redirect:pid" />
+				<Route component={Home} exact path="/" />
 				<Route component={Page404} path="/*" />
 			</Switch>
 		</Layout>

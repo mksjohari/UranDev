@@ -1,43 +1,19 @@
-import React from "react";
-import { Button } from "@material-ui/core";
-import { checkUserExists, createAccount } from "../../shared/firebase/firebase";
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
-const profile = (props) => {
-    const id = props.match.params.id;
-    console.log(id);
+import { Button } from '@material-ui/core';
+import { checkUserExists, createAccount } from '../../shared/firebase/firebase';
 
-    return (
-        <div>
-            <h1>Hello,</h1>
-            <p>{id}</p>
-            <Button
-                color="secondary"
-                variant="contained"
-                onClick={() => {
-                    checkUserExists({ uid: id })
-                        .then(async (result) => {
-                            console.log(result);
-                        })
-                        .catch((err) => console.log(err));
-                }}
-            >
-                test user
-            </Button>
-            <Button
-                color="secondary"
-                variant="contained"
-                onClick={async () => {
-                    createAccount()
-                        .then((result) => {
-                            console.log(result);
-                        })
-                        .catch((err) => console.log(err));
-                }}
-            >
-                set
-            </Button>
-        </div>
-    );
+const TempUser = (props) => {
+	console.log('props', props);
+	const history = useHistory();
+	history.push(`/profile/${props.pid}`);
+	return (
+		<div>
+			<h1>Hello,</h1>
+			{`/profile/${props.pid}`}
+		</div>
+	);
 };
 
-export default profile;
+export default TempUser;
