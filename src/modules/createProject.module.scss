@@ -78,13 +78,31 @@
     font-size: 12px;
     line-height: 1.5;
     padding: 1em 0em;
-  }
+}
 .section_input {
     flex-direction: column;
     display: flex;
     padding: 1em 3%;
 }
-
+.section_input_row {
+    display: flex;
+    margin: 1em 3%;
+}
+.section_header {
+    color: $darkgrey;
+    font-size: 24px;
+    display: flex;
+    margin: 0 0 0 3%;
+    padding: 1em 10% 0.5em 10px;
+    border-bottom: 1px solid $midgrey;
+}
+.header_style {
+    margin: 0 0 0 1em;
+}
+.input_link {
+    width: 300px;
+    margin: 0 0 0 1em;
+}
 .input_situation {
     height: 5em;
 }
@@ -103,4 +121,19 @@
 }
 .dropdown_currency {
     margin-right: 10px;
+}
+.icon_trash {
+    &:hover {
+        color: $reddo;
+        cursor: pointer;
+    }
+   align-items: center;
+   margin-left: 20px;
+   display: inline-flex;
+}
+.button_text {
+    margin-left: 5px;
+}
+.center {
+    align-self: center;
 }

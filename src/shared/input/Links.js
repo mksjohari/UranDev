@@ -1,48 +1,79 @@
 import React from "react";
-import { Formik, Field, useField } from "formik";
+import { Formik, Field, FieldArray, Form } from "formik";
 import styles from "../../modules/createProject.module.scss";
 
 function Links(props) {
-    const [field, meta, helpers] = useField(props.name);
-
-    const { value } = meta;
-    const { setValue } = helpers;
 
     return (
         <div className={styles.input_teamsize}>
             <Formik
                 initialValues={{
-                    url: value.url,
-                    linkName: value.linkName,
+                    links: props.links,
                 }}
                 onSubmit={async (values) => {
                     await new Promise((r) => setTimeout(r, 500));
                     alert(JSON.stringify(values, null, 2));
-                    setValue(values, false);
+                    props.handleClick(values);
                 }}
-            >
-                {(props) => (
-                    <form onSubmit={props.handleSubmit}>
-                        <div className={styles.section_input}>
-                            <Field
-                                as="input"
-                                className={`inp-field`}
-                                name="url"
-                                placeholder="URL"
-                            />
-                            <Field
-                                as="linkName"
-                                className={`inp-field`}
-                                name="url"
-                                placeholder="linke name (optional)"
-                            />
-                        </div>
-                        <button type="submit" disabled={props.isSubmitting}>
-                            Submit
-                        </button>
-                    </form>
+                render={({ values }) => (
+                    <Form>
+                        <FieldArray
+                            name="links"
+                            render={(arrayHelpers) => (
+                                <div>
+                                    {values.links.map((link, index) => (
+                                        <div
+                                            key={index}
+                                            className={styles.section_input_row}
+                                        >
+                                            <label
+                                                htmlFor="url"
+                                                className={
+                                                    styles.section_question
+                                                }
+                                            >
+                                                {index + 1})
+                                            </label>
+                                            <Field
+                                                as="input"
+                                                className={`inp-field ${styles.input_link}`}
+                                                name={`links[${index}].url`}
+                                                placeholder="URL"
+                                            />
+                                            <Field
+                                                as="input"
+                                                className={`inp-field ${styles.input_link}`}
+                                                name={`links.${index}.linkName`}
+                                                placeholder="link name (optional)"
+                                            />
+
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    arrayHelpers.remove(index)
+                                                }
+                                            >
+                                                -
+                                            </button>
+                                        </div>
+                                    ))}
+                                    <button
+                                        type="submit"
+                                        onClick={() =>
+                                            arrayHelpers.push({
+                                                url: "",
+                                                linkName: "",
+                                            })
+                                        }
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            )}
+                        />
+                    </Form>
                 )}
-            </Formik>
+            />
         </div>
     );
 }

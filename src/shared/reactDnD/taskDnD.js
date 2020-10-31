@@ -14,16 +14,13 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 function TaskDnD(props) {
-    const [taskList, setTaskList] = useState(props.data);
+    const taskList = props.data;
     const [currentTask, setCurrentTask] = useState(0); // index of currentTask object
     const [switching, setSwitch] = useState(false); // index of currentTask object
     useEffect(() => {
         setCurrentTask(0);
         setSwitch(false);
     }, [switching]);
-    useEffect(() => {
-        props.handleClick(taskList);
-    }, [taskList]);
     function addTask() {
         const newTask = {
             taskId: `task-${new Date().getTime()}`,
@@ -33,11 +30,12 @@ function TaskDnD(props) {
             endDate: null,
             actionIds: [],
         };
-        setTaskList([...taskList, newTask]);
+        props.updateTasks([...taskList, newTask]);
     }
     function addAction() {
         const newAction = {
             actionId: `action-${new Date().getTime()}`,
+            title: "New action",
             tools: [],
             skills: [],
             description: "",
@@ -47,19 +45,19 @@ function TaskDnD(props) {
         const newActionList = [...actionList, newAction];
         const newTaskList = [...taskList];
         newTaskList[currentTask].actions = newActionList;
-        setTaskList(newTaskList);
+        props.updateTasks(newTaskList);
     }
     function editTask(index, values) {
         const newTaskList = [...taskList];
         newTaskList[index].title = values.taskTitle;
         newTaskList[index].description = values.taskDescription;
-        setTaskList(newTaskList);
+        props.updateTasks(newTaskList);
     }
     function setTaskDates(index, dates) {
         const newTaskList = [...taskList];
         newTaskList[index].startDate = dates.taskDates.startDate;
         newTaskList[index].endDate = dates.taskDates.endDate;
-        setTaskList(newTaskList);
+        props.updateTasks(newTaskList);
     }
     function editAction(index, values, tools, skills) {
         const newActionList = taskList[currentTask].actions;
@@ -70,14 +68,14 @@ function TaskDnD(props) {
         newActionList[index].files = values.files;
         const newTaskList = [...taskList];
         newTaskList[currentTask].actions = newActionList;
-        setTaskList(newTaskList);
+        props.updateTasks(newTaskList);
     }
     function deleteTask(index) {
         if (taskList.length > 1) {
             setSwitch(true);
             const newTaskList = [...taskList];
             newTaskList.splice(index, 1);
-            setTaskList(newTaskList);
+            props.updateTasks(newTaskList);
         } else {
             console.log("Alert: Must have at least one task.");
         }
@@ -87,7 +85,7 @@ function TaskDnD(props) {
         newActionList.splice(index, 1);
         const newTaskList = [...taskList];
         newTaskList[currentTask].actions = newActionList;
-        setTaskList(newTaskList.filter((tasks) => tasks.actions.length));
+        props.updateTasks(newTaskList.filter((tasks) => tasks.actions.length));
     }
     function onDragEnd(result) {
         const { source, destination } = result;
@@ -102,7 +100,7 @@ function TaskDnD(props) {
                 source.index,
                 destination.index
             );
-            setTaskList(newTaskList);
+            props.updateTasks(newTaskList);
             setCurrentTask(destination.index);
         } else {
             const newActionList = reorder(
@@ -112,7 +110,7 @@ function TaskDnD(props) {
             );
             const newTaskList = [...taskList];
             newTaskList[currentTask].actions = newActionList;
-            setTaskList(newTaskList);
+            props.updateTasks(newTaskList);
         }
     }
     function onDragStart(result) {
