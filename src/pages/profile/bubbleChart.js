@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import * as d3 from 'd3';
 
 export default class BubbleChart extends Component {
-	constructor(props) {
+	constructor() {
 		super();
 		this.renderChart = this.renderChart.bind(this);
 		this.renderBubbles = this.renderBubbles.bind(this);
@@ -85,7 +85,6 @@ export default class BubbleChart extends Component {
 	renderBubbles(width, nodes, color) {
 		const {
 			graph,
-			data,
 			bubbleClickFun,
 			valueFont,
 			labelFont,
@@ -203,8 +202,6 @@ export default class BubbleChart extends Component {
 			//     return -(width / 2);
 			// })
 			.style('opacity', function (d) {
-				const self = d3.select(this);
-				const width = self.node().getBBox().width;
 				d.hideLabel = d.r / 5 < 5 ? 1 : 0;
 				return d.hideLabel ? 0 : 1;
 			})
@@ -234,7 +231,7 @@ export default class BubbleChart extends Component {
 	}
 
 	renderLegend(width, height, offset, nodes, color) {
-		const { data, legendClickFun, legendFont } = this.props;
+		const { legendClickFun, legendFont } = this.props;
 		const bubble = d3.select('.bubble-chart');
 		const bubbleHeight = bubble.node().getBBox().height;
 

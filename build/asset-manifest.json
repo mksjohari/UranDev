@@ -1,29 +1,30 @@
 {
   "files": {
-    "main.css": "./static/css/main.0a39e604.chunk.css",
-    "main.js": "./static/js/main.fa6e8e80.chunk.js",
-    "main.js.map": "./static/js/main.fa6e8e80.chunk.js.map",
+    "main.css": "./static/css/main.22418cef.chunk.css",
+    "main.js": "./static/js/main.c8a9a5ec.chunk.js",
+    "main.js.map": "./static/js/main.c8a9a5ec.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.560b22e6.js",
     "runtime-main.js.map": "./static/js/runtime-main.560b22e6.js.map",
-    "static/css/2.e97d93a9.chunk.css": "./static/css/2.e97d93a9.chunk.css",
-    "static/js/2.bca9abd5.chunk.js": "./static/js/2.bca9abd5.chunk.js",
-    "static/js/2.bca9abd5.chunk.js.map": "./static/js/2.bca9abd5.chunk.js.map",
+    "static/css/2.128f8ebd.chunk.css": "./static/css/2.128f8ebd.chunk.css",
+    "static/js/2.bdcf10e1.chunk.js": "./static/js/2.bdcf10e1.chunk.js",
+    "static/js/2.bdcf10e1.chunk.js.map": "./static/js/2.bdcf10e1.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.d2c22a6c2a1c00ea193842eef80a05ed.js": "./precache-manifest.d2c22a6c2a1c00ea193842eef80a05ed.js",
+    "precache-manifest.e93676aa035153c0be1bae3188626c8d.js": "./precache-manifest.e93676aa035153c0be1bae3188626c8d.js",
     "service-worker.js": "./service-worker.js",
-    "static/css/2.e97d93a9.chunk.css.map": "./static/css/2.e97d93a9.chunk.css.map",
-    "static/css/main.0a39e604.chunk.css.map": "./static/css/main.0a39e604.chunk.css.map",
-    "static/js/2.bca9abd5.chunk.js.LICENSE.txt": "./static/js/2.bca9abd5.chunk.js.LICENSE.txt",
+    "static/css/2.128f8ebd.chunk.css.map": "./static/css/2.128f8ebd.chunk.css.map",
+    "static/css/main.22418cef.chunk.css.map": "./static/css/main.22418cef.chunk.css.map",
+    "static/js/2.bdcf10e1.chunk.js.LICENSE.txt": "./static/js/2.bdcf10e1.chunk.js.LICENSE.txt",
     "static/media/jobsearch.png": "./static/media/jobsearch.3cc024d6.png",
     "static/media/logo.png": "./static/media/logo.e6f5716c.png",
     "static/media/index.css": "./static/media/poppins-latin-900italic.f3c803b2.woff2",
+    "static/media/draftProject.module.scss": "./static/media/resume.f2400dcc.svg",
     "static/media/typing.png": "./static/media/typing.2002f472.png"
   },
   "entrypoints": [
     "static/js/runtime-main.560b22e6.js",
-    "static/css/2.e97d93a9.chunk.css",
-    "static/js/2.bca9abd5.chunk.js",
-    "static/css/main.0a39e604.chunk.css",
-    "static/js/main.fa6e8e80.chunk.js"
+    "static/css/2.128f8ebd.chunk.css",
+    "static/js/2.bdcf10e1.chunk.js",
+    "static/css/main.22418cef.chunk.css",
+    "static/js/main.c8a9a5ec.chunk.js"
   ]
 }

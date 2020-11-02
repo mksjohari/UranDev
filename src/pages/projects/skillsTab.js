@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Button from "../../shared/sandbox/Button";
-import styles from "../../modules/skillstab.module.scss";
+import React, { useState } from 'react';
+import Button from '../../shared/sandbox/Button';
+import styles from '../../modules/skillsTab.module.scss';
 
 function SkillsTab(props) {
 	const [showTab, setshowTab] = useState(true);
@@ -16,9 +16,9 @@ function SkillsTab(props) {
 					</div>
 					<div className={styles.skills_btn}>
 						<Button
-							className='yellow'
-							iconR={<i className='fas fa-check'></i>}
-							text='Endorse a skill'
+							className="yellow"
+							iconR={<i className="fas fa-check"></i>}
+							text="Endorse a skill"
 						/>
 					</div>
 					<div className={styles.tools_div}>
@@ -29,27 +29,30 @@ function SkillsTab(props) {
 					</div>
 					<div className={styles.tools_btn}>
 						<Button
-							className='blue'
-							iconR={<i className='fas fa-check'></i>}
-							text='Endorse a tool'
+							className="blue"
+							iconR={<i className="fas fa-check"></i>}
+							text="Endorse a tool"
 						/>
 					</div>
 				</div>
 			) : (
-				""
+				''
 			)}
-			<div className={styles.hide_btn} onClick={() => setshowTab(!showTab)}>
+			<div
+				className={styles.hide_btn}
+				onClick={() => setshowTab(!showTab)}
+			>
 				{showTab ? (
 					<>
-						<i className='fal fa-angle-double-up'></i>
+						<i className="fal fa-angle-double-up"></i>
 						Hide
-						<i className='fal fa-angle-double-up'></i>
+						<i className="fal fa-angle-double-up"></i>
 					</>
 				) : (
 					<>
-						<i className='fal fa-angle-double-down'></i>
+						<i className="fal fa-angle-double-down"></i>
 						Endorse a Skill or a Tool
-						<i className='fal fa-angle-double-down'></i>
+						<i className="fal fa-angle-double-down"></i>
 					</>
 				)}
 			</div>
@@ -59,5 +62,9 @@ function SkillsTab(props) {
 
 export default SkillsTab;
 
-const skills = ['Web Development', 'High-fidelity Prototyping', 'Frontend Development'];
+const skills = [
+	'Web Development',
+	'High-fidelity Prototyping',
+	'Frontend Development',
+];
 const tools = ['Git', 'Python', 'Framer'];

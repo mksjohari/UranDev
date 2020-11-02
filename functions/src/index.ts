@@ -1,14 +1,26 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import 'reflect-metadata';
+import * as express from 'express';
 import { Connection, createConnection } from 'typeorm';
 import { StatusType, Users, UserType } from './entity/users';
 import { Seeker } from './entity/seeker';
 import { Social } from './entity/social';
 import { Expertise } from './entity/expertise';
 import { getSocials, getExpertise } from './helperFunction';
+import 'reflect-metadata';
 
 admin.initializeApp();
+
+const app = express();
+
+app.get('/test', (request, response) => {
+	console.log('nani');
+	response.send('yeah');
+});
+
+export const test = functions
+	.region('australia-southeast1')
+	.https.onRequest(app);
 
 const connect = async () => {
 	return await createConnection({
@@ -36,7 +48,7 @@ export const createAccount = functions
 			user.firstName = data.firstName;
 			user.lastName = data.lastName;
 			user.email = data.email;
-			user.dateCreated = new Date().getTime().toString()
+			user.dateCreated = new Date().getTime().toString();
 			await connection.manager.save(user);
 			console.log('user has been saved. user id is', user.uid);
 			return `Successfully added ${user.uid}`;
@@ -81,17 +93,59 @@ export const getUserInfo = functions
 			console.log(err);
 		}
 	});
+export const getPublicInfo = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		try {
+			const pid = data.pid;
+			if (!connection || !connection.isConnected) {
+				connection = await connect();
+			}
+			const result = await connection.query(
+				`SELECT * FROM users inner join seeker on users.uid = seeker.uid where seeker.pid = '${pid}';`
+			);
+			return result[0];
+		} catch (err) {
+			console.log(err);
+		}
+	});
+
+export const getExploreUsers = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		try {
+			if (!connection || !connection.isConnected) {
+				connection = await connect();
+			}
+			const result = await connection.query(
+				`SELECT * FROM users inner join seeker on users.uid = seeker.uid`
+			);
+			return result;
+		} catch (err) {
+			console.log(err);
+		}
+	});
 
 export const getUserSocials = functions
 	.region('australia-southeast1')
 	.https.onCall(async (data, context) => {
 		try {
 			const uid = data.uid;
+			const pid = data.pid;
+			var whereLeft;
+			var whereRight;
 			if (!connection || !connection.isConnected) {
 				connection = await connect();
 			}
+			if (uid !== null) {
+				whereLeft = 'uid';
+				whereRight = uid;
+			} else {
+				whereLeft = 'pid';
+				whereRight = pid;
+			}
 			const result = await connection.query(
-				`SELECT * FROM social where uid = '${uid}';`
+				`SELECT pid, name, url FROM social where ${whereLeft} = '${whereRight}';`
 			);
 			return result;
 		} catch (err) {
@@ -104,11 +158,21 @@ export const getUserExpertise = functions
 	.https.onCall(async (data, context) => {
 		try {
 			const uid = data.uid;
+			const pid = data.pid;
+			var whereLeft;
+			var whereRight;
 			if (!connection || !connection.isConnected) {
 				connection = await connect();
 			}
+			if (uid !== null) {
+				whereLeft = 'uid';
+				whereRight = uid;
+			} else {
+				whereLeft = 'pid';
+				whereRight = pid;
+			}
 			const result = await connection.query(
-				`SELECT * FROM expertise where uid = '${uid}';`
+				`SELECT pid, eid, expertise FROM expertise where ${whereLeft} = '${whereRight}';`
 			);
 			return result;
 		} catch (err) {
@@ -126,33 +190,35 @@ export const finishUserSignUp = functions
 			const firstStep = data.firstStep;
 			const secondStep = data.secondStep;
 			const thirdStep = data.thirdStep;
+			const random = Math.floor(Math.random() * 100000000);
+			const pid = `${firstStep.firstName}-${firstStep.lastName}-${random}`;
 			const seeker = new Seeker();
-			const expertise = getExpertise(data.uid, secondStep);
-			const socials = getSocials(data.uid, thirdStep);
-			var description 
+			const expertise = getExpertise(data.uid, pid, secondStep);
+			const socials = getSocials(data.uid, pid, thirdStep);
+
+			var description;
 			seeker.uid = data.uid;
+			seeker.pid = pid;
 			seeker.photo = data.photoURL;
 			seeker.location = secondStep.location;
 			seeker.occupation = secondStep.occupation;
-			if (secondStep.personalDesc.length > 0){
-				description = secondStep.personalDesc
-			}
-			else {
-				description = null
+			if (secondStep.personalDesc.length > 0) {
+				description = secondStep.personalDesc;
+			} else {
+				description = null;
 			}
 			seeker.description = description;
 			var userType;
-			if (firstStep.role === "Jobseeker"){
-				userType = UserType.SEEKER
-			}
-			else {
-				userType = UserType.MANAGER
+			if (firstStep.role === 'Jobseeker') {
+				userType = UserType.SEEKER;
+			} else {
+				userType = UserType.MANAGER;
 			}
 			await connection.manager.update(Users, seeker.uid, {
 				firstName: firstStep.firstName,
 				lastName: firstStep.lastName,
 				status: StatusType.UNVERIFIED,
-				userType: userType
+				userType: userType,
 			});
 			await connection.manager.save(Expertise, expertise);
 			await connection.manager.save(Social, socials);

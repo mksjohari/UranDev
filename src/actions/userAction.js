@@ -1,7 +1,9 @@
 export const updateInfo = (results) => (dispatch) => {
+    console.log("RESULTS", results)
     dispatch({
         type: "UPDATE_USER_INFO",
-        userInfo: results.userInfo,
+		userInfo: results.userInfo,
+		logged: true
     });
     dispatch({
         type: "UPDATE_SOCIALS",
@@ -12,3 +14,20 @@ export const updateInfo = (results) => (dispatch) => {
         userExpertise: results.userExpertise,
     });
 };
+
+export const updateInfoFromSignUp = (photoURL,firstStep, secondStep, thirdStep) => (dispatch) => {
+    dispatch({
+        type: "UPDATE_FROM_SIGNUP",
+        photoURL,
+        firstStep,
+        secondStep,
+        thirdStep,
+		logged: true
+    });
+};
+
+export const logoutUser = () => (dispatch) => {
+        dispatch({
+        type: "LOGOUT_USER",
+    });
+}

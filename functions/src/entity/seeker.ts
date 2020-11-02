@@ -4,6 +4,9 @@ import { Entity, Column, PrimaryColumn } from 'typeorm';
 export class Seeker {
 	@PrimaryColumn({ type: String })
 	uid: string;
+	
+	@PrimaryColumn({ type: String })
+	pid: string;
 
 	@Column({ type: String })
 	photo: URL;
@@ -14,7 +17,7 @@ export class Seeker {
 	@Column({ type: String })
 	occupation: string;
 
-	@Column({ type: String, nullable: true })
+	@Column({ type: String, nullable: true, length: 1000 })
 	description: string;
 
 	@Column({ type: String })

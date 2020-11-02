@@ -55,8 +55,12 @@
     background: var(--White, #ffffff);
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
-    padding: 0.8rem 1rem;
+    padding: 1rem 1rem 1.2rem 1rem;
     color: $darkgrey;
+}
+
+.form {
+    margin: 0;
 }
 .action_card {
     min-height: 100px;
@@ -64,7 +68,7 @@
     background: var(--White, #ffffff);
     box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
-    padding: 0.8rem 1rem;
+    padding: 1rem 1rem 1.2rem 1rem;
     margin: 0 0 0.8rem 0;
     color: $darkgrey;
 }
@@ -92,12 +96,21 @@
     line-height: 2;
     font-weight: 500;
 }
+.text_input {
+    // background-color: rgba(0,0,0,0);
+    border: hidden;
+}
+
+.col_input {
+    display: flex;
+    flex-direction: column;
+}
 
 .description_title {
     font-size: 14px;
     line-height: 2;
     font-weight: 400;
-    margin: 0em 0em 2em 0em;
+    resize: none;
 }
 
 .description_action {
@@ -110,7 +123,7 @@
 .action_tags {
     margin: 1em 1em 1em 1em;
 }
-.action_files {
+.action_subtitle {
     color: $navy;
     font-size: 14px;
     font-weight: 400;
@@ -118,18 +131,14 @@
     line-height: 2;
     margin-top: 1em;
     display: table-cell;
-  }
-
-.col_right {
-    
-    margin-left: 0.5rem;
 }
+
 .duration_button {
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     box-sizing: border-box;
     border: 1px solid #222;
     border-radius: 10px;
-  }
+}
 .delete_button {
     color: white;
     margin-left: 0.5rem;
@@ -138,15 +147,12 @@
     border-radius: 10px;
 }
 .task_footer {
-    height: 30px;
     display: flex;
     justify-content: space-between;
+    margin: 2em 0em 0em 0em;
 }
 .edit_button {
-    font-size: 14px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
+    margin-top: 1em;
 }
 .text_button {
     margin-left: 5px;
@@ -160,13 +166,7 @@
     color: $navy;
     background-color: $pink;
 }
-.file_link {
-    border-bottom: 1px solid;
-    margin: 0 1em 0.5em 0;
-}
-.project_tags {
-    display: flex;
-    flex-wrap: wrap;
-    justify-self: center;
-    align-items: baseline;
+.files_display {
+    max-height: 200px;
+    overflow: scroll;
 }

@@ -1,13 +1,16 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from "typeorm";
 
 @Entity()
 export class Social {
-	@PrimaryColumn({ type: String })
-	uid: String;
+    @PrimaryColumn({ type: String })
+    uid: String;
 
-	@PrimaryColumn({ type: String })
-	name: string;
+    @PrimaryColumn({ type: String })
+    pid: String;
 
-	@Column({ type: String })
-	url: URL;
+    @PrimaryColumn({ type: String })
+    name: string;
+
+    @Column({ type: String })
+    url: URL;
 }

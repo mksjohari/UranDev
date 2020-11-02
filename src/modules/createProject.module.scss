@@ -16,10 +16,14 @@
     display: flex;
     flex-direction: row-reverse;
 }
-.button_header {
+.button_row {
     align-self: flex-start;
     display: inline-flex;
     justify-content: space-between;
+}
+.button_next {
+    justify-content: end;
+    display: grid;
 }
 .save_draft {
     color: $navy;
@@ -38,6 +42,7 @@
     font-size: 40px;
     line-height: 1;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .title_help {
@@ -54,12 +59,12 @@
     padding: 2rem 0rem;
 }
 
-.form {
-    width: 60%;
-}
-.full_width {
-    width: 90%;
+.parent_form {
     justify-content: center;
+}
+
+.child_form {
+    width: 60%;
 }
 .heading {
     width: 160px;
@@ -67,6 +72,7 @@
     font-size: 36px;
     line-height: 1;
     font-weight: 400;
+    display: inline;
 }
 .section_question {
     font-size: 12px;
