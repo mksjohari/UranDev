@@ -48,24 +48,25 @@
 
 .step_one {
 	display: grid;
-	grid-template-columns: 550px;
+	grid-template-columns: 700px;
 	grid-template-rows: 30px 480px 50px;
 }
 
 .step_two {
 	display: grid;
-	grid-template-columns: 550px;
+	grid-template-columns: 700px;
 	grid-template-rows: 30px 480px 50px;
 }
 
 .step_three {
 	display: grid;
-	grid-template-columns: 550px;
+	grid-template-columns: 700px;
 	grid-template-rows: 30px 480px 50px;
 }
 
-.link_div {
+.step_content {
 	grid-area: 2 / 1 / 3 / 2;
+	margin: 0 auto;
 }
 
 .step_four {
@@ -152,10 +153,9 @@
 	width: 100px;
 }
 .social_icon_div {
-	width: 600px;
 	display: flex;
-	align-items: center;
-	margin: 3% 0;
+    align-items: center;
+    margin: 4% 0;
 }
 .textarea {
 	width: 550px;
@@ -169,7 +169,7 @@ caption {
 	text-align: left;
 }
 
-.preview_ctn {
+.step_four_content {
 	margin-top: 8%;
 	display: grid;
 	grid-template-columns: 160px 490px;

@@ -20,7 +20,7 @@ const StepTwo = (props) => {
 	};
 	return (
 		<div className={styles.step_two}>
-			<div className={styles.step_two_div}>
+			<div className={styles.step_content}>
 				<h6>Expertise:</h6>
 				<div className={styles.row}>
 					<div className={styles.column}>

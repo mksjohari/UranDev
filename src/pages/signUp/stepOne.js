@@ -23,7 +23,7 @@ const StepOne = (props) => {
 	}
 	return (
 		<div className={styles.step_one}>
-			<div className={styles.step_one_input}>
+			<div className={styles.step_content}>
 				<h6>Personal Details:</h6>
 				<div className={styles.personal_details}>
 					<SegmentedTab

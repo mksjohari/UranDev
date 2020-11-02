@@ -11,7 +11,7 @@ const StepThree = (props) => {
 	};
 	return (
 		<div className={styles.step_three}>
-			<div className={styles.link_div}>
+			<div className={styles.step_content}>
 				<div className={styles.social_icon_div}>
 					<span>Linkedin</span>
 					<input

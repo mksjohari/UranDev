@@ -36,7 +36,7 @@ const StepFour = (props) => {
 				<br />
 				your account details.
 			</h2>
-			<div className={styles.preview_ctn}>
+			<div className={styles.step_four_content}>
 				<div className={styles.img_div}>
 					<img
 						src={props.stepOne.img}
