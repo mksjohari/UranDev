@@ -2,102 +2,135 @@ import React, { useState } from "react";
 import { Formik, Field, useField } from "formik";
 
 import Button from "../sandbox/Button";
-import { close } from "../sandbox/Popup";
+import { close, lockBg } from "../sandbox/Popup";
 import Droparea from "../sandbox/Droparea";
 
-import styles from "../../modules/popup.module.scss";
+import styles from "../../modules/createProject.module.scss";
+import popup from "../../modules/popup.module.scss";
 
 function ResultSection(props) {
-    const sectionId = props.newForm ? "newSection" : props.section.sectionId;
+    const [meta] = useField(props.name);
+
+    const { push, remove, replace } = props;
+    const { value } = meta;
+    // const initialValues = useState(value)
+    // const reset = (index) => {
+    //     props.form.setFieldValue("sections", initialValues[index]);
+    // }
 
     return (
-        <div className={styles.form_container}>
-            <Formik
-                initialValues={{
-                    description: props.section.description,
-                    sectionLink: props.section.sectionLink,
-                    files: props.section.files,
-                }}
-                onSubmit={(values, actions) => {
-                    setTimeout(() => {
-                        alert(JSON.stringify(values));
-                        props.onConfirm(values);
-                        actions.setSubmitting(false);
-                    }, 1000);
-                }}
-                render={({ values }) => (
+        <div className={styles.section_input}>
+            {value.map((section, index) => {
                 
-                    <form
-                        
-                        className={styles.form}
-                        style={{ width: window.innerWidth * 0.4 }}
+                return (
+                    <div
+                        className={styles.section_card}
+                        key={section.sectionId}
                     >
-                        <h3>Add Result Section</h3>
-                        <div className={styles.toolsEdit}>
-                            <label
-                                htmlFor="description"
-                                className={styles.subtitle}
+                        <div>{section.description}</div>
+                        <Button
+                            id={section.sectionId}
+                            iconL={<i className="fas fa-edit"></i>}
+                            text="Edit section"
+                            onClick={lockBg}
+                        />
+                        <div
+                            className={`${popup.popupContainer}`}
+                            id={section.sectionId + "_popContent"}
+                        >
+                            <div
+                                className={`${popup.form_container}`}
+                                style={{ width: window.innerWidth * 0.6 }}
                             >
-                                Describe your section in detail. (Optional)
-                            </label>
-
-                            <Field
-                                as="textarea"
-                                name="description"
-                                className={styles.descEdit}
-                                placeholder="Write what this section is about ..."
-                            />
-                            <br />
-                            <label
-                                htmlFor="sectionLink"
-                                className={styles.subtitle}
-                            >
-                                Add an link to external sources.
-                            </label>
-                            <div className={styles.section_input_row}>
+                                <h3>Edit Result Section</h3>
+                                <label
+                                    htmlFor="description"
+                                    className={popup.subtitle}
+                                >
+                                    Describe your section in detail. (Optional)
+                                </label>
                                 <Field
-                                    as="input"
-                                    className={`inp-field ${styles.input_link}`}
-                                    name={`sectionLink.url`}
-                                    placeholder="URL"
+                                    as="textarea"
+                                    name={`sections[${index}].description`}
+                                    className={`inp-field ${popup.descEdit}`}
+                                    placeholder="Write what this section is about ..."
                                 />
+                                <br />
+                                <label
+                                    htmlFor="sectionLink"
+                                    className={popup.subtitle}
+                                >
+                                    Add an link to external sources.
+                                </label>
+                                <div className={styles.section_input_row}>
+                                    <Field
+                                        as="input"
+                                        className={`inp-field ${styles.input_link}`}
+                                        name={`sections[${index}].sectionLink.url`}
+                                        placeholder="URL"
+                                    />
+                                    <Field
+                                        as="input"
+                                        className={`inp-field ${styles.input_link}`}
+                                        name={`sections[${index}].sectionLink.linkName`}
+                                        placeholder="link name (optional)"
+                                    />
+                                </div>
+                                <br />
+                                <label
+                                    htmlFor="title"
+                                    className={popup.subtitle}
+                                >
+                                    Upload at most 3 files to showcase your work
+                                    (.mp4, .png, .jpeg)
+                                </label>
                                 <Field
-                                    as="input"
-                                    className={`inp-field ${styles.input_link}`}
-                                    name={`sectionLink.linkName`}
-                                    placeholder="link name (optional)"
+                                    as={Droparea}
+                                    name={`sections[${index}].files`}
                                 />
+                                <br />
+                                <div className={popup.btnsRow}>
+                                    <Button
+                                        text="Confirm"
+                                        id={section.sectionId + "_confirm"}
+                                        colour="reddo"
+                                        iconR={<i className="fas fa-check"></i>}
+                                        onClick={(e) => {
+                                            close(e, "_confirm");
+                                        }}
+                                    />
+                                    <Button
+                                        id={section.sectionId + "_close"}
+                                        text="Cancel"
+                                        // iconR={<i className="fas fa-times"></i>}
+                                        onClick={(e) => {
+                                            // reset(index);
+                                            close(e, "_close");
+                                        }}
+                                    />
+                                </div>
                             </div>
-                            <br />
-                            <label htmlFor="title" className={styles.subtitle}>
-                                Upload at most 3 files to showcase your work
-                                (.mp4, .png, .jpeg)
-                            </label>
-
-                            <Field as={Droparea} name="files" />
                         </div>
-                        <br />
-                        <div className={styles.btnsRow}>
-                            <Button
-                                type="submit"
-                                text="Confirm"
-                                id={sectionId + "_confirm"}
-                                colour="reddo"
-                                iconR={<i className="fas fa-check"></i>}
-                                onClick={(e) => {
-                                    // props.submitForm();
-                                    close(e, "_confirm");
-                                }}
-                            />
-                            <Button
-                                id={sectionId + "_close"}
-                                text="Cancel"
-                                // iconR={<i className="fas fa-times"></i>}
-                                onClick={(e) => close(e, "_close")}
-                            />
-                        </div>
-                    </form>
-                )}
+                    </div>
+                );
+            })}
+            <Button
+                colour="pink"
+                type="button"
+                onClick={() =>
+                    push({
+                        sectionId: `section-${new Date().getTime()}`,
+                        description: "Add your description here...",
+                        files: [],
+                        sectionLink: {
+                            url: "",
+                            linkName: "",
+                        },
+                    })
+                }
+                className={`${styles.save_draft} ${styles.center}`}
+                iconR={<i className="fas fa-plus"></i>}
+                text="Add result section"
             />
         </div>
     );

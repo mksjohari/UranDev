@@ -5,8 +5,8 @@ import { withContext } from "../../shared/react-dims";
 import { lockBg } from "../../shared/sandbox/Popup";
 import ResultSection from "../../shared/input/ResultSection";
 import Button from "../../shared/sandbox/Button";
+import Links from "../../shared/input/Links";
 
-import popup from "../../modules/popup.module.scss";
 import styles from "../../modules/createProject.module.scss";
 
 function Results(props) {
@@ -21,6 +21,7 @@ function Results(props) {
             initialValues={{
                 conclusion: props.results.conclusion,
                 links: props.results.links,
+                sections: props.results.sections,
             }}
             onSubmit={(values, actions) => {
                 setTimeout(() => {
@@ -49,7 +50,7 @@ function Results(props) {
                             placeholder="Type here"
                         />
                     </div>
-                    <br/>
+                    <br />
                     <div>
                         <label
                             htmlFor="links"
@@ -67,79 +68,10 @@ function Results(props) {
                             </div>
                         </label>
                         {linksExpand && (
-                            <FieldArray
-                                name="links"
-                                render={(arrayHelpers) => (
-                                    <div className={styles.section_input}>
-                                        {props.values.links.map((link, index) => (
-                                            <div
-                                                key={index}
-                                                className={
-                                                    styles.section_input_row
-                                                }
-                                            >
-                                                <label
-                                                    htmlFor="url"
-                                                    className={
-                                                        styles.section_question
-                                                    }
-                                                >
-                                                    {index + 1})
-                                                </label>
-                                                <Field
-                                                    as="input"
-                                                    className={`inp-field ${styles.input_link}`}
-                                                    name={`links[${index}].url`}
-                                                    placeholder="URL"
-                                                />
-                                                <Field
-                                                    as="input"
-                                                    className={`inp-field ${styles.input_link}`}
-                                                    name={`links.${index}.linkName`}
-                                                    placeholder="link name (optional)"
-                                                />
-
-                                                <div
-                                                    className={` ${styles.icon_trash}`}
-                                                    type="button"
-                                                    onClick={() =>
-                                                        arrayHelpers.remove(
-                                                            index
-                                                        )
-                                                    }
-                                                >
-                                                    <i className="fas fa-trash-alt"></i>
-                                                    <div
-                                                        className={
-                                                            styles.button_text
-                                                        }
-                                                    >
-                                                        Remove
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                        <Button
-                                            colour="pink"
-                                            type="button"
-                                            onClick={() =>
-                                                arrayHelpers.push({
-                                                    url: "",
-                                                    linkName: "",
-                                                })
-                                            }
-                                            className={`${styles.save_draft} ${styles.center}`}
-                                            iconR={
-                                                <i className="fas fa-plus"></i>
-                                            }
-                                            text="Add link to project"
-                                        />
-                                    </div>
-                                )}
-                            />
+                            <FieldArray name="links" component={Links} />
                         )}
                     </div>
-                    <br/>
+                    <br />
                     <div>
                         <label
                             htmlFor="sections"
@@ -164,34 +96,7 @@ function Results(props) {
                                     graphs, pictures, documents, or even the
                                     product itself (via a link).
                                 </div>
-                                <Button
-                                    id={"newSection"}
-                                    colour="pink"
-                                    type="button"
-                                    onClick={lockBg}
-                                    className={`${styles.save_draft} ${styles.center}`}
-                                    iconL={<i className="fas fa-plus"></i>}
-                                    text="Add result section"
-                                />
-                                <div
-                                    id={"newSection_popContent"}
-                                    className={popup.popupContainer}
-                                >
-                                    <ResultSection
-                                        id={"newSection"}
-                                        newForm
-                                        section={{
-                                            sectionId: `section-${new Date().getTime()}`,
-                                            description: "",
-                                            files: [],
-                                            sectionLink: {
-                                                url: "",
-                                                linkName: "",
-                                            },
-                                        }}
-                                        onConfirm={props.addSection}
-                                    />
-                                </div>
+                                <FieldArray name="sections" component={ResultSection} />
                             </div>
                         )}
                     </div>

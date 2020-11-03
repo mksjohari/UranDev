@@ -57,15 +57,15 @@ const projectData = {
             },
         ],
         sections: [
-            // {
-            //     sectionId: `section-${new Date().getTime()}`,
-            //     description: "",
-            //     files: [],
-            //     sectionLink: {
-            //         url: "",
-            //         linkName: "",
-            //     }
-            // },
+            {
+                sectionId: `section-${new Date().getTime()}`,
+                description: "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
+                files: [],
+                sectionLink: {
+                    url: "",
+                    linkName: "",
+                }
+            },
         ],
     },
 };
@@ -74,7 +74,7 @@ function CreateProject(props) {
     const [percent, setPercent] = useState(0);
     const [step, setStep] = useState(2);
     const [project, setProject] = useState(projectData);
-    console.log(project);
+    // console.log(project);
     function nextStep(props) {
         if (step < 3) {
             setPercent((step * 100 + 100) / 3);

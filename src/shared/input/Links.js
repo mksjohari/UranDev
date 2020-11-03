@@ -1,78 +1,56 @@
 import React from "react";
-import { Formik, Field, FieldArray, Form } from "formik";
+import { Field, useField } from "formik";
+import Button from "../../shared/sandbox/Button";
 import styles from "../../modules/createProject.module.scss";
 
 function Links(props) {
+    const [meta] = useField(props.name);
+
+    const { push, remove } = props;
+    const { value } = meta;
 
     return (
-        <div className={styles.input_teamsize}>
-            <Formik
-                initialValues={{
-                    links: props.links,
-                }}
-                onSubmit={async (values) => {
-                    await new Promise((r) => setTimeout(r, 500));
-                    alert(JSON.stringify(values, null, 2));
-                    props.handleClick(values);
-                }}
-                render={({ values }) => (
-                    <Form>
-                        <FieldArray
-                            name="links"
-                            render={(arrayHelpers) => (
-                                <div>
-                                    {values.links.map((link, index) => (
-                                        <div
-                                            key={index}
-                                            className={styles.section_input_row}
-                                        >
-                                            <label
-                                                htmlFor="url"
-                                                className={
-                                                    styles.section_question
-                                                }
-                                            >
-                                                {index + 1})
-                                            </label>
-                                            <Field
-                                                as="input"
-                                                className={`inp-field ${styles.input_link}`}
-                                                name={`links[${index}].url`}
-                                                placeholder="URL"
-                                            />
-                                            <Field
-                                                as="input"
-                                                className={`inp-field ${styles.input_link}`}
-                                                name={`links.${index}.linkName`}
-                                                placeholder="link name (optional)"
-                                            />
+        <div className={styles.section_input}>
+            {value.map((link, index) => (
+                <div key={index} className={styles.section_input_row}>
+                    <label htmlFor="url" className={styles.section_question}>
+                        {index + 1})
+                    </label>
+                    <Field
+                        as="input"
+                        className={`inp-field ${styles.input_link}`}
+                        name={`links[${index}].url`}
+                        placeholder="URL"
+                    />
+                    <Field
+                        as="input"
+                        className={`inp-field ${styles.input_link}`}
+                        name={`links[${index}].linkName`}
+                        placeholder="link name (optional)"
+                    />
 
-                                            <button
-                                                type="button"
-                                                onClick={() =>
-                                                    arrayHelpers.remove(index)
-                                                }
-                                            >
-                                                -
-                                            </button>
-                                        </div>
-                                    ))}
-                                    <button
-                                        type="submit"
-                                        onClick={() =>
-                                            arrayHelpers.push({
-                                                url: "",
-                                                linkName: "",
-                                            })
-                                        }
-                                    >
-                                        +
-                                    </button>
-                                </div>
-                            )}
-                        />
-                    </Form>
-                )}
+                    <div
+                        className={` ${styles.icon_trash}`}
+                        type="button"
+                        onClick={() => remove(index)}
+                    >
+                        <i className="fas fa-trash-alt"></i>
+                        <div className={styles.button_text}>Remove</div>
+                    </div>
+                </div>
+            ))}
+            <Button
+                colour="pink"
+                type="button"
+                onClick={() =>
+                    push({
+                        url: "",
+                        linkName: "",
+                    })
+                }
+                className={`${styles.save_draft} ${styles.center}`}
+                iconR={<i className="fas fa-plus"></i>}
+                text="Add link to project"
             />
         </div>
     );
