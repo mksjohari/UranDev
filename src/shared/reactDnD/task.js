@@ -36,7 +36,7 @@ const TaskCard = (props) => {
 							<Field
 								as="input"
 								name="taskTitle"
-								className={`${styles.title} ${styles.text_input}`}
+								className={`${styles.title} inp-field`}
 								placeholder="New task title"
 							/>
 							<br />
@@ -49,7 +49,7 @@ const TaskCard = (props) => {
 							<Field
 								as="textarea"
 								name="taskDescription"
-								className={`${styles.description_title} ${styles.text_input}`}
+								className={`${styles.description_title} inp-field`}
 								placeholder="Give this task a summary."
 							/>
 						</div>

@@ -135,7 +135,7 @@ function Situation(props) {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.button_next}>
+                    <div className={styles.button_footer}>
                         <Button
                             type="submit"
                             className={styles.save_draft}

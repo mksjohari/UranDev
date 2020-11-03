@@ -28,7 +28,16 @@ function TaskDnD(props) {
             description: "",
             startDate: null,
             endDate: null,
-            actionIds: [],
+            actions: [
+                {
+                    actionId: `action-${new Date().getTime()}`,
+                    title: "New action",
+                    tools: [],
+                    skills: [],
+                    description: "",
+                    files: [],
+                },
+            ],
         };
         props.updateTasks([...taskList, newTask]);
     }

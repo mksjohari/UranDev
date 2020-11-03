@@ -17,18 +17,17 @@ function TasksActions(props) {
                     tasks into smaller actions, outlining what you did and the
                     skills you've learned.
                 </label>
-                <TaskDnD
-                    data={props.tasks}
-                    updateTasks={props.editTasks}
+                <TaskDnD data={props.tasks} updateTasks={props.editTasks} />
+            </div>
+            <div className={styles.button_footer}>
+                <Button
+                    type="submit"
+                    className={styles.save_draft}
+                    iconR={<i className="fas fa-arrow-right" />}
+                    text="Next"
+                    onClick={props.nextStep}
                 />
             </div>
-            <Button
-                type="submit"
-                className={styles.save_draft}
-                iconR={<i className="fas fa-arrow-right" />}
-                text="Next"
-                onClick={props.nextStep}
-            />
         </div>
     );
 }

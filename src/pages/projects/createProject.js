@@ -26,16 +26,16 @@ const projectData = {
         teamSize: "",
         budget: 0,
         currency: "",
-        startDate: moment(new Date()),
-        endDate: moment(new Date()),
+        startDate: null,
+        endDate: null,
     },
     tasks: [
         {
             taskId: `task-${new Date().getTime()}`,
             title: "New task",
             description: "",
-            startDate: moment(new Date()),
-            endDate: moment(new Date()),
+            startDate: null,
+            endDate: null,
             actions: [
                 {
                     actionId: `action-${new Date().getTime()}`,
@@ -72,7 +72,7 @@ const projectData = {
 
 function CreateProject(props) {
     const [percent, setPercent] = useState(0);
-    const [step, setStep] = useState(2);
+    const [step, setStep] = useState(1);
     const [project, setProject] = useState(projectData);
     // console.log(project);
     function nextStep(props) {
@@ -175,6 +175,7 @@ function CreateProject(props) {
                     <Situation
                         situation={project.situation}
                         nextStep={nextStep}
+                        prevStep={prevStep}
                         editSituation={editSituation}
                     />
                 </div>
@@ -185,6 +186,7 @@ function CreateProject(props) {
                     <TasksActions
                         tasks={project.tasks}
                         nextStep={nextStep}
+                        prevStep={prevStep}
                         editTasks={editTasks}
                     />
                 </div>
@@ -195,6 +197,7 @@ function CreateProject(props) {
                     <Results
                         results={project.results}
                         nextStep={nextStep}
+                        prevStep={prevStep}
                         editResults={editResults}
                         addSection={addSection}
                         editSections={editSections}
@@ -202,7 +205,7 @@ function CreateProject(props) {
                 </div>
             )}
             {step === 3 && <PreviewProject />}
-            <div className={styles.button_row}>
+            <div className={styles.button_back}>
                 {step !== 0 && (
                     <Button
                         iconL={<i className="fas fa-arrow-left" />}

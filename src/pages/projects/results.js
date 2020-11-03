@@ -33,7 +33,7 @@ function Results(props) {
             }}
         >
             {(props) => (
-                <Form>
+                <form onSubmit={props.handleSubmit}>
                     <div className={styles.section_input}>
                         <label
                             htmlFor="conclusion"
@@ -96,17 +96,23 @@ function Results(props) {
                                     graphs, pictures, documents, or even the
                                     product itself (via a link).
                                 </div>
-                                <FieldArray name="sections" component={ResultSection} />
+                                <FieldArray
+                                    name="sections"
+                                    component={ResultSection}
+                                />
                             </div>
                         )}
                     </div>
-                    <Button
-                        type="submit"
-                        className={styles.save_draft}
-                        iconR={<i className="fas fa-arrow-right" />}
-                        text="Next"
-                    />
-                </Form>
+                    <div className={styles.button_footer}>
+                        <Button
+                            type="submit"
+                            className={styles.save_draft}
+                            iconR={<i className="fas fa-arrow-right" />}
+                            text="Next"
+                            onClick={props.submitForm}
+                        />
+                    </div>
+                </form>
             )}
         </Formik>
     );

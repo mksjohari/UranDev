@@ -16,14 +16,13 @@
     display: flex;
     flex-direction: row-reverse;
 }
-.button_row {
-    align-self: flex-start;
-    display: inline-flex;
-    justify-content: space-between;
+.button_back {
+    margin: -32px 0 0 0;
 }
-.button_next {
-    justify-content: end;
-    display: grid;
+.button_footer {
+    margin: 2rem 0 0 0;
+    display: flex;
+    justify-content: flex-end;
 }
 .save_draft {
     color: $navy;
