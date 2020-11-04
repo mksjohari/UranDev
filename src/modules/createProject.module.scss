@@ -24,6 +24,11 @@
     display: flex;
     justify-content: flex-end;
 }
+.section_footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 0em 0em 0em;
+}
 .save_draft {
     color: $navy;
     background-color: $pink;

@@ -4,6 +4,7 @@ import { Field, useField } from "formik";
 import Button from "../sandbox/Button";
 import { close, lockBg } from "../sandbox/Popup";
 import Droparea from "../sandbox/Droparea";
+import Alert from "../sandbox/Alert";
 
 import styles from "../../modules/createProject.module.scss";
 import popup from "../../modules/popup.module.scss";
@@ -21,19 +22,40 @@ function ResultSection(props) {
     return (
         <div className={styles.section_input}>
             {value.map((section, index) => {
-                
                 return (
                     <div
                         className={styles.section_card}
                         key={section.sectionId}
                     >
                         <div>{section.description}</div>
-                        <Button
-                            id={section.sectionId}
-                            iconL={<i className="fas fa-edit"></i>}
-                            text="Edit section"
-                            onClick={lockBg}
-                        />
+                        <div className={styles.section_footer}>
+                            <Button
+                                colour="reddo"
+                                id={"delSection"}
+                                iconL={<i className="fas fa-trash-alt"></i>}
+                                text="Delete section"
+                                onClick={lockBg}
+                            />
+                            <Button
+                                id={section.sectionId}
+                                iconL={<i className="fas fa-edit"></i>}
+                                text="Edit section"
+                                onClick={lockBg}
+                            />
+                        </div>
+                        <div
+                            className={popup.popupContainer}
+                            id={"delSection_popContent"}
+                        >
+                            <Alert
+                                id={"delSection"}
+                                type="result section"
+                                hasConfirm
+                                confirmBtnLabel="Yes, delete"
+                                closeBtnLabel="No, go back"
+                                onConfirm={() => remove(index)}
+                            />
+                        </div>
                         <div
                             className={`${popup.popupContainer}`}
                             id={section.sectionId + "_popContent"}
@@ -91,7 +113,7 @@ function ResultSection(props) {
                                 <br />
                                 <div className={popup.btnsRow}>
                                     <Button
-                                        text="Confirm"
+                                        text="Save"
                                         id={section.sectionId + "_confirm"}
                                         colour="reddo"
                                         iconR={<i className="fas fa-check"></i>}
@@ -99,7 +121,7 @@ function ResultSection(props) {
                                             close(e, "_confirm");
                                         }}
                                     />
-                                    <Button
+                                    {/* <Button
                                         id={section.sectionId + "_close"}
                                         text="Cancel"
                                         // iconR={<i className="fas fa-times"></i>}
@@ -107,7 +129,7 @@ function ResultSection(props) {
                                             // reset(index);
                                             close(e, "_close");
                                         }}
-                                    />
+                                    /> */}
                                 </div>
                             </div>
                         </div>

@@ -65,8 +65,33 @@
 }
 .descEdit {
     width: 100%;
+    height: 80px;
 }
 
 .subtitle {
     padding: 10px 0px;
 }
+
+.alert {
+    font-size: 40px;
+    color: $reddo;
+    padding: 10px;
+  }
+  
+  .alert_container {
+      width : 500px;
+      background-color: white;
+  }
+  .title {
+    display: flex;
+    line-height: initial;
+  }
+  
+  .title h3 {
+    margin: auto 5px !important;
+  }
+  
+  .msg {
+    padding: 15px 70px;
+  }
+  

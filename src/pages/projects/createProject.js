@@ -22,11 +22,10 @@ const projectData = {
     situation: {
         summary: "",
         role: "",
-        teamSize: "",
+        teamSize: "1",
         budget: 0,
-        currency: "",
-        startDate: null,
-        endDate: null,
+        currency: "aud",
+        projectDates: { startDate: null, endDate: null },
     },
     tasks: [
         {
@@ -36,14 +35,14 @@ const projectData = {
             startDate: null,
             endDate: null,
             actions: [
-                {
-                    actionId: `action-${new Date().getTime()}`,
-                    title: "New action",
-                    tools: [],
-                    skills: [],
-                    description: "",
-                    files: [],
-                },
+                // {
+                //     actionId: `action-${new Date().getTime()}`,
+                //     title: "New action",
+                //     tools: [],
+                //     skills: [],
+                //     description: "",
+                //     files: [],
+                // },
             ],
         },
     ],
@@ -58,12 +57,13 @@ const projectData = {
         sections: [
             {
                 sectionId: `section-${new Date().getTime()}`,
-                description: "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
+                description:
+                    "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
                 files: [],
                 sectionLink: {
                     url: "",
                     linkName: "",
-                }
+                },
             },
         ],
     },
@@ -71,9 +71,9 @@ const projectData = {
 
 function CreateProject(props) {
     const [percent, setPercent] = useState(0);
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(0);
     const [project, setProject] = useState(projectData);
-    // console.log(project);
+    console.log(project);
     function nextStep(props) {
         if (step < 3) {
             setPercent((step * 100 + 100) / 3);
@@ -203,7 +203,7 @@ function CreateProject(props) {
                     />
                 </div>
             )}
-            {step === 3 && <PreviewProject />}
+            {step === 3 && <PreviewProject project={project} />}
             <div className={styles.button_back}>
                 {step !== 0 && (
                     <Button

@@ -1,6 +1,6 @@
 import React from "react";
 
-import Popup, { lockBg } from "../sandbox/Popup";
+import { lockBg } from "../sandbox/Popup";
 import AddActionForm from "../../shared/input/AddActionForm";
 import Alert from "../sandbox/Alert";
 import Button from "../sandbox/Button";
@@ -57,9 +57,7 @@ const ActionCard = (props) => {
                 ) : (
                     ""
                 )}
-                <div
-                    className={`${styles.description_action}`}
-                >
+                <div className={`${styles.description_action}`}>
                     {props.action.description}
                 </div>
                 <div>
@@ -76,19 +74,26 @@ const ActionCard = (props) => {
                 </div>
             </div>
             <div className={styles.task_footer}>
-                <Popup
-                    BtnText="Delete Action"
-                    BtnColour="reddo"
-                    BtnId="delAction"
-                    BtnIconR={<i className="fas fa-trash-alt"></i>}
-                    contentBGColour={"white"}
-                    closeBtnLabel="No, go back"
-                    hasConfirm
-                    confirmBtnLabel="Yes, delete"
-                    onConfirm={deleteAction}
-                    width={500}
-                    content={<Alert id="delAction" type="action" />}
+                <Button
+                    colour="reddo"
+                    id={"delAction"}
+                    iconL={<i className="fas fa-trash-alt"></i>}
+                    text="Delete action"
+                    onClick={lockBg}
                 />
+                <div
+                    className={popup.popupContainer}
+                    id={"delAction_popContent"}
+                >
+                    <Alert
+                        id={"delAction"}
+                        type="action"
+                        hasConfirm
+                        confirmBtnLabel="Yes, delete"
+                        closeBtnLabel="No, go back"
+                        onConfirm={deleteAction}
+                    />
+                </div>
                 <Button
                     id={actionId}
                     iconL={<i className="fas fa-edit"></i>}
