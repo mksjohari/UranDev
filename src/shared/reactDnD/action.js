@@ -4,7 +4,7 @@ import Popup, { lockBg } from "../sandbox/Popup";
 import AddActionForm from "../../shared/input/AddActionForm";
 import Alert from "../sandbox/Alert";
 import Button from "../sandbox/Button";
-import Thumbs from "../sandbox/Thumbs";
+import Carousel from "../sandbox/Carousel";
 
 import styles from "../../modules/DnD.module.scss";
 import projects from "../../modules/projects.module.scss";
@@ -17,54 +17,57 @@ const ActionCard = (props) => {
     return (
         <div className={styles.action_card}>
             <div className={styles.title}>{props.action.title}</div>
-            <div className={styles.description_action}>
-                {props.action.description}
-            </div>
+
             <div className={styles.action_tags}>
                 {props.action.skills.length ? (
-                    <div className={styles.action_subtitle}>
-                        Skills:
-                        <div className={styles.col_right}>
-                            <div className={styles.project_tags}>
-                                {props.action.skills.map((skill, index) => (
-                                    <span
-                                        key={skill}
-                                        className={`${projects.tag_type} ${projects.Skill}`}
-                                    >
-                                        {skill}
-                                    </span>
-                                ))}
-                            </div>
+                    <div className={styles.project_tags}>
+                        <div
+                            className={`${styles.action_subtitle} ${styles.tags_subtitle}`}
+                        >
+                            Skills:
                         </div>
+                        {props.action.skills.map((skill, index) => (
+                            <span
+                                key={skill}
+                                className={`${projects.tag_type} ${projects.Skill}`}
+                            >
+                                {skill}
+                            </span>
+                        ))}
                     </div>
                 ) : (
                     ""
                 )}
                 {props.action.tools.length ? (
-                    <div className={styles.action_subtitle}>
-                        Tools:
-                        <div className={styles.col_right}>
-                            <div className={styles.project_tags}>
-                                {props.action.tools.map((tool, index) => (
-                                    <span
-                                        key={tool}
-                                        className={`${projects.tag_type} ${projects.Tool}`}
-                                    >
-                                        {tool}
-                                    </span>
-                                ))}
-                            </div>
+                    <div className={styles.project_tags}>
+                        <div
+                            className={`${styles.action_subtitle} ${styles.tags_subtitle}`}
+                        >
+                            Tools:
                         </div>
+                        {props.action.tools.map((tool, index) => (
+                            <span
+                                key={tool}
+                                className={`${projects.tag_type} ${projects.Tool}`}
+                            >
+                                {tool}
+                            </span>
+                        ))}
                     </div>
                 ) : (
                     ""
                 )}
+                <div
+                    className={`${styles.description_action}`}
+                >
+                    {props.action.description}
+                </div>
                 <div>
                     {props.action.files.length ? (
                         <div className={styles.action_subtitle}>
                             Files:
-                            <div className={styles.files_display}>
-                                <Thumbs files={props.action.files} />
+                            <div className={styles.carousel_display}>
+                                <Carousel files={props.action.files} />
                             </div>
                         </div>
                     ) : (

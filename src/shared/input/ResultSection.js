@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Formik, Field, useField } from "formik";
+import React from "react";
+import { Field, useField } from "formik";
 
 import Button from "../sandbox/Button";
 import { close, lockBg } from "../sandbox/Popup";

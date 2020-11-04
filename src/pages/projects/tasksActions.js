@@ -1,5 +1,4 @@
 import React from "react";
-import { Formik, Field } from "formik";
 
 import TaskDnD from "../../shared/reactDnD/taskDnD";
 import Button from "../../shared/sandbox/Button";

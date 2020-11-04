@@ -102,18 +102,19 @@
     flex-direction: column;
 }
 
-.description_title {
+.description_textbox {
     font-size: 14px;
-    line-height: 2;
-    font-weight: 400;
+    line-height: 1.5;
     resize: none;
+    height: 80px;
 }
 
 .description_action {
     font-size: 14px;
-    line-height: 2;
-    font-weight: 400;
-    margin: 0em 0em 1em 0em;
+    line-height: 1.5;
+    margin: 1em 0;
+    flex-wrap: wrap;
+    max-width: 300px;
 }
 
 .action_tags {
@@ -124,11 +125,17 @@
     font-size: 14px;
     font-weight: 400;
     font-style: italic;
-    line-height: 2;
-    margin-top: 1em;
-    display: table-cell;
+}
+.tags_subtitle {
+    margin-right: 1em;
 }
 
+.project_tags {
+    display: flex;
+    line-height: 2;
+    margin-top: 1em;
+    flex-wrap: wrap;
+}
 .duration_button {
     background-color: rgba(0, 0, 0, 0);
     box-sizing: border-box;
@@ -165,4 +172,8 @@
 .files_display {
     max-height: 200px;
     overflow: scroll;
+}
+
+.carousel_display {
+    display: flex;
 }

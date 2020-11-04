@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Formik, Field, FieldArray, Form } from "formik";
 import { withContext } from "../../shared/react-dims";
 
-import { lockBg } from "../../shared/sandbox/Popup";
 import ResultSection from "../../shared/input/ResultSection";
 import Button from "../../shared/sandbox/Button";
 import Links from "../../shared/input/Links";

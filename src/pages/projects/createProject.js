@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { withFormik } from "formik";
-import * as moment from "moment";
 import { withContext } from "../../shared/react-dims";
 
 import Button from "../../shared/sandbox/Button";

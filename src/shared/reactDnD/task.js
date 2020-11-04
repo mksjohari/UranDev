@@ -30,7 +30,7 @@ const TaskCard = (props) => {
 				{(props) => (
 					<form onSubmit={props.handleSubmit} className={styles.form}>
 						<div className={styles.col_input}>
-							<label htmlFor="taskTitle" className={styles.title}>
+							<label htmlFor="taskTitle" className={styles.action_subtitle}>
 								Task title:
 							</label>
 							<Field
@@ -42,14 +42,14 @@ const TaskCard = (props) => {
 							<br />
 							<label
 								htmlFor="taskTitle"
-								className={styles.description_title}
+								className={styles.action_subtitle}
 							>
 								Task description:
 							</label>
 							<Field
 								as="textarea"
 								name="taskDescription"
-								className={`${styles.description_title} inp-field`}
+								className={`${styles.description_textbox} inp-field`}
 								placeholder="Give this task a summary."
 							/>
 						</div>
@@ -87,7 +87,7 @@ const TaskCard = (props) => {
 				<div className={styles.title}>
 					Task {props.index + 1}: {props.task.title}
 				</div>
-				<div className={styles.description_title}>
+				<div className={styles.description_action}>
 					{props.task.description}
 				</div>
 				<Formik
