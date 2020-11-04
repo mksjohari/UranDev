@@ -113,7 +113,7 @@ function ResultSection(props) {
                                 <br />
                                 <div className={popup.btnsRow}>
                                     <Button
-                                        text="Save"
+                                        text="Confirm"
                                         id={section.sectionId + "_confirm"}
                                         colour="reddo"
                                         iconR={<i className="fas fa-check"></i>}

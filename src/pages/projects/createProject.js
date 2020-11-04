@@ -24,7 +24,7 @@ const projectData = {
         role: "",
         teamSize: "1",
         budget: 0,
-        currency: "aud",
+        currency: "AUD",
         projectDates: { startDate: null, endDate: null },
     },
     tasks: [
@@ -49,22 +49,22 @@ const projectData = {
     results: {
         conclusion: "",
         links: [
-            {
-                url: "",
-                linkName: "",
-            },
+            // {
+            //     url: "",
+            //     linkName: "",
+            // },
         ],
         sections: [
-            {
-                sectionId: `section-${new Date().getTime()}`,
-                description:
-                    "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
-                files: [],
-                sectionLink: {
-                    url: "",
-                    linkName: "",
-                },
-            },
+            // {
+            //     sectionId: `section-${new Date().getTime()}`,
+            //     description:
+            //         "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
+            //     files: [],
+            //     sectionLink: {
+            //         url: "",
+            //         linkName: "",
+            //     },
+            // },
         ],
     },
 };
@@ -158,7 +158,7 @@ function CreateProject(props) {
                 />
             </div>
             <div className={styles.title_help}>
-                Click on the title to edit project name.
+                Click on the title to edit project details.
             </div>
             <div className={styles.section}>
                 <Timeline

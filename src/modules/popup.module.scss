@@ -94,4 +94,12 @@
   .msg {
     padding: 15px 70px;
   }
-  
+  .project_details_root{
+      display: flex;
+      flex-direction: column;
+  }
+  .section_columns {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+  }
