@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Formik, Field, Form, useField, withFormik } from "formik";
-import * as moment from "moment";
+import React, { useState } from "react";
+import { withFormik } from "formik";
 import { withContext } from "../../shared/react-dims";
 
 import Button from "../../shared/sandbox/Button";
-import Dropdown from "../../shared/sandbox/Dropdown";
 import Timeline from "../../shared/sandbox/Timeline";
-import Situation from "./situation";
-import TasksActions from "./tasksActions";
-import PreviewProject from "./previewProject";
 import { lockBg } from "../../shared/sandbox/Popup";
 import ProjectDetails from "../../shared/input/ProjectDetails";
+import Situation from "./situation";
+import TasksActions from "./tasksActions";
+import Results from "./results";
+import PreviewProject from "./previewProject";
 
 import popup from "../../modules/popup.module.scss";
 import styles from "../../modules/createProject.module.scss";
@@ -24,47 +22,58 @@ const projectData = {
     situation: {
         summary: "",
         role: "",
-        teamSize: "",
+        teamSize: "1",
         budget: 0,
-        currency: "",
-        startDate: moment(new Date()),
-        endDate: moment(new Date()),
+        currency: "AUD",
+        projectDates: { startDate: null, endDate: null },
     },
     tasks: [
         {
             taskId: `task-${new Date().getTime()}`,
             title: "New task",
             description: "",
-            startDate: moment(new Date()),
-            endDate: moment(new Date()),
+            startDate: null,
+            endDate: null,
             actions: [
-                {
-                    actionId: `action-${new Date().getTime()}`,
-                    title: "New action",
-                    tools: [],
-                    skills: [],
-                    description: "",
-                    files: [],
-                },
+                // {
+                //     actionId: `action-${new Date().getTime()}`,
+                //     title: "New action",
+                //     tools: [],
+                //     skills: [],
+                //     description: "",
+                //     files: [],
+                // },
             ],
         },
     ],
-    results: null,
+    results: {
+        conclusion: "",
+        links: [
+            // {
+            //     url: "",
+            //     linkName: "",
+            // },
+        ],
+        sections: [
+            // {
+            //     sectionId: `section-${new Date().getTime()}`,
+            //     description:
+            //         "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
+            //     files: [],
+            //     sectionLink: {
+            //         url: "",
+            //         linkName: "",
+            //     },
+            // },
+        ],
+    },
 };
 
 function CreateProject(props) {
     const [percent, setPercent] = useState(0);
     const [step, setStep] = useState(0);
     const [project, setProject] = useState(projectData);
-
-    const {
-        values,
-        touched,
-        errors,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-    } = props;
+    console.log(project);
     function nextStep(props) {
         if (step < 3) {
             setPercent((step * 100 + 100) / 3);
@@ -76,6 +85,12 @@ function CreateProject(props) {
             setPercent((step * 100 - 100) / 3);
             setStep(step - 1);
         }
+    }
+    function addSection(values) {
+        const newSections = [...project.results.sections, values];
+        const newProject = { ...project };
+        newProject.results.sections = newSections;
+        setProject(newProject);
     }
     function editProjectDetails(values) {
         const newProject = { ...project };
@@ -94,89 +109,111 @@ function CreateProject(props) {
         newProject.tasks = values;
         setProject(newProject);
     }
+    function editResults(values) {
+        const newProject = { ...project };
+        newProject.results = values;
+        setProject(newProject);
+    }
+    function editSections(index, values) {
+        const newSections = [...project.results.sections];
+        newSections[index].description = values.description;
+        newSections[index].sectionLink = values.sectionLink;
+        newSections[index].files = values.files;
+        const newProject = { ...project };
+        newProject.results.sections[index] = newSections;
+        setProject(newProject);
+    }
     return (
-        <form onSubmit={handleSubmit}>
-            <div className={styles.root}>
-                <div className={styles.header}>
-                    <div className={styles.button_row}>
-                        <Button
-                            type="submit"
-                            className={styles.save_draft}
-                            iconR={<i className="far fa-save"></i>}
-                            text="Save draft"
-                        />
-                        <Button
-                            className={styles.delete_project}
-                            iconR={<i className="far fa-trash-alt"></i>}
-                            text="Delete project"
-                        />
-                    </div>
-                </div>
-                <div
-                    id={project.projectId}
-                    className={styles.project_title}
-                    onClick={lockBg}
-                >
-                    {project.title}
-                </div>
-                <div
-                    id={project.projectId + "_popContent"}
-                    className={popup.popupContainer}
-                >
-                    <ProjectDetails
-                        id={project.projectId}
-                        project={project}
-                        editProjectDetails={editProjectDetails}
-                    />
-                </div>
-                <div className={styles.title_help}>
-                    Click on the title to edit project name.
-                </div>
-                <div className={styles.section}>
-                    <Timeline
-                        label={label}
-                        percent={percent}
-                        width={props.dims.width * 0.7}
-                    />
-                </div>
-
-                {step === 0 && (
-                    <div className={styles.parent_form}>
-                        <div className={styles.heading}>Situation</div>
-                        <Situation
-                            situation={project.situation}
-                            nextStep={nextStep}
-                            editSituation={editSituation}
-                        />
-                    </div>
-                )}
-                {step === 1 && (
-                    <div className={styles.parent_form}>
-                        <div className={styles.heading}>Tasks & Actions</div>
-                        <TasksActions
-                            tasks={project.tasks}
-                            nextStep={nextStep}
-                            editTasks={editTasks}
-                        />
-                    </div>
-                )}
-                {step === 2 && (
-                    <div className={styles.parent_form}>
-                        <div className={styles.heading}>Results</div>
-                    </div>
-                )}
-                {step === 3 && <PreviewProject />}
+        <div className={styles.root}>
+            <div className={styles.header}>
                 <div className={styles.button_row}>
-                    {step !== 0 && (
-                        <Button
-                            iconL={<i className="fas fa-arrow-left" />}
-                            text="Back"
-                            onClick={prevStep}
-                        />
-                    )}
+                    <Button
+                        type="submit"
+                        className={styles.save_draft}
+                        iconR={<i className="far fa-save"></i>}
+                        text="Save draft"
+                    />
+                    <Button
+                        className={styles.delete_project}
+                        iconR={<i className="far fa-trash-alt"></i>}
+                        text="Delete project"
+                    />
                 </div>
             </div>
-        </form>
+            <div
+                id={project.projectId}
+                className={styles.project_title}
+                onClick={lockBg}
+            >
+                {project.title}
+            </div>
+            <div
+                id={project.projectId + "_popContent"}
+                className={popup.popupContainer}
+            >
+                <ProjectDetails
+                    id={project.projectId}
+                    project={project}
+                    editProjectDetails={editProjectDetails}
+                />
+            </div>
+            <div className={styles.title_help}>
+                Click on the title to edit project details.
+            </div>
+            <div className={styles.section}>
+                <Timeline
+                    label={label}
+                    percent={percent}
+                    width={props.dims.width * 0.7}
+                />
+            </div>
+
+            {step === 0 && (
+                <div className={styles.parent_form}>
+                    <div className={styles.heading}>Situation</div>
+                    <Situation
+                        situation={project.situation}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                        editSituation={editSituation}
+                    />
+                </div>
+            )}
+            {step === 1 && (
+                <div className={styles.parent_form}>
+                    <div className={styles.heading}>Tasks & Actions</div>
+                    <TasksActions
+                        tasks={project.tasks}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                        editTasks={editTasks}
+                    />
+                </div>
+            )}
+            {step === 2 && (
+                <div className={styles.parent_form}>
+                    <div className={styles.heading}>Results</div>
+                    <Results
+                        results={project.results}
+                        nextStep={nextStep}
+                        prevStep={prevStep}
+                        editResults={editResults}
+                        addSection={addSection}
+                        editSections={editSections}
+                    />
+                </div>
+            )}
+            {step === 3 && <PreviewProject project={project} />}
+            <div className={styles.button_back}>
+                {step !== 0 && (
+                    <Button
+                        iconL={<i className="fas fa-arrow-left" />}
+                        text="Back"
+                        onClick={prevStep}
+                    />
+                )}
+            </div>
+        </div>
     );
 }
 

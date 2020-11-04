@@ -5,7 +5,7 @@ import styles from "../../modules/createProject.module.scss";
 function TeamSize(props) {
     // This isn't an input, so instead of using the values in 'field' directly,
     // we'll use 'meta' and 'helpers'.
-    const [meta, helpers] = useField(props.name);
+    const [field, meta, helpers] = useField(props.name);
 
     const { value } = meta;
     const { setValue } = helpers;

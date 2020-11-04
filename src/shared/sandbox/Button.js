@@ -4,7 +4,7 @@ function Button(props) {
 	return (
 		<>
 			<button
-				type="button"
+				type={props.type === "submit"? "submit" : "button"}
 				className={props.colour + ' ' + props.className}
 				style={{ display: `${props.iconB ? 'grid' : 'inline'}` }}
 				id={props.id}

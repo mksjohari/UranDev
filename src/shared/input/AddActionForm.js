@@ -6,7 +6,7 @@ import Button from '../sandbox/Button';
 import { close } from '../sandbox/Popup';
 import Droparea from '../sandbox/Droparea';
 
-import styles from '../../modules/popup.module.scss';
+import popup from '../../modules/popup.module.scss';
 
 const dropdownConverter = (data) => {
 	const output = [];
@@ -22,7 +22,7 @@ function AddActionForm(props) {
 	const actionId = props.action.actionId;
 
 	return (
-		<div className={styles.form_container}>
+		<div className={popup.form_container}>
 			<Formik
 				initialValues={{
 					title: props.action.title,
@@ -44,12 +44,12 @@ function AddActionForm(props) {
 				{(props) => (
 					<form
 						onSubmit={props.handleSubmit}
-						className={styles.form}
+						className={popup.form}
 						style={{ width: window.innerWidth * 0.6 }}
 					>
-						<h3>Add Action</h3>
-						<div className={styles.toolsEdit}>
-							<label htmlFor="tools" className={styles.subtitle}>
+						<h3>Edit Action</h3>
+						<div>
+							<label htmlFor="tools" className={popup.subtitle}>
 								What tool(s) did you use?
 							</label>
 							<Field name="tools">
@@ -75,7 +75,7 @@ function AddActionForm(props) {
 								)}
 							</Field>
 							<br />
-							<label htmlFor="skills" className={styles.subtitle}>
+							<label htmlFor="skills" className={popup.subtitle}>
 								What Skill(s) allowed you to do this?
 							</label>
 							<Field name="skills">
@@ -102,25 +102,25 @@ function AddActionForm(props) {
 							<br />
 							<label
 								htmlFor="description"
-								className={styles.subtitle}
+								className={popup.subtitle}
 							>
 								Describe your action in detail. (Optional)
 							</label>
 							<Field
 								as="textarea"
 								name="description"
-								className={styles.descEdit}
+								className={`inp-field ${popup.descEdit}`}
 								placeholder="Give this action a description."
 							/>
 							<br />
-							<label htmlFor="files" className={styles.subtitle}>
+							<label htmlFor="files" className={popup.subtitle}>
 								Add files to show your work in progress.
 								(Optional, max 10 files)
 							</label>
 							<Field as={Droparea} name="files" />
 						</div>
 						<br />
-						<div className={styles.btnsRow}>
+						<div className={popup.btnsRow}>
 							<Button
 								text="Confirm"
 								id={actionId + '_confirm'}

@@ -4,10 +4,10 @@ import styles from '../../modules/createProject.module.scss';
 import Dropdown from '../sandbox/Dropdown';
 
 const CurrencyOptions = [
-	{ value: 'aud', label: 'AUD' },
-	{ value: 'cad', label: 'CAD' },
-	{ value: 'gbp', label: 'GBP' },
-	{ value: 'usd', label: 'USD' },
+    { value: "AUD", label: "AUD" },
+    { value: "CAD", label: "CAD" },
+    { value: "GBP", label: "GBP" },
+    { value: "USD", label: "USD" },
 ];
 
 function Currency(props) {
