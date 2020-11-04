@@ -23,7 +23,7 @@ function TaskDnD(props) {
     }, [switching]);
     useEffect(() => {
         props.handleClick(taskList);
-    }, [taskList]);
+    }, [taskList, props]);
     function addTask() {
         const newTask = {
             taskId: `task-${new Date().getTime()}`,
