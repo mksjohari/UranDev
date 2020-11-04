@@ -8,8 +8,7 @@ import SearchResult from "./SearchResult";
 import { getExploreUsers } from "../../shared/firebase/firebase";
 import Button from "../../shared/sandbox/Button";
 
-const getUsers = async (setUsers, limit, page) => {
-    console.log(limit);
+const getAllUsers = async (setUsers, limit, page) => {
     const results = await getExploreUsers({ limit, page });
     if (!results.data || results.data.length === 0) {
         setUsers([]);
@@ -18,16 +17,20 @@ const getUsers = async (setUsers, limit, page) => {
     }
 };
 
+const getFilterUsers = async (filter, setusers, limit, page) => {
+    console.log("getting filtered users");
+};
+
 const Explore = (props) => {
     const [users, setUsers] = useState([]);
-    const [page, setPage] = useState();
-    const [limit, setLimit] = useState();
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(2);
     useEffect(() => {
         setPage(1);
         setLimit(2);
     }, []);
     useEffect(() => {
-        getUsers(setUsers, limit, page);
+        getAllUsers(setUsers, limit, page);
     }, [page]);
     return (
         <div>
