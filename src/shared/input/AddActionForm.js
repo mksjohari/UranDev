@@ -33,7 +33,6 @@ function AddActionForm(props) {
 				}}
 				onSubmit={(values, actions) => {
 					setTimeout(() => {
-						// alert(JSON.stringify(values, null, 2));
 						const tools = dropdownConverter(values.tools);
 						const skills = dropdownConverter(values.skills);
 						props.editAction(props.index, values, tools, skills);
