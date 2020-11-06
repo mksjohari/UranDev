@@ -1,20 +1,16 @@
 @import 'variable';
 
 .container {
-  width: 100%;
+  flex: 1;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  flex-direction: column;
 }
 
-.main404 {
-  font-size: 144px;
-  color: $darkblue;
-  min-height: 144px;
-  line-height: initial;
-}
-
-.msg {
-  font-size: 24px;
-  color: $darkblue;
-  line-height: initial;
-  padding-bottom: 30px;
+.errorimg {
+  width: 50%;
+  min-width: 400px;
 }
