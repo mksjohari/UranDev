@@ -7,6 +7,7 @@ import Button from './sandbox/Button';
 import { getFirebase } from './firebase/config';
 import { logoutUser } from '../actions/userAction';
 import Menu from './Menu';
+import DevButton from './sandbox/devButton';
 
 function mapStateToProps(state) {
 	return { user: state.user };
@@ -25,6 +26,12 @@ const Header = (props) => {
 	}, [props.user]);
 	return (
 		<header className={styles.header}>
+			<DevButton
+				text="redux user"
+				onClick={() => {
+					console.log(props.user);
+				}}
+			/>
 			<div className={styles.logoAndDetails}>
 				<div className={styles.logo}>
 					<Link className={styles.headerLink} to="/">

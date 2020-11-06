@@ -35,12 +35,14 @@ export const getExploreUsers = getFunctions(firebase).httpsCallable(
 
 // FIRESTORE
 
-export const testFirestore = async (uuid) => {
+export const uploadProject = async (uuid, project) => {
 	await getFirebase()
 		.firestore()
 		.collection('users')
 		.doc(uuid)
-		.set({ status: 'I AM THE CHAMP' });
+		.collection('projects')
+		.doc(project.projectId)
+		.set(project);
 };
 
 // STORAGE //

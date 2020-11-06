@@ -13,6 +13,7 @@ import redirectProject from './pages/redirects/redirectProject';
 import Page404 from './pages/404/404';
 import './styles/index.scss';
 import Home from './pages/home/home';
+import TempPreview from './pages/projects/tempPreview';
 require('typeface-poppins');
 
 const Index = () => {
@@ -23,13 +24,14 @@ const Index = () => {
 				<Route component={explore} path="/explore" />
 				<Route component={signUp} path="/signUp" />
 				<Route component={projects} path="/users/:uid/projects" />
+				<Route component={TempPreview} path="/users/:uid/projects" />
 				<Route component={createProject} path="/create" />
 				<Route component={draftProjects} path="/drafts" />
 				<Route component={user} path="/users/:uid" />
 				<Route component={redirectUser} path="/redirect-user-:uid" />
 				<Route
 					component={redirectProject}
-					path="/redirect-:uid-project-:uid"
+					path="/redirect-:uid-project-:pid"
 				/>
 				<Route component={tmpTest} path="/tmp" />
 				<Route component={Home} exact path="/" />

@@ -25,8 +25,8 @@ function Results(props) {
 			onSubmit={(values, actions) => {
 				setTimeout(() => {
 					props.editResults(values);
-					props.nextStep();
 					actions.setSubmitting(false);
+					props.finishProject();
 				}, 1000);
 			}}
 		>
@@ -105,9 +105,8 @@ function Results(props) {
 						<Button
 							type="submit"
 							className={styles.save_draft}
-							iconR={<i className="fas fa-arrow-right" />}
-							text="Next"
-							onClick={props.submitForm}
+							iconR={<i className="fas fa-flag" />}
+							text="Complete Project"
 						/>
 					</div>
 				</form>
