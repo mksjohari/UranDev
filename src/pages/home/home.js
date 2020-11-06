@@ -1,6 +1,6 @@
 import React from "react";
 
-import JobSearch from "../../images/jobsearch.png";
+import JobSearch from "../../images/jobsearch.svg";
 import Skills from "../../images/skills.svg";
 import FindJob from "../../images/findjob.svg";
 import Network from "../../images/network.svg";
