@@ -1,3 +1,14 @@
+@import 'variable';
+
 .footer {
-	margin: 20px 80px;
+	text-align: center;
+}
+
+.text {
+	margin: 1.45em 0;
+	color: black;
+}
+
+.symbol {
+	color: $midgrey;
 }

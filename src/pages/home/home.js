@@ -37,7 +37,7 @@ const Home = (props) => {
 					<Button className='blue' text='Get started' />
 				</div>
 				<div className={styles.card}>
-					<img className={styles.card_img} src={FindJob} alt='findjob' />
+                    <img className={styles.card_img} src={Network} alt='network' />
 					<h5 className={styles.h5}>Connect with hiring managers</h5>
 					<p className={styles.desc}>
 						Get in contact with hiring managers in the industry to boost your
@@ -46,7 +46,7 @@ const Home = (props) => {
 					<Button className='pink' text='Get started' />
 				</div>
 				<div className={styles.card}>
-					<img className={styles.card_img} src={Network} alt='network' />
+                    <img className={styles.card_img} src={FindJob} alt='findjob' />
 					<h5 className={styles.h5}>Search for suitable candidates</h5>
 					<p className={styles.desc}>
 						If you're looking for employees for a specific role, find the

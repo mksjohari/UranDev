@@ -10,7 +10,7 @@
 .content {
 	width: 90%;
 	flex-grow: 1;
-	margin: 63px 83px 63px 83px;
+	margin: 63px 83px 0px 83px;
 	padding: 27px 24px 27px 24px;
 	overflow: visible;
 	align-self: center;
@@ -41,4 +41,21 @@
 	background-color: $grey;
 	box-shadow: 0px 0px 40px 0px $shadow;
 	border-radius: 50px 700px 50px 50px;
+}
+
+@media screen and (max-width: 991px) {
+	.container {
+		width: 100vw;
+	}
+	.content {
+		width: 100vw;
+		padding: 0px;
+		margin: 0px;
+		overflow: hidden;
+	}
+}
+
+
+@media screen and (max-width: 479px) {
+	
 }

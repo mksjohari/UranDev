@@ -1,4 +1,4 @@
-@import 'variable';
+@import "variable";
 
 .header {
 	width: 100%;
@@ -12,7 +12,7 @@
 	justify-content: space-between;
 }
 .logo {
-	padding: 20px 0px;
+	margin: 20px 0px;
 }
 
 .details {
@@ -108,4 +108,45 @@
 
 .section {
 	margin: 3em 0em;
+}
+
+.toggle {
+	display: none;
+}
+
+@media screen and (max-width: 991px) {
+	#label {
+		display: flex;
+		cursor: pointer;
+	}
+
+	.navList {
+		display: none;
+		list-style-type: none;
+		margin: 0;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.navContainer {
+		padding-left: 0px;
+		left: 0;
+		border-top: 1px solid $lightgrey;
+	}
+	.navItem {
+		margin-right: 0rem;
+		padding: 10px 0;
+	}
+	.navList li {
+		margin: 0;
+		width: 100%;
+		text-align: center;
+	}
+	.navList li a {
+		display: block;
+	}
+	.toggle:checked + .navList {
+		display: flex;
+	}
 }

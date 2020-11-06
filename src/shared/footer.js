@@ -5,7 +5,7 @@ import styles from '../modules/footer.module.scss';
 const Footer = () => {
 	return (
 		<div className={styles.footer}>
-			<h3>Created by Uran</h3>
+			<p className={styles.text}>Made with <span className={styles.symbol}>♥︎</span> by Uran.</p>
 		</div>
 	);
 };

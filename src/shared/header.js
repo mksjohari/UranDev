@@ -63,6 +63,8 @@ const Header = (props) => {
             </div>
             <div className={styles.navContainer}>
                 <nav>
+                    <label for="toggle" id={styles.label}>&#9776;</label>
+                    <input type="checkbox" className={styles.toggle} id="toggle"/>
                     <ul className={styles.navList}>
                         <li>
                             <NavLink
