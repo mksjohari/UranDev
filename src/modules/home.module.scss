@@ -1,5 +1,11 @@
 @import 'variable';
 
+.body {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .filter {
 	background: $ivory;
 	border-radius: 16px;
@@ -14,15 +20,6 @@
 	grid-template-columns: 30% 65%;
 }
 
-.jobsearch_img {
-	width: 40%;
-	margin-top: -150px;
-}
-
-.imgctn {
-	text-align: center;
-}
-
 .results {
 	display: flex;
 	flex-direction: column;
@@ -31,4 +28,58 @@
 
 .h6 {
 	width: 700px;
+}
+
+.section {
+	background: $ivory;
+	display: grid;
+	width: 100%;
+	padding: 60px 250px;
+	grid-auto-columns: 1fr;
+	grid-column-gap: 60px;
+	grid-row-gap: 60px;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto;
+	width: 100vw;
+}
+
+.h5 {
+	font-size: 22px;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	margin: 20px 0;
+	margin-bottom: 16px
+}
+
+.desc {
+	font-size: 15px;
+}
+
+.card_img {
+	width: 64px;
+}
+
+.column {
+	width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.jobsearch_img {
+	width: 40%;
+	position: relative;
+    float: left;
+    min-height: 1px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.hero {
+    display: flex;
+    height: auto;
+    margin-bottom: 80px;
+    justify-content: center;
+    align-items: center;
 }
