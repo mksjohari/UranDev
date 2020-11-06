@@ -34,36 +34,51 @@ function ProjectDetails(props) {
                         style={{ width: window.innerWidth * 0.4 }}
                     >
                         <h3>Create Project</h3>
-                        <div className={styles.toolsEdit}>
-                            <label htmlFor="status" className={styles.subtitle}>
-                                Project status:
-                            </label>
-                            <Field
-                                as={SegmentTab}
-                                options={["Ongoing", "Completed"]}
-                                name="status"
-                            />
+                        <div className={styles.project_details_root}>
+                            <div className={styles.section_columns}>
+                                <label
+                                    htmlFor="status"
+                                    className={styles.subtitle}
+                                >
+                                    Project status:
+                                </label>
+                                <Field
+                                    as={SegmentTab}
+                                    options={["Ongoing", "Completed"]}
+                                    name="status"
+                                />
+                            </div>
                             <br />
-                            <label htmlFor="sharing" className={styles.subtitle}>
-                                Sharing:
-                            </label>
-                            <Field
-                                as={SegmentTab}
-                                options={["Public", "Unlisted"]}
-                                name="sharing"
-                            />
+                            <div className={styles.section_columns}>
+                                <label
+                                    htmlFor="sharing"
+                                    className={styles.subtitle}
+                                >
+                                    Sharing:
+                                </label>
+                                <Field
+                                    as={SegmentTab}
+                                    options={["Public", "Unlisted"]}
+                                    name="sharing"
+                                />
+                            </div>
                             <br />
-                            <label htmlFor="title" className={styles.subtitle}>
-                                Give this project a title.
-                            </label>
-                            <Field
-                                as="textarea"
-                                name="title"
-                                className={styles.descEdit}
-                                placeholder="Title of your masterpiece..."
-                            />
+                            <div className={styles.project_details_root}>
+                                <label
+                                    htmlFor="title"
+                                    className={styles.subtitle}
+                                >
+                                    Give this project a title.
+                                </label>
+                                <Field
+                                    as="input"
+                                    name="title"
+                                    className={`inp-field`}
+                                    placeholder="Title of your masterpiece..."
+                                />
+                            </div>
+                            <br />
                         </div>
-                        <br />
                         <div className={styles.btnsRow}>
                             <Button
                                 text="Confirm"
@@ -74,12 +89,6 @@ function ProjectDetails(props) {
                                     props.submitForm();
                                     close(e, "_confirm");
                                 }}
-                            />
-                            <Button
-                                id={projectId + "_close"}
-                                text="Cancel"
-                                // iconR={<i className="fas fa-times"></i>}
-                                onClick={(e) => close(e, "_close")}
                             />
                         </div>
                     </form>

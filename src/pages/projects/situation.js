@@ -19,17 +19,8 @@ function Situation(props) {
                 teamSize: props.situation.teamSize,
                 budget: props.situation.budget,
                 currency: props.situation.currency,
-                projectDates: {
-                    startDate: props.situation.startDate,
-                    endDate: props.situation.endDate,
-                },
+                projectDates: props.situation.projectDates,
             }}
-            // onSubmit={async (values) => {
-            //     await new Promise((r) => setTimeout(r, 500));
-            //     alert(JSON.stringify(values, null, 2));
-            //     props.setProject(values);
-            //     props.nextStep();
-            // }}
             onSubmit={(values, actions) => {
                 setTimeout(() => {
                     alert(JSON.stringify(values, null, 2));
@@ -100,15 +91,6 @@ function Situation(props) {
                                     name="budget"
                                     placeholder="No budget"
                                 />
-                                {/* <Field
-                                as="select"
-                                className={`inp-field`}
-                                name="currency"
-                            >
-                                <option value="red">Red</option>
-                                <option value="red">yellow</option>
-                                <option value="red">blue</option>
-                            </Field> */}
                             </div>
                         </div>
                         <div className={styles.section_input}>
@@ -135,7 +117,7 @@ function Situation(props) {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.button_next}>
+                    <div className={styles.button_footer}>
                         <Button
                             type="submit"
                             className={styles.save_draft}
@@ -150,46 +132,3 @@ function Situation(props) {
     );
 }
 export default withContext(Situation);
-
-// could use for endorse skill tag ?? https://hceris.com/custom-components-in-formik/
-// const TeamSelect = (props) => {
-//     const isSelected = (v) =>
-//         `${styles.teamsize_button} ${
-//             v === props.value ? styles.teamsize_selected : ""
-//         }`;
-
-//     return (
-//         <div className={styles.input_teamsize}>
-//             <button
-//                 onClick={() => props.handleClick("1")}
-//                 className={isSelected("1")}
-//             >
-//                 1
-//             </button>
-//             <button
-//                 onClick={() => props.handleClick("2-5")}
-//                 className={isSelected("2-5")}
-//             >
-//                 2-5
-//             </button>
-//             <button
-//                 onClick={() => props.handleClick("6-10")}
-//                 className={isSelected("6-10")}
-//             >
-//                 6-10
-//             </button>
-//             <button
-//                 onClick={() => props.handleClick("11-20")}
-//                 className={isSelected("11-20")}
-//             >
-//                 11-20
-//             </button>
-//             <button
-//                 onClick={() => props.handleClick("21+")}
-//                 className={isSelected("21+")}
-//             >
-//                 21+
-//             </button>
-//         </div>
-//     );
-// };

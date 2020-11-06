@@ -1,12 +1,11 @@
-const userInfo = {
-    loaded: false,
+export const notLoggedUserInfo = {
+    logged: false,
+    uuid: "",
     uid: "",
-    pid: "",
     firstName: "",
     lastName: "",
     email: "",
     userType: "",
-    dateCreated: 0,
     status: "",
     photoUrl: "",
     occupation: "",
@@ -16,18 +15,18 @@ const userInfo = {
     expertise: [],
 };
 
-export default (state = userInfo, action) => {
+export default (state = notLoggedUserInfo, action) => {
+    console.log("TYPE", action.type);
     switch (action.type) {
         case "UPDATE_USER_INFO":
             return {
                 ...state,
+                uuid: action.userInfo.uuid,
                 uid: action.userInfo.uid,
-                pid: action.userInfo.pid,
                 firstName: action.userInfo.firstName,
                 lastName: action.userInfo.lastName,
                 email: action.userInfo.email,
                 userType: action.userInfo.userType,
-                dateCreated: action.userInfo.dateCreated,
                 status: action.userInfo.status,
                 photoUrl: action.userInfo.photo,
                 introduction: action.userInfo.introduction,
@@ -46,10 +45,11 @@ export default (state = userInfo, action) => {
                 ...state,
                 expertise: action.userExpertise,
             };
-        case "UPDATE_FROM_SIGNUP":
+        case "UPDATE_FROM_COMPLETE_SIGNUP":
+            // need to add  email
             return {
                 ...state,
-                uid: action.firstStep.uid,
+                uuid: action.uuid,
                 firstName: action.firstStep.firstName,
                 lastName: action.firstStep.lastName,
                 userType: action.firstStep.userType,
@@ -60,9 +60,18 @@ export default (state = userInfo, action) => {
                 location: action.firstStep.location,
                 socials: action.thirdStep,
                 logged: action.logged,
+                status: action.status,
+            };
+        case "UPDATE_FROM_SIGNUP":
+            return {
+                ...state,
+                uuid: action.uuid,
+                firstName: action.firstName,
+                lastName: action.lastName,
+                logged: action.logged,
             };
         case "LOGOUT_USER":
-            return userInfo;
+            return notLoggedUserInfo;
         default:
             return state;
     }
