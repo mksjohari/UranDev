@@ -1,4 +1,4 @@
-@import 'variable';
+@import "variable";
 
 .filter {
 	background: $ivory;
@@ -29,4 +29,11 @@
 
 .h6 {
 	width: 700px;
+}
+
+.placeholder {
+	box-shadow: 0 0 9px 0 #ededed;
+	border-radius: 15px;
+	background-color: white;
+	margin: 10px 0;
 }
