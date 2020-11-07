@@ -4,7 +4,7 @@ import { useField } from "formik";
 
 import Thumbs from "./Thumbs";
 import styles from "../../modules/dropzone.module.scss";
-import logo from "../../images/logo.png";
+import logo from "../../images/logo.svg";
 
 
 function Droparea(props) {
