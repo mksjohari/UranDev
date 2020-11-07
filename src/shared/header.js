@@ -33,13 +33,13 @@ const Header = (props) => {
 						<img className={styles.imageLogo} src={Logo} alt='Uran Logo ...' />
 						<div className={styles.uran}>URAN</div>
 					</Link>
+					<label for='toggle' id={styles.label}>
+						<i className='fas fa-bars' />
+					</label>
 				</div>
 				<div className={styles.navContainer}>
+					<input type='checkbox' className={styles.toggle} id='toggle' />
 					<nav className={styles.navBar}>
-						<label for='toggle' id={styles.label}>
-							&#9776;
-						</label>
-						<input type='checkbox' className={styles.toggle} id='toggle' />
 						<NavLink
 							activeClassName={styles.activeNavItem}
 							className={styles.navItem}
@@ -76,15 +76,15 @@ const Header = (props) => {
 									text='Sign In'
 									onClick={props.toLogin}
 								/>
+								<DevButton
+									onClick={() => {
+										console.log();
+										console.log(props.user);
+									}}
+								/>
 							</div>
 						)}
 					</nav>
-					{/* <DevButton
-				onClick={() => {
-					console.log();
-					console.log(props.user);
-				}}
-			/> */}
 				</div>
 			</div>
 		</header>
