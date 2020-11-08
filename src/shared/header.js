@@ -15,6 +15,7 @@ function mapStateToProps(state) {
 
 const Header = (props) => {
 	const [user, setUser] = useState();
+	const [open, setOpen] = useState(false);
 	useEffect(() => {
 		if (props.user.uuid === "") {
 			// check if logged, then call data
@@ -33,8 +34,13 @@ const Header = (props) => {
 						<img className={styles.imageLogo} src={Logo} alt='Uran Logo ...' />
 						<div className={styles.uran}>URAN</div>
 					</Link>
-					<label for='toggle' id={styles.label}>
-						<i className='fas fa-bars' />
+					<label for='toggle' id={styles.label} onClick={() => setOpen(!open)}>
+						<div id={styles.nav_icon}>
+							<span className={`${open ? styles.open1 : ""} ${styles.nav_icon1} `}/>
+							<span className={`${open ? styles.open2 : ""} ${styles.nav_icon2} `}/>
+							<span className={`${open ? styles.open3 : ""} ${styles.nav_icon3} `}/>
+							<span className={`${open ? styles.open4 : ""} ${styles.nav_icon4} `} />
+						</div>
 					</label>
 				</div>
 				<div className={styles.navContainer}>

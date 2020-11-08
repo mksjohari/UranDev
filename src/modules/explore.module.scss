@@ -1,16 +1,39 @@
 @import "variable";
 
+.grid {
+	display: grid;
+	grid-template-columns: 250px 690px;
+	grid-template-rows: 108px auto 60px;
+	margin: 0 auto;
+	width: 940px;
+	grid-row-gap: 20px;
+}
+
+#div1 {
+	grid-area: 1 / 1 / 2 / 3;
+}
+#div2 {
+	grid-area: 2 / 1 / 4 / 2;
+}
+#div3 {
+	grid-area: 2 / 2 / 3 / 3;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#div4 {
+	grid-area: 3 / 2 / 4 / 3;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+}
+
 .filter {
 	background: $ivory;
 	border-radius: 16px;
 	padding: 20px 25px;
 	margin-right: 20px;
-	width: 250px;
-}
-
-.container {
-	margin-top: 20px;
-	display: flex;
+	width: 220px;
 }
 
 .jobsearch_img {
@@ -19,12 +42,6 @@
 
 .imgctn {
 	text-align: right;
-}
-
-.results {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 }
 
 .h6 {
@@ -36,4 +53,48 @@
 	border-radius: 15px;
 	background-color: white;
 	margin: 10px 0;
+}
+
+.errormsg {
+	margin: 0;
+	color: $darkgrey;
+	font-size: 13px;
+	text-align: center;
+}
+
+#page_numbers {
+	display: flex;
+	list-style: none;
+}
+
+#page_numbers li {
+	cursor: pointer;
+	font-size: 14px;
+	padding: 0 20px;
+}
+
+@media screen and (max-width: 991px) {
+	.grid {
+		margin-top: 10%;
+		grid-template-columns: 100%;
+		grid-template-rows: auto auto auto auto;
+		width: 80%;
+	}
+	#div1 {
+		grid-area: 1 / 1 / 2 / 2;
+	}
+	#div2 {
+		grid-area: 2 / 1 / 3 / 2;
+	}
+	#div3 {
+		grid-area: 3 / 1 / 4 / 2;
+	}
+	#div4 {
+		grid-area: 4 / 1 / 5 / 2;
+	}
+	.filter {
+		background: $ivory;
+		margin: 0px;
+		width: 100%;
+	}
 }

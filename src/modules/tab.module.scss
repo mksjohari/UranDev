@@ -18,7 +18,7 @@
 }
 
 .tab_div {
-	width: 100%;
+	width: 940px;
 }
 
 .tab_list {
@@ -75,4 +75,21 @@
 	background: $orange;
 	color: $darkyellow;
 	transition: background ease 0.6s;
+}
+
+@media screen and (max-width: 991px) {
+	.tab_div {
+		width: 100%;
+	}
+	.tab_panel {
+		flex-direction: column;
+		row-gap: 10px;
+	}
+	.tab_panel > * {
+		width: 80%;
+		margin: 0 auto;
+	}
+	.user_dropdown, .proj_dropdown {
+		width: 100%;
+	}
 }
