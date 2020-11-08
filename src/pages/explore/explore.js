@@ -23,10 +23,23 @@ import Placeholder from "../../shared/sandbox/Placeholder";
 // };
 
 const Explore = (props) => {
-	const [users, setUsers] = useState(['a','b','c','d','e','f','g','h','i','j','k','l']);
+	const [users, setUsers] = useState([
+		"a",
+		"b",
+		"c",
+		"d",
+		"e",
+		"f",
+		"g",
+		"h",
+		"i",
+		"j",
+		"k",
+		"l",
+	]);
 	const [currentPage, setCurrentPage] = useState(1);
-	const usersPerPage = 5;
 	const [loading, setLoading] = useState(true);
+	const usersPerPage = 5;
 	// const [page, setPage] = useState(1);
 	// const [limit, setLimit] = useState(2);
 	// useEffect(() => {
@@ -54,7 +67,12 @@ const Explore = (props) => {
 	});
 	const renderPageNumbers = pageNumbers.map((number) => {
 		return (
-			<li key={number} id={number} onClick={handleClick}>
+			<li
+				key={number}
+				id={number}
+				className={currentPage === number ? styles.current_page : ""}
+				onClick={handleClick}
+			>
 				{number}
 			</li>
 		);
@@ -125,12 +143,14 @@ const Explore = (props) => {
 };
 
 export default Explore;
-				
-{/* 
+
+{
+	/* 
 <Button
 	text='pageup'
 	onClick={() => {
 		setPage(page + 1);
 	}}
 />
-Page {page} */}
+Page {page} */
+}

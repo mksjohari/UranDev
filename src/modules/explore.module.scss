@@ -70,7 +70,14 @@
 #page_numbers li {
 	cursor: pointer;
 	font-size: 14px;
-	padding: 0 20px;
+	padding: 6px 12px;
+	margin: 0 8px;
+}
+
+.current_page {
+	font-weight: 600;
+	background: $ivory;
+	border-radius: 4px;
 }
 
 @media screen and (max-width: 991px) {
