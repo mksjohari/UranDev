@@ -23,7 +23,6 @@ function Situation(props) {
 			}}
 			onSubmit={(values, actions) => {
 				setTimeout(() => {
-					alert(JSON.stringify(values, null, 2));
 					props.editSituation(values);
 					props.nextStep();
 					actions.setSubmitting(false);
@@ -84,7 +83,11 @@ function Situation(props) {
 								(leave blank if there were none){' '}
 							</label>
 							<div className={styles.budget_input}>
-								<Field as={Currency} name="currency" />
+								<Field
+									as={Currency}
+									initialValues="AUD"
+									name="currency"
+								/>
 								<Field
 									as="input"
 									className={`inp-field`}

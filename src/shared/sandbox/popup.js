@@ -102,25 +102,23 @@ export const lockBg = (e) => {
 	if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
 		e.target = e.target.parentNode;
 	}
-	// console.log(e.target);
 
 	const body = document.getElementsByTagName('body')[0];
 	const overlayId = e.target.id + '_popContent';
 	const overlay = document.getElementById(overlayId);
-
+	console.log(overlayId);
 	overlay.style.display = 'flex';
 	body.style.height = `${window.innerHeight}px`;
 	body.style.overflow = 'hidden';
 	body.style.pointerEvents = 'none';
 
-	// close on esc
-	document.addEventListener('keydown', (event) => {
-		if (event.key === 'Escape') {
-			overlay.style.display = 'none';
-			body.style.overflow = 'scroll';
-			body.style.height = '100%';
-		}
-	});
+	// document.addEventListener('keydown', (event) => {
+	// 	if (event.key === 'Escape') {
+	// 		overlay.style.display = 'none';
+	// 		body.style.overflow = 'scroll';
+	// 		body.style.height = '100%';
+	// 	}
+	// });
 };
 
 export const close = (e, str) => {
