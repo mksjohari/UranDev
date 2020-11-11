@@ -30,7 +30,7 @@ function MyProjects(props) {
 	const [previews, setPreviews] = useState([]);
 	useEffect(() => {
 		getPublicPreview(props.user.uid, setPreviews);
-	}, []);
+	}, [props.user.uid]);
 	return (
 		<div className={styles.root}>
 			<FindProjects view={props.view} />
