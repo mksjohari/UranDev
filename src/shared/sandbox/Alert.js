@@ -36,7 +36,7 @@ function Alert(props) {
 									? props.confirmColour
 									: 'reddo'
 							}
-							iconR={<i className="fas fa-check"></i>}
+							// iconR={<i className="fas fa-check"></i>}
 							className={styles.closeBtn}
 							onClick={(e) => {
 								props.onConfirm();
@@ -51,7 +51,7 @@ function Alert(props) {
 						id={props.id + '_close'}
 						text={props.closeBtnLabel}
 						className={styles.closeBtn}
-						iconR={<i className="fas fa-times"></i>}
+						// iconR={<i className="fas fa-times"></i>}
 						onClick={(e) => close(e, '_close')}
 					/>
 				</div>

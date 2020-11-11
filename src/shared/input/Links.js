@@ -6,9 +6,9 @@ import styles from "../../modules/createProject.module.scss";
 function Links(props) {
     const [meta] = useField(props.name);
 
-    const { push, remove } = props;
+    const { form, push, remove } = props;
     const { value } = meta;
-
+    // console.log(props)
     return (
         <div className={styles.section_input}>
             {value.map((link, index) => (
@@ -28,7 +28,6 @@ function Links(props) {
                         name={`links[${index}].linkName`}
                         placeholder="link name (optional)"
                     />
-
                     <div
                         className={` ${styles.icon_trash}`}
                         type="button"
@@ -39,6 +38,11 @@ function Links(props) {
                     </div>
                 </div>
             ))}
+            <div className={styles.section_input_row}>
+                {form.errors.links && form.touched.links ? (
+                    <div className={styles.error}>{form.errors.links}</div>
+                ) : null}
+            </div>
             <Button
                 colour="pink"
                 type="button"

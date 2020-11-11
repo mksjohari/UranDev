@@ -12,8 +12,7 @@ import popup from "../../modules/popup.module.scss";
 
 const ActionCard = (props) => {
     const actionId = props.action.actionId;
-    const deleteAction = () => props.deleteAction(props.index);
-    // console.log(props.action.files)
+
     return (
         <div className={styles.action_card}>
             <div className={styles.title}>{props.action.title}</div>
@@ -91,7 +90,7 @@ const ActionCard = (props) => {
                         hasConfirm
                         confirmBtnLabel="Yes, delete"
                         closeBtnLabel="No, go back"
-                        onConfirm={deleteAction}
+                        onConfirm={props.deleteAction}
                     />
                 </div>
                 <Button
@@ -106,7 +105,6 @@ const ActionCard = (props) => {
                 >
                     <AddActionForm
                         id={actionId}
-                        index={props.index}
                         action={props.action}
                         editAction={props.editAction}
                     />
