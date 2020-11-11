@@ -9,6 +9,7 @@ import { getSocials, getExpertise } from './helperFunction';
 import 'reflect-metadata';
 
 admin.initializeApp();
+const db = admin.firestore();
 
 const connect = async () => {
 	return await createConnection({
@@ -241,4 +242,39 @@ export const finishUserSignUp = functions
 			console.log(err);
 			return;
 		}
+	});
+
+// TRIGGERS
+
+export const updateUserStats = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		const uid = data.uid;
+		const skills = data.skills;
+		const tools = data.tools;
+
+		const ref = db.collection('users').doc(uid);
+		const userRawStats = await ref.get();
+		const userStats = userRawStats.data();
+		if (userStats) {
+			for (const [key, value] of Object.entries(skills)) {
+				if (key in userStats.skills) {
+					ref.update({
+						[`skills.${key}`]: userStats.skills[key] + value,
+					});
+				} else {
+					ref.update({ [`skills.${key}`]: value });
+				}
+			}
+			for (const [key, value] of Object.entries(tools)) {
+				if (key in userStats.tools) {
+					ref.update({
+						[`tools.${key}`]: userStats.tools[key] + value,
+					});
+				} else {
+					ref.update({ [`tools.${key}`]: value });
+				}
+			}
+		}
+		return;
 	});

@@ -9,9 +9,7 @@ import {
 	getExploreUsers,
 	getExploreCount,
 } from '../../shared/firebase/firebase';
-import Button from '../../shared/sandbox/Button';
 import Placeholder from '../../shared/sandbox/Placeholder';
-import Index from '../../App';
 
 const getAllUsers = async (setUsers, setLoading, limit, page) => {
 	const results = await getExploreUsers({ limit, page });
@@ -40,9 +38,9 @@ const getCount = async (limit, setPageNumbers) => {
 	}
 };
 
-const getFilterUsers = async (filter, setusers, limit, page) => {
-	console.log('getting filtered users');
-};
+// const getFilterUsers = async (filter, setusers, limit, page) => {
+// 	console.log('getting filtered users');
+// };
 
 const Explore = (props) => {
 	const [users, setUsers] = useState([]);
@@ -50,7 +48,7 @@ const Explore = (props) => {
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
 	const [pageNumbers, setPageNumbers] = useState([1, 2]);
-	const [limit, setLimit] = useState(5);
+	const [limit] = useState(5);
 	const [placeHolder, setPlaceHolder] = useState([]);
 
 	useEffect(() => {
@@ -60,11 +58,11 @@ const Explore = (props) => {
 		}
 		setPlaceHolder(holder);
 		getCount(limit, setPageNumbers);
-	}, []);
+	}, [limit]);
 
 	useEffect(() => {
 		getAllUsers(setUsers, setLoading, limit, page);
-	}, [page]);
+	}, [page, limit]);
 	const handleClick = (event) => {
 		setPage(Number(event.target.id));
 		setCurrentPage(Number(event.target.id));
@@ -137,14 +135,3 @@ const Explore = (props) => {
 };
 
 export default Explore;
-
-{
-	/* 
-<Button
-	text='pageup'
-	onClick={() => {
-		setPage(page + 1);
-	}}
-/>
-Page {page} */
-}

@@ -13,7 +13,6 @@ import Results from './results';
 
 import popup from '../../modules/popup.module.scss';
 import styles from '../../modules/createProject.module.scss';
-import DevButton from '../../shared/sandbox/devButton';
 import { uploadProject } from '../../shared/firebase/firebase';
 import { useHistory } from 'react-router-dom';
 
@@ -87,6 +86,7 @@ function CreateProject(props) {
 		setProject(newProject);
 	}
 	const uploadToFirestore = async () => {
+		console.log(project);
 		uploadProject(props.user.uid, project);
 		history.push(`users/${props.user.uid}`);
 	};

@@ -21,7 +21,7 @@ function TempProjectPage(props) {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		getProjectInfo(uid, pid, setData, setLoading);
-	}, []);
+	}, [uid, pid]);
 	return (
 		<div>
 			{!loading && (
