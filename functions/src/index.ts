@@ -201,13 +201,16 @@ export const finishUserSignUp = functions
 			if (!connection || !connection.isConnected) {
 				connection = await connect();
 			}
+			const uid = data.uid;
 			const firstStep = data.firstStep;
 			const secondStep = data.secondStep;
 			const thirdStep = data.thirdStep;
-			const random = Math.floor(Math.random() * 100000000);
-			const uid = `${firstStep.firstName.toLowerCase()}-${firstStep.lastName.toLowerCase()}-${random}`;
 			const seeker = new Seeker();
-			const expertise = getExpertise(data.uuid, uid, secondStep);
+			const expertise = getExpertise(
+				data.uuid,
+				uid,
+				secondStep.expertise
+			);
 			const socials = getSocials(data.uuid, uid, thirdStep);
 
 			var description;
@@ -259,20 +262,48 @@ export const updateUserStats = functions
 		if (userStats) {
 			for (const [key, value] of Object.entries(skills)) {
 				if (key in userStats.skills) {
-					ref.update({
-						[`skills.${key}`]: userStats.skills[key] + value,
-					});
+					ref.set(
+						{
+							skills: {
+								...userStats.skills,
+								[key]: userStats.skills[key] + value,
+							},
+						},
+						{ merge: true }
+					);
 				} else {
-					ref.update({ [`skills.${key}`]: value });
+					ref.set(
+						{
+							skills: {
+								...userStats.skills,
+								[key]: value,
+							},
+						},
+						{ merge: true }
+					);
 				}
 			}
 			for (const [key, value] of Object.entries(tools)) {
 				if (key in userStats.tools) {
-					ref.update({
-						[`tools.${key}`]: userStats.tools[key] + value,
-					});
+					ref.set(
+						{
+							tools: {
+								...userStats.tools,
+								[key]: userStats.tools[key] + value,
+							},
+						},
+						{ merge: true }
+					);
 				} else {
-					ref.update({ [`tools.${key}`]: value });
+					ref.set(
+						{
+							tools: {
+								...userStats.tools,
+								[key]: value,
+							},
+						},
+						{ merge: true }
+					);
 				}
 			}
 		}

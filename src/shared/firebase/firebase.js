@@ -40,6 +40,28 @@ export const updateUserStats = getFunctions(firebase).httpsCallable(
 
 // FIRESTORE
 
+export const addUserDetails = async (
+	uid,
+	photoURL,
+	firstStep,
+	secondStep,
+	thirdStep
+) => {
+	await getFirebase().firestore().collection('/users').doc(uid).set({
+		firstName: firstStep.firstName,
+		lastName: firstStep.lastName,
+		role: firstStep.role,
+		photoUrl: photoURL,
+		occupation: secondStep.occupation,
+		location: secondStep.location,
+		personalDesc: secondStep.personalDesc,
+		expertise: secondStep.expertise,
+		socials: thirdStep,
+		skills: {},
+		tools: {},
+	});
+};
+
 export const getProject = async (uid, pid) => {};
 
 export const uploadProject = async (uid, project) => {
@@ -76,7 +98,7 @@ export const uploadProject = async (uid, project) => {
 		tools: [],
 	};
 
-	getFirebase()
+	await getFirebase()
 		.firestore()
 		.collection('users')
 		.doc(uid)
