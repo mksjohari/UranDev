@@ -247,7 +247,14 @@ export const finishUserSignUp = functions
 		}
 	});
 
-// TRIGGERS
+export const addSkillsAndToolsToSQL = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		const uuid = data.uuid;
+		const uid = data.uid;
+		const project = data.project;
+		console.log(uuid, uid, project);
+	});
 
 export const updateUserStats = functions
 	.region('australia-southeast1')

@@ -22,6 +22,35 @@ export const getExpertise = (uuid: String, uid: String, secondStep: Object) => {
 	});
 	return socials;
 };
+
+export const getSkills = (uuid: String, uid: String, skills: Object) => {
+	const socials: Object[] = [];
+	Object.entries(skills).forEach(([key, value]) => {
+		if (value && key in expertise) {
+			socials.push({
+				uuid: uuid,
+				uid: uid,
+				eid: key,
+				expertise: expertise[key],
+			});
+		}
+	});
+	return socials;
+};
+export const getTools = (uuid: String, uid: String, tools: Object) => {
+	const socials: Object[] = [];
+	Object.entries(tools).forEach(([key, value]) => {
+		if (value && key in expertise) {
+			socials.push({
+				uuid: uuid,
+				uid: uid,
+				eid: key,
+				expertise: expertise[key],
+			});
+		}
+	});
+	return socials;
+};
 const expertise: any = {
 	id1: 'Business & Management',
 	id2: 'Creative Arts',

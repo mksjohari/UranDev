@@ -13,7 +13,10 @@ import Results from './results';
 
 import popup from '../../modules/popup.module.scss';
 import styles from '../../modules/createProject.module.scss';
-import { uploadProject } from '../../shared/firebase/firebase';
+import {
+	addSkillsAndToolsToSQL,
+	uploadProject,
+} from '../../shared/firebase/firebase';
 import { useHistory } from 'react-router-dom';
 
 function mapStateToProps(state) {
@@ -86,8 +89,12 @@ function CreateProject(props) {
 		setProject(newProject);
 	}
 	const uploadToFirestore = async () => {
-		console.log(project);
-		uploadProject(props.user.uid, project);
+		await uploadProject(props.user.uid, project);
+		await addSkillsAndToolsToSQL({
+			uuid: props.user.uuid,
+			uid: props.user.uid,
+			// project: project,
+		});
 		history.push(`users/${props.user.uid}`);
 	};
 	return (

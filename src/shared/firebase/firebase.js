@@ -37,6 +37,9 @@ export const getExploreCount = getFunctions(firebase).httpsCallable(
 export const updateUserStats = getFunctions(firebase).httpsCallable(
 	'updateUserStats'
 );
+export const addSkillsAndToolsToSQL = getFunctions(firebase).httpsCallable(
+	'addSkillsAndToolsToSQL'
+);
 
 // FIRESTORE
 
@@ -50,7 +53,7 @@ export const addUserDetails = async (
 	await getFirebase().firestore().collection('/users').doc(uid).set({
 		firstName: firstStep.firstName,
 		lastName: firstStep.lastName,
-		role: firstStep.role,
+		userType: firstStep.role,
 		photoUrl: photoURL,
 		occupation: secondStep.occupation,
 		location: secondStep.location,
