@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import Timeline from "../../shared/sandbox/Timeline";
-import StepOne from "./stepOne";
-import StepTwo from "./stepTwo";
-import StepThree from "./stepThree";
-import StepFour from "./stepFour";
-import Typing from "../../images/typing.png";
-import styles from "../../modules/signUp.module.scss";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import Timeline from '../../shared/sandbox/Timeline';
+import StepOne from './stepOne';
+import StepTwo from './stepTwo';
+import StepThree from './stepThree';
+import StepFour from './stepFour';
+import Typing from '../../images/typing.png';
+import styles from '../../modules/signUp.module.scss';
+import { useHistory } from 'react-router-dom';
 
 const SignUp = (props) => {
 	const [step, setStep] = useState(0);
@@ -24,8 +24,8 @@ const SignUp = (props) => {
 				lastName: state.lastName,
 			});
 		} else {
-			console.log("redirect to main page");
-			history.push("/");
+			console.log('redirect to main page');
+			history.push('/');
 		}
 	}, [state, history]);
 	function nextStep() {
@@ -45,7 +45,7 @@ const SignUp = (props) => {
 			<div className={styles.sign_up_side_panel}>
 				<h1>Create account</h1>
 				<p>Sign up to create your e-portfolio</p>
-				<img className={styles.typing_img} src={Typing} alt='typing' />
+				<img className={styles.typing_img} src={Typing} alt="typing" />
 			</div>
 			<div className={styles.sign_up_process}>
 				<section className={styles.sign_up_form}>
@@ -80,7 +80,7 @@ const SignUp = (props) => {
 							prevStep={prevStep}
 						/>
 					) : (
-						""
+						''
 					)}
 				</section>
 			</div>
@@ -91,42 +91,45 @@ const SignUp = (props) => {
 export default SignUp;
 
 const label = [
-	"ACCOUNT SETUP",
-	"BACKGROUND INFORMATION",
-	"SOCIAL ACCOUNTS",
-	"CONFIRMATION",
+	'ACCOUNT SETUP',
+	'BACKGROUND INFORMATION',
+	'SOCIAL ACCOUNTS',
+	'CONFIRMATION',
 ];
 
 const stepOneDefault = {
-	role: "Jobseeker",
-	firstName: "",
-	lastName: "",
-	imgSrc: "default",
+	role: 'Jobseeker',
+	firstName: '',
+	lastName: '',
+	imgSrc: 'default',
 	img:
-		"https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/users%2Fdefault.jpg?alt=media&token=bfb8d142-6ac5-49ac-a64d-d9500cbb7f5b",
+		'https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/users%2Fdefault.jpg?alt=media&token=bfb8d142-6ac5-49ac-a64d-d9500cbb7f5b',
 };
 
 const stepTwoDefault = {
-	id1: false,
-	id2: false,
-	id3: false,
-	id4: false,
-	id5: false,
-	id6: false,
-	id7: false,
-	id8: false,
-	id9: false,
-	id10: false,
-	occupation: "",
-	location: "",
-	personalDesc: "",
+	expertise: {
+		id1: false,
+		id2: false,
+		id3: false,
+		id4: false,
+		id5: false,
+		id6: false,
+		id7: false,
+		id8: false,
+		id9: false,
+		id10: false,
+	},
+
+	occupation: '',
+	location: '',
+	personalDesc: '',
 };
 const stepThreeDefault = {
-	linkedIn: "https://www.linkedin.com/in/",
-	github: "https://www.github.com/",
-	slack: "https://www.slack.com/",
-	codeSandBox: "https://codesandbox.io/u/",
-	behance: "https://www.behance.net/",
-	figma: "https://figma.com/",
-	dribble: "https://dribbble.com/",
+	linkedIn: 'https://www.linkedin.com/in/',
+	github: 'https://www.github.com/',
+	slack: 'https://www.slack.com/',
+	codeSandBox: 'https://codesandbox.io/u/',
+	behance: 'https://www.behance.net/',
+	figma: 'https://figma.com/',
+	dribble: 'https://dribbble.com/',
 };

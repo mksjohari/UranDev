@@ -25,9 +25,14 @@ const Header = (props) => {
 			setUser(props.user);
 		}
 	}, [props.user]);
-	console.log(user);
 	return (
 		<header className={styles.header}>
+			<DevButton
+				text="test Redux"
+				onClick={() => {
+					console.log(props.user);
+				}}
+			/>
 			<div className={styles.container}>
 				<div className={styles.headerContainer}>
 					<Link className={styles.headerLink} to="/">
@@ -105,12 +110,6 @@ const Header = (props) => {
 									colour="yellow"
 									text="Sign In"
 									onClick={props.toLogin}
-								/>
-								<DevButton
-									onClick={() => {
-										console.log();
-										console.log(props.user);
-									}}
 								/>
 							</div>
 						)}

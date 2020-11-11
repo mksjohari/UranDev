@@ -3,7 +3,6 @@ import 'firebase/auth';
 import 'firebase/functions';
 import 'firebase/firestore';
 import { getFirebase, getFunctions, getStorage } from './config';
-
 // FUNCTIONS //
 
 export const createAccount = getFunctions(firebase).httpsCallable(
@@ -35,12 +34,41 @@ export const getExploreUsers = getFunctions(firebase).httpsCallable(
 export const getExploreCount = getFunctions(firebase).httpsCallable(
 	'getExploreCount'
 );
+export const updateUserStats = getFunctions(firebase).httpsCallable(
+	'updateUserStats'
+);
 
 // FIRESTORE
 
-export const uploadProject = async (uuid, project) => {
+export const addUserDetails = async (
+	uid,
+	photoURL,
+	firstStep,
+	secondStep,
+	thirdStep
+) => {
+	await getFirebase().firestore().collection('/users').doc(uid).set({
+		firstName: firstStep.firstName,
+		lastName: firstStep.lastName,
+		role: firstStep.role,
+		photoUrl: photoURL,
+		occupation: secondStep.occupation,
+		location: secondStep.location,
+		personalDesc: secondStep.personalDesc,
+		expertise: secondStep.expertise,
+		socials: thirdStep,
+		skills: {},
+		tools: {},
+	});
+};
+
+export const getProject = async (uid, pid) => {};
+
+export const uploadProject = async (uid, project) => {
+	const newSkills = {};
+	const newTools = {};
 	const projectBase = {
-		pid: project.projectId,
+		pid: project.pid,
 		title: project.title,
 		visibility: project.sharing,
 		situation: {
@@ -57,16 +85,74 @@ export const uploadProject = async (uuid, project) => {
 		results: {
 			conclusion: project.results.conclusion,
 			links: project.results.links,
+			sections: project.results.sections,
 		},
 	};
+	const projectPreview = {
+		pid: project.pid,
+		title: project.title,
+		role: project.situation.role,
+		startDate: new Date(project.situation.projectDates.startDate.format()),
+		endDate: new Date(project.situation.projectDates.endDate.format()),
+		skills: [],
+		tools: [],
+	};
+
 	await getFirebase()
 		.firestore()
 		.collection('users')
-		.doc(uuid)
+		.doc(uid)
 		.collection('projects')
-		.doc(project.projectId)
-		.set(projectBase);
+		.doc(project.pid)
+		.set(projectBase)
+		.then(() => {
+			project.tasks.map(async (task, index) => {
+				task.actions.forEach((action) => {
+					action.skills.forEach((skill) => {
+						addToStats(newSkills, skill);
+					});
+					action.tools.forEach((tool) => {
+						addToStats(newTools, tool);
+					});
+				});
+				await getFirebase()
+					.firestore()
+					.collection('users')
+					.doc(uid)
+					.collection('projects')
+					.doc(project.pid)
+					.collection('tasks')
+					.add({
+						index,
+						actions: task.actions,
+						description: task.description,
+						title: task.title,
+						startDate: new Date(task.startDate.format()),
+						endDate: new Date(task.endDate.format()),
+					});
+			});
+		})
+		.catch((e) => console.log(e));
+
+	await getFirebase()
+		.firestore()
+		.collection('users')
+		.doc(uid)
+		.collection('projectPreviews')
+		.doc(project.pid)
+		.set(projectPreview);
+	await updateUserStats({ uid, skills: newSkills, tools: newTools });
 };
 
 // STORAGE //
 export const storage = getStorage(firebase);
+
+// HELPER FUNCTIONS //
+
+const addToStats = (stats, key) => {
+	if (key in stats) {
+		stats[key] += 1;
+	} else {
+		stats[key] = 1;
+	}
+};

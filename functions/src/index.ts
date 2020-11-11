@@ -9,6 +9,7 @@ import { getSocials, getExpertise } from './helperFunction';
 import 'reflect-metadata';
 
 admin.initializeApp();
+const db = admin.firestore();
 
 const connect = async () => {
 	return await createConnection({
@@ -200,13 +201,16 @@ export const finishUserSignUp = functions
 			if (!connection || !connection.isConnected) {
 				connection = await connect();
 			}
+			const uid = data.uid;
 			const firstStep = data.firstStep;
 			const secondStep = data.secondStep;
 			const thirdStep = data.thirdStep;
-			const random = Math.floor(Math.random() * 100000000);
-			const uid = `${firstStep.firstName.toLowerCase()}-${firstStep.lastName.toLowerCase()}-${random}`;
 			const seeker = new Seeker();
-			const expertise = getExpertise(data.uuid, uid, secondStep);
+			const expertise = getExpertise(
+				data.uuid,
+				uid,
+				secondStep.expertise
+			);
 			const socials = getSocials(data.uuid, uid, thirdStep);
 
 			var description;
@@ -241,4 +245,67 @@ export const finishUserSignUp = functions
 			console.log(err);
 			return;
 		}
+	});
+
+// TRIGGERS
+
+export const updateUserStats = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		const uid = data.uid;
+		const skills = data.skills;
+		const tools = data.tools;
+
+		const ref = db.collection('users').doc(uid);
+		const userRawStats = await ref.get();
+		const userStats = userRawStats.data();
+		if (userStats) {
+			for (const [key, value] of Object.entries(skills)) {
+				if (key in userStats.skills) {
+					ref.set(
+						{
+							skills: {
+								...userStats.skills,
+								[key]: userStats.skills[key] + value,
+							},
+						},
+						{ merge: true }
+					);
+				} else {
+					ref.set(
+						{
+							skills: {
+								...userStats.skills,
+								[key]: value,
+							},
+						},
+						{ merge: true }
+					);
+				}
+			}
+			for (const [key, value] of Object.entries(tools)) {
+				if (key in userStats.tools) {
+					ref.set(
+						{
+							tools: {
+								...userStats.tools,
+								[key]: userStats.tools[key] + value,
+							},
+						},
+						{ merge: true }
+					);
+				} else {
+					ref.set(
+						{
+							tools: {
+								...userStats.tools,
+								[key]: value,
+							},
+						},
+						{ merge: true }
+					);
+				}
+			}
+		}
+		return;
 	});
