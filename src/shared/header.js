@@ -38,7 +38,7 @@ const Header = (props) => {
 						/>
 						<div className={styles.uran}>URAN</div>
 					</Link>
-					<label id={styles.label} onClick={() => setOpen(!open)}>
+					<label id={styles.label} for="toggle" onClick={() => setOpen(!open)}>
 						<div id={styles.nav_icon}>
 							<span
 								className={`${open ? styles.open1 : ''} ${
