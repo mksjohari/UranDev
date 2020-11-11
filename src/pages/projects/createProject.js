@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withFormik } from 'formik';
 import { withContext } from '../../shared/react-dims';
@@ -26,6 +26,17 @@ function CreateProject(props) {
 	const [step, setStep] = useState(0);
 	const [project, setProject] = useState(projectData);
 	const history = useHistory();
+	useEffect(() => {
+		setProject(projectData);
+		setProject({
+			...projectData,
+			pid: `${Math.floor(Math.random() * Math.pow(10, 6))}-${Math.floor(
+				Math.random() * Math.pow(10, 6)
+			)}-${Math.floor(Math.random() * Math.pow(10, 6))}-${Math.floor(
+				Math.random() * Math.pow(10, 6)
+			)}`,
+		});
+	}, []);
 	function nextStep(props) {
 		if (step < 3) {
 			setPercent((step * 100 + 100) / 3);
@@ -76,9 +87,7 @@ function CreateProject(props) {
 		setProject(newProject);
 	}
 	const uploadToFirestore = async () => {
-		console.log(project);
-		console.log('uploading to firestore');
-		uploadProject(props.user.uuid, project);
+		uploadProject(props.user.uid, project);
 		history.push(`users/${props.user.uid}`);
 	};
 	return (
@@ -99,7 +108,7 @@ function CreateProject(props) {
 				</div>
 			</div>
 			<div
-				id={project.projectId}
+				id={project.pid}
 				className={styles.project_title}
 				onClick={(e) => {
 					lockBg(e);
@@ -108,11 +117,11 @@ function CreateProject(props) {
 				{project.title}
 			</div>
 			<div
-				id={project.projectId + '_popContent'}
+				id={project.pid + '_popContent'}
 				className={popup.popupContainer}
 			>
 				<ProjectDetails
-					id={project.projectId}
+					id={project.pid}
 					project={project}
 					editProjectDetails={editProjectDetails}
 				/>
@@ -207,7 +216,6 @@ const ProjectForm = withFormik({
 export default connect(mapStateToProps)(withContext(ProjectForm));
 
 const projectData = {
-	projectId: `project-${Math.floor(Math.random() * Math.pow(10, 13))}`,
 	status: 'Ongoing',
 	sharing: 'Public',
 	title: 'New project',

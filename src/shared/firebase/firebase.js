@@ -3,7 +3,6 @@ import 'firebase/auth';
 import 'firebase/functions';
 import 'firebase/firestore';
 import { getFirebase, getFunctions, getStorage } from './config';
-
 // FUNCTIONS //
 
 export const createAccount = getFunctions(firebase).httpsCallable(
@@ -38,9 +37,11 @@ export const getExploreCount = getFunctions(firebase).httpsCallable(
 
 // FIRESTORE
 
-export const uploadProject = async (uuid, project) => {
+export const getProject = async (uid, pid) => {};
+
+export const uploadProject = async (uid, project) => {
 	const projectBase = {
-		pid: project.projectId,
+		pid: project.pid,
 		title: project.title,
 		visibility: project.sharing,
 		situation: {
@@ -59,13 +60,29 @@ export const uploadProject = async (uuid, project) => {
 			links: project.results.links,
 		},
 	};
+	const projectPreview = {
+		pid: project.pid,
+		title: project.title,
+		role: project.situation.role,
+		startDate: new Date(project.situation.projectDates.startDate.format()),
+		endDate: new Date(project.situation.projectDates.endDate.format()),
+		skills: [],
+		tools: [],
+	};
 	await getFirebase()
 		.firestore()
 		.collection('users')
-		.doc(uuid)
+		.doc(uid)
 		.collection('projects')
-		.doc(project.projectId)
+		.doc(project.pid)
 		.set(projectBase);
+	await getFirebase()
+		.firestore()
+		.collection('users')
+		.doc(uid)
+		.collection('projectPreviews')
+		.doc(project.pid)
+		.set(projectPreview);
 };
 
 // STORAGE //

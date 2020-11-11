@@ -11,7 +11,7 @@ const firebaseConfig = {
 	projectId: 'uran-28-12-98',
 	storageBucket: 'uran-28-12-98.appspot.com',
 	messagingSenderId: '113317665845',
-	apuid: '1:113317665845:web:9b4e3065a9a84b7cd5a57c',
+	appId: '1:113317665845:web:9b4e3065a9a84b7cd5a57c',
 	measurementId: 'G-DDKX9CHS1L',
 };
 

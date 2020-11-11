@@ -7,13 +7,12 @@ import user from './pages/user/user';
 import signUp from './pages/signUp/signUp';
 import createProject from './pages/projects/createProject';
 import draftProjects from './pages/projects/draftProjects';
-import tmpTest from './pages/tmp/tmpTest';
 import redirectUser from './pages/redirects/redirectUser';
 import redirectProject from './pages/redirects/redirectProject';
 import Page404 from './pages/404/404';
 import './styles/index.scss';
 import Home from './pages/home/home';
-import TempPreview from './pages/projects/tempPreview';
+import TempProjectPage from './pages/projects/tempProjectPage';
 require('typeface-poppins');
 
 const Index = () => {
@@ -23,8 +22,11 @@ const Index = () => {
 			<Switch>
 				<Route component={explore} path="/explore" />
 				<Route component={signUp} path="/signUp" />
+				<Route
+					component={TempProjectPage}
+					path="/users/:uid/projects/:pid"
+				/>
 				<Route component={projects} path="/users/:uid/projects" />
-				<Route component={TempPreview} path="/users/:uid/projects" />
 				<Route component={createProject} path="/create" />
 				<Route component={draftProjects} path="/drafts" />
 				<Route component={user} path="/users/:uid" />
@@ -33,7 +35,6 @@ const Index = () => {
 					component={redirectProject}
 					path="/redirect-:uid-project-:pid"
 				/>
-				<Route component={tmpTest} path="/tmp" />
 				<Route component={Home} exact path="/" />
 				<Route component={Page404} path="/*" />
 			</Switch>

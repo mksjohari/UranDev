@@ -25,7 +25,6 @@ const Header = (props) => {
 			setUser(props.user);
 		}
 	}, [props.user]);
-	console.log(user);
 	return (
 		<header className={styles.header}>
 			<div className={styles.container}>

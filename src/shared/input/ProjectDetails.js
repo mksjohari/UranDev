@@ -8,7 +8,7 @@ import SegmentTab from './SegmentTab';
 import styles from '../../modules/popup.module.scss';
 
 function ProjectDetails(props) {
-	const projectId = props.project.projectId;
+	const pid = props.project.pid;
 
 	return (
 		<div className={styles.form_container}>
@@ -80,7 +80,7 @@ function ProjectDetails(props) {
 						<div className={styles.btnsRow}>
 							<Button
 								text="Confirm"
-								id={projectId + '_confirm'}
+								id={pid + '_confirm'}
 								colour="reddo"
 								iconR={<i className="fas fa-check"></i>}
 								onClick={(e) => {
