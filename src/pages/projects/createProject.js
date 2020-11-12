@@ -10,6 +10,7 @@ import ProjectDetails from '../../shared/input/ProjectDetails';
 import Situation from './situation';
 import TasksActions from './tasksActions';
 import Results from './results';
+import Preview from "./previewProject";
 
 import popup from '../../modules/popup.module.scss';
 import styles from '../../modules/createProject.module.scss';
@@ -21,8 +22,8 @@ function mapStateToProps(state) {
 }
 
 function CreateProject(props) {
-	const [percent, setPercent] = useState(0);
-	const [step, setStep] = useState(0);
+	const [percent, setPercent] = useState(1);
+	const [step, setStep] = useState(1);
 	const [project, setProject] = useState(projectData);
 	const history = useHistory();
 	useEffect(() => {
@@ -137,54 +138,45 @@ function CreateProject(props) {
 				/>
 			</div>
 
-            {step === 0 && (
-                <div className={styles.parent_form}>
-                    <div className={styles.heading}>Situation</div>
-                    <Situation
-                        situation={project.situation}
-                        nextStep={nextStep}
-                        prevStep={prevStep}
-                        editSituation={editSituation}
-                    />
-                </div>
-            )}
-            {step === 1 && (
-                <div className={styles.parent_form}>
-                    <div className={styles.heading}>Tasks & Actions</div>
-                    <TasksActions
-                        tasks={project.tasks}
-                        nextStep={nextStep}
-                        prevStep={prevStep}
-                        editTasks={editTasks}
-                    />
-                </div>
-            )}
-            {step === 2 && (
-                <div className={styles.parent_form}>
-                    <div className={styles.heading}>Results</div>
-                    <Results
-                        results={project.results}
-                        nextStep={nextStep}
-                        prevStep={prevStep}
-                        editResults={editResults}
-                        addSection={addSection}
-                        editSections={editSections}
-                        finishProject={uploadToFirestore}
-                    />
-                </div>
-            )}
-            {/* {step === 3 && <TempPreview project={project} />}
-            <div className={styles.button_back}>
-                {step !== 0 && (
-                    <Button
-                        iconL={<i className="fas fa-arrow-left" />}
-                        text="Back"
-                        onClick={prevStep}
-                    />
-                )}
-            </div> */}
-        </div>
-    );
+			{step === 0 && (
+				<div className={styles.parent_form}>
+					<div className={styles.heading}>Situation</div>
+					<Situation
+						situation={project.situation}
+						nextStep={nextStep}
+						editSituation={editSituation}
+					/>
+				</div>
+			)}
+			{step === 1 && (
+				<div className={styles.parent_form}>
+					<div className={styles.heading}>Tasks & Actions</div>
+					<TasksActions
+						tasks={project.tasks}
+						// projectDates={project.situation.projectDates}
+						nextStep={nextStep}
+						prevStep={prevStep}
+						editTasks={editTasks}
+					/>
+				</div>
+			)}
+			{step === 2 && (
+				<div className={styles.parent_form}>
+					<div className={styles.heading}>Results</div>
+					<Results
+						results={project.results}
+						nextStep={nextStep}
+						prevStep={prevStep}
+						editResults={editResults}
+						addSection={addSection}
+						editSections={editSections}
+						finishProject={uploadToFirestore}
+					/>
+				</div>
+			)}
+			{step === 3 && <Preview project={project} />}
+		</div>
+	);
 }
 
 const label = ['SITUATION', 'TASKS & ACTIONS', 'RESULTS', 'PREVIEW'];

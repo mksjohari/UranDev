@@ -5,9 +5,11 @@ import Button from "../sandbox/Button";
 import ActionCard from "./action";
 import TaskCard from "./task";
 import Alert from "../sandbox/Alert";
+import AddActionForm from "../input/AddActionForm";
 
 import popup from "../../modules/popup.module.scss";
 import styles from "../../modules/DnD.module.scss";
+import { lockBg } from "../sandbox/Popup";
 
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -35,14 +37,14 @@ function TaskDnD(props) {
         };
         props.updateTasks([...taskList, newTask]);
     }
-    function addAction() {
+    function addAction(values, tools, skills) {
         const newAction = {
-            actionId: `action-${new Date().getTime()}`,
-            title: "New action",
-            tools: [],
-            skills: [],
-            description: "",
-            files: [],
+            actionId: `task-${new Date().getTime()}`,
+            title: values.title,
+            description: values.description,
+            tools: tools,
+            skills: skills,
+            files: values.files,
         };
         const actionList = taskList[currentTask].actions;
         const newActionList = [...actionList, newAction];
@@ -74,25 +76,10 @@ function TaskDnD(props) {
         props.updateTasks(newTaskList);
     }
     function deleteTask(index) {
-        if (taskList.length > 1) {
-            setSwitch(true);
-            const newTaskList = [...taskList];
-            newTaskList.splice(index, 1);
-            props.updateTasks(newTaskList);
-        } else {
-            return (
-                <div className={popup.popupContainer} id={"delTask_popContent"}>
-                    <Alert
-                        id={"delTask"}
-                        heading="Opps!"
-                        message="There must be at least one task"
-                        closeBtnLabel="No, go back"
-                        onConfirm={deleteTask}
-                    />
-                </div>
-            );
-            // console.log("Alert: Must have at least one task.");
-        }
+        setSwitch(true);
+        const newTaskList = [...taskList];
+        newTaskList.splice(index, 1);
+        props.updateTasks(newTaskList);
     }
     function deleteAction(index) {
         const newActionList = taskList[currentTask].actions;
@@ -160,13 +147,21 @@ function TaskDnD(props) {
                                             >
                                                 <TaskCard
                                                     key={task.taskId}
-                                                    index={index}
                                                     task={task}
+                                                    index={index}
                                                     snapshot={snapshot}
                                                     currentTask={currentTask}
-                                                    editTask={editTask}
-                                                    setTaskDates={setTaskDates}
-                                                    deleteTask={deleteTask}
+                                                    editTask={(v) =>
+                                                        editTask(index, v)
+                                                    }
+                                                    setTaskDates={(v) =>
+                                                        setTaskDates(index, v)
+                                                    }
+                                                    deleteTask={
+                                                        taskList.length > 1
+                                                            ? () => deleteTask(index)
+                                                            : null
+                                                    }
                                                 />
                                             </div>
                                         )}
@@ -217,14 +212,25 @@ function TaskDnD(props) {
                                                             key={
                                                                 action.actionId
                                                             }
-                                                            index={index}
+                                                            // index={index}
                                                             action={action}
                                                             snapshot={snapshot}
-                                                            editAction={
-                                                                editAction
+                                                            editAction={(
+                                                                v,
+                                                                t,
+                                                                s
+                                                            ) =>
+                                                                editAction(
+                                                                    index,
+                                                                    v,
+                                                                    t,
+                                                                    s
+                                                                )
                                                             }
-                                                            deleteAction={
-                                                                deleteAction
+                                                            deleteAction={() =>
+                                                                deleteAction(
+                                                                    index
+                                                                )
                                                             }
                                                         />
                                                     </div>
@@ -234,11 +240,23 @@ function TaskDnD(props) {
                                     )}
                                 {provided.placeholder}
                                 <Button
+                                    id={"newAction"}
                                     className={styles.button_add_action}
                                     iconL={<i className="fas fa-plus"></i>}
                                     text="Add new action"
-                                    onClick={() => addAction()}
+                                    onClick={lockBg}
                                 />
+                                <div
+                                    className={popup.popupContainer}
+                                    id={"newAction_popContent"}
+                                >
+                                    <AddActionForm
+                                        id={"newAction"}
+                                        action={newAction}
+                                        editAction={addAction}
+                                        newAction
+                                    />
+                                </div>
                             </div>
                         )}
                     </Droppable>
@@ -249,3 +267,12 @@ function TaskDnD(props) {
 }
 
 export default TaskDnD;
+
+const newAction = {
+    // actionId: `action-${new Date().getTime()}`,
+    title: "",
+    tools: [],
+    skills: [],
+    description: "",
+    files: [],
+};

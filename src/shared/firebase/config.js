@@ -24,7 +24,7 @@ export const getFirebase = () => {
 	}
 
 	firebase.initializeApp(firebaseConfig);
-	firebase.functions().useFunctionsEmulator('http://localhost:5001');
+	// firebase.functions().useFunctionsEmulator('http://localhost:5001');
 	firebaseInstance = firebase;
 
 	return firebase;

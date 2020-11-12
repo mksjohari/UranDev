@@ -32,7 +32,7 @@ function ProjectDetails(props) {
 						style={{ width: window.innerWidth * 0.4 }}
 					>
 						<h3>Create Project</h3>
-						<div className={styles.project_details_root}>
+						<div className={styles.root_column}>
 							<div className={styles.section_columns}>
 								<label
 									htmlFor="status"
@@ -61,7 +61,7 @@ function ProjectDetails(props) {
 								/>
 							</div>
 							<br />
-							<div className={styles.project_details_root}>
+							<div className={styles.root_column}>
 								<label
 									htmlFor="title"
 									className={styles.subtitle}

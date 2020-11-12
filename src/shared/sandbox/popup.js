@@ -122,8 +122,10 @@ export const lockBg = (e) => {
 };
 
 export const close = (e, str) => {
+	console.log(e)
 	var re = new RegExp(str);
 	// console.log(e.target, re);
+	
 	if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
 		e.target = e.target.parentNode;
 	}

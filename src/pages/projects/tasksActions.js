@@ -20,6 +20,11 @@ function TasksActions(props) {
             </div>
             <div className={styles.button_footer}>
                 <Button
+                    iconL={<i className="fas fa-arrow-left" />}
+                    text="Back"
+                    onClick={props.prevStep}
+                />
+                <Button
                     type="submit"
                     className={styles.save_draft}
                     iconR={<i className="fas fa-arrow-right" />}
