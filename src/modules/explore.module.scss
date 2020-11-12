@@ -3,7 +3,7 @@
 .grid {
     display: grid;
     grid-template-columns: 250px 690px;
-    grid-template-rows: 108px auto 60px;
+    grid-template-rows: auto auto 60px;
     margin: 0 auto;
     width: 940px;
     grid-row-gap: 20px;
@@ -26,8 +26,9 @@
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 20%;
 }
 
 .filter {
@@ -73,8 +74,12 @@
 #page_numbers li {
     cursor: pointer;
     font-size: 14px;
-    padding: 2px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 0 10px;
+    width: 22px;
+    height: 30px;
     transition: 0.3s all ease-in-out;
 }
 
@@ -86,15 +91,14 @@
 
 .btn {
     width: 40px;
-    min-width: unset;
-    font-size: 14px;
-    margin: 0 30px;
-    background: #f9f6f0;
-    &:hover {
-        box-shadow: unset;
-        transform: unset;
-        transition: unset;
-    }
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn svg {
+    width: 22px;
 }
 
 .btn span {

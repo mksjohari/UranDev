@@ -185,6 +185,7 @@
 	}
 	.toggle:checked ~ .navBar {
 		display: flex;
+		animation: display 1s;
 	}
 
 	.open1 {
@@ -211,5 +212,14 @@
 		top: 6px;
 		width: 0%;
 		left: 50%;
+	}
+}
+
+@keyframes display {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }
