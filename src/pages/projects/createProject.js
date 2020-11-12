@@ -10,7 +10,7 @@ import ProjectDetails from '../../shared/input/ProjectDetails';
 import Situation from './situation';
 import TasksActions from './tasksActions';
 import Results from './results';
-import Preview from "./previewProject";
+import Preview from './previewProject';
 
 import popup from '../../modules/popup.module.scss';
 import styles from '../../modules/createProject.module.scss';
@@ -22,8 +22,8 @@ function mapStateToProps(state) {
 }
 
 function CreateProject(props) {
-	const [percent, setPercent] = useState(1);
-	const [step, setStep] = useState(1);
+	const [percent, setPercent] = useState(2);
+	const [step, setStep] = useState(2);
 	const [project, setProject] = useState(projectData);
 	const history = useHistory();
 	useEffect(() => {
@@ -181,6 +181,7 @@ function CreateProject(props) {
 
 const label = ['SITUATION', 'TASKS & ACTIONS', 'RESULTS', 'PREVIEW'];
 
+// error checking after the whole form
 const ProjectForm = withFormik({
 	mapPropsToValues: () => ({ name: '' }),
 

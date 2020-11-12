@@ -5,20 +5,21 @@ import Button from '../sandbox/Button';
 import { close, lockBg } from '../sandbox/Popup';
 import Droparea from '../sandbox/Droparea';
 import Alert from '../sandbox/Alert';
+import Carousel from '../sandbox/Carousel';
 
 import styles from '../../modules/createProject.module.scss';
+import dnd from '../../modules/DnD.module.scss';
 import popup from '../../modules/popup.module.scss';
 
 function ResultSection(props) {
 	const [meta] = useField(props.name);
 
-	const { push, remove } = props;
+	const { form, push, remove } = props;
 	const { value } = meta;
 	// const initialValues = useState(value)
 	// const reset = (index) => {
 	//     props.form.setFieldValue("sections", initialValues[index]);
 	// }
-
 	return (
 		<div className={styles.section_input}>
 			{value.map((section, index) => {
@@ -27,7 +28,30 @@ function ResultSection(props) {
 						className={styles.section_card}
 						key={section.sectionId}
 					>
-						<div>{section.description}</div>
+						<div className={styles.section_grid}>
+							<div className={styles.section_left}>
+								{section.description}
+								{section.sectionLink.url ? (
+									<a
+										href={`${styles.section.sectionLink.url} ${styles.section_link}`}
+									>
+										<i className="fas fa-link" />
+										{section.sectionLink.linkName}
+									</a>
+								) : (
+									''
+								)}
+							</div>
+							<div className={styles.section_right}>
+								{section.files.length ? (
+									<div className={dnd.carousel_display}>
+										<Carousel files={section.files} />
+									</div>
+								) : (
+									''
+								)}
+							</div>
+						</div>
 						<div className={styles.section_footer}>
 							<Button
 								colour="reddo"
@@ -69,7 +93,7 @@ function ResultSection(props) {
 									htmlFor="description"
 									className={popup.subtitle}
 								>
-									Describe your section in detail. (Optional)
+									Describe your section in detail.
 								</label>
 								<Field
 									as="textarea"
@@ -77,6 +101,12 @@ function ResultSection(props) {
 									className={`inp-field ${popup.descEdit}`}
 									placeholder="Write what this section is about ..."
 								/>
+								{form.errors.sections &&
+								form.errors.sections == 'description' ? (
+									<div className={styles.error}>
+										Please enter a section description.
+									</div>
+								) : null}
 								<br />
 								<label
 									htmlFor="sectionLink"
@@ -84,20 +114,26 @@ function ResultSection(props) {
 								>
 									Add an link to external sources.
 								</label>
-								<div className={styles.section_input_row}>
+								<div className={styles.input_teamsize}>
 									<Field
 										as="input"
-										className={`inp-field ${styles.input_link}`}
+										className={`inp-field ${styles.input_link_left}`}
 										name={`sections[${index}].sectionLink.url`}
 										placeholder="URL"
 									/>
 									<Field
 										as="input"
-										className={`inp-field ${styles.input_link}`}
+										className={`inp-field ${styles.input_link_left}`}
 										name={`sections[${index}].sectionLink.linkName`}
 										placeholder="link name (optional)"
 									/>
 								</div>
+								{form.errors.sections &&
+								form.errors.sections == 'url' ? (
+									<div className={styles.error}>
+										Please change invalid link.
+									</div>
+								) : null}
 								<br />
 								<label
 									htmlFor="title"
