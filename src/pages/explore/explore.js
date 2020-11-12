@@ -122,7 +122,9 @@ const Explore = (props) => {
             </div>
             <div id={styles.div4}>
                 <div
-                    className={styles.btn}
+                    className={
+                        currentPage > 1 ? styles.btn : styles.disabled_btn
+                    }
                     onClick={() =>
                         currentPage > 1
                             ? setCurrentPage(currentPage - 1)
@@ -133,7 +135,11 @@ const Explore = (props) => {
                 </div>
                 <ul id={styles.page_numbers}>{renderPageNumbers}</ul>
                 <div
-                    className={styles.btn}
+                    className={
+                        currentPage < pageNumbers.length
+                            ? styles.btn
+                            : styles.disabled_btn
+                    }
                     onClick={() =>
                         currentPage < pageNumbers.length
                             ? setCurrentPage(currentPage + 1)

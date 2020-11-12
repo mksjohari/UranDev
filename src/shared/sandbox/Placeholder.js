@@ -3,12 +3,12 @@ import ContentLoader from "react-content-loader";
 import styles from "../../modules/explore.module.scss";
 
 const Placeholder = (props) => (
+    <div className={styles.placeholder_ctn}>
     <ContentLoader
-        className={styles.placeholder}
+        className = {styles.placeholder}
         speed={2}
-        width={690}
         height={100}
-        viewBox='0 0 690 100'
+        viewBox='0 0 460 100'
         backgroundColor='#f3f3f3'
         foregroundColor='#ecebeb'
         {...props}
@@ -18,6 +18,7 @@ const Placeholder = (props) => (
         <rect x='130' y='71' rx='3' ry='3' width='140' height='8' />
         <rect x='30' y='15' rx='10' ry='10' width='70' height='70' />
     </ContentLoader>
+    </div>
 );
 
 export default Placeholder;

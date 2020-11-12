@@ -51,11 +51,18 @@
     width: 700px;
 }
 
-.placeholder {
+.placeholder_ctn {
+    width: 690px;
     box-shadow: 0 0 9px 0 #ededed;
     border-radius: 15px;
     background-color: white;
-    margin: 5px 0;
+    margin: 20px 0;
+    height: 100px;
+}
+
+.placeholder {
+    max-width: 460px;
+    width: 100%;
 }
 
 .errormsg {
@@ -89,6 +96,7 @@
     border-radius: 4px;
 }
 
+.disabled_btn,
 .btn {
     width: 40px;
     cursor: pointer;
@@ -97,12 +105,19 @@
     align-items: center;
 }
 
+.disabled_btn svg,
 .btn svg {
     width: 22px;
 }
 
+.disabled_btn span,
 .btn span {
     padding: 0;
+}
+
+.disabled_btn {
+    color: $midgrey;
+    transition: 0.4s color ease;
 }
 
 @media screen and (max-width: 991px) {
@@ -129,7 +144,7 @@
         margin: 0px;
         width: 100%;
     }
-    .placeholder {
+    .placeholder_ctn {
         width: 100%;
     }
 }
