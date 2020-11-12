@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Field, useField } from 'formik';
 
 import Button from '../sandbox/Button';
@@ -12,6 +12,7 @@ import dnd from '../../modules/DnD.module.scss';
 import popup from '../../modules/popup.module.scss';
 
 function ResultSection(props) {
+	const [popupId, setpopupId] = useState('newSection');
 	const [meta] = useField(props.name);
 
 	const { form, push, remove } = props;
@@ -31,7 +32,7 @@ function ResultSection(props) {
 						<div className={styles.section_grid}>
 							<div className={styles.section_left}>
 								{section.description}
-								{section.sectionLink.url ? (
+								{/* {section.sectionLink.url ? (
 									<a
 										href={`${styles.section.sectionLink.url} ${styles.section_link}`}
 									>
@@ -40,7 +41,7 @@ function ResultSection(props) {
 									</a>
 								) : (
 									''
-								)}
+								)} */}
 							</div>
 							<div className={styles.section_right}>
 								{section.files.length ? (
@@ -154,6 +155,16 @@ function ResultSection(props) {
 										colour="reddo"
 										iconR={<i className="fas fa-check"></i>}
 										onClick={(e) => {
+											push({
+												sectionId: `section-${new Date().getTime()}`,
+												description:
+													'Add your description here...',
+												files: [],
+												sectionLink: {
+													url: '',
+													linkName: '',
+												},
+											});
 											close(e, '_confirm');
 										}}
 									/>
@@ -173,19 +184,10 @@ function ResultSection(props) {
 				);
 			})}
 			<Button
+				id={'newSection'}
 				colour="pink"
 				type="button"
-				onClick={() =>
-					push({
-						sectionId: `section-${new Date().getTime()}`,
-						description: 'Add your description here...',
-						files: [],
-						sectionLink: {
-							url: '',
-							linkName: '',
-						},
-					})
-				}
+				onClick={lockBg}
 				className={`${styles.save_draft} ${styles.center}`}
 				iconR={<i className="fas fa-plus"></i>}
 				text="Add result section"
