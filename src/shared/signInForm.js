@@ -4,13 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import Button from './sandbox/Button';
 import Loader from './Loader';
 import { getFirebase } from './firebase/config';
-import {
-	checkUserExists,
-	createAccount,
-	getUserSocials,
-	getUserExpertise,
-	getUserInfo,
-} from './firebase/firebase';
+import { checkUserExists, createAccount, getUID } from './firebase/firebase';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/functions';
@@ -39,12 +33,6 @@ export const signInWithGoogle = async (
 				const firstName = result.additionalUserInfo.profile.given_name;
 				var lastName =
 					result.additionalUserInfo.profile.family_name || '';
-				console.log(
-					'si',
-					firstName,
-					lastName,
-					result.additionalUserInfo.profile.email
-				);
 				createAccount({
 					uuid: uuid,
 					firstName,
@@ -76,20 +64,15 @@ export const signInWithGoogle = async (
 						lastName: exists.data[1].lastName,
 					});
 				} else {
-					const userInfo = await getUserInfo({ uuid: uuid });
-					const userSocials = await getUserSocials({ uuid: uuid });
-					const userExpertise = await getUserExpertise({
-						uuid: uuid,
-					});
-					console.log(userSocials);
-					console.log('sir');
-					updateInfo({
-						userInfo: userInfo.data,
-						userSocials: userSocials.data,
-						userExpertise: userExpertise.data,
-					});
+					const user_uid = await getUID({ uuid: uuid });
+					const userInfo = await getFirebase()
+						.firestore()
+						.collection('users')
+						.doc(user_uid.data.uid)
+						.get();
+					updateInfo(uuid, user_uid.data.uid, userInfo.data());
 					onClose();
-					history.push(`/users/${userInfo.data.uid}`);
+					history.push(`/users/${user_uid.data.uid}`);
 				}
 			}
 		})
@@ -120,7 +103,9 @@ const SignIn = React.memo((props) => {
 			.then(async (user) => {
 				setIndex(1);
 				setOpacity(90);
-				const exists = await checkUserExists({ uuid: user.user.uid });
+				const uuid = user.user.uid;
+
+				const exists = await checkUserExists({ uuid: uuid });
 				console.log(exists);
 				if (exists.data[1].status === 'incomplete') {
 					props.onClose();
@@ -130,18 +115,13 @@ const SignIn = React.memo((props) => {
 						lastName: exists.data[1].lastName,
 					});
 				} else {
-					const userInfo = await getUserInfo({ uuid: user.user.uid });
-					const userSocials = await getUserSocials({
-						uuid: user.user.uid,
-					});
-					const userExpertise = await getUserExpertise({
-						uuid: user.user.uid,
-					});
-					props.updateInfo({
-						userInfo: userInfo.data,
-						userSocials: userSocials.data,
-						userExpertise: userExpertise.data,
-					});
+					const user_uid = await getUID({ uuid: uuid });
+					const userInfo = await getFirebase()
+						.firestore()
+						.collection('users')
+						.doc(user_uid.data.uid)
+						.get();
+					updateInfo(uuid, user_uid.data.uid, userInfo.data());
 					props.onClose();
 					history.push(`/users/${userInfo.data.uid}`);
 				}

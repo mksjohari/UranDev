@@ -1,16 +1,10 @@
-export const updateInfo = (results) => (dispatch) => {
+export const updateInfo = (uuid, uid, userInfo) => (dispatch) => {
 	dispatch({
 		type: 'UPDATE_USER_INFO',
-		userInfo: results.userInfo,
+		uuid: uuid,
+		uid: uid,
+		userInfo: userInfo,
 		logged: true,
-	});
-	dispatch({
-		type: 'UPDATE_SOCIALS',
-		userSocials: results.userSocials,
-	});
-	dispatch({
-		type: 'UPDATE_EXPERTISE',
-		userExpertise: results.userExpertise,
 	});
 };
 
