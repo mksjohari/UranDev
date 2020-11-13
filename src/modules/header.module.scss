@@ -1,4 +1,4 @@
-@import "variable";
+@import 'variable';
 
 .header {
 	width: 100%;
@@ -66,17 +66,23 @@
 	left: 0;
 	width: 100%;
 	border-top: 1px solid #d9d9d9;
+	margin: 3em 0em;
+}
+
+.tabItem {
+	position: relative;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 2px 25px 0 25px;
+	text-decoration: none;
+	&:hover {
+		color: $navy !important;
+	}
 }
 
 .activeTabItem {
 	color: $navy !important;
-	padding-bottom: 3px;
 	border-top: 2px solid $navy;
-	font-weight: 500;
-}
-
-.section {
-	margin: 3em 0em;
 }
 
 .buttons {

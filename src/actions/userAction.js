@@ -16,8 +16,9 @@ export const updateInfo = (results) => (dispatch) => {
 
 export const updateInfoFromCompleteSignUp = (
 	uuid,
+	uid,
 	photoURL,
-	email,
+	allExpertise,
 	firstStep,
 	secondStep,
 	thirdStep
@@ -25,8 +26,9 @@ export const updateInfoFromCompleteSignUp = (
 	dispatch({
 		type: 'UPDATE_FROM_COMPLETE_SIGNUP',
 		uuid,
+		uid,
+		allExpertise,
 		photoURL,
-		email,
 		firstStep,
 		secondStep,
 		thirdStep,
@@ -41,6 +43,7 @@ export const updateInfoFromSignUp = (data) => (dispatch) => {
 		uuid: data.uuid,
 		firstName: data.firstName,
 		lastName: data.lastName,
+		email: data.email,
 		logged: true,
 	});
 };

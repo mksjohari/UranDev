@@ -8,8 +8,26 @@ import {
 } from '../../shared/firebase/firebase';
 import { getFirebase } from '../../shared/firebase/config';
 import { useHistory } from 'react-router-dom';
+import { updateInfoFromCompleteSignUp } from '../../actions/userAction';
+import { connect } from 'react-redux';
 
-const finishSetup = async (firstStep, secondStep, thirdStep, history) => {
+const getExpertise = (expertiseIds) => {
+	const result = [];
+	for (const [key, value] of Object.entries(expertiseIds)) {
+		if (value == true) {
+			result.push(expertise[key]);
+		}
+	}
+	return result;
+};
+
+const finishSetup = async (
+	firstStep,
+	secondStep,
+	thirdStep,
+	updateInfoFromCompleteSignUp,
+	history
+) => {
 	const uuid = getFirebase().auth().currentUser.uid;
 	const photoRef = storage.ref(`users/${uuid}/photo`);
 	const random = Math.floor(Math.random() * 100000000);
@@ -22,20 +40,38 @@ const finishSetup = async (firstStep, secondStep, thirdStep, history) => {
 		await photoRef.put(firstStep.imgSrc);
 		photoURL = await photoRef.getDownloadURL();
 	}
-	await addUserDetails(uid, photoURL, firstStep, secondStep, thirdStep);
+	const allExpertise = getExpertise(secondStep.expertise);
+	await addUserDetails(
+		uid,
+		photoURL,
+		allExpertise,
+		firstStep,
+		secondStep,
+		thirdStep
+	);
+	updateInfoFromCompleteSignUp(
+		uuid,
+		uid,
+		photoURL,
+		allExpertise,
+		firstStep,
+		secondStep,
+		thirdStep
+	);
+	history.push(`/users/${uid}`);
 	await finishUserSignUp({
 		uuid,
 		uid,
 		photoURL,
 		firstStep,
 		secondStep,
-		thirdStep,
 	});
-	history.push(`/users/${uid}`);
 };
 
 const StepFour = (props) => {
 	const history = useHistory();
+	console.log(props);
+
 	return (
 		<div className={styles.step_four}>
 			<h2>
@@ -86,6 +122,7 @@ const StepFour = (props) => {
 							props.stepOne,
 							props.stepTwo,
 							props.stepThree,
+							props.updateInfoFromCompleteSignUp,
 							history
 						);
 					}}
@@ -95,5 +132,17 @@ const StepFour = (props) => {
 		</div>
 	);
 };
+export default connect(null, { updateInfoFromCompleteSignUp })(StepFour);
 
-export default StepFour;
+const expertise = {
+	id1: 'Business & Management',
+	id2: 'Creative Arts',
+	id3: 'Engineering & Mathematics',
+	id4: 'Humanities, Arts & Social Sciences',
+	id5: 'IT & Computer Science',
+	id6: 'Law, Legal Studies & Justice',
+	id7: 'Medical & Health Sciences',
+	id8: 'Property & Built Environment',
+	id9: 'Sciences',
+	id10: 'Teaching & Education',
+};

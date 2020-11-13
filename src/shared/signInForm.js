@@ -15,14 +15,15 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/functions';
 import '../modules/loginform.scss';
-import { updateInfo } from '../actions/userAction';
+import { updateInfo, updateInfoFromSignUp } from '../actions/userAction';
 
 export const signInWithGoogle = async (
 	onClose,
 	history,
 	updateInfo,
 	setIndex,
-	setOpacity
+	setOpacity,
+	updateInfoFromSignUp
 ) => {
 	setIndex(1);
 	setOpacity(90);
@@ -63,6 +64,11 @@ export const signInWithGoogle = async (
 				console.log('Account exists');
 				console.log(uuid);
 				if (exists.data[1].status === 'incomplete') {
+					updateInfoFromSignUp({
+						uuid,
+						firstName: exists.data[1].firstName,
+						lastName: exists.data[1].lastName,
+					});
 					onClose();
 					history.push('/signup', {
 						fromSignUp: false,
@@ -219,7 +225,8 @@ const SignIn = React.memo((props) => {
 						history,
 						props.updateInfo,
 						setIndex,
-						setOpacity
+						setOpacity,
+						props.updateInfoFromSignUp
 					);
 				}}
 			/>
@@ -237,5 +244,4 @@ const SignIn = React.memo((props) => {
 		</form>
 	);
 });
-
-export default connect(null, { updateInfo })(SignIn);
+export default connect(null, { updateInfo, updateInfoFromSignUp })(SignIn);

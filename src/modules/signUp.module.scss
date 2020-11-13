@@ -1,4 +1,4 @@
-@import "variable";
+@import 'variable';
 
 .typing_img {
 	width: 250px;
@@ -15,9 +15,9 @@
 
 .btn_controls {
 	grid-area: 3 / 1 / 4 / 2;
-    width: 700px;
-    display: flex;
-    justify-content: space-between;
+	width: 700px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .jobsearch_img {
@@ -154,8 +154,8 @@
 }
 .social_icon_div {
 	display: flex;
-    align-items: center;
-    margin: 4% 0;
+	align-items: center;
+	margin: 4% 0;
 }
 .textarea {
 	width: 550px;

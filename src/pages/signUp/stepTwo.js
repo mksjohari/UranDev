@@ -133,7 +133,7 @@ const StepTwo = (props) => {
 						setStepTwo={props.setStepTwo}
 						data={props.data}
 					/>
-					<spanarea
+					<textarea
 						className={`inp-text-area ${styles.textarea}`}
 						value={props.data.personalDesc}
 						maxLength="1000"
