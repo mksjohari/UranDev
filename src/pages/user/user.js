@@ -3,36 +3,34 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import styles from '../../modules/header.module.scss';
-import {
-	getUserExpertise,
-	getPublicInfo,
-	getUserSocials,
-} from '../../shared/firebase/firebase';
+import { getUserExpertise } from '../../shared/firebase/firebase';
 import ProfileDetails from './userDetails';
 import About from './about';
 import MyProjects from '../projects/myProjects';
+import { getFirebase } from '../../shared/firebase/config';
 
 function mapStateToProps(state) {
 	return { user: state.user };
 }
 
 const getDetails = async (uid, setDetails, setChecked) => {
-	const userInfo = await getPublicInfo({ uid });
-	const userSocials = await getUserSocials({ uid });
-	const userExpertise = await getUserExpertise({ uid });
+	const userInfo = await getFirebase()
+		.firestore()
+		.collection('users')
+		.doc(uid)
+		.get();
 	if (!userInfo.data) {
-		console.log('???');
 		setDetails({});
 	} else {
 		setDetails({
-			firstName: userInfo.data.firstName,
-			lastName: userInfo.data.lastName,
-			photoUrl: userInfo.data.photo,
-			location: userInfo.data.location,
-			occupation: userInfo.data.occupation,
-			description: userInfo.data.description,
-			social: userSocials.data,
-			expertise: userExpertise.data,
+			firstName: userInfo.data().firstName,
+			lastName: userInfo.data().lastName,
+			photoUrl: userInfo.data().photoUrl,
+			location: userInfo.data().location,
+			occupation: userInfo.data().occupation,
+			description: userInfo.data().description,
+			social: userInfo.data().social,
+			expertise: userInfo.data().expertise,
 		});
 	}
 	setChecked(true);
@@ -43,11 +41,15 @@ const profile = React.memo((props) => {
 	const [checked, setChecked] = useState(false);
 	const [details, setDetails] = useState({});
 	const uid = props.match.params.uid;
+
 	useEffect(() => {
 		if (uid === props.user.uid) {
+			console.log('ME');
 			setDetails(props.user);
 			setChecked(true);
 		} else {
+			console.log('NOT ME');
+
 			getDetails(uid, setDetails, setChecked);
 		}
 	}, [props, uid]);

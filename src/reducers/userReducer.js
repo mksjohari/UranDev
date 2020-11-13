@@ -49,15 +49,16 @@ export default (state = notLoggedUserInfo, action) => {
 			return {
 				...state,
 				uuid: action.uuid,
+				uid: action.uid,
 				firstName: action.firstStep.firstName,
 				lastName: action.firstStep.lastName,
 				userType: action.firstStep.userType,
 				photoUrl: action.photoURL,
-				introduction: action.firstStep.introduction,
-				occupation: action.firstStep.occupation,
-				description: action.firstStep.description,
-				location: action.firstStep.location,
+				occupation: action.secondStep.occupation,
+				description: action.secondStep.description,
+				location: action.secondStep.location,
 				socials: action.thirdStep,
+				expertise: action.allExpertise,
 				logged: action.logged,
 				status: action.status,
 			};
@@ -67,6 +68,7 @@ export default (state = notLoggedUserInfo, action) => {
 				uuid: action.uuid,
 				firstName: action.firstName,
 				lastName: action.lastName,
+				email: action.email,
 				logged: action.logged,
 			};
 		case 'LOGOUT_USER':

@@ -23,11 +23,9 @@ function Situation(props) {
 			}}
 			validate={validateSituation}
 			onSubmit={(values, actions) => {
-				setTimeout(() => {
-					props.editSituation(values);
-					props.nextStep();
-					actions.setSubmitting(false);
-				}, 1000);
+				props.editSituation(values);
+				props.nextStep();
+				actions.setSubmitting(false);
 			}}
 		>
 			{(props) => (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import TaskDnD from '../../shared/reactDnD/taskDnD';
 import Button from '../../shared/sandbox/Button';
@@ -6,7 +6,6 @@ import { withContext } from '../../shared/react-dims';
 import styles from '../../modules/createProject.module.scss';
 
 function TasksActions(props) {
-	const [hasDates, setHasDates] = useState(false);
 	return (
 		<div>
 			<div className={styles.section_input}>

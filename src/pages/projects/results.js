@@ -153,6 +153,7 @@ const validateResults = (
 			} else if (!validUrl.test(link.url)) {
 				errors.links = `Please change invalid link #${index + 1}.`;
 			}
+			return null;
 		});
 	}
 
@@ -167,6 +168,7 @@ const validateResults = (
 			) {
 				errors.sections = `url`;
 			}
+			return null;
 		});
 	}
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Field, useField } from 'formik';
 
 import Button from '../sandbox/Button';
@@ -12,7 +12,7 @@ import dnd from '../../modules/DnD.module.scss';
 import popup from '../../modules/popup.module.scss';
 
 function ResultSection(props) {
-	const [popupId, setpopupId] = useState('newSection');
+	// const [popupId, setpopupId] = useState('newSection');
 	const [meta] = useField(props.name);
 
 	const { form, push, remove } = props;
@@ -103,7 +103,7 @@ function ResultSection(props) {
 									placeholder="Write what this section is about ..."
 								/>
 								{form.errors.sections &&
-								form.errors.sections == 'description' ? (
+								form.errors.sections === 'description' ? (
 									<div className={styles.error}>
 										Please enter a section description.
 									</div>
@@ -130,7 +130,7 @@ function ResultSection(props) {
 									/>
 								</div>
 								{form.errors.sections &&
-								form.errors.sections == 'url' ? (
+								form.errors.sections === 'url' ? (
 									<div className={styles.error}>
 										Please change invalid link.
 									</div>

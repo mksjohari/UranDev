@@ -37,12 +37,16 @@ export const getExploreCount = getFunctions(firebase).httpsCallable(
 export const updateUserStats = getFunctions(firebase).httpsCallable(
 	'updateUserStats'
 );
+export const addSkillsAndTools = getFunctions(firebase).httpsCallable(
+	'addSkillsAndTools'
+);
 
 // FIRESTORE
 
 export const addUserDetails = async (
 	uid,
 	photoURL,
+	allExpertise,
 	firstStep,
 	secondStep,
 	thirdStep
@@ -55,7 +59,7 @@ export const addUserDetails = async (
 		occupation: secondStep.occupation,
 		location: secondStep.location,
 		personalDesc: secondStep.personalDesc,
-		expertise: secondStep.expertise,
+		expertise: allExpertise,
 		socials: thirdStep,
 		skills: {},
 		tools: {},

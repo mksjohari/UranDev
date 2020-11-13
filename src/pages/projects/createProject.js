@@ -14,16 +14,46 @@ import Preview from './previewProject';
 
 import popup from '../../modules/popup.module.scss';
 import styles from '../../modules/createProject.module.scss';
-import { uploadProject } from '../../shared/firebase/firebase';
+import {
+	uploadProject,
+	addSkillsAndTools,
+} from '../../shared/firebase/firebase';
 import { useHistory } from 'react-router-dom';
 
 function mapStateToProps(state) {
 	return { user: state.user };
 }
 
+async function addSkillsTools(user, project) {
+	var skills = [];
+	var tools = [];
+	const date = new Date().getTime();
+	project.tasks.forEach((task) => {
+		task.actions.forEach((action) => {
+			action.skills.forEach((skill) => {
+				skills.push({
+					uuid: user.uuid,
+					uid: user.uid,
+					skill,
+					created: date.toString(),
+				});
+			});
+			action.tools.forEach((tool) => {
+				tools.push({
+					uuid: user.uuid,
+					uid: user.uid,
+					tool,
+					created: date.toString(),
+				});
+			});
+		});
+	});
+	await addSkillsAndTools({ skills, tools });
+}
+
 function CreateProject(props) {
-	const [percent, setPercent] = useState(2);
-	const [step, setStep] = useState(2);
+	const [percent, setPercent] = useState(0);
+	const [step, setStep] = useState(0);
 	const [project, setProject] = useState(projectData);
 	const history = useHistory();
 	useEffect(() => {
@@ -37,7 +67,7 @@ function CreateProject(props) {
 			)}`,
 		});
 	}, []);
-	function nextStep(props) {
+	function nextStep() {
 		if (step < 3) {
 			setPercent((step * 100 + 100) / 3);
 			setStep(step + 1);
@@ -87,9 +117,9 @@ function CreateProject(props) {
 		setProject(newProject);
 	}
 	const uploadToFirestore = async () => {
-		console.log(project);
 		uploadProject(props.user.uid, project);
 		history.push(`users/${props.user.uid}`);
+		addSkillsTools(props.user, project);
 	};
 	return (
 		<div className={styles.root}>
