@@ -140,7 +140,6 @@ function Situation(props) {
 					</div>
 					<div className={styles.button_footer}>
 						<Button
-							type="submit"
 							className={styles.save_draft}
 							iconR={<i className="fas fa-arrow-right" />}
 							text="Next"

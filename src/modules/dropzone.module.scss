@@ -75,7 +75,6 @@
 .container_carousel {
 	display: grid;
 	grid-template-columns: 12px auto 12px;
-	padding: 1em 0;
 }
 .carousel_chevron {
 	align-self: center;
@@ -85,7 +84,6 @@
 .carousel {
 	grid-column: 2 / 3;
 	margin: 0 8px;
-	width: 50vh;
 	height: 30vh;
 	display: flex;
 	flex-direction: column;

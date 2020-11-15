@@ -12,7 +12,6 @@ function Droparea(props) {
 	const { value } = meta;
 	const { setValue } = helpers;
 
-	// const [files, setFiles] = useState(props.files);
 	const filetype = /image/g;
 	const { getRootProps, getInputProps } = useDropzone({
 		maxFiles: 10,
@@ -30,15 +29,15 @@ function Droparea(props) {
 		},
 	});
 
-	useEffect(
-		() => () => {
-			// Make sure to revoke the data uris to avoid memory leaks
-			value.forEach((file) => {
-				URL.revokeObjectURL(file.preview);
-			});
-		},
-		[value]
-	);
+	// useEffect(
+	// 	() => () => {
+	// 		// Make sure to revoke the data uris to avoid memory leaks
+	// 		value.forEach((file) => {
+	// 			URL.revokeObjectURL(file.preview);
+	// 		});
+	// 	},
+	// 	[value]
+	// );
 
 	return (
 		<section className={styles.container}>

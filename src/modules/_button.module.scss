@@ -35,6 +35,14 @@ button,
 	width: 140px;
 }
 
+.cover_btn {
+	background-color: $grey;
+	color: $darkpink;
+	display: inline-flex;
+	gap: 16px;
+	width: 140px;
+}
+
 button i,
 button span {
 	padding: 0 8px;

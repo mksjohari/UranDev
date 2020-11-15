@@ -64,7 +64,7 @@ const ActionCard = (props) => {
                         <div className={styles.action_subtitle}>
                             Files:
                             <div className={styles.carousel_display}>
-                                <Carousel files={props.action.files} />
+                                <Carousel files={props.action.files} small/>
                             </div>
                         </div>
                     ) : (
@@ -72,44 +72,48 @@ const ActionCard = (props) => {
                     )}
                 </div>
             </div>
-            <div className={styles.task_footer}>
-                <Button
-                    colour="reddo"
-                    id={"delAction"}
-                    iconL={<i className="fas fa-trash-alt"></i>}
-                    text="Delete action"
-                    onClick={lockBg}
-                />
-                <div
-                    className={popup.popupContainer}
-                    id={"delAction_popContent"}
-                >
-                    <Alert
+            {props.readOnly ? (
+                ""
+            ) : (
+                <div className={styles.task_footer}>
+                    <Button
+                        colour="reddo"
                         id={"delAction"}
-                        type="action"
-                        hasConfirm
-                        confirmBtnLabel="Yes, delete"
-                        closeBtnLabel="No, go back"
-                        onConfirm={props.deleteAction}
+                        iconL={<i className="fas fa-trash-alt"></i>}
+                        text="Delete action"
+                        onClick={lockBg}
                     />
-                </div>
-                <Button
-                    id={actionId}
-                    iconL={<i className="fas fa-edit"></i>}
-                    text="Edit action"
-                    onClick={lockBg}
-                />
-                <div
-                    className={popup.popupContainer}
-                    id={actionId + "_popContent"}
-                >
-                    <AddActionForm
+                    <div
+                        className={popup.popupContainer}
+                        id={"delAction_popContent"}
+                    >
+                        <Alert
+                            id={"delAction"}
+                            type="action"
+                            hasConfirm
+                            confirmBtnLabel="Yes, delete"
+                            closeBtnLabel="No, go back"
+                            onConfirm={props.deleteAction}
+                        />
+                    </div>
+                    <Button
                         id={actionId}
-                        action={props.action}
-                        editAction={props.editAction}
+                        iconL={<i className="fas fa-edit"></i>}
+                        text="Edit action"
+                        onClick={lockBg}
                     />
+                    <div
+                        className={popup.popupContainer}
+                        id={actionId + "_popContent"}
+                    >
+                        <AddActionForm
+                            id={actionId}
+                            action={props.action}
+                            editAction={props.editAction}
+                        />
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
