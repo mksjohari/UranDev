@@ -1,17 +1,48 @@
-import React from 'react';
+import React , { useState } from 'react';
 // import DnD from "../../shared/DnD";
 import * as moment from 'moment';
 // import Data from "../../shared/reactDnD/sampleData";
 import TaskDnD from '../../shared/reactDnD/taskDnD';
 import GanttChart from '../../shared/GanttChart';
+import PDFPreview from '../../shared/sandbox/PDFPreview';
 
 const TmpTest = (props) => {
+
+	const [PDF, setPDF] = useState({});
+
 	function sampleChartFunc(id) {
 		console.log(id);
 	}
+	
 	console.log('tmp props', props);
+
+	function handleChange(event) {
+		setPDF(
+			event.target.files[0]
+			);
+		console.log(setPDF);
+	}
+
+
+
 	return (
 		<div className="tmp">
+			<div className={""}>
+						<label
+							className={` `}
+						>
+							<input type="file" accept="pdf" onChange={handleChange} />
+							<i
+								className="fas fa-file"
+								style={{ marginRight: 5 }}
+							/>
+							Upload PDF
+						</label>
+						<p className={""}>
+						Upload only ONE .pdf file
+				</p>
+			</div>
+			<PDFPreview setFile={setPDF} file={PDF} />
 			<GanttChart data={projectData} chartEvent={sampleChartFunc} />
 			{/* 
 			<Popup
