@@ -12,13 +12,43 @@ import TasksActions from "./tasksActions";
 import Results from "./results";
 import Preview from "./previewProject";
 
-import popup from "../../modules/popup.module.scss";
-import styles from "../../modules/createProject.module.scss";
-import { uploadProject } from "../../shared/firebase/firebase";
-import { useHistory } from "react-router-dom";
+import popup from '../../modules/popup.module.scss';
+import styles from '../../modules/createProject.module.scss';
+import {
+	uploadProject,
+	addSkillsAndTools,
+} from '../../shared/firebase/firebase';
+import { useHistory } from 'react-router-dom';
 
 function mapStateToProps(state) {
     return { user: state.user };
+}
+
+async function addSkillsTools(user, project) {
+	var skills = [];
+	var tools = [];
+	const date = new Date().getTime();
+	project.tasks.forEach((task) => {
+		task.actions.forEach((action) => {
+			action.skills.forEach((skill) => {
+				skills.push({
+					uuid: user.uuid,
+					uid: user.uid,
+					skill,
+					created: date.toString(),
+				});
+			});
+			action.tools.forEach((tool) => {
+				tools.push({
+					uuid: user.uuid,
+					uid: user.uid,
+					tool,
+					created: date.toString(),
+				});
+			});
+		});
+	});
+	await addSkillsAndTools({ skills, tools });
 }
 
 function CreateProject(props) {

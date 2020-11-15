@@ -3,10 +3,11 @@ import * as admin from 'firebase-admin';
 import { Connection, createConnection } from 'typeorm';
 import { StatusType, Users, UserType } from './entity/users';
 import { Seeker } from './entity/seeker';
-import { Social } from './entity/social';
 import { Expertise } from './entity/expertise';
-import { getSocials, getExpertise } from './helperFunction';
+import { getExpertise } from './helperFunction';
 import 'reflect-metadata';
+import { Skills } from './entity/skills';
+import { Tools } from './entity/tools';
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -19,7 +20,7 @@ const connect = async () => {
 		username: functions.config().cloudsql.user,
 		password: functions.config().cloudsql.pass,
 		database: functions.config().cloudsql.database,
-		entities: [Users, Seeker, Social, Expertise],
+		entities: [Users, Seeker, Skills, Tools, Expertise],
 		synchronize: true,
 	});
 };
@@ -38,7 +39,7 @@ export const createAccount = functions
 			user.lastName = data.lastName;
 			user.email = data.email;
 			user.dateCreated = new Date().getTime().toString();
-			await connection.manager.save(user);
+			await connection.manager.save(Users, user);
 			console.log('user has been saved. user id is', user.uuid);
 			return `Successfully added ${user.uuid}`;
 		} catch (err) {
@@ -66,6 +67,22 @@ export const checkUserExists = functions
 		}
 	});
 
+export const getUID = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		try {
+			const uuid = data.uuid;
+			if (!connection || !connection.isConnected) {
+				connection = await connect();
+			}
+			const result = await connection.query(
+				`SELECT uid FROM users inner join seeker on users.uuid = seeker.uuid where users.uuid = '${uuid}';`
+			);
+			return result[0];
+		} catch (err) {
+			console.log(err);
+		}
+	});
 export const getUserInfo = functions
 	.region('australia-southeast1')
 	.https.onCall(async (data, context) => {
@@ -124,6 +141,7 @@ export const getExploreUsers = functions
 			console.log(err);
 		}
 	});
+
 export const getExploreCount = functions
 	.region('australia-southeast1')
 	.https.onCall(async (data, context) => {
@@ -194,6 +212,24 @@ export const getUserExpertise = functions
 		}
 	});
 
+export const addSkillsAndTools = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		try {
+			if (!connection || !connection.isConnected) {
+				connection = await connect();
+			}
+			const skills = data.skills;
+			const tools = data.tools;
+			await connection.manager.save(Skills, skills);
+			await connection.manager.save(Tools, tools);
+			return;
+		} catch (err) {
+			console.log(err);
+			return;
+		}
+	});
+
 export const finishUserSignUp = functions
 	.region('australia-southeast1')
 	.https.onCall(async (data, context) => {
@@ -204,14 +240,12 @@ export const finishUserSignUp = functions
 			const uid = data.uid;
 			const firstStep = data.firstStep;
 			const secondStep = data.secondStep;
-			const thirdStep = data.thirdStep;
 			const seeker = new Seeker();
 			const expertise = getExpertise(
 				data.uuid,
 				uid,
 				secondStep.expertise
 			);
-			const socials = getSocials(data.uuid, uid, thirdStep);
 
 			var description;
 			seeker.uuid = data.uuid;
@@ -238,7 +272,6 @@ export const finishUserSignUp = functions
 				userType: userType,
 			});
 			await connection.manager.save(Expertise, expertise);
-			await connection.manager.save(Social, socials);
 			await connection.manager.save(seeker);
 			return;
 		} catch (err) {

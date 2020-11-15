@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import Button from "../sandbox/Button";
-import ActionCard from "./action";
-import TaskCard from "./task";
-import Alert from "../sandbox/Alert";
-import AddActionForm from "../input/AddActionForm";
+import Button from '../sandbox/Button';
+import ActionCard from './action';
+import TaskCard from './task';
+import AddActionForm from '../input/AddActionForm';
 
 import popup from "../../modules/popup.module.scss";
 import styles from "../../modules/DnD.module.scss";

@@ -58,7 +58,6 @@ function Results(props) {
                                 </div>
                             ) : null}
                         </div>
-
                         <br />
                         <div>
                             <label

@@ -37,12 +37,17 @@ export const getExploreCount = getFunctions(firebase).httpsCallable(
 export const updateUserStats = getFunctions(firebase).httpsCallable(
 	'updateUserStats'
 );
+export const addSkillsAndTools = getFunctions(firebase).httpsCallable(
+	'addSkillsAndTools'
+);
+export const getUID = getFunctions(firebase).httpsCallable('getUID');
 
 // FIRESTORE
 
 export const addUserDetails = async (
 	uid,
 	photoURL,
+	allExpertise,
 	firstStep,
 	secondStep,
 	thirdStep
@@ -55,7 +60,7 @@ export const addUserDetails = async (
 		occupation: secondStep.occupation,
 		location: secondStep.location,
 		personalDesc: secondStep.personalDesc,
-		expertise: secondStep.expertise,
+		expertise: allExpertise,
 		socials: thirdStep,
 		skills: {},
 		tools: {},
@@ -87,15 +92,7 @@ export const uploadProject = async (uid, project) => {
 			links: project.results.links,
 			sections: project.results.sections,
 		},
-	};
-	const projectPreview = {
-		pid: project.pid,
-		title: project.title,
-		role: project.situation.role,
-		startDate: new Date(project.situation.projectDates.startDate.format()),
-		endDate: new Date(project.situation.projectDates.endDate.format()),
-		skills: [],
-		tools: [],
+		created: new Date(),
 	};
 
 	await getFirebase()
@@ -107,14 +104,41 @@ export const uploadProject = async (uid, project) => {
 		.set(projectBase)
 		.then(() => {
 			project.tasks.map(async (task, index) => {
+				const actions = [];
 				task.actions.forEach((action) => {
+					const files = [];
 					action.skills.forEach((skill) => {
 						addToStats(newSkills, skill);
 					});
 					action.tools.forEach((tool) => {
 						addToStats(newTools, tool);
 					});
+					action.files.forEach(async (file) => {
+						console.log('yea');
+						const path = storage.ref(
+							`users/${uid}/projects/${project.pid}/${file.name}`
+						);
+						await path.put(file);
+						var photoURL = await path.getDownloadURL();
+						console.log(photoURL);
+						files.push(photoURL);
+					});
+					console.log(files);
+					actions.push({
+						actionId: action.actionId,
+						title: action.title,
+						description: action.description,
+						skills: action.skills,
+						tools: action.tools,
+						files: files,
+					});
 				});
+				var startDate = null;
+				var endDate = null;
+				if (task.startDate !== null && task.endDate !== null) {
+					startDate = new Date(task.startDate.format());
+					endDate = new Date(task.endDate.format());
+				}
 				await getFirebase()
 					.firestore()
 					.collection('users')
@@ -124,16 +148,24 @@ export const uploadProject = async (uid, project) => {
 					.collection('tasks')
 					.add({
 						index,
-						actions: task.actions,
+						actions: actions,
 						description: task.description,
 						title: task.title,
-						startDate: new Date(task.startDate.format()),
-						endDate: new Date(task.endDate.format()),
+						startDate: startDate,
+						endDate: endDate,
 					});
 			});
 		})
 		.catch((e) => console.log(e));
-
+	const projectPreview = {
+		pid: project.pid,
+		title: project.title,
+		role: project.situation.role,
+		startDate: new Date(project.situation.projectDates.startDate.format()),
+		endDate: new Date(project.situation.projectDates.endDate.format()),
+		skills: newSkills,
+		tools: newTools,
+	};
 	await getFirebase()
 		.firestore()
 		.collection('users')

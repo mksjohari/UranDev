@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import Button from '../../shared/sandbox/Button';
@@ -9,14 +9,9 @@ const mapStateToProps = (state) => {
 
 const ProfileDetails = (props) => {
 	const [shortlisted, setShortlisted] = useState(false);
-	const [expertise, setExpertise] = useState('');
 	const user = props.user;
+	console.log(user);
 	const displayName = `${user.firstName} ${user.lastName}`;
-	useEffect(() => {
-		user.expertise[0]
-			? setExpertise(user.expertise[0].expertise)
-			: setExpertise('None');
-	}, [user.expertise]);
 	const toggleShortlisted = () =>
 		setShortlisted((previousState) => !previousState);
 	return (
@@ -59,7 +54,10 @@ const ProfileDetails = (props) => {
 					<div className={styles.user_links}>
 						<i className="fas fa-pen-nib"></i>
 						<span className={styles.text_detail}>
-							Expertise: {expertise}
+							Expertise:{' '}
+							{user.expertise.map((expertise, index) => {
+								return <span key={index}>{expertise}</span>;
+							})}
 						</span>
 					</div>
 				</div>

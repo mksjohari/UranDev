@@ -1,23 +1,18 @@
-export const updateInfo = (results) => (dispatch) => {
+export const updateInfo = (uuid, uid, userInfo) => (dispatch) => {
 	dispatch({
 		type: 'UPDATE_USER_INFO',
-		userInfo: results.userInfo,
+		uuid: uuid,
+		uid: uid,
+		userInfo: userInfo,
 		logged: true,
-	});
-	dispatch({
-		type: 'UPDATE_SOCIALS',
-		userSocials: results.userSocials,
-	});
-	dispatch({
-		type: 'UPDATE_EXPERTISE',
-		userExpertise: results.userExpertise,
 	});
 };
 
 export const updateInfoFromCompleteSignUp = (
 	uuid,
+	uid,
 	photoURL,
-	email,
+	allExpertise,
 	firstStep,
 	secondStep,
 	thirdStep
@@ -25,8 +20,9 @@ export const updateInfoFromCompleteSignUp = (
 	dispatch({
 		type: 'UPDATE_FROM_COMPLETE_SIGNUP',
 		uuid,
+		uid,
+		allExpertise,
 		photoURL,
-		email,
 		firstStep,
 		secondStep,
 		thirdStep,
@@ -41,6 +37,7 @@ export const updateInfoFromSignUp = (data) => (dispatch) => {
 		uuid: data.uuid,
 		firstName: data.firstName,
 		lastName: data.lastName,
+		email: data.email,
 		logged: true,
 	});
 };
