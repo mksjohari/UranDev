@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 const getExpertise = (expertiseIds) => {
 	const result = [];
 	for (const [key, value] of Object.entries(expertiseIds)) {
-		if (value == true) {
+		if (value === true) {
 			result.push(expertise[key]);
 		}
 	}
@@ -28,10 +28,10 @@ const finishSetup = async (
 	updateInfoFromCompleteSignUp,
 	history
 ) => {
-	const uuid = getFirebase().auth().currentUser.uid;
-	const photoRef = storage.ref(`users/${uuid}/photo`);
 	const random = Math.floor(Math.random() * 100000000);
+	const uuid = getFirebase().auth().currentUser.uid;
 	const uid = `${firstStep.firstName.toLowerCase()}-${firstStep.lastName.toLowerCase()}-${random}`;
+	const photoRef = storage.ref(`users/${uid}/photo`);
 	var photoURL;
 	if (firstStep.imgSrc === 'default') {
 		photoURL = firstStep.img;
@@ -40,6 +40,7 @@ const finishSetup = async (
 		await photoRef.put(firstStep.imgSrc);
 		photoURL = await photoRef.getDownloadURL();
 	}
+	console.log(firstStep.imgSrc);
 	const allExpertise = getExpertise(secondStep.expertise);
 	await addUserDetails(
 		uid,

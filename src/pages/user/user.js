@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import styles from '../../modules/header.module.scss';
-import { getUserExpertise } from '../../shared/firebase/firebase';
 import ProfileDetails from './userDetails';
 import About from './about';
 import MyProjects from '../projects/myProjects';

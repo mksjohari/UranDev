@@ -117,6 +117,7 @@ function CreateProject(props) {
 		setProject(newProject);
 	}
 	const uploadToFirestore = async () => {
+		console.log(project);
 		uploadProject(props.user.uid, project);
 		history.push(`users/${props.user.uid}`);
 		addSkillsTools(props.user, project);

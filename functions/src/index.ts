@@ -67,6 +67,22 @@ export const checkUserExists = functions
 		}
 	});
 
+export const getUID = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		try {
+			const uuid = data.uuid;
+			if (!connection || !connection.isConnected) {
+				connection = await connect();
+			}
+			const result = await connection.query(
+				`SELECT uid FROM users inner join seeker on users.uuid = seeker.uuid where users.uuid = '${uuid}';`
+			);
+			return result[0];
+		} catch (err) {
+			console.log(err);
+		}
+	});
 export const getUserInfo = functions
 	.region('australia-southeast1')
 	.https.onCall(async (data, context) => {
