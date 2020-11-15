@@ -1,0 +1,41 @@
+@import 'variable';
+
+.pdfContainer {
+  position: relative;
+  min-height: 300px;
+  min-width: 70%;
+  background-color: $ivory;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  overflow: scroll;
+}
+
+.pdfContainerScroll {
+  position: relative;
+  min-height: 300px;
+  max-height: 500px;
+  min-width: 70%;
+  background-color: $ivory;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  overflow: scroll;
+}
+
+.pageNum {
+  text-align: center;
+}
+
+.btnsRow {
+  max-width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  min-height: 45px;
+  top: 0;
+  z-index: 1;
+}
+
+.nextBtn {
+  float: right;
+}
