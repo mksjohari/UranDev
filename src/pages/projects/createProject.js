@@ -210,7 +210,7 @@ function CreateProject(props) {
                 </div>
             )}
             {step === 3 && (
-                <div className={styles.parent_form}>
+                <div>
 					<div className={styles.heading}>Preview</div>
                     <Preview
                         project={project}
