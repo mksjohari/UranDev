@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
-
+import SkillsTab from './skillsTab';
 import Developer from '../../images/developer.svg';
 import JobSearch from '../../images/jobsearch.png';
 import Button from '../../shared/sandbox/Button';
@@ -13,71 +13,91 @@ import styles from '../../modules/createProject.module.scss';
 import buttonStyle from '../../modules/_button.module.scss';
 import dnd from '../../modules/DnD.module.scss';
 import header from '../../modules/header.module.scss';
+import { getFirebase } from '../../shared/firebase/config';
+import { connect } from 'react-redux';
+import { getPidImage } from '../../shared/firebase/firebase';
 
-function PreviewProject(props) {
+const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
+	const ref = getFirebase()
+		.firestore()
+		.collection('users')
+		.doc(uid)
+		.collection('projects')
+		.doc(pid);
+	const projectInfo = await ref.get();
+	setData(projectInfo.data());
+	setLoading(false);
+	setDataLoaded(true);
+};
+
+const getProjectTasks = async (uid, pid, data, setTasks, dataLoaded) => {
+	const tasks = [];
+	const ref = getFirebase()
+		.firestore()
+		.collection('users')
+		.doc(uid)
+		.collection('projects')
+		.doc(pid);
+	const projectTasks = await ref.collection('tasks').get();
+	projectTasks.forEach((taskRaw) => {
+		const actions = [];
+		taskRaw.data().actions.forEach((action) => {
+			const files = [];
+			action.files.forEach(async (file, index) => {
+				const imageObj = await getPidImage(uid, pid, file);
+				files.push(imageObj);
+			});
+			actions.push({
+				actionId: action.actionId,
+				description: action.description,
+				skills: action.skills,
+				tools: action.tools,
+				title: action.title,
+				files: files,
+			});
+		});
+		const task = {
+			taskId: Math.floor(Math.random() * 10000000000).toString(),
+			title: taskRaw.data().title,
+			description: taskRaw.data().description,
+			index: taskRaw.data().index,
+			startDate: taskRaw.data().startDate,
+			endDate: taskRaw.data().endDate,
+			actions: actions,
+		};
+		tasks.push(task);
+	});
+	setTasks(tasks);
+};
+
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+
+function ProjectPage(props) {
+	const uid = props.match.params.uid;
+	const pid = props.match.params.pid;
+	const [data, setData] = useState();
+	const [dataLoaded, setDataLoaded] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [tasks, setTasks] = useState();
 	const [overview, setOverview] = useState(true);
-	console.log(props);
-	const situation = props.project.situation;
-	const results = props.project.results;
-
-	function sectionGrid(section) {
-		return (
-			<div className={styles.section_grid}>
-				<div className={styles.section_left}>
-					<div className={styles.section_desc}>
-						{section.description}
-					</div>
-					{section.sectionLink.url ? (
-						<a
-							className={`${styles.section_link}`}
-							href={section.sectionLink.url}
-						>
-							<i className="fas fa-link" />
-							<div className={styles.link_text}>
-								{section.sectionLink.linkName}
-							</div>
-						</a>
-					) : (
-						''
-					)}
-				</div>
-				<div className={styles.section_right}>
-					<div className={dnd.carousel_display}>
-						<Carousel files={section.files} />
-					</div>
-				</div>
-			</div>
-		);
-	}
-	function sectionGridless(section) {
-		return (
-			<div className={styles.section_left}>
-				<div className={styles.section_desc}>{section.description}</div>
-				{section.sectionLink.url ? (
-					<a
-						className={`${styles.section_link}`}
-						href={section.sectionLink.url}
-					>
-						<i className="fas fa-link" />
-						<div className={styles.link_text}>
-							{section.sectionLink.linkName}
-						</div>
-					</a>
-				) : (
-					''
-				)}
-			</div>
-		);
+	const [user, setUser] = useState();
+	useEffect(() => {
+		setUser(props.user);
+		if (!dataLoaded)
+			getProjectInfo(uid, pid, setData, setLoading, setDataLoaded);
+		else {
+			if (data !== null) {
+				getProjectTasks(uid, pid, data, setTasks, dataLoaded);
+			}
+		}
+	}, [uid, pid, data, dataLoaded, props.user]);
+	if (loading === true || dataLoaded === false) {
+		return <div>Loading</div>;
 	}
 	return (
 		<div>
-			<div
-				className={`${styles.section_question} ${styles.section_input}`}
-			>
-				Your portfolio is ready to be published. Review your inputs and
-				add a cover photo that captures the essence of your project!
-				(optional)
-			</div>
 			<div className={project.cover_div}>
 				<label
 					className={`${buttonStyle.cover_btn} ${buttonStyle.button} ${project.cover_button}`}
@@ -86,22 +106,18 @@ function PreviewProject(props) {
 					<i className="fas fa-camera" style={{ marginRight: 5 }} />
 					Upload Cover
 				</label>
-				<img src={props.project.cover.imgSrc} alt="jobsearch"></img>
+				<img src={data.cover.imgSrc} alt="jobsearch"></img>
 
 				<div className={project.banner}>
-					<div className={project.project_title}>
-						{props.project.title}
-					</div>
+					<div className={project.project_title}>{data.title}</div>
 					<div className={project.details}>
 						<i
 							className="far fa-calendar"
 							style={{ margin: '10px' }}
 						/>
-						{`${situation.projectDates.startDate.format(
-							'MMM Do YYYY'
-						)} - ${situation.projectDates.endDate.format(
-							'MMM Do YYYY'
-						)}`}
+						{`${dateToDMY(
+							data.situation.startDate.toDate()
+						)} - ${dateToDMY(data.situation.endDate.toDate())}`}
 					</div>
 				</div>
 			</div>
@@ -126,14 +142,14 @@ function PreviewProject(props) {
 					Tasks & Actions
 				</NavLink>
 			</div>
-			{/* <SkillsTab /> */}
+			<SkillsTab />
 			{overview ? (
 				<div className={project.project_ctn}>
 					<div className={project.project_section}>
 						<h1 className={project.h1}>Situation</h1>
 						<div className={project.situation_grid}>
 							<div className={project.summary_div}>
-								{situation.summary}
+								{data.summary}
 							</div>
 							<div
 								className={`${project.stats_div} ${project.stats_text}`}
@@ -146,7 +162,7 @@ function PreviewProject(props) {
 										</div>
 									</div>
 									<div className={project.details}>
-										{situation.teamSize}
+										{data.teamSize}
 									</div>
 								</div>
 								<div className={project.stats}>
@@ -157,8 +173,8 @@ function PreviewProject(props) {
 										</div>
 									</div>
 									<div className={project.details}>
-										{situation.budget
-											? `${situation.budget} ${situation.currency.value}`
+										{data.budget
+											? `${data.budget} ${data.currency.value}`
 											: 'No budget'}
 									</div>
 								</div>
@@ -172,10 +188,8 @@ function PreviewProject(props) {
 									<div className={project.details}>
 										{moment
 											.duration(
-												situation.projectDates.endDate.diff(
-													situation.projectDates
-														.startDate
-												)
+												data.situation.endDate -
+													data.situation.startDate
 											)
 											.humanize({ d: 7, w: 4 })}
 									</div>
@@ -187,21 +201,22 @@ function PreviewProject(props) {
 									src={JobSearch}
 									alt="jobsearch"
 									className={project.profile_pic}
-								></img>
-								<div className={project.name}>{name}</div>
+								/>
+								<div className={project.name}>
+									{`${user.firstName} ${user.lastName}`}
+								</div>
 								<div className={project.details}>
-									{situation.role}
+									{data.role}
 								</div>
 							</div>
 						</div>
 					</div>
-					{/* <h1 className={project.h1}>Tasks & Actions</h1> */}
 					<div className={project.project_section}>
 						<h1 className={project.h1}>Results</h1>
 						<div className={project.conclusion_grid}>
 							<div className={project.results_links}>
-								{results.links.length
-									? results.links.map((link, index) => (
+								{data.results.links.length
+									? data.results.links.map((link, index) => (
 											<a
 												className={`${styles.section_link}`}
 												href={link.url}
@@ -217,11 +232,11 @@ function PreviewProject(props) {
 									: ''}
 							</div>
 							<div className={project.conclusion}>
-								{results.conclusion}
+								{data.results.conclusion}
 							</div>
 						</div>
-						{results.sections.length
-							? results.sections.map((section, index) => (
+						{data.results.sections.length
+							? data.results.sections.map((section, index) => (
 									<div className={`${project.top_margin}`}>
 										{section.files.length
 											? sectionGrid(section)
@@ -235,15 +250,10 @@ function PreviewProject(props) {
 				<div className={project.project_ctn}>
 					<div className={project.project_section}>
 						<h1 className={project.h1}>Tasks & Actions</h1>
-						<TaskDnD data={props.project.tasks} readOnly />
+						<TaskDnD data={tasks} readOnly />
 					</div>
 				</div>
 			)}
-			<div
-				className={`${project.center} ${project.top_margin} ${project.details}`}
-			>
-				End of preview
-			</div>
 			<div className={project.center}>
 				<img
 					src={Developer}
@@ -268,14 +278,58 @@ function PreviewProject(props) {
 	);
 }
 
-export default PreviewProject;
+export default connect(mapStateToProps)(ProjectPage);
 
-// const desc =
-// 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.';
-// const size = '5';
-// const budget = '100,000 AUD';
-// const title = 'Tech Consultant';
-// const date = '01/01/2011 - 20/02/2020';
-// const projectTitle = "Project Title";
-// const duration = "9 yrs 1 m";
-const name = 'John Doe';
+function sectionGrid(section) {
+	return (
+		<div className={styles.section_grid}>
+			<div className={styles.section_left}>
+				<div className={styles.section_desc}>{section.description}</div>
+				{section.sectionLink.url ? (
+					<a
+						className={`${styles.section_link}`}
+						href={section.sectionLink.url}
+					>
+						<i className="fas fa-link" />
+						<div className={styles.link_text}>
+							{section.sectionLink.linkName}
+						</div>
+					</a>
+				) : (
+					''
+				)}
+			</div>
+			<div className={styles.section_right}>
+				<div className={dnd.carousel_display}>
+					{/* <Carousel files={section.files} /> */}
+				</div>
+			</div>
+		</div>
+	);
+}
+function sectionGridless(section) {
+	return (
+		<div className={styles.section_left}>
+			<div className={styles.section_desc}>{section.description}</div>
+			{section.sectionLink.url ? (
+				<a
+					className={`${styles.section_link}`}
+					href={section.sectionLink.url}
+				>
+					<i className="fas fa-link" />
+					<div className={styles.link_text}>
+						{section.sectionLink.linkName}
+					</div>
+				</a>
+			) : (
+				''
+			)}
+		</div>
+	);
+}
+
+export function dateToDMY(date) {
+	return `${date.getUTCDay() + 1}/${
+		date.getUTCMonth() + 1
+	}/${date.getUTCFullYear()}`;
+}

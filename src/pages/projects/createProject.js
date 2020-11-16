@@ -126,6 +126,7 @@ function CreateProject(props) {
 		console.log(project);
 		uploadProject(props.user.uid, project);
 		history.push(`users/${props.user.uid}`);
+		addSkillsTools(props.user.uid, project);
 	};
 	return (
 		<div className={styles.root}>
@@ -258,8 +259,9 @@ const projectData = {
 	sharing: 'Public',
 	title: 'New project',
 	cover: {
-		img: null,
-		imgSrc: null,
+		img: 'default',
+		imgSrc:
+			'https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2FdefaultProject.png?alt=media&token=dfa29922-f6da-47f1-9b01-a50a3ac15266',
 	},
 	situation: {
 		summary:

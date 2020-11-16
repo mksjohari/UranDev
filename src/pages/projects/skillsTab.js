@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '../../shared/sandbox/Button';
 import styles from '../../modules/skillsTab.module.scss';
 
-function SkillsTab(props) {
+function SkillsTab() {
 	const [showTab, setshowTab] = useState(true);
 	return (
 		<div className={styles.tab}>
@@ -11,7 +11,9 @@ function SkillsTab(props) {
 					<div className={styles.skills_div}>
 						<p className={styles.p}>Skills developed:</p>
 						{skills.map((skill, index) => (
-							<span className={styles.skill}>{skill}</span>
+							<span key={index} className={styles.skill}>
+								{skill}
+							</span>
 						))}
 					</div>
 					<div className={styles.skills_btn}>
@@ -24,7 +26,9 @@ function SkillsTab(props) {
 					<div className={styles.tools_div}>
 						<p className={styles.p}>Tools involved:</p>
 						{tools.map((tool, index) => (
-							<span className={styles.tool}>{tool}</span>
+							<span key={index} className={styles.tool}>
+								{tool}
+							</span>
 						))}
 					</div>
 					<div className={styles.tools_btn}>

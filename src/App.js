@@ -12,7 +12,7 @@ import redirectProject from './pages/redirects/redirectProject';
 import Page404 from './pages/404/404';
 import './styles/index.scss';
 import Home from './pages/home/home';
-import TempProjectPage from './pages/projects/tempProjectPage';
+import ProjectPage from './pages/projects/projectPage';
 require('typeface-poppins');
 
 const Index = () => {
@@ -23,7 +23,7 @@ const Index = () => {
 				<Route component={explore} path="/explore" />
 				<Route component={signUp} path="/signUp" />
 				<Route
-					component={TempProjectPage}
+					component={ProjectPage}
 					path="/users/:uid/projects/:pid"
 				/>
 				<Route component={projects} path="/users/:uid/projects" />

@@ -14,7 +14,7 @@ const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
 	setDataLoaded(true);
 };
 
-const getProjectTasks = async (uid, pid, data) => {
+const getProjectTasks = async (uid, pid, data, setTasks, dataLoaded) => {
 	const tasks = [];
 	const ref = getFirebase()
 		.firestore()
@@ -31,7 +31,7 @@ const getProjectTasks = async (uid, pid, data) => {
 			startDate: taskRaw.data().startDate,
 			endDate: taskRaw.data().endDate,
 		};
-		console.log(taskRaw.id, '=>', taskRaw.data());
+		tasks.push(task);
 	});
 };
 

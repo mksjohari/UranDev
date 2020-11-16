@@ -67,8 +67,6 @@ export const addUserDetails = async (
 	});
 };
 
-export const getProject = async (uid, pid) => {};
-
 export const uploadProject = async (uid, project) => {
 	const newSkills = {};
 	const newTools = {};
@@ -76,6 +74,7 @@ export const uploadProject = async (uid, project) => {
 		pid: project.pid,
 		title: project.title,
 		visibility: project.sharing,
+		cover: project.cover,
 		situation: {
 			summary: project.situation.summary,
 			role: project.situation.role,
@@ -183,6 +182,11 @@ export const uploadProject = async (uid, project) => {
 // STORAGE //
 export const storage = getStorage(firebase);
 
+export const getPidImage = async (uid, pid, name) => {
+	const ref = storage.ref(`users/${uid}/projects/${pid}/${name}`);
+	const preview = await ref.getDownloadURL();
+	return { name, preview };
+};
 // HELPER FUNCTIONS //
 
 const addToStats = (stats, key) => {
