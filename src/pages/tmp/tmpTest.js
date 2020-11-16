@@ -73,7 +73,7 @@ const TmpTest = (props) => {
 							Upload PDF
 						</label>
 					</div>
-					<PDFPreview setFile={setPDF} file={PDF} />
+					<PDFPreview file={PDF} />
 				</>)
 
 			: ("")
