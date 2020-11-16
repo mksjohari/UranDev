@@ -113,15 +113,14 @@ export const uploadProject = async (uid, project) => {
 					action.tools.forEach((tool) => {
 						addToStats(newTools, tool);
 					});
+					action.files.forEach((file) => {
+						files.push(file.name);
+					});
 					action.files.forEach(async (file) => {
-						console.log('yea');
 						const path = storage.ref(
 							`users/${uid}/projects/${project.pid}/${file.name}`
 						);
 						await path.put(file);
-						var photoURL = await path.getDownloadURL();
-						console.log(photoURL);
-						files.push(photoURL);
 					});
 					console.log(files);
 					actions.push({
@@ -156,24 +155,29 @@ export const uploadProject = async (uid, project) => {
 					});
 			});
 		})
-		.catch((e) => console.log(e));
-	const projectPreview = {
-		pid: project.pid,
-		title: project.title,
-		role: project.situation.role,
-		startDate: new Date(project.situation.projectDates.startDate.format()),
-		endDate: new Date(project.situation.projectDates.endDate.format()),
-		skills: newSkills,
-		tools: newTools,
-	};
-	await getFirebase()
-		.firestore()
-		.collection('users')
-		.doc(uid)
-		.collection('projectPreviews')
-		.doc(project.pid)
-		.set(projectPreview);
-	await updateUserStats({ uid, skills: newSkills, tools: newTools });
+		.then(async () => {
+			const projectPreview = {
+				pid: project.pid,
+				title: project.title,
+				role: project.situation.role,
+				startDate: new Date(
+					project.situation.projectDates.startDate.format()
+				),
+				endDate: new Date(
+					project.situation.projectDates.endDate.format()
+				),
+				skills: newSkills,
+				tools: newTools,
+			};
+			await getFirebase()
+				.firestore()
+				.collection('users')
+				.doc(uid)
+				.collection('projectPreviews')
+				.doc(project.pid)
+				.set(projectPreview);
+			await updateUserStats({ uid, skills: newSkills, tools: newTools });
+		});
 };
 
 // STORAGE //

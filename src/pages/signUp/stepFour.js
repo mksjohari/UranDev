@@ -40,7 +40,6 @@ const finishSetup = async (
 		await photoRef.put(firstStep.imgSrc);
 		photoURL = await photoRef.getDownloadURL();
 	}
-	console.log(firstStep.imgSrc);
 	const allExpertise = getExpertise(secondStep.expertise);
 	await addUserDetails(
 		uid,

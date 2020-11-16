@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../modules/page404.module.scss';
 import Button from '../../shared/sandbox/Button';
-import Error from "../../images/404error.svg";
+import Error from '../../images/404error.svg';
 
 const Page404 = () => {
 	function goHome() {
@@ -10,7 +10,7 @@ const Page404 = () => {
 
 	return (
 		<div className={styles.container}>
-			<img className={styles.errorimg} src={Error} alt='404' />
+			<img className={styles.errorimg} src={Error} alt="404" />
 			<Button
 				text="Go to homepage"
 				colour="blue"
