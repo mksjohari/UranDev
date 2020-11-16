@@ -408,6 +408,7 @@ function wrap(text) {
 				// console.log(text)
 				line.pop();
 				tspan.text(line.join(' '));
+				tspan.attr('x', -tspan.node().getBBox().width / 2);
 				line = [word];
 				tspan = text
 					.append('tspan')
