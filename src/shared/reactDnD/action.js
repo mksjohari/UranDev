@@ -64,7 +64,7 @@ const ActionCard = (props) => {
                         <div className={styles.action_subtitle}>
                             Files:
                             <div className={styles.carousel_display}>
-                                <Carousel files={props.action.files} small/>
+                                <Carousel files={props.action.files}/>
                             </div>
                         </div>
                     ) : (

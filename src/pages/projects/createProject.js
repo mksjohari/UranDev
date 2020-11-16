@@ -254,7 +254,7 @@ const ProjectForm = withFormik({
 export default connect(mapStateToProps)(withContext(ProjectForm));
 
 const projectData = {
-    status: "Ongoing",
+    status: "Completed",
     sharing: "Public",
     title: "New project",
     cover: {
@@ -266,7 +266,7 @@ const projectData = {
             "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
         role: "team manager",
         teamSize: "1",
-        budget: null,
+        budget: "",
         currency: "",
         projectDates: { startDate: null, endDate: null },
     },

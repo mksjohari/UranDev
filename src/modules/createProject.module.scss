@@ -99,22 +99,24 @@
 .section_input {
     flex-direction: column;
     display: flex;
-    padding: 1em 3%;
+    padding: 1em 1.5em;
 }
 .section_input_row {
     display: flex;
-    margin: 1em 3%;
+    margin: 1em 1.5em;
 }
 .section_header {
     color: $darkgrey;
     font-size: 24px;
     display: flex;
-    margin: 0 0 0 3%;
+    margin: 0 0 0 1em;
     padding: 1em 10% 0.5em 10px;
-    border-bottom: 1px solid $midgrey;
 }
 .header_style {
     margin: 0 0 0 1em;
+}
+.section_hidden {
+    border-top: 1px solid $midgrey;
 }
 .input_link {
     width: 300px;
@@ -203,4 +205,8 @@
 }
 .section_desc {
     margin: 1em 0.5em;
+}
+.pdf_display {
+    display: flex;
+    flex-direction: column;
 }

@@ -76,7 +76,12 @@ function Results(props) {
                                 </div>
                             </label>
                             {linksExpand && (
-                                <FieldArray name="links" component={Links} />
+                                <div className={`${styles.section_hidden} ${styles.header_style}`}>
+                                    <FieldArray
+                                        name="links"
+                                        component={Links}
+                                    />
+                                </div>
                             )}
                         </div>
                     </div>
@@ -97,18 +102,23 @@ function Results(props) {
                                 Sections (optional)
                             </div>
                         </label>
+
                         {sectionExpand && (
-                            <div className={styles.section_input}>
-                                <div className={`${styles.section_question}`}>
-                                    Here's where you showcase your
-                                    accomplishments! Share your final by videos,
-                                    graphs, pictures, documents, or even the
-                                    product itself (via a link).
+                            <div className={`${styles.section_hidden} ${styles.header_style}`}>
+                                <div className={styles.section_input}>
+                                    <div
+                                        className={`${styles.section_question}`}
+                                    >
+                                        Here's where you showcase your
+                                        accomplishments! Share your final by
+                                        videos, graphs, pictures, documents, or
+                                        even the product itself (via a link).
+                                    </div>
+                                    <FieldArray
+                                        name="sections"
+                                        component={ResultSection}
+                                    />
                                 </div>
-                                <FieldArray
-                                    name="sections"
-                                    component={ResultSection}
-                                />
                             </div>
                         )}
                     </div>

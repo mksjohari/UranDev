@@ -35,6 +35,13 @@ button,
 	width: 140px;
 }
 
+.upload_pdf_btn {
+	background-color: $yellow;
+	display: inline-flex;
+	gap: 16px;
+	width: 140px;
+}
+
 .cover_btn {
 	background-color: $grey;
 	color: $darkpink;
