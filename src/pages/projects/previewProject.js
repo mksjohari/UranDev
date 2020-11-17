@@ -8,6 +8,7 @@ import Button from "../../shared/sandbox/Button";
 import Carousel from "../../shared/sandbox/Carousel";
 import TaskDnD from "../../shared/reactDnD/taskDnD";
 import PDFPreview from "../../shared/sandbox/PDFPreview";
+import SkillsTab from "./skillsTab"
 
 import project from "../../modules/previewProject.module.scss";
 import styles from "../../modules/createProject.module.scss";
@@ -105,7 +106,7 @@ function PreviewProject(props) {
                     }
                     alt="jobsearch"
                 ></img>
-
+    {console.log(props.project.cover)}
                 <div className={project.banner}>
                     <div className={project.project_title}>
                         {props.project.title}
@@ -144,7 +145,7 @@ function PreviewProject(props) {
                     Tasks & Actions
                 </NavLink>
             </div>
-            {/* <SkillsTab /> */}
+            <SkillsTab />
             {overview ? (
                 <div className={project.project_ctn}>
                     <div className={project.project_section}>

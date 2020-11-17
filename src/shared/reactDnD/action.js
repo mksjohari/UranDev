@@ -18,25 +18,6 @@ const ActionCard = (props) => {
             <div className={styles.title}>{props.action.title}</div>
 
             <div className={styles.action_tags}>
-                {props.action.skills.length ? (
-                    <div className={styles.project_tags}>
-                        <div
-                            className={`${styles.action_subtitle} ${styles.tags_subtitle}`}
-                        >
-                            Skills:
-                        </div>
-                        {props.action.skills.map((skill, index) => (
-                            <span
-                                key={skill}
-                                className={`${projects.tag_type} ${projects.Skill}`}
-                            >
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                ) : (
-                    ""
-                )}
                 {props.action.tools.length ? (
                     <div className={styles.project_tags}>
                         <div
@@ -44,12 +25,33 @@ const ActionCard = (props) => {
                         >
                             Tools:
                         </div>
+                        {console.log(props.action.tools)}
                         {props.action.tools.map((tool, index) => (
-                            <span
+                            <div
                                 key={tool}
                                 className={`${projects.tag_type} ${projects.Tool}`}
                             >
-                                {tool}
+                                {`${tool}`}
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    ""
+                )}
+                {props.action.skills.length ? (
+                    <div className={styles.project_tags}>
+                        <div
+                            className={`${styles.action_subtitle} ${styles.tags_subtitle}`}
+                        >
+                            Skills:
+                        </div>
+                        {console.log(props.action.skills)}
+                        {props.action.skills.map((skill, index) => (
+                            <span
+                                key={skill}
+                                className={`${projects.tag_type} ${projects.Skill}`}
+                            >
+                                {`${skill}`}
                             </span>
                         ))}
                     </div>
@@ -64,7 +66,7 @@ const ActionCard = (props) => {
                         <div className={styles.action_subtitle}>
                             Files:
                             <div className={styles.carousel_display}>
-                                <Carousel files={props.action.files}/>
+                                <Carousel files={props.action.files} />
                             </div>
                         </div>
                     ) : (

@@ -11,44 +11,45 @@ import Situation from "./situation";
 import TasksActions from "./tasksActions";
 import Results from "./results";
 import Preview from "./previewProject";
+import Alert from "../../shared/sandbox/Alert";
 
-import popup from '../../modules/popup.module.scss';
-import styles from '../../modules/createProject.module.scss';
+import popup from "../../modules/popup.module.scss";
+import styles from "../../modules/createProject.module.scss";
 import {
-	uploadProject,
-	addSkillsAndTools,
-} from '../../shared/firebase/firebase';
-import { useHistory } from 'react-router-dom';
+    uploadProject,
+    addSkillsAndTools,
+} from "../../shared/firebase/firebase";
+import { useHistory } from "react-router-dom";
 
 function mapStateToProps(state) {
     return { user: state.user };
 }
 
 async function addSkillsTools(user, project) {
-	var skills = [];
-	var tools = [];
-	const date = new Date().getTime();
-	project.tasks.forEach((task) => {
-		task.actions.forEach((action) => {
-			action.skills.forEach((skill) => {
-				skills.push({
-					uuid: user.uuid,
-					uid: user.uid,
-					skill,
-					created: date.toString(),
-				});
-			});
-			action.tools.forEach((tool) => {
-				tools.push({
-					uuid: user.uuid,
-					uid: user.uid,
-					tool,
-					created: date.toString(),
-				});
-			});
-		});
-	});
-	await addSkillsAndTools({ skills, tools });
+    var skills = [];
+    var tools = [];
+    const date = new Date().getTime();
+    project.tasks.forEach((task) => {
+        task.actions.forEach((action) => {
+            action.skills.forEach((skill) => {
+                skills.push({
+                    uuid: user.uuid,
+                    uid: user.uid,
+                    skill,
+                    created: date.toString(),
+                });
+            });
+            action.tools.forEach((tool) => {
+                tools.push({
+                    uuid: user.uuid,
+                    uid: user.uid,
+                    tool,
+                    created: date.toString(),
+                });
+            });
+        });
+    });
+    await addSkillsAndTools({ skills, tools });
 }
 
 function CreateProject(props) {
@@ -138,10 +139,25 @@ function CreateProject(props) {
                         text="Save draft"
                     />
                     <Button
+                        id={"delProject"}
                         className={styles.delete_project}
                         iconR={<i className="far fa-trash-alt"></i>}
                         text="Delete project"
+                        onClick={lockBg}
                     />
+                    <div
+                        className={popup.popupContainer}
+                        id={"delProject_popContent"}
+                    >
+                        <Alert
+                            id={"delProject"}
+                            type="project"
+                            hasConfirm
+                            confirmBtnLabel="Yes, delete"
+                            closeBtnLabel="No, go back"
+                            onConfirm={() => console.log("Khairi needs to do this")}
+                        />
+                    </div>
                 </div>
             </div>
             <div
@@ -211,7 +227,7 @@ function CreateProject(props) {
             )}
             {step === 3 && (
                 <div>
-					<div className={styles.heading}>Preview</div>
+                    <div className={styles.heading}>Preview</div>
                     <Preview
                         project={project}
                         prevStep={prevStep}
