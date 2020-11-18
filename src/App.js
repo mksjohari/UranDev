@@ -13,6 +13,7 @@ import Page404 from "./pages/404/404";
 import "./styles/index.scss";
 import Home from "./pages/home/home";
 import ProjectPage from "./pages/projects/projectPage";
+import editProject from "./pages/projects/editProject";
 require("typeface-poppins");
 
 const Index = () => {
@@ -28,6 +29,7 @@ const Index = () => {
                 />
                 <Route component={projects} path="/users/:uid/projects" />
                 <Route component={createProject} path="/create" />
+                <Route component={editProject} path="/edit" />
                 <Route component={draftProjects} path="/drafts" />
                 <Route component={user} path="/users/:uid" />
                 <Route component={redirectUser} path="/redirect!user!:uid" />

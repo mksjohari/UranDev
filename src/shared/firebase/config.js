@@ -24,7 +24,7 @@ export const getFirebase = () => {
     }
 
     firebase.initializeApp(firebaseConfig);
-    // firebase.functions().useFunctionsEmulator("http://localhost:5001");
+    firebase.functions().useFunctionsEmulator("http://localhost:5001");
     firebaseInstance = firebase;
 
     return firebase;
@@ -35,17 +35,17 @@ export const getFunctions = () => {
     }
     if (firebaseInstance) {
         functionsInstance = firebaseInstance.app().functions();
-        functionsInstance = firebaseInstance
-            .app()
-            .functions("australia-southeast1");
+        // functionsInstance = firebaseInstance
+        //     .app()
+        //     .functions("australia-southeast1");
         return functionsInstance;
     } else {
         firebase.initializeApp(firebaseConfig);
-        // firebase.functions().useFunctionsEmulator("http://localhost:5001");
+        firebase.functions().useFunctionsEmulator("http://localhost:5001");
 
         firebaseInstance = firebase;
         functionsInstance = firebase.app().functions();
-        functionsInstance = firebase.app().functions("australia-southeast1");
+        // functionsInstance = firebase.app().functions("australia-southeast1");
         return functionsInstance;
     }
 };

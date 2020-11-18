@@ -88,7 +88,7 @@ function CreateProject(props) {
     function editProjectDetails(values) {
         const newProject = { ...project };
         newProject.status = values.status;
-        newProject.sharing = values.sharing;
+        newProject.visibility = values.visibility;
         newProject.title = values.title;
         setProject(newProject);
     }
@@ -205,6 +205,7 @@ function CreateProject(props) {
                     <div className={styles.heading}>Results</div>
                     <Results
                         results={project.results}
+                        nextText="Preview Project"
                         nextStep={nextStep}
                         prevStep={prevStep}
                         editResults={editResults}
@@ -259,7 +260,7 @@ export default connect(mapStateToProps)(withContext(ProjectForm));
 
 const projectData = {
     status: "Ongoing",
-    sharing: "Public",
+    visibility: "Public",
     title: "New project",
     cover: {
         changed: false,
