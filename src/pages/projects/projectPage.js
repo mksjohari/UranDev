@@ -72,8 +72,8 @@ const getProjectTasks = async (
             title: taskRaw.data().title,
             description: taskRaw.data().description,
             index: taskRaw.data().index,
-            startDate: taskRaw.data().startDate,
-            endDate: taskRaw.data().endDate,
+            startDate: moment(new Date(taskRaw.data().startDate)),
+            endDate: moment(new Date(taskRaw.data().endDate)),
             actions: actions,
         };
         tasks.push(task);
@@ -87,14 +87,6 @@ const mapStateToProps = (state) => {
 };
 
 const editProject = async (uid, project, tasks, history) => {
-    console.log(uid, project.pid);
-    const preview = await getFirebase()
-        .firestore()
-        .collection("users")
-        .doc(uid)
-        .collection("projectPreviews")
-        .doc(project.pid)
-        .get();
     project.tasks = tasks;
     const oldSkills = {};
     const oldTools = {};
@@ -147,6 +139,7 @@ function ProjectPage(props) {
     if (loading === true || dataLoaded === false) {
         return <div>Loading</div>;
     }
+    console.log(tasks);
     return (
         <div>
             <div className={project.cover_div}>
