@@ -46,11 +46,11 @@ function WordBubble(props) {
 						? props.dims.width * 0.6
 						: props.dims.width * 0.4
 				}
-				height={
-					window.innerWidth < 992
-						? props.dims.width * 0.6
-						: props.dims.width * 0.4
-				}
+				// height={
+				// 	window.innerWidth < 992
+				// 		? props.dims.width * 0.6
+				// 		: props.dims.width * 0.4
+				// }
 				overflow={true}
 				padding={10} // optional value, number that set the padding between bubbles
 				showLegend={false} // optional value, pass false to disable the legend.
@@ -68,6 +68,7 @@ function WordBubble(props) {
 				bubbleClickFunc={bubbleClick}
 				legendClickFun={legendClick}
 				data={bubbleData(props.data, props.type)}
+				type={props.type}
 			/>
 		</div>
 	);
