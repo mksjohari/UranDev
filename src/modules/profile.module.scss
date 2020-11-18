@@ -10,6 +10,13 @@
     }
     .heading {
         justify-content: space-between;
+        grid-column: 1 / 13;
+        display: flex;
+    }
+    .detail {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
     }
     .bar_section {
         padding: 1em 1%;
@@ -19,6 +26,7 @@
 /* If the screen size is 768 or less */
 @media only screen and (max-width: 767px) {
     .profile_details {
+        padding-top: 3em;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -26,6 +34,12 @@
         line-height: 2em;
     }
     .heading {
+        justify-content: center;
+        flex-direction: column;
+    }
+    .detail {
+        display: flex;
+        flex-direction: column;
         justify-content: center;
     }
     .bar_section {
@@ -38,9 +52,6 @@
     color: $navy;
 }
 .heading {
-    flex-wrap: wrap;
-    grid-column: 1 / 13;
-    display: flex;
     padding: 1em 0em 1.5em 0em;
 }
 .user_name {
@@ -50,17 +61,14 @@
 }
 
 .detail {
-    width: 100%;
     margin-left: 50px;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
 }
 .dp {
-	height: 250px;
-	width: 250px;
+    height: 250px;
+    width: 250px;
     background-color: #cccccc;
-	border-radius: 40px;
-	object-fit: cover;
+    border-radius: 40px;
+    object-fit: cover;
 }
 
 .user_buttons {

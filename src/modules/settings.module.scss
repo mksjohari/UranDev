@@ -16,7 +16,7 @@
 
 .root {
     color: $darkgrey;
-    padding: 3em;
+    padding: 0 3em 5em 3em;
 }
 
 .title {
@@ -40,10 +40,6 @@
 }
 .input_row {
     display: inline-flex;
-}
-.photoUrl_ctn {
-    display: flex;
-    align-items: center;
 }
 .photo {
     margin: 0 2em;
@@ -69,7 +65,11 @@
 .social_input {
     width: 100px;
 }
-
+.location {
+    display: flex;
+    flex-direction: column;
+    
+}
 .settings_bg {
     flex: 1 1 500px;
     background-image: url("../images/settings.svg");
@@ -78,6 +78,21 @@
 }
 .btn_header {
     display: flex;
-    flex-direction: row-reverse;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 5em;
 }
+.center_row {
+	display: flex;
+	align-items: center;
+}
+.left_padding {
+	margin-left: 1em;
+}
+
+.back_link {
+    font-size: 16px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    width: 60px;
+  }

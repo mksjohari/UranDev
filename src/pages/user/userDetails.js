@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import Button from "../../shared/sandbox/Button";
 import styles from "../../modules/profile.module.scss";
@@ -32,14 +32,13 @@ const ProfileDetails = (props) => {
                             text={shortlisted ? "Shortlisted!" : "Shortlist"}
                             onClick={toggleShortlisted}
                         /> */}
-						<Link to="/settings">
-                        <Button
-                            className={styles.shortlisted_button}
-                            iconR={<i className="fas fa-edit"></i>}
-                            text={"Edit Profile"}
-                            // to={}
-                        />
-						</Link>
+                        <Link to="/settings">
+                            <Button
+                                className={styles.shortlisted_button}
+                                iconR={<i className="fas fa-edit"></i>}
+                                text={"Edit Profile"}
+                            />
+                        </Link>
                     </div>
                 </div>
                 <div className={styles.section}>

@@ -11,7 +11,7 @@ import { useHistory } from 'react-router-dom';
 import { updateInfoFromCompleteSignUp } from '../../actions/userAction';
 import { connect } from 'react-redux';
 
-const getExpertise = (expertiseIds) => {
+export const getExpertise = (expertiseIds) => {
 	const result = [];
 	for (const [key, value] of Object.entries(expertiseIds)) {
 		if (value === true) {
@@ -135,7 +135,7 @@ const StepFour = (props) => {
 };
 export default connect(null, { updateInfoFromCompleteSignUp })(StepFour);
 
-const expertise = {
+export const expertise = {
 	id1: 'Business & Management',
 	id2: 'Creative Arts',
 	id3: 'Engineering & Mathematics',

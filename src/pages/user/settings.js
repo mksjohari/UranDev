@@ -1,23 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Formik, Field } from "formik";
+import { Link } from "react-router-dom";
 
-import Timeline from "../../shared/sandbox/Timeline";
 import Button from "../../shared/sandbox/Button";
 import { lockBg } from "../../shared/sandbox/Popup";
 import Alert from "../../shared/sandbox/Alert";
+import Expertise from "../../shared/input/Expertise";
+import LocationAuto from "../../shared/input/LocationAuto";
 
 import styles from "../../modules/profile.module.scss";
 import popup from "../../modules/popup.module.scss";
 import settings from "../../modules/settings.module.scss";
 import buttonStyle from "../../modules/_button.module.scss";
+import { getFirebase } from "../../shared/firebase/config";
 
 function mapStateToProps(state) {
     return { user: state.user };
 }
 function Settings(props) {
     const user = props.user;
-    console.log(user);
+    console.log(user.expertise);
 
     return (
         <div className={`${settings.root} ${settings.settings_bg}`}>
@@ -29,19 +32,40 @@ function Settings(props) {
                     occupation: user.occupation ? user.occupation : "",
                     location: user.location,
                     photoUrl: user.photoUrl,
-                    expertise: user.expertise ? user.expertise : "",
-                    biography: user.biography ? user.biography : "", // not provided
+                    expertise: user.expertise ? user.expertise : [],
+                    description: user.description ? user.description : "", // not provided
                     socials: user.socials,
                 }}
                 // validate={validateSituation}
-                onSubmit={(values, actions) => {
+                onSubmit={async (values, actions) => {
                     alert(JSON.stringify(values, 2));
                     actions.setSubmitting(false);
+                    getFirebase()
+                        .firestore()
+                        .collection("users")
+                        .doc(user.uid)
+                        .update({
+                            firstName: values.firstName,
+                            lastName: values.lastName,
+                            occupation: values.occupation,
+                            location: values.location,
+                            // photoUrl: values.photoUrl, // upload
+                            expertise: values.expertise,
+                            description: values.description, // not provided
+                            socials: values.socials,
+                        });
                 }}
             >
                 {(props) => (
                     <form onSubmit={props.handleSubmit}>
                         <div className={settings.btn_header}>
+                            <Link
+                                className={settings.back_link}
+                                to={`/users/${user.uid}`}
+                            >
+                                <i className="fas fa-chevron-left"></i>
+                                Back
+                            </Link>
                             <Button
                                 type="submit"
                                 className={buttonStyle.upload_btn}
@@ -71,7 +95,7 @@ function Settings(props) {
                                         field: { value },
                                         form: { setFieldValue },
                                     }) => (
-                                        <div className={settings.photoUrl_ctn}>
+                                        <div className={settings.center_row}>
                                             <img
                                                 className={`${styles.dp} ${settings.photo}`}
                                                 src={value}
@@ -165,6 +189,20 @@ function Settings(props) {
                             </div>
                             <div className={settings.section}>
                                 <label
+                                    for="expertise"
+                                    className={settings.heading}
+                                >
+                                    <i className="fas fa-pen-nib fa-2x"></i>
+                                    <div className={settings.heading_text}>
+                                        Field of Expertise
+                                    </div>
+                                </label>
+                                <div className={settings.single_field}>
+                                    <Field name="expertise" as={Expertise} />
+                                </div>
+                            </div>
+                            <div className={settings.section}>
+                                <label
                                     for="location"
                                     className={settings.heading}
                                 >
@@ -173,30 +211,25 @@ function Settings(props) {
                                         Location
                                     </div>
                                 </label>
-                                <div className={settings.input_row}>
-                                    <Field
-                                        as="input"
-                                        className={`inp-field ${settings.single_field}`}
-                                        name="location"
-                                        placeholder="Location"
-                                    />
+                                <div className={settings.location}>
+                                    <Field name="location" as={LocationAuto} />
                                 </div>
                             </div>
                             <div className={settings.section}>
                                 <label
-                                    for="biography"
+                                    for="description"
                                     className={settings.heading}
                                 >
                                     <i className="fas fa-book-open fa-2x"></i>
                                     <div className={settings.heading_text}>
-                                        Biography
+                                        Description
                                     </div>
                                 </label>
                                 <div className={settings.input_row}>
                                     <Field
                                         as="textarea"
                                         className={`inp-field ${settings.single_field}`}
-                                        name="biography"
+                                        name="description"
                                         placeholder="Type here..."
                                     />
                                 </div>
@@ -205,7 +238,10 @@ function Settings(props) {
                                 Social Contacts
                             </div>
                             {socials.map((social, index) => (
-                                <div className={settings.social_section}>
+                                <div
+                                    className={settings.social_section}
+                                    key={index}
+                                >
                                     <div className={settings.social_input}>
                                         {social.media}
                                     </div>
