@@ -63,7 +63,7 @@ export const addUserDetails = async (
         photoUrl: photoURL,
         occupation: secondStep.occupation,
         location: secondStep.location,
-        personalDesc: secondStep.personalDesc,
+        description: secondStep.description,
         expertise: allExpertise,
         socials: thirdStep,
         skills: {},

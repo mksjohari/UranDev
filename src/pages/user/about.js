@@ -18,31 +18,10 @@ function About(props) {
                     <h2
                         className={`${styles.text_detail} ${styles.text_title}`}
                     >
-                        Biography
+                        Description
                     </h2>
                 </div>
-                <div>
-                    Longer description ayyyyyyy, Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esseLonger description
-                    ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate velit esse
-                    <br />
-                    <br />
-                    Longer description ayyyyyyy, Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse
-                </div>
+                <div>{props.description}</div>
             </div>
             <div className={styles.large_section}>
                 <div className={styles.heading_endorse}>

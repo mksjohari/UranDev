@@ -104,7 +104,7 @@ const StepFour = (props) => {
                     {props.stepTwo.occupation}
                 </div>
                 <div className={styles.desc_div}>
-                    {props.stepTwo.personalDesc}
+                    {props.stepTwo.description}
                 </div>
             </div>
             <div className={styles.btn_controls}>
@@ -135,14 +135,14 @@ const StepFour = (props) => {
 export default connect(null, { updateInfoFromCompleteSignUp })(StepFour);
 
 export const expertise = {
-	id1: 'Business & Management',
-	id2: 'Creative Arts',
-	id3: 'Engineering & Mathematics',
-	id4: 'Humanities, Arts & Social Sciences',
-	id5: 'IT & Computer Science',
-	id6: 'Law, Legal Studies & Justice',
-	id7: 'Medical & Health Sciences',
-	id8: 'Property & Built Environment',
-	id9: 'Sciences',
-	id10: 'Teaching & Education',
+    id1: "Business & Management",
+    id2: "Creative Arts",
+    id3: "Engineering & Mathematics",
+    id4: "Humanities, Arts & Social Sciences",
+    id5: "IT & Computer Science",
+    id6: "Law, Legal Studies & Justice",
+    id7: "Medical & Health Sciences",
+    id8: "Property & Built Environment",
+    id9: "Sciences",
+    id10: "Teaching & Education",
 };

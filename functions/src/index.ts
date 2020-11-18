@@ -253,8 +253,8 @@ export const finishUserSignUp = functions
             seeker.photo = data.photoURL;
             seeker.location = secondStep.location;
             seeker.occupation = secondStep.occupation;
-            if (secondStep.personalDesc.length > 0) {
-                description = secondStep.personalDesc;
+            if (secondStep.description.length > 0) {
+                description = secondStep.description;
             } else {
                 description = null;
             }
