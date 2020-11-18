@@ -41,6 +41,9 @@ export const addSkillsAndTools = getFunctions(firebase).httpsCallable(
     "addSkillsAndTools"
 );
 export const getUID = getFunctions(firebase).httpsCallable("getUID");
+export const tempDeleteProjectStats = getFunctions(firebase).httpsCallable(
+    "tempDeleteProjectStats"
+);
 
 // FIRESTORE
 
@@ -74,7 +77,7 @@ export const uploadProject = async (uid, project) => {
     const projectBase = {
         pid: project.pid,
         title: project.title,
-        visibility: project.sharing,
+        visibility: project.visibility,
         situation: {
             summary: project.situation.summary,
             role: project.situation.role,
@@ -131,6 +134,16 @@ export const uploadProject = async (uid, project) => {
                     startDate = new Date(task.startDate.format());
                     endDate = new Date(task.endDate.format());
                 }
+                var taskId;
+                if (task.tid) {
+                    taskId = task.tid;
+                } else {
+                    taskId = `task-${Math.floor(
+                        Math.random() * 100000
+                    )}-${Math.floor(Math.random() * 100000)}-${Math.floor(
+                        Math.random() * 100000
+                    )}-${Math.floor(Math.random() * 100000)}`;
+                }
                 await getFirebase()
                     .firestore()
                     .collection("users")
@@ -138,13 +151,15 @@ export const uploadProject = async (uid, project) => {
                     .collection("projects")
                     .doc(project.pid)
                     .collection("tasks")
-                    .add({
+                    .doc(taskId)
+                    .set({
                         index,
                         actions: actions,
                         description: task.description,
                         title: task.title,
                         startDate: startDate,
                         endDate: endDate,
+                        tid: taskId,
                     });
             });
         })
@@ -181,6 +196,13 @@ export const uploadProject = async (uid, project) => {
                 url = await storage
                     .ref(`users/${uid}/projects/${project.pid}/cover`)
                     .getDownloadURL();
+            }
+            if (project.fromEdit === true) {
+                await tempDeleteProjectStats({
+                    oldSkills: project.oldSkills,
+                    oldTools: project.oldTools,
+                    uid,
+                });
             }
             const projectPreview = {
                 pid: project.pid,
@@ -219,7 +241,12 @@ export const uploadProject = async (uid, project) => {
                 .doc(project.pid)
                 .update({ coverUrl: url });
             project.results.sections.forEach((section) => {
-                section.files.forEach((file) => {});
+                section.files.forEach(async (file) => {
+                    const path = storage.ref(
+                        `users/${uid}/projects/${project.pid}/${file.name}`
+                    );
+                    await path.put(file);
+                });
             });
             await updateUserStats({ uid, skills: newSkills, tools: newTools });
         });
@@ -235,7 +262,7 @@ export const getPidImage = async (uid, pid, name) => {
 };
 // HELPER FUNCTIONS //
 
-const addToStats = (stats, key) => {
+export const addToStats = (stats, key) => {
     if (key in stats) {
         stats[key] += 1;
     } else {
