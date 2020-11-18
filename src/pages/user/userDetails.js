@@ -66,7 +66,7 @@ const ProfileDetails = (props) => {
                     </div>
                 </div>
                 <div className={`${styles.user_bio} ${styles.section}`}>
-                    {user.description}
+                    {/* {user.description}
                     {!user.description && (
                         <span>
                             Short description or qutoes of something idc. It is
@@ -78,7 +78,7 @@ const ProfileDetails = (props) => {
                             more-or-less normal distribution of letters, as
                             opposed to using 'Content here.
                         </span>
-                    )}
+                    )} */}
                 </div>
                 <div className={`${styles.user_socials} ${styles.section}`}>
                     {/* <a href={`${user.socials[4].url}`}>
