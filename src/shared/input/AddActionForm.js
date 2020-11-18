@@ -21,6 +21,7 @@ const dropdownConverter = (data) => {
 
 function AddActionForm(props) {
 	const actionId = props.newAction ? 'newAction' : props.action.actionId;
+	console.log(actionId);
 	return (
 		<div className={popup.form_container}>
 			<Formik
@@ -47,7 +48,6 @@ function AddActionForm(props) {
 						className={popup.form}
 						style={{ width: window.innerWidth * 0.6 }}
 					>
-						{/* {console.log(props)} */}
 						<h3>Edit Action</h3>
 						<div>
 							<div className={popup.root_column}>
@@ -72,7 +72,7 @@ function AddActionForm(props) {
 							<br />
 
 							<label htmlFor="tools" className={popup.subtitle}>
-								What tool(s) did you use?
+								What Tool(s) did you use?
 							</label>
 							<Field name="tools">
 								{({
@@ -109,7 +109,11 @@ function AddActionForm(props) {
 									form: { setFieldValue },
 								}) => (
 									<Dropdown
-										id={actionId + '_tools'}
+										id={
+											actionId +
+											'_tools_' +
+											Math.random() * 1000000
+										}
 										options={Options.skills}
 										isMulti
 										isCreatable
@@ -122,6 +126,7 @@ function AddActionForm(props) {
 											}))
 										}
 										onChange={(v) => {
+											console.log(v);
 											setFieldValue('skills', v);
 										}}
 									/>

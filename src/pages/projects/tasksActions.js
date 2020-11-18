@@ -7,6 +7,7 @@ import styles from '../../modules/createProject.module.scss';
 
 function TasksActions(props) {
 	// const [hasDates, setHasDates] = useState(false);
+	console.log(props);
 	return (
 		<div>
 			<div className={styles.section_input}>

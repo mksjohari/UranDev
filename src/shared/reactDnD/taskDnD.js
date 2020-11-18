@@ -21,6 +21,8 @@ function TaskDnD(props) {
 	const taskList = props.data;
 	const [currentTask, setCurrentTask] = useState(0); // index of currentTask object
 	const [switching, setSwitch] = useState(false); // index of currentTask object
+	console.log(currentTask);
+	console.log(switching);
 	useEffect(() => {
 		setCurrentTask(0);
 		setSwitch(false);
@@ -118,6 +120,7 @@ function TaskDnD(props) {
 		const { source } = result;
 		setCurrentTask(source.index);
 	}
+	console.log(taskList);
 	return (
 		<DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
 			<div className={styles.draggable_root}>

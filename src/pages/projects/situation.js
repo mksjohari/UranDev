@@ -10,7 +10,6 @@ import { withContext } from '../../shared/react-dims';
 import styles from '../../modules/createProject.module.scss';
 
 function Situation(props) {
-	// console.log(props);
 	return (
 		<Formik
 			initialValues={{

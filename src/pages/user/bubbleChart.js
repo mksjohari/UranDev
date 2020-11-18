@@ -384,11 +384,11 @@ function wrap(text) {
 	text.each(function () {
 		// console.log(d3.select(this.parentNode).select("circle").attr("r"))
 		var text = d3.select(this),
-			words = text.text().split(/\s+/).reverse(),
+			words = text.text().split(/\s+/).reverse(),  // apple, orange
 			width = d3.select(this.parentNode).select('circle').attr('r') * 2,
 			word,
-			line = [],
-			lineNumber = 0,
+			line = [], // orange, apple
+			lineNumber = 0,  //2
 			lineHeight = 1.1, // ems
 			x = -text.node().getBBox().width / 2,
 			y = text.attr('y'),
@@ -400,21 +400,22 @@ function wrap(text) {
 				.attr('y', y)
 				.attr('dy', dy + 'em');
 
-		while ((word = words.pop())) {
-			line.push(word);
-			tspan.text(line.join(' '));
+		while ((word = words.pop())) {  // 1. word = orange		2. word = apple
+			line.push(word);   // 1. line = [orange]	2. line = [orange, apple]		3. line = [orange]
+			tspan.text(line.join(' '));    // 1. tspan.text = orange' '		2. tspan.text= orange' 'apple' '
 			// console.log(x)
-			if (tspan.node().getComputedTextLength() > width) {
+			if (tspan.node().getComputedTextLength() > width) {   // 2. True
 				// console.log(text)
-				line.pop();
-				tspan.text(line.join(' '));
-				line = [word];
+				line.pop();		// 3. apple
+				tspan.text(line.join(' ')); 	// 2. tspan.text = orange' '
+				tspan.attr('x', -tspan.node().getBBox().width / 2)
+				line = [word];  	// 2. line = [apple]
 				tspan = text
 					.append('tspan')
-					.attr('x', -tspan.node().getBBox().width / 2)
+					.attr('x', - tspan.node().getBBox().width / 2)		// 3. apple in middle
 					.attr('y', y)
-					.attr('dy', ++lineNumber * lineHeight + dy + 'em')
-					.text(word);
+					.attr('dy', ++lineNumber * lineHeight + dy + 'em')   // apple in 2nd line
+					.text(word);		// 3. tspan.text = apple
 			}
 		}
 	});

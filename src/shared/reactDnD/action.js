@@ -18,6 +18,26 @@ const ActionCard = (props) => {
 			<div className={styles.title}>{props.action.title}</div>
 
 			<div className={styles.action_tags}>
+				{props.action.tools.length ? (
+					<div className={styles.project_tags}>
+						<div
+							className={`${styles.action_subtitle} ${styles.tags_subtitle}`}
+						>
+							Tools:
+						</div>
+						{console.log(props.action.tools)}
+						{props.action.tools.map((tool, index) => (
+							<div
+								key={`${index}-${Math.random() * 100000000}`}
+								className={`${projects.tag_type} ${projects.Tool}`}
+							>
+								{`${tool}`}
+							</div>
+						))}
+					</div>
+				) : (
+					''
+				)}
 				{props.action.skills.length ? (
 					<div className={styles.project_tags}>
 						<div
@@ -27,29 +47,10 @@ const ActionCard = (props) => {
 						</div>
 						{props.action.skills.map((skill, index) => (
 							<span
-								key={skill}
+								key={`${index}-${Math.random() * 100000000}`}
 								className={`${projects.tag_type} ${projects.Skill}`}
 							>
-								{skill}
-							</span>
-						))}
-					</div>
-				) : (
-					''
-				)}
-				{props.action.tools.length ? (
-					<div className={styles.project_tags}>
-						<div
-							className={`${styles.action_subtitle} ${styles.tags_subtitle}`}
-						>
-							Tools:
-						</div>
-						{props.action.tools.map((tool, index) => (
-							<span
-								key={tool}
-								className={`${projects.tag_type} ${projects.Tool}`}
-							>
-								{tool}
+								{`${skill}`}
 							</span>
 						))}
 					</div>
@@ -62,9 +63,9 @@ const ActionCard = (props) => {
 				<div>
 					{props.action.files.length ? (
 						<div className={styles.action_subtitle}>
-							Files: {console.log(props.action.files)}
+							Files:
 							<div className={styles.carousel_display}>
-								<Carousel files={props.action.files} small />
+								<Carousel files={props.action.files} />
 							</div>
 						</div>
 					) : (

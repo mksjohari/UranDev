@@ -53,7 +53,7 @@ function Droparea(props) {
 				<i className="fas fa-file-alt"></i>
 			</div>
 			<aside className={styles.thumbsContainer}>
-				{value && <Thumbs files={value} />}
+				{value.length ? <Thumbs files={value} /> : ""}
 			</aside>
 		</section>
 	);

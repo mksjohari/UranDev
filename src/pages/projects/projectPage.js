@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import SkillsTab from './skillsTab';
-import Developer from '../../images/developer.svg';
-import JobSearch from '../../images/jobsearch.png';
-import Button from '../../shared/sandbox/Button';
-import Carousel from '../../shared/sandbox/Carousel';
 import TaskDnD from '../../shared/reactDnD/taskDnD';
-
 import project from '../../modules/previewProject.module.scss';
 import styles from '../../modules/createProject.module.scss';
 import buttonStyle from '../../modules/_button.module.scss';
@@ -15,8 +10,7 @@ import dnd from '../../modules/DnD.module.scss';
 import header from '../../modules/header.module.scss';
 import { getFirebase } from '../../shared/firebase/config';
 import { connect } from 'react-redux';
-import { getPidImage, storage } from '../../shared/firebase/firebase';
-import { red } from '@material-ui/core/colors';
+import { getPidImage } from '../../shared/firebase/firebase';
 
 const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
 	const ref = getFirebase()
@@ -54,10 +48,10 @@ const getProjectTasks = async (
 
 		taskRaw.data().actions.forEach((action) => {
 			const files = [];
-			action.skills.forEach(async (skill) => {
+			action.skills.forEach((skill) => {
 				skills.push(skill);
 			});
-			action.tools.forEach(async (tool) => {
+			action.tools.forEach((tool) => {
 				tools.push(tool);
 			});
 			action.files.forEach(async (file) => {
@@ -67,8 +61,6 @@ const getProjectTasks = async (
 			actions.push({
 				actionId: action.actionId,
 				description: action.description,
-				skills: action.skills,
-				tools: action.tools,
 				title: action.title,
 				files: files,
 				skills,
@@ -94,6 +86,12 @@ const mapStateToProps = (state) => {
 	return { user: state.user };
 };
 
+const editProject = (project, tasks, history) => {
+	console.log(project.situation);
+	project.tasks = tasks;
+	history.push('/edit', { projectData: project });
+};
+
 function ProjectPage(props) {
 	const uid = props.match.params.uid;
 	const pid = props.match.params.pid;
@@ -105,6 +103,7 @@ function ProjectPage(props) {
 	const [tasks, setTasks] = useState();
 	const [overview, setOverview] = useState(true);
 	const [user, setUser] = useState();
+	const history = useHistory();
 	useEffect(() => {
 		setUser(props.user);
 		if (!dataLoaded) {
@@ -125,19 +124,23 @@ function ProjectPage(props) {
 	if (loading === true || dataLoaded === false) {
 		return <div>Loading</div>;
 	}
-	console.log(data);
 	return (
 		<div>
 			<div className={project.cover_div}>
 				<label
 					className={`${buttonStyle.cover_btn} ${buttonStyle.button} ${project.cover_button}`}
+					onClick={() => {
+						editProject(data, tasks, history);
+					}}
 				>
-					<input type="file" onChange={props.editCover} />
-					<i className="fas fa-camera" style={{ marginRight: 5 }} />
-					Change Cover
+					<i className="fas fa-edit" style={{ marginRight: 5 }} />
+					Edit Project
 				</label>
-				<img src={data.coverUrl} alt="cover photo"></img>
-
+				<img
+					className={project.cover_img}
+					src={data.coverUrl}
+					alt="cover"
+				/>
 				<div className={project.banner}>
 					<div className={project.project_title}>{data.title}</div>
 					<div className={project.details}>
@@ -229,7 +232,7 @@ function ProjectPage(props) {
 							<div className={project.user_div}>
 								<img
 									src={user.photoUrl}
-									alt="user photo"
+									alt="user"
 									className={project.profile_pic}
 								/>
 								<div className={project.name}>
@@ -250,6 +253,7 @@ function ProjectPage(props) {
 											<a
 												className={`${styles.section_link}`}
 												href={link.url}
+												key={index}
 											>
 												<i className="fas fa-link" />
 												<div
@@ -267,7 +271,10 @@ function ProjectPage(props) {
 						</div>
 						{data.results.sections.length
 							? data.results.sections.map((section, index) => (
-									<div className={`${project.top_margin}`}>
+									<div
+										key={index}
+										className={`${project.top_margin}`}
+									>
 										{section.files.length
 											? sectionGrid(section)
 											: sectionGridless(section)}
@@ -284,19 +291,6 @@ function ProjectPage(props) {
 					</div>
 				</div>
 			)}
-			<div className={styles.button_footer}>
-				<Button
-					iconL={<i className="fas fa-arrow-left" />}
-					text="Back"
-					onClick={props.prevStep}
-				/>
-				<Button
-					className={styles.save_draft}
-					iconR={<i className="fas fa-flag" />}
-					text="Complete Project"
-					onClick={props.finishProject}
-				/>
-			</div>
 		</div>
 	);
 }
@@ -352,7 +346,6 @@ function sectionGridless(section) {
 }
 
 export function dateToDMY(date) {
-	console.log(date);
 	return `${date.getDate()}/${
 		date.getUTCMonth() + 1
 	}/${date.getUTCFullYear()}`;
