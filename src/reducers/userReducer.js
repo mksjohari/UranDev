@@ -30,7 +30,7 @@ export default (state = notLoggedUserInfo, action) => {
 				photoUrl: action.userInfo.photoUrl,
 				introduction: action.userInfo.introduction,
 				occupation: action.userInfo.occupation,
-				description: action.userInfo.description,
+				description: action.userInfo.personalDesc,
 				location: action.userInfo.location,
 				socials: action.userInfo.socials,
 				expertise: action.userInfo.expertise,

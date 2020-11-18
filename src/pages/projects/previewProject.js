@@ -7,6 +7,8 @@ import JobSearch from "../../images/jobsearch.png";
 import Button from "../../shared/sandbox/Button";
 import Carousel from "../../shared/sandbox/Carousel";
 import TaskDnD from "../../shared/reactDnD/taskDnD";
+import PDFPreview from "../../shared/sandbox/PDFPreview";
+import SkillsTab from "./skillsTab"
 
 import project from "../../modules/previewProject.module.scss";
 import styles from "../../modules/createProject.module.scss";
@@ -14,61 +16,71 @@ import buttonStyle from "../../modules/_button.module.scss";
 import dnd from "../../modules/DnD.module.scss";
 import header from "../../modules/header.module.scss";
 
-function PreviewProject(props) {
-    const [overview, setOverview] = useState(true);
-    // console.log(props);
-    const situation = props.project.situation;
-    const results = props.project.results;
-
-    function sectionGrid(section) {
-        return (
-            <div className={styles.section_grid}>
-                <div className={styles.section_left}>
-                    <div className={styles.section_desc}>
-                        {section.description}
-                    </div>
-                    {section.sectionLink.url ? (
-                        <a
-                            className={`${styles.section_link}`}
-                            href={section.sectionLink.url}
-                        >
-                            <i className="fas fa-link" />
-                            <div className={styles.link_text}>
-                                {section.sectionLink.linkName}
-                            </div>
-                        </a>
-                    ) : (
-                        ""
-                    )}
-                </div>
-                <div className={styles.section_right}>
-                    <div className={dnd.carousel_display}>
-                        <Carousel files={section.files} />
-                    </div>
-                </div>
-            </div>
-        );
-    }
-    function sectionGridless(section) {
-        return (
+export function SectionGrid(props) {
+    return (
+        <div className={styles.section_grid}>
             <div className={styles.section_left}>
-                <div className={styles.section_desc}>{section.description}</div>
-                {section.sectionLink.url ? (
+                <div className={styles.section_desc}>
+                    {props.section.description}
+                </div>
+                {props.section.sectionLink.url ? (
                     <a
                         className={`${styles.section_link}`}
-                        href={section.sectionLink.url}
+                        href={props.section.sectionLink.url}
                     >
                         <i className="fas fa-link" />
                         <div className={styles.link_text}>
-                            {section.sectionLink.linkName}
+                            {props.section.sectionLink.linkName}
                         </div>
                     </a>
                 ) : (
                     ""
                 )}
             </div>
-        );
-    }
+            <div className={styles.section_right}>
+                <div className={dnd.carousel_display}>
+                    <Carousel files={props.section.files} />
+                </div>
+            </div>
+        </div>
+    );
+}
+export function SectionGridless(props) {
+    return (
+        <div className={styles.section_left}>
+            <div className={styles.section_desc}>
+                {props.section.description}
+            </div>
+            {props.section.sectionLink.url ? (
+                <a
+                    className={`${styles.section_link}`}
+                    href={props.section.sectionLink.url}
+                >
+                    <i className="fas fa-link" />
+                    <div className={styles.link_text}>
+                        {props.section.sectionLink.linkName}
+                    </div>
+                </a>
+            ) : (
+                ""
+            )}
+            {props.section.files.type === "application/pdf" ? (
+                <div className={styles.pdf_display}>
+                    <PDFPreview file={props.section.files} preview />
+                </div>
+            ) : (
+                ""
+            )}
+        </div>
+    );
+}
+
+function PreviewProject(props) {
+    const [overview, setOverview] = useState(true);
+    // console.log(props);
+    const situation = props.project.situation;
+    const results = props.project.results;
+
     return (
         <div>
             <div
@@ -94,7 +106,7 @@ function PreviewProject(props) {
                     }
                     alt="jobsearch"
                 ></img>
-
+    {console.log(props.project.cover)}
                 <div className={project.banner}>
                     <div className={project.project_title}>
                         {props.project.title}
@@ -133,7 +145,7 @@ function PreviewProject(props) {
                     Tasks & Actions
                 </NavLink>
             </div>
-            {/* <SkillsTab /> */}
+            <SkillsTab />
             {overview ? (
                 <div className={project.project_ctn}>
                     <div className={project.project_section}>
@@ -228,9 +240,11 @@ function PreviewProject(props) {
                         {results.sections.length
                             ? results.sections.map((section, index) => (
                                   <div className={`${project.top_margin}`}>
-                                      {section.files.length
-                                          ? sectionGrid(section)
-                                          : sectionGridless(section)}
+                                      {section.files.length ? (
+                                          <SectionGrid section={section} />
+                                      ) : (
+                                          <SectionGridless section={section} />
+                                      )}
                                   </div>
                               ))
                             : ""}

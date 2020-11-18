@@ -1,0 +1,39 @@
+@import "variable";
+
+.pdfContainer {
+    position: relative;
+    min-height: 300px;
+    min-width: 70%;
+    border-radius: 20px;
+    padding: 2em;
+    overflow: auto;
+}
+
+.pdfContainerScroll {
+    position: relative;
+    min-height: 300px;
+    max-height: 700px;
+    min-width: 70%;
+    border-radius: 20px;
+    padding: 20px;
+    overflow: auto;
+}
+
+.btn_row {
+    display: flex;
+    justify-content: center;
+}
+
+.pageNum {
+    text-align: center;
+    grid-column: 2 / 3;
+}
+.arrowBtn {
+    cursor: pointer;
+    margin: 0 2em;
+}
+
+.preview_container {
+    max-width: 100%;
+    background-color: $ivory;
+}

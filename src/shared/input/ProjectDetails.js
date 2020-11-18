@@ -33,7 +33,7 @@ function ProjectDetails(props) {
 					>
 						<h3>Create Project</h3>
 						<div className={styles.root_column}>
-							<div className={styles.section_columns}>
+							{/* <div className={styles.section_columns}>
 								<label
 									htmlFor="status"
 									className={styles.subtitle}
@@ -46,7 +46,7 @@ function ProjectDetails(props) {
 									name="status"
 								/>
 							</div>
-							<br />
+							<br /> */}
 							<div className={styles.section_columns}>
 								<label
 									htmlFor="sharing"

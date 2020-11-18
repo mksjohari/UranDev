@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Field, useField } from "formik";
 
 import Button from "../sandbox/Button";
 import { close, lockBg } from "../sandbox/Popup";
 import Droparea from "../sandbox/Droparea";
 import Alert from "../sandbox/Alert";
-import Carousel from "../sandbox/Carousel";
+import PDFPreview from "../../shared/sandbox/PDFPreview";
+import {
+    SectionGrid,
+    SectionGridless,
+} from "../../pages/projects/previewProject";
 
 import styles from "../../modules/createProject.module.scss";
-import dnd from "../../modules/DnD.module.scss";
 import popup from "../../modules/popup.module.scss";
+import tab from "../../modules/tab.module.scss";
+import buttonStyle from "../../modules/_button.module.scss";
 
 function ResultSection(props) {
     const [meta] = useField(props.name);
-
     const { form, push, remove } = props;
     const { value } = meta;
-    // const initialValues = useState(value)
-    // const reset = (index) => {
-    //     props.form.setFieldValue("sections", initialValues[index]);
-    // }
+    const [type, setType] = useState("Image");
+
+    const isSelected = (v) =>
+        `${tab.role} ${v === type ? tab.role_active : ""}`;
+
     function SectionPopup(index) {
         return (
             <div
@@ -44,7 +49,7 @@ function ResultSection(props) {
                 ) : null}
                 <br />
                 <label htmlFor="sectionLink" className={popup.subtitle}>
-                    Add an link to external sources.
+                    Add a link to external sources.
                 </label>
                 <div className={styles.input_teamsize}>
                     <Field
@@ -66,11 +71,98 @@ function ResultSection(props) {
                     </div>
                 ) : null}
                 <br />
-                <label htmlFor="title" className={popup.subtitle}>
-                    Upload at most 3 files to showcase your work (.mp4, .png,
-                    .jpeg)
+                <label className={popup.subtitle}>
+                    What are you uploading?
                 </label>
-                <Field as={Droparea} name={`sections[${index}].files`} />
+                {/* resets files to no value */}
+                <Field name={`sections[${index}].files`}>
+                    {({ field: { value }, form: { setFieldValue } }) => (
+                        <div className={tab.segmented_tab}>
+                            <button
+                                type="button"
+                                className={isSelected("Image")}
+                                onClick={() => {
+                                    setType("Image");
+                                    setFieldValue(
+                                        `sections[${index}].files`,
+                                        ""
+                                    );
+                                }}
+                            >
+                                Images
+                            </button>
+                            <button
+                                type="button"
+                                className={isSelected("PDF")}
+                                onClick={() => {
+                                    setType("PDF");
+                                    setFieldValue(
+                                        `sections[${index}].files`,
+                                        ""
+                                    );
+                                }}
+                            >
+                                PDF File
+                            </button>
+                        </div>
+                    )}
+                </Field>
+                <br />
+                {type === "Image" ? (
+                    <div>
+                        <label htmlFor="files" className={popup.subtitle}>
+                            Upload at most 10 images to showcase your work
+                            (.png, .jpeg)
+                        </label>
+                        <Field
+                            as={Droparea}
+                            name={`sections[${index}].files`}
+                        />
+                    </div>
+                ) : (
+                    <div>
+                        <Field name={`sections[${index}].files`}>
+                            {({
+                                field: { value },
+                                form: { setFieldValue },
+                            }) => (
+                                <div className={styles.pdf_display}>
+                                    <label
+                                        className={`${buttonStyle.upload_pdf_btn} ${buttonStyle.button}`}
+                                    >
+                                        <input
+                                            type="file"
+                                            accept="pdf"
+                                            onChange={(event) => {
+                                                const file =
+                                                    event.target.files[0];
+                                                Object.assign(file, {
+                                                    preview:
+                                                        file.type ===
+                                                        "application/pdf"
+                                                            ? URL.createObjectURL(
+                                                                  file
+                                                              )
+                                                            : "",
+                                                });
+                                                setFieldValue(
+                                                    `sections[${index}].files`,
+                                                    file
+                                                );
+                                            }}
+                                        />
+                                        <i
+                                            className="fas fa-file"
+                                            style={{ marginRight: 5 }}
+                                        />
+                                        Upload a PDF
+                                    </label>
+                                    {value ? <PDFPreview file={value} /> : ""}
+                                </div>
+                            )}
+                        </Field>
+                    </div>
+                )}
                 <br />
                 <div className={popup.btnsRow}>
                     <Button
@@ -100,39 +192,16 @@ function ResultSection(props) {
             {value.map((section, index) => {
                 return (
                     <div className={styles.section_card} key={index}>
-                        <div className={styles.section_grid}>
-                            <div className={styles.section_left}>
-                                <div className={styles.section_desc}>
-                                    {section.description}
-                                </div>
-                                {section.sectionLink.url ? (
-                                    <a
-                                        className={`${styles.section_link}`}
-                                        href={section.sectionLink.url}
-                                    >
-                                        <i className="fas fa-link" />
-                                        <div className={styles.link_text}>
-                                            {section.sectionLink.linkName}
-                                        </div>
-                                    </a>
-                                ) : (
-                                    ""
-                                )}
-                            </div>
-                            <div className={styles.section_right}>
-                                {section.files.length ? (
-                                    <div className={dnd.carousel_display}>
-                                        <Carousel files={section.files} />
-                                    </div>
-                                ) : (
-                                    ""
-                                )}
-                            </div>
-                        </div>
+                        {section.files.length &&
+                        section.files[0].type.match(/image/g) ? (
+                            <SectionGrid section={section}/>
+                        ) : (
+                            <SectionGridless section={section}/>
+                        )}
                         <div className={styles.section_footer}>
                             <Button
                                 colour="reddo"
-                                id={"delSection"}
+                                id={index + "delSection"}
                                 iconL={<i className="fas fa-trash-alt"></i>}
                                 text="Delete section"
                                 onClick={lockBg}
@@ -146,10 +215,10 @@ function ResultSection(props) {
                         </div>
                         <div
                             className={popup.popupContainer}
-                            id={"delSection_popContent"}
+                            id={index + "delSection_popContent"}
                         >
                             <Alert
-                                id={"delSection"}
+                                id={index + "delSection"}
                                 type="result section"
                                 hasConfirm
                                 confirmBtnLabel="Yes, delete"

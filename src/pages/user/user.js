@@ -77,7 +77,7 @@ const profile = React.memo((props) => {
 						Projects
 					</NavLink>
 				</div>
-				{about ? <About /> : <MyProjects view="profile" />}
+				{about ? <About/> : <MyProjects view="profile" />}
 			</div>
 		);
 	} else {

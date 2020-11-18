@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { withContext } from "../../shared/react-dims";
 import styles from "../../modules/dropzone.module.scss";
 
 export function Carousel(props) {
@@ -17,7 +18,7 @@ export function Carousel(props) {
             </div>
             <div
                 className={styles.carousel}
-                style={props.small ? null : { width: "50vh" }}
+                style={{ width: props.dims.width * 0.3 }}
             >
                 <img
                     alt={file.name}
@@ -43,4 +44,4 @@ export function Carousel(props) {
         </div>
     );
 }
-export default Carousel;
+export default withContext(Carousel);
