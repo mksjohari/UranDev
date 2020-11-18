@@ -2,27 +2,27 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import Button from "../../shared/sandbox/Button";
-import styles from "../../modules/profile.module.scss";
+import Button from '../../shared/sandbox/Button';
+import styles from '../../modules/profile.module.scss';
 const mapStateToProps = (state) => {
-    return { users: state.user };
+	return { users: state.user };
 };
 
 const ProfileDetails = (props) => {
-    const [shortlisted, setShortlisted] = useState(false);
-    const user = props.user;
-    console.log(user);
-    const displayName = `${user.firstName} ${user.lastName}`;
-    const toggleShortlisted = () =>
-        setShortlisted((previousState) => !previousState);
-    return (
-        <div className={styles.profile_details}>
-            <img className={styles.dp} src={user.photoUrl} alt="profile" />
-            <div className={styles.detail}>
-                <div className={styles.heading}>
-                    <div className={styles.user_name}>{displayName}</div>
-                    <div className={styles.user_buttons}>
-                        {/* <Button
+	// const [shortlisted, setShortlisted] = useState(false);
+	const user = props.user;
+	console.log(user);
+	const displayName = `${user.firstName} ${user.lastName}`;
+	// const toggleShortlisted = () =>
+	// 	setShortlisted((previousState) => !previousState);
+	return (
+		<div className={styles.profile_details}>
+			<img className={styles.dp} src={user.photoUrl} alt="profile" />
+			<div className={styles.detail}>
+				<div className={styles.heading}>
+					<div className={styles.user_name}>{displayName}</div>
+					<div className={styles.user_buttons}>
+						{/* <Button
                             className={
                                 shortlisted
                                     ? styles.shortlisted_button
@@ -110,9 +110,9 @@ const ProfileDetails = (props) => {
                         <i className="fab fa-figma fa-3x"></i>
                     </div>
                     </a> */}
-                </div>
-            </div>
-        </div>
-    );
+				</div>
+			</div>
+		</div>
+	);
 };
 export default connect(mapStateToProps)(ProfileDetails);

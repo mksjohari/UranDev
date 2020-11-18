@@ -1,12 +1,17 @@
 import React from 'react';
-import MyProjects from "./myProjects";
+import { connect } from 'react-redux';
+import MyProjects from './myProjects';
 
-const Projects = () => {
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+
+const Projects = (props) => {
 	return (
 		<div>
-			<MyProjects view="edit"/>
+			<MyProjects user={props.user} view="edit" />
 		</div>
 	);
 };
 
-export default Projects;
+export default connect(mapStateToProps)(Projects);

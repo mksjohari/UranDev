@@ -12,9 +12,11 @@ function SkillToolProgress(props) {
     };
     return (
         <div className={styles.progress_section}>
-            <span className={styles.progress_text}>{props.item.label}</span>
+            <span className={styles.progress_text}>{props.item[0]}</span>
             <div className={styles.progress_bar}>
-                <div className={styles.progress_endorsers}>10 endorsers</div>
+                <div className={styles.progress_endorsers}>
+                    {props.item[1]} endorsers
+                </div>
                 <ProgressBar
                     width={
                         window.innerWidth < 992

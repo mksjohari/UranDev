@@ -16,7 +16,7 @@ import buttonStyle from "../../modules/_button.module.scss";
 import { getFirebase } from "../../shared/firebase/config";
 
 function mapStateToProps(state) {
-    return { user: state.user };
+	return { user: state.user };
 }
 function Settings(props) {
     const user = props.user;
@@ -280,14 +280,14 @@ function Settings(props) {
 }
 export default connect(mapStateToProps)(Settings);
 
-const label = ["PERSONAL DETAILS", "SOCIAL CONTACTS"];
+const label = ['PERSONAL DETAILS', 'SOCIAL CONTACTS'];
 
 const socials = [
-    { media: "Behance", link: "https://www.behance.net/" },
-    { media: "CodeSandBox", link: "https://codesandbox.io/u/" },
-    { media: "Dribble", link: "https://dribbble.com/" },
-    { media: "Figma", link: "https://figma.com/" },
-    { media: "Github", link: "https://www.github.com/" },
-    { media: "LinkedIn", link: "https://www.linkedin.com/in/" },
-    { media: "Slack", link: "https://www.slack.com//" },
+	{ media: 'Behance', link: 'https://www.behance.net/' },
+	{ media: 'CodeSandBox', link: 'https://codesandbox.io/u/' },
+	{ media: 'Dribble', link: 'https://dribbble.com/' },
+	{ media: 'Figma', link: 'https://figma.com/' },
+	{ media: 'Github', link: 'https://www.github.com/' },
+	{ media: 'LinkedIn', link: 'https://www.linkedin.com/in/' },
+	{ media: 'Slack', link: 'https://www.slack.com//' },
 ];

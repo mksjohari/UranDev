@@ -21,16 +21,7 @@ const getDetails = async (uid, setDetails, setChecked) => {
 	if (!userInfo.data) {
 		setDetails({});
 	} else {
-		setDetails({
-			firstName: userInfo.data().firstName,
-			lastName: userInfo.data().lastName,
-			photoUrl: userInfo.data().photoUrl,
-			location: userInfo.data().location,
-			occupation: userInfo.data().occupation,
-			description: userInfo.data().description,
-			social: userInfo.data().social,
-			expertise: userInfo.data().expertise,
-		});
+		setDetails(userInfo.data());
 	}
 	setChecked(true);
 };
@@ -40,11 +31,10 @@ const profile = React.memo((props) => {
 	const [checked, setChecked] = useState(false);
 	const [details, setDetails] = useState({});
 	const uid = props.match.params.uid;
-
 	useEffect(() => {
 		if (uid === props.user.uid) {
 			console.log('ME');
-			setDetails(props.user);
+			setDetails(props.user, setChecked);
 			setChecked(true);
 		} else {
 			console.log('NOT ME');
@@ -77,7 +67,11 @@ const profile = React.memo((props) => {
 						Projects
 					</NavLink>
 				</div>
-				{about ? <About/> : <MyProjects view="profile" />}
+				{about ? (
+					<About skills={details.skills} tools={details.tools} />
+				) : (
+					<MyProjects view="profile" user={details} />
+				)}
 			</div>
 		);
 	} else {

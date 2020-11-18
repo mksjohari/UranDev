@@ -6,11 +6,6 @@ import CardSmall from './cardSmall';
 import styles from '../../modules/projects.module.scss';
 import Button from '../../shared/sandbox/Button';
 import { getFirebase } from '../../shared/firebase/config';
-import { connect } from 'react-redux';
-
-const mapStateToProps = (state) => {
-	return { user: state.user };
-};
 
 const getPublicPreview = async (uid, setPreviews) => {
 	const previews = [];
@@ -65,4 +60,4 @@ function MyProjects(props) {
 		</div>
 	);
 }
-export default connect(mapStateToProps)(MyProjects);
+export default MyProjects;
