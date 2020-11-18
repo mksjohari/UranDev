@@ -42,7 +42,14 @@ function About(props) {
                     </div>
                 </div>
                 <div className={styles.column_section}>
-                    <WordBubble type="skill" data={skills} />
+                    <WordBubble
+                        isSkills={true}
+                        setAbout={props.setAbout}
+                        setSelectedSkills={props.setSelectedSkills}
+                        setSelectedTools={props.setSelectedTools}
+                        type="skill"
+                        data={skills}
+                    />
                     <div className={styles.bar_section}>
                         {sortedSkills.map((item, index) => (
                             <SkillToolProgress
@@ -73,7 +80,14 @@ function About(props) {
                     </div>
                 </div>
                 <div className={styles.column_section}>
-                    <WordBubble type="tool" data={tools} />
+                    <WordBubble
+                        isSkills={false}
+                        setAbout={props.setAbout}
+                        setSelectedSkills={props.setSelectedSkills}
+                        setSelectedTools={props.setSelectedTools}
+                        type="tool"
+                        data={tools}
+                    />
                     <div className={styles.bar_section}>
                         {sortedTools.map((item, index) => (
                             <SkillToolProgress

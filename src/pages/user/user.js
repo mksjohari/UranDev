@@ -30,6 +30,8 @@ const profile = React.memo((props) => {
     const [about, setAbout] = useState(false);
     const [checked, setChecked] = useState(false);
     const [details, setDetails] = useState({});
+    const [selectedSkills, setSelectedSkills] = useState([]);
+    const [selectedTools, setSelectedTools] = useState([]);
     const uid = props.match.params.uid;
     useEffect(() => {
         if (uid === props.user.uid) {
@@ -41,6 +43,9 @@ const profile = React.memo((props) => {
             getDetails(uid, setDetails, setChecked);
         }
     }, [props, uid]);
+    useEffect(() => {
+        console.log(selectedSkills, selectedTools);
+    }, [selectedTools, selectedSkills]);
     if (checked === true && Object.keys(details).length !== 0) {
         return (
             <div>
@@ -68,12 +73,22 @@ const profile = React.memo((props) => {
                 </div>
                 {about ? (
                     <About
+                        setAbout={setAbout}
                         description={details.description}
+                        setSelectedSkills={setSelectedSkills}
+                        setSelectedTools={setSelectedTools}
                         skills={details.skills}
                         tools={details.tools}
                     />
                 ) : (
-                    <MyProjects view="profile" user={details} />
+                    <MyProjects
+                        selectedSkills={selectedSkills}
+                        selectedTools={selectedTools}
+                        setSelectedSkills={setSelectedSkills}
+                        setSelectedTools={setSelectedTools}
+                        view="profile"
+                        user={details}
+                    />
                 )}
             </div>
         );

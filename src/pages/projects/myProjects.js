@@ -9,7 +9,14 @@ import ProjectFilter from "../../pages/user/projectFilter";
 
 import styles from "../../modules/projects.module.scss";
 
-const getPublicPreview = async (uid, setPreviews, setAllPreviews) => {
+const getPublicPreview = async (
+    uid,
+    selectedSkills,
+    selectedTools,
+    setPreviews,
+    setAllPreviews,
+    applyFilter
+) => {
     const previews = [];
     const preview = await getFirebase()
         .firestore()
@@ -22,7 +29,7 @@ const getPublicPreview = async (uid, setPreviews, setAllPreviews) => {
     });
     setPreviews(previews);
     setAllPreviews(previews);
-    console.log(previews);
+    applyFilter(selectedSkills, selectedTools, previews, setPreviews);
 };
 
 const applyFilter = (selectedSkills, selectedTools, previews, setPreviews) => {
@@ -56,17 +63,26 @@ function MyProjects(props) {
     const [showDrafts, setShowDrafts] = useState(true);
     const [skills, setSkills] = useState();
     const [tools, setTools] = useState();
-    const [selectedSkills, setSelectedSkills] = useState([]);
-    const [selectedTools, setSelectedTools] = useState([]);
+    const selectedSkills = props.selectedSkills;
+    const selectedTools = props.selectedTools;
+    const setSelectedSkills = props.setSelectedSkills;
+    const setSelectedTools = props.setSelectedTools;
     const hideDrafts = () => setShowDrafts(false);
     useEffect(() => {
-        getPublicPreview(props.user.uid, setPreviews, setAllPreviews);
+        getPublicPreview(
+            props.user.uid,
+            selectedSkills,
+            selectedTools,
+            setPreviews,
+            setAllPreviews,
+            applyFilter
+        );
         setSkills(Object.keys(props.user.skills));
         setTools(Object.keys(props.user.tools));
     }, [props.user.uid]);
     useEffect(() => {
         applyFilter(selectedSkills, selectedTools, allPreviews, setPreviews);
-    }, [selectedSkills, selectedTools]);
+    }, [props.selectedSkills, props.selectedTools]);
     return (
         <div className={styles.root}>
             {/* <FindProjects view={props.view} /> */}
