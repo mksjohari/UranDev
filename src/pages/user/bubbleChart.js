@@ -90,6 +90,8 @@ export default class BubbleChart extends Component {
 			labelFont,
 		} = this.props;
 
+		const type = this.props.type;
+
 		const bubbleChart = d3
 			.select(this.svg)
 			.append('g')
@@ -146,7 +148,7 @@ export default class BubbleChart extends Component {
 			});
 
 		node.append('text')
-			.attr('class', 'value-text')
+			.attr('class', 'value-text' + type)
 			.style('font-size', `${valueFont.size}px`)
 			.attr('clip-path', function (d) {
 				return 'url(#clip-' + d.id + ')';
@@ -169,7 +171,7 @@ export default class BubbleChart extends Component {
 			});
 
 		node.append('text')
-			.attr('class', 'label-text')
+			.attr('class', 'label-text' + type)
 			.style('font-size', `${labelFont.size}px`)
 			.attr('clip-path', function (d) {
 				return 'url(#clip-' + d.id + ')';
@@ -188,11 +190,13 @@ export default class BubbleChart extends Component {
 				return labelFont.lineWeight ? labelFont.lineWeight : 0;
 			})
 			.text(function (d) {
+				// console.log("d label ", d.label, "d id ", d.id);
 				return d.label;
 			});
 
+		// console.log(this.props);
 		// Center the texts inside the circles.
-		d3.selectAll('.label-text')
+		d3.selectAll('.label-text' + type)
 			.style('font-size', function (d) {
 				return d.r / 5;
 			})
@@ -210,8 +214,10 @@ export default class BubbleChart extends Component {
 			})
 			.call(wrap);
 
+		//	console.log("done");
+
 		// Center the texts inside the circles.
-		d3.selectAll('.value-text')
+		d3.selectAll('.value-text' + type)
 			.attr('x', function (d) {
 				const self = d3.select(this);
 				const width = self.node().getBBox().width;
@@ -223,7 +229,14 @@ export default class BubbleChart extends Component {
 				} else {
 					return -(d.r / 5) * 0.5;
 				}
-			});
+			})
+			.attr('dy', function (d) {
+				if (d.hideLabel) {
+					return d.r / 5 / 3;
+				} else {
+					return -(0.15) + 'em';
+				}
+			}); // put the number a little higher up
 
 		node.append('title').text(function (d) {
 			return d.label;
@@ -382,7 +395,7 @@ BubbleChart.defaultProps = {
 
 function wrap(text) {
 	text.each(function () {
-		// console.log(d3.select(this.parentNode).select("circle").attr("r"))
+		// console.log(d3.select(this.parentNode).text());
 		var text = d3.select(this),
 			words = text.text().split(/\s+/).reverse(),  // apple, orange
 			width = d3.select(this.parentNode).select('circle').attr('r') * 2,
@@ -390,7 +403,7 @@ function wrap(text) {
 			line = [], // orange, apple
 			lineNumber = 0,  //2
 			lineHeight = 1.1, // ems
-			x = -text.node().getBBox().width / 2,
+			x = -(text.node().getBBox().width + 4) / 2,
 			y = text.attr('y'),
 			dy = 0, //parseFloat(text.attr("dy")),
 			tspan = text
@@ -399,24 +412,28 @@ function wrap(text) {
 				.attr('x', x)
 				.attr('y', y)
 				.attr('dy', dy + 'em');
-
+		// console.log("words " , words);
 		while ((word = words.pop())) {  // 1. word = orange		2. word = apple
 			line.push(word);   // 1. line = [orange]	2. line = [orange, apple]		3. line = [orange]
 			tspan.text(line.join(' '));    // 1. tspan.text = orange' '		2. tspan.text= orange' 'apple' '
 			// console.log(x)
+			// console.log(word + ' ' + -(text.node().getBBox().width + 4) / 2 + ' ' +width);
 			if (tspan.node().getComputedTextLength() > width) {   // 2. True
 				// console.log(text)
-				line.pop();		// 3. apple
-				tspan.text(line.join(' ')); 	// 2. tspan.text = orange' '
-				tspan.attr('x', -tspan.node().getBBox().width / 2)
-				line = [word];  	// 2. line = [apple]
+				line.pop();
+				tspan.text(line.join(' '));
+				tspan.attr('x', -(tspan.node().getBBox().width) / 2);
+				line = [word];
 				tspan = text
 					.append('tspan')
 					.attr('x', - tspan.node().getBBox().width / 2)		// 3. apple in middle
 					.attr('y', y)
 					.attr('dy', ++lineNumber * lineHeight + dy + 'em')   // apple in 2nd line
 					.text(word);		// 3. tspan.text = apple
+
+				// console.log(word + ' ' + -(tspan.node().getBBox().width) / 2);
 			}
+			// console.log("line " , line);
 		}
 	});
 }

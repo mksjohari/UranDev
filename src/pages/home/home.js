@@ -40,7 +40,7 @@ const Home = (props) => {
 						Gain credentials and recognition for the skills that you
 						have through recording your past experiences.
 					</p>
-					<Button className="blue" text="Get started" />
+					<Button className="pink" text="Get started" />
 				</div>
 				<div className={styles.card}>
 					<img
@@ -53,7 +53,8 @@ const Home = (props) => {
 						Get in contact with hiring managers in the industry to
 						boost your chances of getting hired.
 					</p>
-					<Button className="pink" text="Get started" />
+					<p className={styles.comingSoon}>Coming soon...</p>
+					{/* <Button className="pink" text="Get started" /> */}
 				</div>
 				<div className={styles.card}>
 					<img
