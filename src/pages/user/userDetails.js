@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Button from '../../shared/sandbox/Button';
 import styles from '../../modules/profile.module.scss';
@@ -32,56 +32,55 @@ const ProfileDetails = (props) => {
                             text={shortlisted ? "Shortlisted!" : "Shortlist"}
                             onClick={toggleShortlisted}
                         /> */}
-						<Link to="/settings">
-							<Button
-								className={styles.shortlisted_button}
-								iconR={<i className="fas fa-edit"></i>}
-								text={'Edit Profile'}
-								// to={}
-							/>
-						</Link>
-					</div>
-				</div>
-				<div className={styles.section}>
-					<div className={styles.user_links}>
-						<i className="fas fa-map-marked-alt"></i>
-						<span className={styles.text_detail}>
-							Location: {user.location}
-						</span>
-					</div>
-					<div className={styles.user_links}>
-						<i className="fas fa-suitcase"></i>
-						<span className={styles.text_detail}>
-							Occupation: {user.occupation}
-						</span>
-					</div>
-					<div className={styles.user_links}>
-						<i className="fas fa-pen-nib"></i>
-						<span className={styles.text_detail}>
-							Expertise:{' '}
-							{user.expertise.map((expertise, index) => {
-								return <span key={index}>{expertise}</span>;
-							})}
-						</span>
-					</div>
-				</div>
-				<div className={`${styles.user_bio} ${styles.section}`}>
-					{user.description}
-					{!user.description && (
-						<span>
-							Short description or qutoes of something idc. It is
-							a long established fact that a reader will be
-							distracted by the readable content of a page when
-							looking at its layout.
-							<br />
-							The point of using Lorem Ipsum is that it has a
-							more-or-less normal distribution of letters, as
-							opposed to using 'Content here.
-						</span>
-					)}
-				</div>
-				<div className={`${styles.user_socials} ${styles.section}`}>
-					{/* <a href={`${user.socials[4].url}`}>
+                        <Link to="/settings">
+                            <Button
+                                className={styles.shortlisted_button}
+                                iconR={<i className="fas fa-edit"></i>}
+                                text={"Edit Profile"}
+                            />
+                        </Link>
+                    </div>
+                </div>
+                <div className={styles.section}>
+                    <div className={styles.user_links}>
+                        <i className="fas fa-map-marked-alt"></i>
+                        <span className={styles.text_detail}>
+                            Location: {user.location}
+                        </span>
+                    </div>
+                    <div className={styles.user_links}>
+                        <i className="fas fa-suitcase"></i>
+                        <span className={styles.text_detail}>
+                            Occupation: {user.occupation}
+                        </span>
+                    </div>
+                    <div className={styles.user_links}>
+                        <i className="fas fa-pen-nib"></i>
+                        <span className={styles.text_detail}>
+                            Expertise:{" "}
+                            {user.expertise.map((expertise, index) => {
+                                return <span key={index}>{expertise}</span>;
+                            })}
+                        </span>
+                    </div>
+                </div>
+                <div className={`${styles.user_bio} ${styles.section}`}>
+                    {user.description}
+                    {!user.description && (
+                        <span>
+                            Short description or qutoes of something idc. It is
+                            a long established fact that a reader will be
+                            distracted by the readable content of a page when
+                            looking at its layout.
+                            <br />
+                            The point of using Lorem Ipsum is that it has a
+                            more-or-less normal distribution of letters, as
+                            opposed to using 'Content here.
+                        </span>
+                    )}
+                </div>
+                <div className={`${styles.user_socials} ${styles.section}`}>
+                    {/* <a href={`${user.socials[4].url}`}>
                     <div className={styles.social_icon}>
                         <i className="fab fa-github fa-3x"></i>
                     </div>

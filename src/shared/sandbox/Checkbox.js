@@ -8,8 +8,8 @@ function Checkbox(props) {
 				id={props.id}
 				type="checkbox"
 				style={{ display: 'none' }}
-				defaultChecked={props.checked}
-				onChange={() => props.onChange(props.id, props.setCheck)}
+				defaultChecked={props.checked}		// true or false
+				onChange={() => props.onChange(props.id, props.setCheck)}		// id, set True
 			/>
 			<label className="cbx" htmlFor={props.id}>
 				<span>

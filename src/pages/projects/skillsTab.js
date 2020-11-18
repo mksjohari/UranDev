@@ -18,13 +18,13 @@ function SkillsTab(props) {
                             </span>
                         ))}
                     </div>
-                    <div className={styles.skills_btn}>
+                    {/* <div className={styles.skills_btn}>
                         <Button
                             className="yellow"
                             iconR={<i className="fas fa-check"></i>}
                             text="Endorse a skill"
                         />
-                    </div>
+                    </div> */}
                     <div className={styles.tools_div}>
                         <p className={styles.p}>Tools involved:</p>
                         {tools.map((tool, index) => (
@@ -33,13 +33,13 @@ function SkillsTab(props) {
                             </span>
                         ))}
                     </div>
-                    <div className={styles.tools_btn}>
+                    {/* <div className={styles.tools_btn}>
                         <Button
                             className="blue"
                             iconR={<i className="fas fa-check"></i>}
                             text="Endorse a tool"
                         />
-                    </div>
+                    </div> */}
                 </div>
             ) : (
                 ""
@@ -57,7 +57,7 @@ function SkillsTab(props) {
                 ) : (
                     <>
                         <i className="fal fa-angle-double-down"></i>
-                        Endorse a Skill or a Tool
+                        Skills and Tools
                         <i className="fal fa-angle-double-down"></i>
                     </>
                 )}

@@ -91,13 +91,14 @@ const Header = (props) => {
 						>
 							Explore
 						</NavLink>
-						<NavLink
+						{props.user.logged &&
+							<NavLink
 							activeClassName={styles.activeNavItem}
 							className={styles.navItem}
-							to="/tmp"
+							to={`/users/${props.user.uid}/projects`}
 						>
-							HY's Wall of Shame
-						</NavLink>
+							Manage Projects
+						</NavLink>}
 						{user && <Menu />}
 						{!user && (
 							<div className={styles.buttons}>

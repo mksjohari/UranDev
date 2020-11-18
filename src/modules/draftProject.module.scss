@@ -18,7 +18,7 @@
   .drafts_scroll {
     display: flex;
     flex-direction: row;
-    padding: 5% 0px;
+    padding: 1em 0px;
     overflow: scroll;
     overflow-x: auto;
     overflow-y: hidden;
@@ -46,13 +46,14 @@
   .drafts_scroll {
     display: flex;
     flex-direction: column;
-    padding: 5% 0px;
+    padding: 1em 0px;
   }
 }
 
 .root {
     display: flex;
     justify-content: center;
+    padding-top: 3em;
 }
 
 .frame {
@@ -69,7 +70,7 @@
     display: flex;
     width: 191px;
     height: 191px;
-    background: var(--Grey_2, #ededed);
+    background: $pink;
     border-radius: 300px;
     align-items: center;
     justify-content: center;
@@ -77,12 +78,17 @@
   }
 
   .back_link {
-    font-size: 20px;
+    font-size: 16px;
     align-items: center;
     justify-content: space-between;
     display: flex;
-    width: 80px;
-    margin: 20px 26px;
+    width: 60px;
+    cursor: pointer;
+  }
+
+  .btn_row {
+    display: flex;
+    flex-direction: row-reverse;
   }
 
   .drafts_bg {
@@ -90,7 +96,7 @@
     background-image: url("../images/resume.svg");
     background-repeat: no-repeat;
     background-position: right;
-    padding: 5% 10%;
+    padding: 2em 3em;
   }
 
   .add_project {
