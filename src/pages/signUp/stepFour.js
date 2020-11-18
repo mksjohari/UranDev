@@ -134,7 +134,6 @@ const StepFour = (props) => {
 };
 export default connect(null, { updateInfoFromCompleteSignUp })(StepFour);
 
-<<<<<<< HEAD
 export const expertise = {
 	id1: 'Business & Management',
 	id2: 'Creative Arts',
@@ -146,17 +145,4 @@ export const expertise = {
 	id8: 'Property & Built Environment',
 	id9: 'Sciences',
 	id10: 'Teaching & Education',
-=======
-const expertise = {
-    id1: "Business & Management",
-    id2: "Creative Arts",
-    id3: "Engineering & Mathematics",
-    id4: "Humanities, Arts & Social Sciences",
-    id5: "IT & Computer Science",
-    id6: "Law, Legal Studies & Justice",
-    id7: "Medical & Health Sciences",
-    id8: "Property & Built Environment",
-    id9: "Sciences",
-    id10: "Teaching & Education",
->>>>>>> dev
 };

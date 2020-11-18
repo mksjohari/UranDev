@@ -26,7 +26,6 @@
 /* If the screen size is 768 or less */
 @media only screen and (max-width: 767px) {
     .profile_details {
-        padding-top: 3em;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -49,6 +48,7 @@
 
 .profile_details {
     display: flex;
+    padding-top: 3em;
     color: $navy;
 }
 .heading {
@@ -72,7 +72,7 @@
 }
 
 .user_buttons {
-    flex: 0 1 240px;
+    // flex: 0 1 240px;
     align-self: flex-start;
     display: inline-flex;
     justify-content: space-between;
@@ -145,9 +145,6 @@
     display: inline-flex;
 }
 
-.text_title {
-    font-weight: 500;
-}
 .endorse_button {
     align-self: flex-start;
     justify-self: flex-end;
@@ -189,3 +186,4 @@
     font-weight: bold;
     text-align: end;
 }
+

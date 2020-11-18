@@ -5,7 +5,10 @@
 	box-shadow: 0px 10px 20px 0px $shadow;
 	background: white;
 }
-
+.root {
+	display: flex;
+	flex-direction: column;
+}
 .hide_btn {
 	padding: 4px 0;
 	display: flex;
@@ -21,22 +24,31 @@
 	}
 }
 
-.skill {
-	background: $yellow;
-	padding: 1px 15px;
+.span_tab {
+	padding: 3px 15px;
 	border-radius: 5px;
 	margin-right: 10px;
 	font-style: italic;
+	cursor: pointer;
+}
+
+.skill {
+	background: $yellow;
+	color: $darkyellow;
+}
+
+.skill_selected {
+	background: $orange;
 	color: $darkyellow;
 }
 
 .tool {
 	background: $blue;
-	padding: 1px 15px;
-	border-radius: 5px;
-	margin-right: 10px;
-	font-style: italic;
 	color: $darkblue;
+}
+.tool_selected {
+	background: $darkblue;
+	color: $yellow;
 }
 
 .p {
@@ -69,4 +81,39 @@
     display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.title {
+	margin-left: 1em;
+}
+.btn_row {
+	display: flex;
+	justify-content: space-between;
+}
+.filter_ctn {
+	display: grid;
+	position: sticky;
+	grid-template-columns: 75% 25%;
+	grid-template-rows: repeat(2, 50%);
+	grid-row-gap: 10px;
+}
+.flex_container {
+	padding: 3em;
+	display: flex;
+	flex-direction: column;
+	border-radius: 25px 25px;
+	box-shadow: 0px 10px 20px 0px $shadow;
+	background: white;
+}
+
+.tab_ctn {
+	display: flex;
+	flex-direction: row;
+}
+.hide_link {
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    width: 40px;
+    cursor: pointer;
 }
