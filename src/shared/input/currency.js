@@ -21,7 +21,7 @@ function Currency(props) {
 			<Dropdown
 				colour="white"
 				width="150px"
-				text="Currency"
+				text={value ? value : "Currency"}
 				value={value}
 				onChange={(e) => setValue(e, false)}
 				options={CurrencyOptions}

@@ -61,11 +61,16 @@
 }
 
 .tabTop {
-	// padding-left: 80px;
 	left: 0;
 	width: 100%;
 	border-top: 1px solid #d9d9d9;
 	margin: 3em 0em;
+}
+.tabBottom {
+	left: 0;
+	width: 100%;
+	border-bottom: 1px solid #d9d9d9;
+	margin: 1em 0em;
 }
 
 .tabItem {
@@ -82,6 +87,22 @@
 .activeTabItem {
 	color: $navy !important;
 	border-top: 2px solid $navy;
+}
+
+.projectTab {
+	position: relative;
+	font-size: 13px;
+	font-weight: 500;
+	padding: 0 25px 2px 25px;
+	text-decoration: none;
+	&:hover {
+		color: $darkpink !important;
+	}
+}
+
+.activeProjectTab {
+	color: $darkpink !important;
+	border-bottom: 2px solid $darkpink;
 }
 
 .buttons {

@@ -32,7 +32,23 @@ button,
 	background-color: gold;
 	display: inline-flex;
 	gap: 16px;
-	width: 140px;
+	padding: 0 16px;
+	// width: 140px;
+}
+
+.upload_pdf_btn {
+	background-color: $yellow;
+	display: inline-flex;
+	gap: 16px;
+	padding: 16px;
+}
+
+.cover_btn {
+	background-color: $grey;
+	color: $darkpink;
+	display: inline-flex;
+	gap: 16px;
+	padding: 16px;
 }
 
 button i,

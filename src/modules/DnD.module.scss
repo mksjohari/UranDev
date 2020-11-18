@@ -2,7 +2,6 @@
 
 .section_task {
 	min-height: 50px;
-	width: 667%;
 	margin: 10px;
 	display: flex;
 	flex-direction: column;
@@ -13,10 +12,9 @@
 .section_action {
 	background-color: white;
 	border-radius: 25px;
-	box-shadow: 0px 2px 16px $shadow;
+	box-shadow: 0px 2px 5px 0px $boxshadow;
 	overflow: hidden;
 	min-height: 50px;
-	min-width: 40%;
 	margin: 10px;
 	display: flex;
 	flex-direction: column;
@@ -37,7 +35,7 @@
 }
 .task_card {
 	display: grid;
-	grid-template-columns: auto 50px;
+	grid-template-columns: 9fr 1fr;
 	margin-bottom: 8px;
 	padding: 8px;
 }
@@ -52,8 +50,8 @@
 	grid-column: 1 / 2;
 	min-height: 100px;
 	overflow: visible;
-	background: var(--White, #ffffff);
-	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+	background: white;
+	box-shadow: 0px 2px 5px 0px $boxshadow;
 	border-radius: 25px;
 	padding: 1rem 1rem 1.2rem 1rem;
 	color: $darkgrey;
@@ -78,9 +76,8 @@
 	padding-left: 30px;
 }
 .draggable_root {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
 .heading {
@@ -175,6 +172,8 @@
 
 .carousel_display {
 	display: flex;
+	margin: 1rem auto;
+	justify-content: center;
 }
 
 .error {

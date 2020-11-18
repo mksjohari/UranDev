@@ -18,25 +18,6 @@ const ActionCard = (props) => {
             <div className={styles.title}>{props.action.title}</div>
 
             <div className={styles.action_tags}>
-                {props.action.skills.length ? (
-                    <div className={styles.project_tags}>
-                        <div
-                            className={`${styles.action_subtitle} ${styles.tags_subtitle}`}
-                        >
-                            Skills:
-                        </div>
-                        {props.action.skills.map((skill, index) => (
-                            <span
-                                key={skill}
-                                className={`${projects.tag_type} ${projects.Skill}`}
-                            >
-                                {skill}
-                            </span>
-                        ))}
-                    </div>
-                ) : (
-                    ""
-                )}
                 {props.action.tools.length ? (
                     <div className={styles.project_tags}>
                         <div
@@ -44,12 +25,33 @@ const ActionCard = (props) => {
                         >
                             Tools:
                         </div>
+                        {console.log(props.action.tools)}
                         {props.action.tools.map((tool, index) => (
-                            <span
+                            <div
                                 key={tool}
                                 className={`${projects.tag_type} ${projects.Tool}`}
                             >
-                                {tool}
+                                {`${tool}`}
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    ""
+                )}
+                {props.action.skills.length ? (
+                    <div className={styles.project_tags}>
+                        <div
+                            className={`${styles.action_subtitle} ${styles.tags_subtitle}`}
+                        >
+                            Skills:
+                        </div>
+                        {console.log(props.action.skills)}
+                        {props.action.skills.map((skill, index) => (
+                            <span
+                                key={skill}
+                                className={`${projects.tag_type} ${projects.Skill}`}
+                            >
+                                {`${skill}`}
                             </span>
                         ))}
                     </div>
@@ -72,44 +74,48 @@ const ActionCard = (props) => {
                     )}
                 </div>
             </div>
-            <div className={styles.task_footer}>
-                <Button
-                    colour="reddo"
-                    id={"delAction"}
-                    iconL={<i className="fas fa-trash-alt"></i>}
-                    text="Delete action"
-                    onClick={lockBg}
-                />
-                <div
-                    className={popup.popupContainer}
-                    id={"delAction_popContent"}
-                >
-                    <Alert
+            {props.readOnly ? (
+                ""
+            ) : (
+                <div className={styles.task_footer}>
+                    <Button
+                        colour="reddo"
                         id={"delAction"}
-                        type="action"
-                        hasConfirm
-                        confirmBtnLabel="Yes, delete"
-                        closeBtnLabel="No, go back"
-                        onConfirm={props.deleteAction}
+                        iconL={<i className="fas fa-trash-alt"></i>}
+                        text="Delete action"
+                        onClick={lockBg}
                     />
-                </div>
-                <Button
-                    id={actionId}
-                    iconL={<i className="fas fa-edit"></i>}
-                    text="Edit action"
-                    onClick={lockBg}
-                />
-                <div
-                    className={popup.popupContainer}
-                    id={actionId + "_popContent"}
-                >
-                    <AddActionForm
+                    <div
+                        className={popup.popupContainer}
+                        id={"delAction_popContent"}
+                    >
+                        <Alert
+                            id={"delAction"}
+                            type="action"
+                            hasConfirm
+                            confirmBtnLabel="Yes, delete"
+                            closeBtnLabel="No, go back"
+                            onConfirm={props.deleteAction}
+                        />
+                    </div>
+                    <Button
                         id={actionId}
-                        action={props.action}
-                        editAction={props.editAction}
+                        iconL={<i className="fas fa-edit"></i>}
+                        text="Edit action"
+                        onClick={lockBg}
                     />
+                    <div
+                        className={popup.popupContainer}
+                        id={actionId + "_popContent"}
+                    >
+                        <AddActionForm
+                            id={actionId}
+                            action={props.action}
+                            editAction={props.editAction}
+                        />
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
