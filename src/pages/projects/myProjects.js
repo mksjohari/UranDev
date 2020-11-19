@@ -9,7 +9,14 @@ import ProjectFilter from "../../pages/user/projectFilter";
 
 import styles from "../../modules/projects.module.scss";
 
-const getPublicPreview = async (uid, setPreviews) => {
+const getPublicPreview = async (
+    uid,
+    selectedSkills,
+    selectedTools,
+    setPreviews,
+    setAllPreviews,
+    applyFilter
+) => {
     const previews = [];
     const preview = await getFirebase()
         .firestore()
@@ -21,17 +28,61 @@ const getPublicPreview = async (uid, setPreviews) => {
         previews.push(doc.data());
     });
     setPreviews(previews);
+    setAllPreviews(previews);
+    applyFilter(selectedSkills, selectedTools, previews, setPreviews);
+};
+
+const applyFilter = (selectedSkills, selectedTools, previews, setPreviews) => {
+    const filters = [];
+    if (selectedSkills.length !== 0 || selectedTools.length !== 0) {
+        previews.forEach((preview) => {
+            var skillCount = 0;
+            var toolCount = 0;
+            selectedSkills.forEach((skill) => {
+                if (preview.skills.includes(skill) === true) skillCount += 1;
+            });
+            selectedTools.forEach((tool) => {
+                if (preview.tools.includes(tool) === true) toolCount += 1;
+            });
+            if (
+                skillCount === selectedSkills.length &&
+                toolCount === selectedTools.length
+            ) {
+                filters.push(preview);
+            }
+        });
+        setPreviews(filters);
+    } else {
+        setPreviews(previews);
+    }
 };
 
 function MyProjects(props) {
     const [previews, setPreviews] = useState([]);
-	const [showDrafts, setShowDrafts] = useState(true);
-	
-	const hideDrafts = () => setShowDrafts(false)
-
+    const [allPreviews, setAllPreviews] = useState([]);
+    const [showDrafts, setShowDrafts] = useState(true);
+    const [skills, setSkills] = useState();
+    const [tools, setTools] = useState();
+    const selectedSkills = props.selectedSkills;
+    const selectedTools = props.selectedTools;
+    const setSelectedSkills = props.setSelectedSkills;
+    const setSelectedTools = props.setSelectedTools;
+    const hideDrafts = () => setShowDrafts(false);
     useEffect(() => {
-        getPublicPreview(props.user.uid, setPreviews);
+        getPublicPreview(
+            props.user.uid,
+            selectedSkills,
+            selectedTools,
+            setPreviews,
+            setAllPreviews,
+            applyFilter
+        );
+        setSkills(Object.keys(props.user.skills));
+        setTools(Object.keys(props.user.tools));
     }, [props.user.uid]);
+    useEffect(() => {
+        applyFilter(selectedSkills, selectedTools, allPreviews, setPreviews);
+    }, [props.selectedSkills, props.selectedTools]);
     return (
         <div className={styles.root}>
             {/* <FindProjects view={props.view} /> */}
@@ -50,7 +101,14 @@ function MyProjects(props) {
                 </div>
             ) : (
                 <>
-                    <ProjectFilter skills={skills} tools={tools} />
+                    <ProjectFilter
+                        selectedSkills={selectedSkills}
+                        selectedTools={selectedTools}
+                        setSelectedSkills={setSelectedSkills}
+                        setSelectedTools={setSelectedTools}
+                        skills={skills}
+                        tools={tools}
+                    />
                 </>
             )}
             <div className={styles.project_section}>
@@ -74,6 +132,3 @@ function MyProjects(props) {
     );
 }
 export default MyProjects;
-
-const skills = ["sokeorjt", "qwjeiojwoer"];
-const tools = ["sokeorjt", "qwjeiojwoer"];

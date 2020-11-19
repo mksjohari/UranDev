@@ -18,31 +18,10 @@ function About(props) {
                     <h2
                         className={`${styles.text_detail} ${styles.text_title}`}
                     >
-                        Biography
+                        Description
                     </h2>
                 </div>
-                <div>
-                    Longer description ayyyyyyy, Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esseLonger description
-                    ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate velit esse
-                    <br />
-                    <br />
-                    Longer description ayyyyyyy, Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad
-                    minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse
-                </div>
+                <div>{props.description}</div>
             </div>
             <div className={styles.large_section}>
                 <div className={styles.heading_endorse}>
@@ -63,7 +42,14 @@ function About(props) {
                     </div>
                 </div>
                 <div className={styles.column_section}>
-                    <WordBubble type="skill" data={skills} />
+                    <WordBubble
+                        isSkills={true}
+                        setAbout={props.setAbout}
+                        setSelectedSkills={props.setSelectedSkills}
+                        setSelectedTools={props.setSelectedTools}
+                        type="skill"
+                        data={skills}
+                    />
                     <div className={styles.bar_section}>
                         {sortedSkills.map((item, index) => (
                             <SkillToolProgress
@@ -94,7 +80,14 @@ function About(props) {
                     </div>
                 </div>
                 <div className={styles.column_section}>
-                    <WordBubble type="tool" data={tools} />
+                    <WordBubble
+                        isSkills={false}
+                        setAbout={props.setAbout}
+                        setSelectedSkills={props.setSelectedSkills}
+                        setSelectedTools={props.setSelectedTools}
+                        type="tool"
+                        data={tools}
+                    />
                     <div className={styles.bar_section}>
                         {sortedTools.map((item, index) => (
                             <SkillToolProgress
