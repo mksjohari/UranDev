@@ -24,7 +24,7 @@ import { updateInfo, updateInfoFromSignUp } from '../actions/userAction';
 //         });
 // };
 
-const SignUp = React.memo((props) => {
+export const SignUp = React.memo((props) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPass, setConfirmPass] = useState('');

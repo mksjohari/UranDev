@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUp component matches previous snapshots 1`] = `
+<form
+  className="login-form"
+  onSubmit={[Function]}
+>
+  <div
+    style={
+      Object {
+        "backgroundColor": "white",
+        "opacity": "0%",
+        "padding": "210px 50px",
+        "position": "absolute",
+        "zIndex": "-1",
+      }
+    }
+  >
+    <svg
+      height="67.2px"
+      id="loader"
+      version="1.1"
+      viewBox="0 0 60 67.2"
+      width="60px"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        className="st0"
+        d="M41,50.9V21.3c0-2.7-2.2-4.9-4.9-4.9H6.4c-2.7,0-4.9,2.2-4.9,4.9v39.5c0,2.7,2.2,4.9,4.9,4.9h19.7L41,50.9z"
+      />
+      <polyline
+        className="st0"
+        points="41,50.9 26.2,50.9 26.2,65.7 "
+      />
+      <line
+        className="st0"
+        id="line1"
+        x1="11.4"
+        x2="31.1"
+        y1="38.6"
+        y2="38.6"
+      />
+      <line
+        className="st0"
+        id="line2"
+        x1="11.4"
+        x2="31.1"
+        y1="28.7"
+        y2="28.7"
+      />
+      <polyline
+        className="st1"
+        id="line3"
+        points="11.4,48.5 13.8,48.5 16.3,48.5 "
+      />
+      <path
+        className="st2"
+        d="M52,2.6c1.5-1.5,3.9-1.5,5.5,0c1.5,1.5,1.5,3.9,0,5.5L39,26.5l-7.5,2l2-7.5L52,2.6z"
+        id="pencil"
+      />
+      <line
+        className="st2"
+        id="pencil"
+        x1="49.6"
+        x2="55.1"
+        y1="5"
+        y2="10.4"
+      />
+    </svg>
+    <br />
+    <div
+      className="loading"
+    >
+      Creating your account
+       
+      <div
+        id="dot1"
+      />
+      <div
+        id="dot2"
+      />
+      <div
+        id="dot3"
+      />
+    </div>
+  </div>
+  <i
+    className="fas fa-times"
+  />
+  <h2
+    style={
+      Object {
+        "margin": "0 0 12px 0",
+      }
+    }
+  >
+    Sign Up
+  </h2>
+  <input
+    className="inp-text"
+    onChange={[Function]}
+    placeholder="First Name"
+    required={true}
+    type="text"
+  />
+  <input
+    className="inp-text"
+    onChange={[Function]}
+    placeholder="Last Name"
+    required={true}
+    type="text"
+  />
+  <input
+    className="inp-text"
+    onChange={[Function]}
+    placeholder="   Email"
+    required={true}
+    type="text"
+  />
+  <span
+    className="divider"
+  >
+    <hr
+      style={
+        Object {
+          "width": "100%",
+        }
+      }
+    />
+  </span>
+  <input
+    className="inp-text"
+    onChange={[Function]}
+    placeholder="   Password"
+    required={true}
+    type="password"
+  />
+  <input
+    className="inp-text"
+    onChange={[Function]}
+    placeholder="   Confirm Password"
+    required={true}
+    type="password"
+  />
+  <div
+    className="password-strength-meter"
+  >
+    <progress
+      className="password-strength-meter-progress strength-Weak"
+      max="4"
+      value={0}
+    />
+    <br />
+    <label
+      className="password-strength-meter-label"
+    >
+      
+    </label>
+  </div>
+  
+  <input
+    className="pink login button"
+    id="login"
+    type="submit"
+    value="Create account"
+  />
+  <span
+    className="divider"
+  >
+    <hr
+      style={
+        Object {
+          "width": "100px",
+        }
+      }
+    />
+    <span
+      className="small-text"
+    >
+      or
+    </span>
+    <hr
+      style={
+        Object {
+          "width": "100px",
+        }
+      }
+    />
+  </span>
+  <button
+    className="undefined undefined"
+    id="google"
+    onClick={[Function]}
+    style={
+      Object {
+        "display": "inline",
+      }
+    }
+    type="button"
+  >
+    <i
+      className="fab fa-google-plus-g"
+    />
+    <span>
+      Sign up with Google
+    </span>
+    
+    
+  </button>
+  <span
+    className="small-text"
+  >
+    Already have an account?
+     
+    <a
+      className="link"
+      href="/"
+      onClick={[Function]}
+      style={
+        Object {
+          "textAlign": "right",
+        }
+      }
+    >
+      Sign in.
+    </a>
+  </span>
+</form>
+`;
