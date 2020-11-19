@@ -27,7 +27,7 @@ const getDetails = async (uid, setDetails, setChecked) => {
 };
 
 const profile = React.memo((props) => {
-    const [about, setAbout] = useState(false);
+    const [about, setAbout] = useState(true);
     const [checked, setChecked] = useState(false);
     const [details, setDetails] = useState({});
     const [selectedSkills, setSelectedSkills] = useState([]);

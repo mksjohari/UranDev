@@ -67,6 +67,32 @@ export default (state = notLoggedUserInfo, action) => {
                 email: action.email,
                 logged: action.logged,
             };
+        case "ADD_SKILLS_TOOLS":
+            const userStats = state.user;
+            const skills = action.newSkills;
+            const tools = action.newTools;
+            const newSkills = {};
+            const newTools = {};
+            for (const [key, value] of Object.entries(skills)) {
+                if (key in userStats.skills) {
+                    newSkills[key] = userStats[key] + value;
+                } else {
+                    newSkills[key] = value;
+                }
+            }
+            for (const [key, value] of Object.entries(tools)) {
+                if (key in userStats.tools) {
+                    newTools[key] = userStats[key] + value;
+                } else {
+                    newTools[key] = value;
+                }
+            }
+
+            return {
+                ...state,
+                skills: newSkills,
+                tools: newTools,
+            };
         case "LOGOUT_USER":
             return notLoggedUserInfo;
         default:
