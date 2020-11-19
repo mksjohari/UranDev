@@ -19,13 +19,18 @@ const getPublicPreview = async (
 	applyFilter
 ) => {
 	const previews = [];
-	const preview = await getFirebase()
+	var previewRaw;
+	const ref = await getFirebase()
 		.firestore()
 		.collection('users')
 		.doc(uid)
-		.collection('projectPreviews')
-		.get();
-	preview.forEach((doc) => {
+		.collection('projectPreviews');
+	if (fromManage === true) {
+		previewRaw = await ref.get();
+	} else {
+		previewRaw = await ref.where('visibility', '==', 'Public').get();
+	}
+	previewRaw.forEach((doc) => {
 		previews.push(doc.data());
 	});
 	setPreviews(previews);
@@ -64,8 +69,8 @@ function MyProjects(props) {
 	const [previews, setPreviews] = useState([]);
 	const [allPreviews, setAllPreviews] = useState([]);
 	const [showDrafts, setShowDrafts] = useState(true);
-	const [skills, setSkills] = useState();
-	const [tools, setTools] = useState();
+	const [skills, setSkills] = useState([]);
+	const [tools, setTools] = useState([]);
 	const fromManage = props.fromManage;
 	const selectedSkills = props.selectedSkills;
 	const selectedTools = props.selectedTools;
@@ -125,23 +130,29 @@ function MyProjects(props) {
 					/>
 				</>
 			)}
-			<div className={styles.project_section}>
-				{props.view === 'edit' && (
-					<h3 className={styles.section_title}>All Projects</h3>
-				)}
-				<div className={styles.flex_grid}>
-					{previews.map((preview, index) => {
-						return (
-							<CardSmall
-								key={index}
-								uid={props.user.uid}
-								preview={preview}
-								view={props.view}
-							/>
-						);
-					})}
+			<hr />
+
+			{previews.length !== 0 ? (
+				<div className={styles.project_section}>
+					{props.view === 'edit' && (
+						<h3 className={styles.section_title}>All Projects</h3>
+					)}
+					<div className={styles.flex_grid}>
+						{previews.map((preview, index) => {
+							return (
+								<CardSmall
+									key={index}
+									uid={props.user.uid}
+									preview={preview}
+									view={props.view}
+								/>
+							);
+						})}
+					</div>
 				</div>
-			</div>
+			) : (
+				<h6 style={{ margin: '2em' }}>No Public Projects !</h6>
+			)}
 		</div>
 	);
 }

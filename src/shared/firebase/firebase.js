@@ -205,6 +205,7 @@ export const uploadProject = async (uid, project, addSkillsTools) => {
 				pid: project.pid,
 				title: project.title,
 				role: project.situation.role,
+				visibility: project.visibility,
 				coverUrl: url,
 				startDate: new Date(
 					project.situation.projectDates.startDate.format()
