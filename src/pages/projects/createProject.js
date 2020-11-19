@@ -54,7 +54,7 @@ async function addSkillsTools(user, project) {
 function CreateProject(props) {
     const [percent, setPercent] = useState(0);
     const [step, setStep] = useState(0);
-    const [project, setProject] = useState(projectData);
+    const [project, setProject] = useState({...projectData});
     const history = useHistory();
     useEffect(() => {
         setProject(projectData);
@@ -101,6 +101,7 @@ function CreateProject(props) {
         const newProject = { ...project };
         newProject.tasks = values;
         setProject(newProject);
+        console.log("edit tasks")
     }
     function editResults(values) {
         const newProject = { ...project };
@@ -269,9 +270,8 @@ const projectData = {
             "https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2FdefaultProject.png?alt=media&token=dfa29922-f6da-47f1-9b01-a50a3ac15266",
     },
     situation: {
-        summary:
-            "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
-        role: "team manager",
+        summary: "",
+        role: "",
         teamSize: "1",
         budget: null,
         currency: "",
@@ -279,20 +279,18 @@ const projectData = {
     },
     tasks: [
         {
-            taskId: `task-${new Date().getTime()}`,
+            taskId: `task-${Math.floor(Math.random() * Math.pow(10, 6))}`,
             title: "New task",
-            description:
-                "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
+            description: "",
             startDate: null,
             endDate: null,
             actions: [
                 {
-                    actionId: `action-${new Date().getTime()}`,
+                    actionId: `action-${Math.floor(Math.random() * Math.pow(10, 6))}`,
                     title: "New action",
                     tools: [],
                     skills: [],
-                    description:
-                        "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
+                    description: "",
                     files: [],
                 },
             ],
@@ -300,24 +298,24 @@ const projectData = {
     ],
     results: {
         conclusion:
-            "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
+            "",
         links: [
-            {
-                url: "www.google.com",
-                linkName: "google",
-            },
+            // {
+            //     url: "",
+            //     linkName: "",
+            // },
         ],
         sections: [
-            {
-                sectionId: `section-${new Date().getTime()}`,
-                description:
-                    "Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
-                files: [],
-                sectionLink: {
-                    url: "www.google.com",
-                    linkName: "google something",
-                },
-            },
+            // {
+            //     sectionId: `section-${Math.floor(Math.random() * Math.pow(10, 6))}`,
+            //     description:
+            //         "",
+            //     files: [],
+            //     sectionLink: {
+            //         url: "",
+            //         linkName: "",
+            //     },
+            // },
         ],
     },
 };
