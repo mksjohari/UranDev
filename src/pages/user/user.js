@@ -82,6 +82,7 @@ const profile = React.memo((props) => {
                     />
                 ) : (
                     <MyProjects
+                        fromManage={false}
                         selectedSkills={selectedSkills}
                         selectedTools={selectedTools}
                         setSelectedSkills={setSelectedSkills}

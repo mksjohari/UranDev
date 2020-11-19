@@ -1,19 +1,22 @@
 {
   "files": {
-    "main.css": "./static/css/main.50acce51.chunk.css",
-    "main.js": "./static/js/main.71187d31.chunk.js",
-    "main.js.map": "./static/js/main.71187d31.chunk.js.map",
+    "main.css": "./static/css/main.3f60cde5.chunk.css",
+    "main.js": "./static/js/main.f84a208c.chunk.js",
+    "main.js.map": "./static/js/main.f84a208c.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.560b22e6.js",
     "runtime-main.js.map": "./static/js/runtime-main.560b22e6.js.map",
-    "static/css/2.128f8ebd.chunk.css": "./static/css/2.128f8ebd.chunk.css",
-    "static/js/2.6f7dcc39.chunk.js": "./static/js/2.6f7dcc39.chunk.js",
-    "static/js/2.6f7dcc39.chunk.js.map": "./static/js/2.6f7dcc39.chunk.js.map",
+    "static/css/2.67860a28.chunk.css": "./static/css/2.67860a28.chunk.css",
+    "static/js/2.657acfa7.chunk.js": "./static/js/2.657acfa7.chunk.js",
+    "static/js/2.657acfa7.chunk.js.map": "./static/js/2.657acfa7.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.a475d6b4cabcf1e39468140d10498b00.js": "./precache-manifest.a475d6b4cabcf1e39468140d10498b00.js",
+    "precache-manifest.e070c7eb858c44e3f8f50b69bd834374.js": "./precache-manifest.e070c7eb858c44e3f8f50b69bd834374.js",
     "service-worker.js": "./service-worker.js",
-    "static/css/2.128f8ebd.chunk.css.map": "./static/css/2.128f8ebd.chunk.css.map",
-    "static/css/main.50acce51.chunk.css.map": "./static/css/main.50acce51.chunk.css.map",
-    "static/js/2.6f7dcc39.chunk.js.LICENSE.txt": "./static/js/2.6f7dcc39.chunk.js.LICENSE.txt",
+    "static/css/2.67860a28.chunk.css.map": "./static/css/2.67860a28.chunk.css.map",
+    "static/css/main.3f60cde5.chunk.css.map": "./static/css/main.3f60cde5.chunk.css.map",
+    "static/js/2.657acfa7.chunk.js.LICENSE.txt": "./static/js/2.657acfa7.chunk.js.LICENSE.txt",
+    "static/js/pdf.worker.entry.6f46d1e9.worker.js": "./static/js/pdf.worker.entry.6f46d1e9.worker.js",
+    "static/js/pdf.worker.entry.6f46d1e9.worker.js.LICENSE.txt": "./static/js/pdf.worker.entry.6f46d1e9.worker.js.LICENSE.txt",
+    "static/js/pdf.worker.entry.6f46d1e9.worker.js.map": "./static/js/pdf.worker.entry.6f46d1e9.worker.js.map",
     "static/media/404error.svg": "./static/media/404error.c8041878.svg",
     "static/media/developer.svg": "./static/media/developer.02e249f2.svg",
     "static/media/findjob.svg": "./static/media/findjob.457d79fa.svg",
@@ -24,14 +27,15 @@
     "static/media/index.css": "./static/media/poppins-latin-900italic.f3c803b2.woff2",
     "static/media/createProject.module.scss": "./static/media/projectBg3.8f888dfc.svg",
     "static/media/draftProject.module.scss": "./static/media/resume.18cbe2dc.svg",
+    "static/media/settings.module.scss": "./static/media/settings.9b9278ff.svg",
     "static/media/skills.svg": "./static/media/skills.c5ad67af.svg",
     "static/media/typing.png": "./static/media/typing.2002f472.png"
   },
   "entrypoints": [
     "static/js/runtime-main.560b22e6.js",
-    "static/css/2.128f8ebd.chunk.css",
-    "static/js/2.6f7dcc39.chunk.js",
-    "static/css/main.50acce51.chunk.css",
-    "static/js/main.71187d31.chunk.js"
+    "static/css/2.67860a28.chunk.css",
+    "static/js/2.657acfa7.chunk.js",
+    "static/css/main.3f60cde5.chunk.css",
+    "static/js/main.f84a208c.chunk.js"
   ]
 }

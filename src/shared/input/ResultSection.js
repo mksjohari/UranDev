@@ -134,9 +134,10 @@ function ResultSection(props) {
                                             type="file"
                                             accept="pdf"
                                             onChange={(event) => {
-                                                const file =
-                                                    event.target.files[0];
-                                                Object.assign(file, {
+                                                const file = [
+                                                    event.target.files[0],
+                                                ];
+                                                Object.assign(file[0], {
                                                     preview:
                                                         file.type ===
                                                         "application/pdf"
@@ -157,7 +158,11 @@ function ResultSection(props) {
                                         />
                                         Upload a PDF
                                     </label>
-                                    {value ? <PDFPreview file={value} /> : ""}
+                                    {value ? (
+                                        <PDFPreview file={value[0]} />
+                                    ) : (
+                                        ""
+                                    )}
                                 </div>
                             )}
                         </Field>
@@ -194,9 +199,9 @@ function ResultSection(props) {
                     <div className={styles.section_card} key={index}>
                         {section.files.length &&
                         section.files[0].type.match(/image/g) ? (
-                            <SectionGrid section={section}/>
+                            <SectionGrid section={section} />
                         ) : (
-                            <SectionGridless section={section}/>
+                            <SectionGridless section={section} />
                         )}
                         <div className={styles.section_footer}>
                             <Button

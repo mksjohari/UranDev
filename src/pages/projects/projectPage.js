@@ -10,7 +10,12 @@ import dnd from "../../modules/DnD.module.scss";
 import header from "../../modules/header.module.scss";
 import { getFirebase } from "../../shared/firebase/config";
 import { connect } from "react-redux";
-import { getPidImage, addToStats } from "../../shared/firebase/firebase";
+import {
+    getPidImage,
+    addToStats,
+    storage,
+} from "../../shared/firebase/firebase";
+import { SectionGrid, SectionGridless } from "./previewProject";
 
 const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
     const ref = getFirebase()
@@ -20,18 +25,34 @@ const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
         .collection("projects")
         .doc(pid);
     const projectInfo = await ref.get();
-    setData(projectInfo.data());
-    setLoading(false);
-    setDataLoaded(true);
+    const projectData = projectInfo.data();
+    const sections = [];
+    projectData.results.sections.forEach((section) => {
+        const files = [];
+        section.files.forEach(async (file) => {
+            const url = await storage
+                .ref(`users/${uid}/projects/${pid}/results/${file.name}`)
+                .getDownloadURL();
+            files.push({ name: file.name, preview: url });
+        });
+        section.files = files;
+        sections.push(section);
+    });
+    projectData.sections = sections;
+    if (sections.length === projectData.results.sections.length) {
+        setData(projectData);
+        setLoading(false);
+        setDataLoaded(true);
+    }
 };
 
-const getProjectTasks = async (
+export const getProjectTasks = async (
     uid,
     pid,
     setSkills,
     setTools,
     setTasks,
-    dataLoaded
+    fromEdit
 ) => {
     const tasks = [];
     const skills = [];
@@ -78,19 +99,20 @@ const getProjectTasks = async (
         };
         tasks.push(task);
     });
-    setSkills(skills);
-    setTools(tools);
+    if (fromEdit === false) {
+        setSkills(skills);
+        setTools(tools);
+    }
     setTasks(tasks);
 };
 const mapStateToProps = (state) => {
     return { user: state.user };
 };
 
-const editProject = async (uid, project, tasks, history) => {
-    project.tasks = tasks;
+const editProject = async (project, tasks, history) => {
     const oldSkills = {};
     const oldTools = {};
-    project.tasks.map(async (task, index) => {
+    tasks.map(async (task, index) => {
         task.actions.forEach((action) => {
             action.skills.forEach((skill) => {
                 addToStats(oldSkills, skill);
@@ -124,14 +146,7 @@ function ProjectPage(props) {
             getProjectInfo(uid, pid, setData, setLoading, setDataLoaded);
         } else {
             if (data !== null) {
-                getProjectTasks(
-                    uid,
-                    pid,
-                    setSkills,
-                    setTools,
-                    setTasks,
-                    dataLoaded
-                );
+                getProjectTasks(uid, pid, setSkills, setTools, setTasks, false);
             }
         }
         props.user.uid === uid ? setIsMe(true) : setIsMe(false);
@@ -139,7 +154,6 @@ function ProjectPage(props) {
     if (loading === true || dataLoaded === false) {
         return <div>Loading</div>;
     }
-    console.log(tasks);
     return (
         <div>
             <div className={project.cover_div}>
@@ -147,7 +161,7 @@ function ProjectPage(props) {
                     <label
                         className={`${buttonStyle.cover_btn} ${buttonStyle.button} ${project.cover_button}`}
                         onClick={() => {
-                            editProject(uid, data, tasks, history);
+                            editProject(data, tasks, history);
                         }}
                     >
                         <i className="fas fa-edit" style={{ marginRight: 5 }} />
@@ -290,11 +304,7 @@ function ProjectPage(props) {
                                   <div
                                       key={index}
                                       className={`${project.top_margin}`}
-                                  >
-                                      {section.files.length
-                                          ? sectionGrid(section)
-                                          : sectionGridless(section)}
-                                  </div>
+                                  ></div>
                               ))
                             : ""}
                     </div>
@@ -312,54 +322,6 @@ function ProjectPage(props) {
 }
 
 export default connect(mapStateToProps)(ProjectPage);
-
-function sectionGrid(section) {
-    return (
-        <div className={styles.section_grid}>
-            <div className={styles.section_left}>
-                <div className={styles.section_desc}>{section.description}</div>
-                {section.sectionLink.url ? (
-                    <a
-                        className={`${styles.section_link}`}
-                        href={section.sectionLink.url}
-                    >
-                        <i className="fas fa-link" />
-                        <div className={styles.link_text}>
-                            {section.sectionLink.linkName}
-                        </div>
-                    </a>
-                ) : (
-                    ""
-                )}
-            </div>
-            <div className={styles.section_right}>
-                <div className={dnd.carousel_display}>
-                    {/* <Carousel files={section.files} /> */}
-                </div>
-            </div>
-        </div>
-    );
-}
-function sectionGridless(section) {
-    return (
-        <div className={styles.section_left}>
-            <div className={styles.section_desc}>{section.description}</div>
-            {section.sectionLink.url ? (
-                <a
-                    className={`${styles.section_link}`}
-                    href={section.sectionLink.url}
-                >
-                    <i className="fas fa-link" />
-                    <div className={styles.link_text}>
-                        {section.sectionLink.linkName}
-                    </div>
-                </a>
-            ) : (
-                ""
-            )}
-        </div>
-    );
-}
 
 export function dateToDMY(date) {
     return `${date.getDate()}/${

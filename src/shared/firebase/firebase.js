@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/functions";
 import "firebase/firestore";
+import moment from "moment";
 import { getFirebase, getFunctions, getStorage } from "./config";
 // FUNCTIONS //
 
@@ -118,7 +119,6 @@ export const uploadProject = async (uid, project) => {
                         );
                         await path.put(file);
                     });
-                    console.log(files);
                     actions.push({
                         actionId: action.actionId,
                         title: action.title,
@@ -130,7 +130,10 @@ export const uploadProject = async (uid, project) => {
                 });
                 var startDate = null;
                 var endDate = null;
-                if (task.startDate !== null && task.endDate !== null) {
+                if (
+                    typeof task.startDate === moment &&
+                    typeof task.endDate === moment
+                ) {
                     startDate = new Date(task.startDate.format());
                     endDate = new Date(task.endDate.format());
                 }
@@ -170,13 +173,14 @@ export const uploadProject = async (uid, project) => {
                 links: project.results.links,
             };
             project.results.sections.forEach((section) => {
+                console.log(section);
                 const files = [];
                 section.files.forEach(async (file) => {
                     const path = storage.ref(
                         `users/${uid}/projects/${project.pid}/results/${file.name}`
                     );
                     path.put(file);
-                    files.push(file.name);
+                    files.push({ name: file.name });
                 });
                 sections.push({
                     sectionId: section.sectionId,

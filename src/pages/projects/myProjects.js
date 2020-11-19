@@ -11,6 +11,7 @@ import styles from "../../modules/projects.module.scss";
 
 const getPublicPreview = async (
     uid,
+    fromManage,
     selectedSkills,
     selectedTools,
     setPreviews,
@@ -29,7 +30,9 @@ const getPublicPreview = async (
     });
     setPreviews(previews);
     setAllPreviews(previews);
-    applyFilter(selectedSkills, selectedTools, previews, setPreviews);
+    if (fromManage === false) {
+        applyFilter(selectedSkills, selectedTools, previews, setPreviews);
+    }
 };
 
 const applyFilter = (selectedSkills, selectedTools, previews, setPreviews) => {
@@ -63,6 +66,7 @@ function MyProjects(props) {
     const [showDrafts, setShowDrafts] = useState(true);
     const [skills, setSkills] = useState();
     const [tools, setTools] = useState();
+    const fromManage = props.fromManage;
     const selectedSkills = props.selectedSkills;
     const selectedTools = props.selectedTools;
     const setSelectedSkills = props.setSelectedSkills;
@@ -71,6 +75,7 @@ function MyProjects(props) {
     useEffect(() => {
         getPublicPreview(
             props.user.uid,
+            fromManage,
             selectedSkills,
             selectedTools,
             setPreviews,
@@ -81,7 +86,14 @@ function MyProjects(props) {
         setTools(Object.keys(props.user.tools));
     }, [props.user.uid]);
     useEffect(() => {
-        applyFilter(selectedSkills, selectedTools, allPreviews, setPreviews);
+        if (fromManage === false) {
+            applyFilter(
+                selectedSkills,
+                selectedTools,
+                allPreviews,
+                setPreviews
+            );
+        }
     }, [props.selectedSkills, props.selectedTools]);
     return (
         <div className={styles.root}>

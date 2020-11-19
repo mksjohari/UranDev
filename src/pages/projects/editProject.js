@@ -21,6 +21,7 @@ import {
     addSkillsAndTools,
 } from "../../shared/firebase/firebase";
 import { useHistory } from "react-router-dom";
+import { getProjectTasks } from "./projectPage";
 
 function mapStateToProps(state) {
     return { user: state.user };
@@ -56,12 +57,22 @@ async function addSkillsTools(user, project) {
 function EditProject(props) {
     const [percent, setPercent] = useState(0);
     const [step, setStep] = useState(0);
+    const [tasks, setTasks] = useState();
     const [loading, setLoading] = useState(true);
     const [project, setProject] = useState({
         ...props.location.state.projectData,
     });
     const history = useHistory();
     useEffect(() => {
+        getProjectTasks(
+            props.user.uid,
+            project.pid,
+            null,
+            null,
+            setTasks,
+            true
+        );
+        project.tasks = tasks;
         project.fromEdit = true;
         project.cover = {
             changed: true,
@@ -136,6 +147,7 @@ function EditProject(props) {
     const finishEditing = async () => {
         uploadProject(props.user.uid, project);
         history.push(`users/${props.user.uid}`);
+        addSkillsTools(props.user, project);
     };
     if (loading === true) {
         return <span>Loading ...</span>;

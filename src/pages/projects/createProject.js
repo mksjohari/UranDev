@@ -11,7 +11,6 @@ import Situation from "./situation";
 import TasksActions from "./tasksActions";
 import Results from "./results";
 import Preview from "./previewProject";
-import Alert from "../../shared/sandbox/Alert";
 
 import popup from "../../modules/popup.module.scss";
 import styles from "../../modules/createProject.module.scss";

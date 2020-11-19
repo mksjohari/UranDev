@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Button from "../../shared/sandbox/Button";
 import styles from "../../modules/skillsTab.module.scss";
 
 function SkillsTab(props) {

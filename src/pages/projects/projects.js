@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 const Projects = (props) => {
     return (
         <div>
-            <MyProjects user={props.user} view="edit" />
+            <MyProjects fromManage={true} user={props.user} view="edit" />
         </div>
     );
 };

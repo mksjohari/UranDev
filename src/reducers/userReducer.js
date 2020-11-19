@@ -54,6 +54,8 @@ export default (state = notLoggedUserInfo, action) => {
                 socials: action.thirdStep,
                 expertise: action.allExpertise,
                 logged: action.logged,
+                skills: {},
+                tools: {},
                 status: action.status,
             };
         case "UPDATE_FROM_SIGNUP":
