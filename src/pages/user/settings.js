@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Formik, Field } from "formik";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import Button from "../../shared/sandbox/Button";
 import { lockBg } from "../../shared/sandbox/Popup";
@@ -20,7 +20,8 @@ function mapStateToProps(state) {
 }
 function Settings(props) {
     const user = props.user;
-    console.log(user.expertise);
+    const history = useHistory();
+    // console.log(user.expertise);
 
     return (
         <div className={`${settings.root} ${settings.settings_bg}`}>
@@ -59,13 +60,13 @@ function Settings(props) {
                 {(props) => (
                     <form onSubmit={props.handleSubmit}>
                         <div className={settings.btn_header}>
-                            <Link
+                            <div
                                 className={settings.back_link}
-                                to={`/users/${user.uid}`}
+                                onClick={()=> history.goBack()}
                             >
                                 <i className="fas fa-chevron-left"></i>
                                 Back
-                            </Link>
+                            </div>
                             <Button
                                 type="submit"
                                 className={buttonStyle.upload_btn}

@@ -65,6 +65,23 @@ export default (state = notLoggedUserInfo, action) => {
 				email: action.email,
 				logged: action.logged,
 			};
+			case 'UPDATE_SKILLS_TOOLS':
+				const skills = {...state.userType.skills}
+				const tools = {...state.user.tools}
+				console.log(skills, tools)
+				const newSkills = action.newSkills
+				const newTools = action.newTools
+                for (const [key, value] of Object.entries(skills)) {
+					console.log(`${key}: ${value}`);
+				  }
+				return {
+					...state,
+					uuid: action.uuid,
+					firstName: action.firstName,
+					lastName: action.lastName,
+					email: action.email,
+					logged: action.logged,
+				};
 		case 'LOGOUT_USER':
 			return notLoggedUserInfo;
 		default:

@@ -46,13 +46,13 @@ function Menu(props) {
 	return (
 		<div ref={node} className={styles.logout}>
 			<div className={styles.logout_btn} onClick={() => setOpen(!open)}>
-				
+				{/* <div className={styles.crop}> */}
 					<img
 						className={styles.profile_pic}
 						src={user.photoUrl}
 						alt="profile"
 					/>
-				
+				{/* </div> */}
 				<p className={styles.name}>{displayName}</p>
 				<ChevronDown size="20px" />
 			</div>
@@ -78,7 +78,7 @@ function Menu(props) {
 					<User className={styles.settings_icon} />
 					Projects
 				</p> */}
-				<p className={styles.option}>
+				<p className={styles.option} onClick={()=>history.push('/settings')}>
 					<Settings className={styles.settings_icon} />
 					Account settings
 				</p>

@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { NavLink, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+
 import SkillsTab from "./skillsTab";
 import TaskDnD from "../../shared/reactDnD/taskDnD";
+import { getFirebase } from "../../shared/firebase/config";
+import { getPidImage, addToStats } from "../../shared/firebase/firebase";
+import Button from "../../shared/sandbox/Button";
+import { lockBg } from "../../shared/sandbox/Popup";
+import EndorseList from "../../shared/input/EndorseList";
+
 import project from "../../modules/previewProject.module.scss";
 import styles from "../../modules/createProject.module.scss";
 import buttonStyle from "../../modules/_button.module.scss";
 import dnd from "../../modules/DnD.module.scss";
+import popup from "../../modules/popup.module.scss";
 import header from "../../modules/header.module.scss";
-import { getFirebase } from "../../shared/firebase/config";
-import { connect } from "react-redux";
-import { getPidImage, addToStats } from "../../shared/firebase/firebase";
+import logout from "../../modules/logout.module.scss";
 
 const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
     const ref = getFirebase()
@@ -126,6 +133,7 @@ function ProjectPage(props) {
     const [overview, setOverview] = useState(true);
     const [user, setUser] = useState();
     const history = useHistory();
+    const [endorsements, setEndorsements] = useState(endorsementData);
     useEffect(() => {
         setUser(props.user);
         if (!dataLoaded) {
@@ -147,10 +155,13 @@ function ProjectPage(props) {
     if (loading === true || dataLoaded === false) {
         return <div>Loading</div>;
     }
+    const editEndorsements = (values) => {
+        setEndorsements(endorsements.push(values));
+    };
     return (
         <div>
             <div className={project.cover_div}>
-                {isMe && (
+                {isMe ? (
                     <label
                         className={`${buttonStyle.cover_btn} ${buttonStyle.button} ${project.cover_button}`}
                         onClick={() => {
@@ -160,6 +171,8 @@ function ProjectPage(props) {
                         <i className="fas fa-edit" style={{ marginRight: 5 }} />
                         Edit Project
                     </label>
+                ) : (
+                    ""
                 )}
                 <img
                     className={project.cover_img}
@@ -314,6 +327,40 @@ function ProjectPage(props) {
                     </div>
                 </div>
             )}
+            <div className={project.project_ctn}>
+                <div className={project.section_footer}>
+                    <h1 className={project.h1}>Endorsements</h1>
+                    <Button
+                        id={data.pid}
+                        className={`yellow`}
+                        iconR={<i className="fas fa-check"></i>}
+                        text="Endorse Project"
+                        onClick={lockBg}
+                    />
+                    <div
+                        className={popup.popupContainer}
+                        id={data.pid + "_popContent"}
+                    >
+                        {console.log(data)}
+                        <EndorseList
+                            id={data.pid}
+                            skills={skills}
+                            tools={tools}
+                            editEndorsements={editEndorsements}
+                            data={data}
+                        />
+                    </div>
+                </div>
+                {endorsements.map((endorsement, index) => (
+                    <div className={styles.section_card} key={index}>
+                        <img
+                            className={logout.profile_pic}
+                            src={endorsement.photoUrl}
+                            alt="profile"
+                        />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
@@ -373,3 +420,24 @@ export function dateToDMY(date) {
         date.getUTCMonth() + 1
     }/${date.getUTCFullYear()}`;
 }
+
+const endorsementData = [
+    {
+        uid: "uid",
+        comment: "", //
+        skills: [], //
+        tools: [], //
+        date: "",
+        photoUrl: "",
+        name: "",
+    },
+    {
+        uid: "uid",
+        comment: "", //
+        skills: [], //
+        tools: [], //
+        date: "",
+        photoUrl: "",
+        name: "",
+    },
+];

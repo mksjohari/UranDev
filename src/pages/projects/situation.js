@@ -56,9 +56,7 @@ function Situation(props) {
 						</div>
 						<div className={styles.section_input}>
 							<label
-								htmlFor="{props.errors.summary && props.touched.summary ? (
-									<div className={styles.error}>{props.errors.summary}</div>
-								) : null}"
+								htmlFor="role"
 								className={styles.section_question}
 							>
 								What was your role in the project?{' '}

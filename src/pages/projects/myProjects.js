@@ -36,7 +36,7 @@ function MyProjects(props) {
         <div className={styles.root}>
             {/* <FindProjects view={props.view} /> */}
             {props.view === "edit" ? (
-                <div className={styles.header}>
+                <div className={styles.center}>
                     {showDrafts ? (
                         <DraftProjects hideDrafts={hideDrafts} />
                     ) : (

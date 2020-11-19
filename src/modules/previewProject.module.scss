@@ -1,12 +1,18 @@
 @import 'variable';
 
 .project_ctn {
-	margin: 0 10%;
+	margin: 0 2em;
 	color: $darkgrey;
 	font-size: 13px;
 }
 .project_section {
 	margin: 3rem 0 0 0;
+}
+.section_footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 3em 0em 0em 0em;
+    align-items: center;
 }
 .cover_div {
 	height: 250px;
