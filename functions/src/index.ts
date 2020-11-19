@@ -127,15 +127,30 @@ export const getPublicInfo = functions
 export const getExploreUsers = functions
     .region("australia-southeast1")
     .https.onCall(async (data, context) => {
+        var result;
+        const extra = data.extra;
         const limit = data.limit;
         const offset = data.page * limit - limit;
         try {
             if (!connection || !connection.isConnected) {
                 connection = await connect();
             }
-            const result = await connection.query(
-                `SELECT * FROM users inner join seeker on users.uuid = seeker.uuid limit ${limit} offset ${offset}`
-            );
+            if (extra) {
+                if (extra.firstName !== "" && extra.expertise !== "") {
+                    result = await connection.query(
+                        `select * from users inner join seeker on users.uuid = seeker.uuid inner join expertise on users.uuid = expertise.uuid where expertise = "${extra.expertise}" and (users.firstName = "${extra.firstName}" or users.lastName = "${extra.lastName}")`
+                    );
+                } else if (extra.firstName === "" && extra.expertise !== "") {
+                    console.log("yeah");
+                    result = await connection.query(
+                        `select * from users inner join seeker on users.uuid = seeker.uuid inner join expertise on users.uuid = expertise.uuid where expertise = "${extra.expertise}"`
+                    );
+                }
+            } else {
+                result = await connection.query(
+                    `SELECT * FROM users inner join seeker on users.uuid = seeker.uuid limit ${limit} offset ${offset}`
+                );
+            }
             return result;
         } catch (err) {
             console.log(err);

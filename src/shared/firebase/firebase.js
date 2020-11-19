@@ -3,6 +3,7 @@ import "firebase/auth";
 import "firebase/functions";
 import "firebase/firestore";
 import { getFirebase, getFunctions, getStorage } from "./config";
+import { addSkillsTools } from "../../actions/userAction";
 // FUNCTIONS //
 
 export const createAccount = getFunctions(firebase).httpsCallable(
@@ -249,6 +250,7 @@ export const uploadProject = async (uid, project) => {
                 });
             });
             await updateUserStats({ uid, skills: newSkills, tools: newTools });
+            addSkillsTools(newSkills, newTools);
         });
 };
 

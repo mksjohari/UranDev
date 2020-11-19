@@ -8,6 +8,13 @@ export const updateInfo = (uuid, uid, exists, userInfo) => (dispatch) => {
         logged: true,
     });
 };
+export const addSkillsTools = (newSkills, newTools) => (dispatch) => {
+    dispatch({
+        type: "ADD_SKILLS_TOOLS",
+        newSkills: newSkills,
+        newTools: newTools,
+    });
+};
 
 export const updateInfoFromCompleteSignUp = (
     uuid,

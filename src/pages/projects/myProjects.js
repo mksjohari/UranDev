@@ -15,7 +15,8 @@ const getPublicPreview = async (
     selectedTools,
     setPreviews,
     setAllPreviews,
-    applyFilter
+    applyFilter,
+    fromManage
 ) => {
     const previews = [];
     const preview = await getFirebase()
@@ -29,7 +30,9 @@ const getPublicPreview = async (
     });
     setPreviews(previews);
     setAllPreviews(previews);
-    applyFilter(selectedSkills, selectedTools, previews, setPreviews);
+    if (fromManage === false) {
+        applyFilter(selectedSkills, selectedTools, previews, setPreviews);
+    }
 };
 
 const applyFilter = (selectedSkills, selectedTools, previews, setPreviews) => {
@@ -75,13 +78,20 @@ function MyProjects(props) {
             selectedTools,
             setPreviews,
             setAllPreviews,
-            applyFilter
+            applyFilter,
+            props.fromManage
         );
         setSkills(Object.keys(props.user.skills));
         setTools(Object.keys(props.user.tools));
     }, [props.user.uid]);
     useEffect(() => {
-        applyFilter(selectedSkills, selectedTools, allPreviews, setPreviews);
+        if (props.fromManage === false)
+            applyFilter(
+                selectedSkills,
+                selectedTools,
+                allPreviews,
+                setPreviews
+            );
     }, [props.selectedSkills, props.selectedTools]);
     return (
         <div className={styles.root}>
