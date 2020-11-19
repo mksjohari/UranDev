@@ -126,6 +126,25 @@ const editProject = async (project, tasks, history) => {
 	history.push('/edit', { projectData: project });
 };
 
+function secondsToDate(seconds) {
+	var months = 0;
+	var days = 0;
+	while (Math.floor(seconds / 2592000) > 0) {
+		seconds = seconds - 2592000;
+		months += 1;
+	}
+	days = Math.ceil(seconds / 86400);
+	if (months === 0) {
+		return <span>{days} Days</span>;
+	} else {
+		return (
+			<span>
+				{months} Months {days} Days
+			</span>
+		);
+	}
+}
+
 function ProjectPage(props) {
 	const uid = props.match.params.uid;
 	const pid = props.match.params.pid;
@@ -250,12 +269,10 @@ function ProjectPage(props) {
 										</div>
 									</div>
 									<div className={project.details}>
-										{moment
-											.duration(
-												data.situation.endDate -
-													data.situation.startDate
-											)
-											.humanize({ d: 7, w: 4 })}
+										{secondsToDate(
+											data.situation.endDate -
+												data.situation.startDate
+										)}
 									</div>
 								</div>
 							</div>

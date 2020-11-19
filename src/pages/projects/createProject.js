@@ -129,7 +129,7 @@ function CreateProject(props) {
 		console.log(project);
 		uploadProject(props.user.uid, project, addSkillsTools);
 		history.push(`users/${props.user.uid}`);
-		addSkillsToolsSQL(props.user.uid, project);
+		addSkillsToolsSQL(props.user, project);
 	};
 	return (
 		<div className={styles.root}>

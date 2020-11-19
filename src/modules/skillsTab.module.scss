@@ -1,4 +1,4 @@
-@import "variable";
+@import 'variable';
 
 .tab {
 	border-radius: 0 0 25px 25px;
@@ -35,20 +35,28 @@
 .skill {
 	background: $yellow;
 	color: $darkyellow;
+	padding: 0 5px;
+	margin: 0 2px;
 }
 
 .skill_selected {
 	background: $orange;
 	color: $darkyellow;
+	padding: 0 5px;
+	margin: 0 2px;
 }
 
 .tool {
 	background: $blue;
 	color: $darkblue;
+	padding: 0 5px;
+	margin: 0 2px;
 }
 .tool_selected {
 	background: $darkblue;
 	color: $yellow;
+	padding: 0 5px;
+	margin: 0 2px;
 }
 
 .p {
@@ -59,26 +67,26 @@
 	display: grid;
 	grid-template-columns: 75% 25%;
 	grid-template-rows: repeat(2, 50%);
-    padding: 1% 5%;
-    grid-row-gap: 10px;
+	padding: 1% 5%;
+	grid-row-gap: 10px;
 }
 
 .skills_div {
 	grid-area: 1 / 1 / 2 / 2;
 }
 .skills_btn {
-    grid-area: 1 / 2 / 2 / 3;
-    display: flex;
+	grid-area: 1 / 2 / 2 / 3;
+	display: flex;
 	justify-content: center;
-    align-items: center;
+	align-items: center;
 }
 .tools_div {
-    grid-area: 2 / 1 / 3 / 2;
+	grid-area: 2 / 1 / 3 / 2;
 }
 
 .tools_btn {
-    grid-area: 2 / 2 / 3 / 3;
-    display: flex;
+	grid-area: 2 / 2 / 3 / 3;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 }
@@ -111,9 +119,9 @@
 	flex-direction: row;
 }
 .hide_link {
-    align-items: center;
-    justify-content: space-between;
-    display: flex;
-    width: 40px;
-    cursor: pointer;
+	align-items: center;
+	justify-content: space-between;
+	display: flex;
+	width: 40px;
+	cursor: pointer;
 }

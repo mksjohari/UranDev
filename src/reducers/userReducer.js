@@ -67,6 +67,19 @@ export default (state = notLoggedUserInfo, action) => {
 				email: action.email,
 				logged: action.logged,
 			};
+		case 'UPDATE_USER_INFO_SETTING':
+			return {
+				...state,
+				firstName: action.userInfo.firstName,
+				lastName: action.userInfo.lastName,
+				email: action.userInfo.email,
+				occupation: action.userInfo.occupation,
+				location: action.userInfo.location,
+				photoUrl: action.userInfo.photoUrl,
+				expertise: action.userInfo.expertise,
+				description: action.userInfo.description,
+				socials: action.userInfo.socials,
+			};
 		case 'ADD_SKILLS_TOOLS':
 			const userStats = state;
 			const skills = action.newSkills;
