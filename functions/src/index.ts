@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { Connection, createConnection } from 'typeorm';
+import { Connection, createConnection, getConnection } from 'typeorm';
 import { StatusType, Users, UserType } from './entity/users';
 import { Seeker } from './entity/seeker';
 import { Expertise } from './entity/expertise';
@@ -119,6 +119,41 @@ export const getPublicInfo = functions
 				);
 			}
 			return result[0];
+		} catch (err) {
+			console.log(err);
+		}
+	});
+export const updateAccountSettings = functions
+	.region('australia-southeast1')
+	.https.onCall(async (data, context) => {
+		try {
+			const uuid = data.uuid;
+			const userInfo = data.userInfo;
+			if (!connection || !connection.isConnected) {
+				connection = await connect();
+			}
+			await getConnection()
+				.createQueryBuilder()
+				.update(Users)
+				.set({
+					firstName: userInfo.firstName,
+					lastName: userInfo.lastName,
+					email: userInfo.email,
+				})
+				.where('uuid = :uuid', { uuid: uuid })
+				.execute();
+			await getConnection()
+				.createQueryBuilder()
+				.update(Seeker)
+				.set({
+					photo: userInfo.photoUrl,
+					occupation: userInfo.occupation,
+					description: userInfo.description,
+					location: userInfo.location,
+				})
+				.where('uuid = :uuid', { uuid: uuid })
+				.execute();
+			return;
 		} catch (err) {
 			console.log(err);
 		}

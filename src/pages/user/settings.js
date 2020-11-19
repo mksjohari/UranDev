@@ -15,7 +15,7 @@ import settings from '../../modules/settings.module.scss';
 import buttonStyle from '../../modules/_button.module.scss';
 import { getFirebase } from '../../shared/firebase/config';
 import { updateInfoSettings } from '../../actions/userAction';
-import { storage } from '../../shared/firebase/firebase';
+import { storage, updateAccountSettings } from '../../shared/firebase/firebase';
 
 function mapStateToProps(state) {
 	return { user: state.user };
@@ -30,36 +30,21 @@ function Settings(props) {
 				initialValues={{
 					firstName: user.firstName,
 					lastName: user.lastName,
-					email: user.email, // not provided
+					email: user.email,
 					occupation: user.occupation,
 					location: user.location,
 					photoUrl: user.photoUrl,
 					expertise: user.expertise,
-					description: user.description, // not provided
+					description: user.description,
 					socials: user.socials,
 				}}
 				// validate={validateSituation}
 				onSubmit={async (values, actions) => {
-					alert(JSON.stringify(values, 2));
 					actions.setSubmitting(false);
 					const path = storage.ref(`/users/${props.user.uid}/photo`);
 					await path.put(values.photoUrl);
 					const url = await path.getDownloadURL();
-					getFirebase()
-						.firestore()
-						.collection('users')
-						.doc(user.uid)
-						.update({
-							firstName: values.firstName,
-							lastName: values.lastName,
-							occupation: values.occupation,
-							location: values.location,
-							photoUrl: url,
-							expertise: values.expertise,
-							description: values.description,
-							socials: values.socials,
-						});
-					props.updateInfoSettings({
+					const userInfo = {
 						firstName: values.firstName,
 						lastName: values.lastName,
 						occupation: values.occupation,
@@ -68,6 +53,23 @@ function Settings(props) {
 						expertise: values.expertise,
 						description: values.description,
 						socials: values.socials,
+					};
+					getFirebase()
+						.firestore()
+						.collection('users')
+						.doc(user.uid)
+						.update(userInfo);
+					props.updateInfoSettings({
+						...userInfo,
+						email: values.email,
+					});
+					updateAccountSettings({
+						uuid: props.user.uuid,
+						uid: props.user.uid,
+						userInfo: {
+							...userInfo,
+							email: values.email,
+						},
 					});
 				}}
 			>
@@ -288,7 +290,7 @@ function Settings(props) {
 				id={'delAccount'}
 				colour="yellow"
 				iconR={<i className="far fa-trash-alt"></i>}
-				text="Deactivate Account"
+				text="Delete Account"
 				onClick={lockBg}
 			/>
 			<div className={popup.popupContainer} id={'delAccount_popContent'}>

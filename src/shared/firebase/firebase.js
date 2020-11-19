@@ -41,6 +41,9 @@ export const updateUserStats = getFunctions(firebase).httpsCallable(
 export const addSkillsAndTools = getFunctions(firebase).httpsCallable(
 	'addSkillsAndTools'
 );
+export const updateAccountSettings = getFunctions(firebase).httpsCallable(
+	'updateAccountSettings'
+);
 export const getUID = getFunctions(firebase).httpsCallable('getUID');
 export const tempDeleteProjectStats = getFunctions(firebase).httpsCallable(
 	'tempDeleteProjectStats'
