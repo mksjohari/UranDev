@@ -1,12 +1,21 @@
-const testEnv = require('firebase-functions-test')({
-  databaseURL: "https://uran-28-12-98.firebaseio.com",
-  projectId: "uran-28-12-98",
-  storageBucket: "uran-28-12-98.appspot.com",
-},'./path/to/private-key.json');
+// jest.mock('../../src/shared/firebase/firebase');
 
-const admin = require('firebase-admin');
+const testEnv = require('firebase-functions-test')(
+  {
+    apiKey: "AIzaSyCb3O3mwrZnycpDs8sv7XJKbPE0gvRsqD4",
+    authDomain: "uran-28-12-98.firebaseapp.com",
+    databaseURL: "https://uran-28-12-98.firebaseio.com",
+    projectId: "uran-28-12-98",
+    storageBucket: "uran-28-12-98.appspot.com",
+    messagingSenderId: "113317665845",
+    appId: "1:113317665845:web:9b4e3065a9a84b7cd5a57c",
+    measurementId: "G-DDKX9CHS1L",
+  },
+  './path/to/private-key.json'
+);
 
-let index,adminStub;
+let index, adminStub;
+
 beforeAll(() =>{
     adminStub = jest.spyOn(admin, 'initializeApp');
     index = require('./example');
@@ -14,12 +23,26 @@ beforeAll(() =>{
     return;
 });
 
+
+const users = require('./users');
+const { createAccount } = require('../../src/shared/firebase/firebase');
+const admin = require('firebase-admin');
+
 afterAll(() =>{
   adminStub.mockRestore();
   testEnv.cleanup();
 });
 
-describe('testing basic function', () =>{
+describe('testing GET functions', () =>{
+  it('test create Profile returns success', async () => {
+    const amirahha = users.amirahha;
+    const uuid = 'testID';
+    const result = await createAccount(amirahha);
+
+    expect(result).toBe(`Successfully added ${uuid}`);
+  }
+  );
+
   it('test function returns 6', () =>{
     expect(index.basicTest()).toBe(6);
   });
