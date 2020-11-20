@@ -19,9 +19,10 @@ import styles from '../../modules/createProject.module.scss';
 import {
 	uploadProject,
 	addSkillsAndTools,
+	getPidImage,
 } from '../../shared/firebase/firebase';
 import { useHistory } from 'react-router-dom';
-import { getProjectTasks } from './projectPage';
+import { getFirebase } from '../../shared/firebase/config';
 
 function mapStateToProps(state) {
 	return { user: state.user };
@@ -53,42 +54,78 @@ async function addSkillsTools(user, project) {
 	});
 	await addSkillsAndTools({ skills, tools });
 }
+const getProjectTasks = async (uid, pid, setProject) => {
+	const tasks = [];
+	const skills = [];
+	const tools = [];
+	const ref = getFirebase()
+		.firestore()
+		.collection('users')
+		.doc(uid)
+		.collection('projects')
+		.doc(pid);
+	const projectTasks = await ref.collection('tasks').get();
+	projectTasks.forEach((taskRaw) => {
+		const actions = [];
 
+		taskRaw.data().actions.forEach((action) => {
+			const files = [];
+			action.skills.forEach((skill) => {
+				skills.push(skill);
+			});
+			action.tools.forEach((tool) => {
+				tools.push(tool);
+			});
+			action.files.forEach(async (file) => {
+				const imageObj = await getPidImage(uid, pid, file);
+				files.push(imageObj);
+			});
+			actions.push({
+				actionId: action.actionId,
+				description: action.description,
+				title: action.title,
+				files: files,
+				skills,
+				tools,
+			});
+		});
+		const task = {
+			tid: taskRaw.data().tid,
+			title: taskRaw.data().title,
+			description: taskRaw.data().description,
+			index: taskRaw.data().index,
+			startDate: moment(new Date(taskRaw.data().startDate)),
+			endDate: moment(new Date(taskRaw.data().endDate)),
+			actions: actions,
+		};
+		tasks.push(task);
+	});
+
+	setProject((project) => ({ ...project, tasks: tasks }));
+};
 function EditProject(props) {
+	const history = useHistory();
 	const [percent, setPercent] = useState(0);
 	const [step, setStep] = useState(0);
-	const [tasks, setTasks] = useState();
 	const [loading, setLoading] = useState(true);
 	const [project, setProject] = useState({
 		...props.location.state.projectData,
 	});
-	const history = useHistory();
 	useEffect(() => {
-		getProjectTasks(
-			props.user.uid,
-			project.pid,
-			null,
-			null,
-			setTasks,
-			true
-		);
-		project.tasks = tasks;
-		project.fromEdit = true;
-		project.cover = {
-			changed: true,
-			img: project.coverUrl,
-			imgSrc: project.coverUrl,
-		};
-		if (project.situation.startDate) {
-			project.situation.projectDates = {
-				startDate: moment(
-					new Date(project.situation.startDate.seconds)
-				),
-				endDate: moment(new Date(project.situation.endDate.seconds)),
-			};
-		}
+		getProjectTasks(props.user.uid, project.pid, setProject);
 		setLoading(false);
-	}, [project, props.user.uid, tasks]);
+	}, [props.user.uid, project.pid]);
+
+	project.cover = {
+		changed: true,
+		img: project.coverUrl,
+		imgSrc: project.coverUrl,
+	};
+	project.situation.projectDates = {
+		startDate: moment(project.situation.projectDates.startDate),
+		endDate: moment(project.situation.projectDates.endDate),
+	};
+
 	function nextStep() {
 		if (step < 3) {
 			setPercent((step * 100 + 100) / 3);
@@ -101,15 +138,10 @@ function EditProject(props) {
 			setStep(step - 1);
 		}
 	}
-	// function addSection(values) {
-	// 	const newSections = [...project.results.sections, values];
-	// 	const newProject = { ...project };
-	// 	newProject.results.sections = newSections;
-	// 	setProject(newProject);
-	// }
 	function editProjectDetails(values) {
 		const newProject = { ...project };
 		newProject.status = values.status;
+
 		newProject.visibility = values.visibility;
 		newProject.title = values.title;
 		setProject(newProject);
@@ -135,15 +167,6 @@ function EditProject(props) {
 		newProject.cover.img = URL.createObjectURL(event.target.files[0]);
 		setProject(newProject);
 	}
-	// function editSections(index, values) {
-	//     const newSections = [...project.results.sections];
-	//     newSections[index].description = values.description;
-	//     newSections[index].sectionLink = values.sectionLink;
-	//     newSections[index].files = values.files;
-	//     const newProject = { ...project };
-	//     newProject.results.sections[index] = newSections;
-	//     setProject(newProject);
-	// }
 	const finishEditing = async () => {
 		uploadProject(props.user.uid, project);
 		history.push(`users/${props.user.uid}`);
@@ -173,9 +196,6 @@ function EditProject(props) {
 								hasConfirm
 								confirmBtnLabel="Yes, delete"
 								closeBtnLabel="No, go back"
-								onConfirm={() =>
-									console.log('Khairi needs to do this')
-								}
 							/>
 						</div>
 					</div>
@@ -244,11 +264,9 @@ function EditProject(props) {
 						<Results
 							results={project.results}
 							nextStep={nextStep}
-							nextText="Finish Editing"
+							nextText="Preview Project"
 							prevStep={prevStep}
 							editResults={editResults}
-							// addSection={addSection}
-							// editSections={editSections}
 						/>
 					</div>
 				)}

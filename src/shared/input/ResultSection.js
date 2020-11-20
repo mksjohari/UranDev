@@ -80,15 +80,6 @@ function ResultSection(props) {
 							close(e, '_confirm');
 						}}
 					/>
-					{/* <Button
-                                        id={section.sectionId + "_close"}
-                                        text="Cancel"
-                                        // iconR={<i className="fas fa-times"></i>}
-                                        onClick={(e) => {
-                                            // reset(index);
-                                            close(e, "_close");
-                                        }}
-                                    /> */}
 				</div>
 			</div>
 		);
@@ -98,10 +89,12 @@ function ResultSection(props) {
 			{value.map((section, index) => {
 				return (
 					<div className={styles.section_card} key={index}>
-						{console.log(section.files)}
-						{section.files.length > 0 &&
-						section.files[0].type.match(/image/g) ? (
-							<SectionGrid section={section} />
+						{section.files.length > 0 ? (
+							section.files[0].type.match(/image/g) ? (
+								<SectionGrid section={section} />
+							) : (
+								<SectionGridless section={section} />
+							)
 						) : (
 							<SectionGridless section={section} />
 						)}

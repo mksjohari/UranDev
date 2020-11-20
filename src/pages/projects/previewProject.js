@@ -6,7 +6,7 @@ import Developer from '../../images/developer.svg';
 import JobSearch from '../../images/jobsearch.png';
 import Button from '../../shared/sandbox/Button';
 import Carousel from '../../shared/sandbox/Carousel';
-import TaskDnD from '../../shared/reactDnD/taskDnD';
+import ReadonlyDnD from '../../shared/reactDnD/readonlyDnD';
 import PDFPreview from '../../shared/sandbox/PDFPreview';
 
 import project from '../../modules/previewProject.module.scss';
@@ -46,11 +46,6 @@ export function SectionGrid(props) {
 	);
 }
 export function SectionGridless(props) {
-	console.log(props.section.files);
-	console.log(props.section.files);
-	if (props.section.files[0] === undefined) {
-		return <span>Loading...</span>;
-	}
 	return (
 		<div className={styles.section_left}>
 			<div className={styles.section_desc}>
@@ -69,20 +64,35 @@ export function SectionGridless(props) {
 			) : (
 				''
 			)}
-			{/* {props.section.files[0].length > 0 ? ( */}
-			<div className={styles.pdf_display}>
-				<PDFPreview file={props.section.files} preview />
-			</div>
-			{/* ) : (
-                ""
-            )} */}
+			{props.section.files[0] && (
+				<div className={styles.pdf_display}>
+					<PDFPreview file={props.section.files[0]} preview />
+				</div>
+			)}
 		</div>
 	);
 }
 
+// export const SectionRender = (props) => {
+// 	return (
+// 		<div className={`${project.top_margin}`}>
+// 			{props.sections.map((section, index) => {
+// 				if (section.files.length > 0) {
+// 					if (section.files[0].type.match(/image/g)) {
+// 						return <SectionGrid section={section} />; // images
+// 					} else {
+// 						return <SectionGridless section={section} />; //pdf
+// 					}
+// 				} else {
+// 					return <SectionGridless section={section} />; //text
+// 				}
+// 			})}
+// 		</div>
+// 	);
+// };
+
 function PreviewProject(props) {
 	const [overview, setOverview] = useState(true);
-	// console.log(props);
 	const situation = props.project.situation;
 	const results = props.project.results;
 
@@ -104,12 +114,9 @@ function PreviewProject(props) {
 					Upload Cover
 				</label>
 				<img
-					src={
-						props.project.cover.img
-							? props.project.cover.img
-							: JobSearch
-					}
+					src={props.project.cover.img}
 					alt="jobsearch"
+					style={{ width: '100%' }}
 				></img>
 				<div className={project.banner}>
 					<div className={project.project_title}>
@@ -242,26 +249,33 @@ function PreviewProject(props) {
 								{results.conclusion}
 							</div>
 						</div>
-						{results.sections.length
-							? results.sections.map((section, index) => (
-									<div className={`${project.top_margin}`}>
-										{section.files.length ? (
+						{results.sections.length > 0 &&
+							results.sections.map((section, index) => {
+								if (section.files.length > 0) {
+									if (section.files[0].type.match(/image/g)) {
+										return (
 											<SectionGrid section={section} />
-										) : (
+										);
+									} else {
+										return (
 											<SectionGridless
 												section={section}
 											/>
-										)}
-									</div>
-							  ))
-							: ''}
+										);
+									}
+								} else {
+									return (
+										<SectionGridless section={section} />
+									);
+								}
+							})}
 					</div>
 				</div>
 			) : (
 				<div className={project.project_ctn}>
 					<div className={project.project_section}>
 						<h1 className={project.h1}>Tasks & Actions</h1>
-						<TaskDnD data={props.project.tasks} readOnly />
+						<ReadonlyDnD data={props.project.tasks} />
 					</div>
 				</div>
 			)}

@@ -24,109 +24,113 @@ takes in props:
         ^ : compusory. otherwise it's all optional :)
 */
 
+function GanttChart(props) {
+	const keyList = [
+		// Google chart fixed this, so this is uncahangable :(
+		{ type: 'string', label: 'Task ID' },
+		{ type: 'string', label: 'Task Name' },
+		{ type: 'string', label: 'Resource' },
+		{ type: 'date', label: 'Start Date' },
+		{ type: 'date', label: 'End Date' },
+		{ type: 'number', label: 'Duration' },
+		{ type: 'number', label: 'Percent Complete' },
+		{ type: 'string', label: 'Dependencies' },
+	];
 
+	const ganttChartData = [keyList];
 
-function GanttChart(props)  {
-  const keyList = [
-    // Google chart fixed this, so this is uncahangable :(
-    { type: 'string', label: 'Task ID' },
-    { type: 'string', label: 'Task Name' },
-    { type: 'string', label: 'Resource' },
-    { type: 'date', label: 'Start Date' },
-    { type: 'date', label: 'End Date' },
-    { type: 'number', label: 'Duration' },
-    { type: 'number', label: 'Percent Complete' },
-    { type: 'string', label: 'Dependencies' },
-  ];
+	props.data.taskData.forEach((task) => {
+		const values = [
+			task.taskId,
+			task.title,
+			null,
+			task.startDate ? task.startDate.toDate() : props.startDate.toDate(),
+			task.endDate ? task.endDate.toDate() : props.endDate.toDate(),
+			null,
+			100,
+			null,
+		];
+		ganttChartData.push(values);
+	});
 
-  const ganttChartData = [keyList];
-  
-  props.data.taskData.forEach(task => {
-    const values = [
-      task.taskId,
-      task.title,
-      null,
-      (task.startDate ? task.startDate.toDate() : props.startDate.toDate() ),
-      (task.endDate ? task.endDate.toDate() : props.endDate.toDate() ),
-      null,
-      100,
-      null,
-    ];
-    ganttChartData.push(values);
-  });
+	const chartEvents = [
+		{
+			eventName: 'select',
+			callback: ({ chartWrapper }) => {
+				const chart = chartWrapper.getChart();
+				const selection = chart.getSelection();
+				if (selection.length === 1) {
+					const [selectedItem] = selection;
+					const dataTable = chartWrapper.getDataTable();
+					const { row } = selectedItem;
 
-  const chartEvents = [
-    {
-      eventName: 'select',
-      callback: ({ chartWrapper }) => {
-        const chart = chartWrapper.getChart();
-        const selection = chart.getSelection();
-        if (selection.length === 1) {
-          const [selectedItem] = selection;
-          const dataTable = chartWrapper.getDataTable();
-          const { row } = selectedItem;
+					const value = dataTable.getValue(row, 0);
 
-          const value = dataTable.getValue(row, 0);
-          console.log(selection);
+					props.chartEvent(value);
+				}
+			},
+		},
+	];
 
-          props.chartEvent(value);
-        }
-        
-      },
-    },
-    
-  ];
+	const options = {
+		gantt: {
+			criticalPathEnabled: false,
+			sortTasks: false,
+			innerGridHorizLine: {
+				stroke: props.seperatorColour
+					? props.seperatorColour
+					: '#ededed',
+				strokeWidth: 1,
+			},
 
-  const options = {
-    gantt: {
-      criticalPathEnabled: false,
-      sortTasks: false,
-      innerGridHorizLine: {
-        stroke: props.seperatorColour ? props.seperatorColour : '#ededed',
-        strokeWidth: 1,
-      },
+			innerGridTrack: {
+				fill: props.ganttBGColour ? props.ganttBGColour : 'white',
+			},
+			innerGridDarkTrack: {
+				fill: props.ganttBGColour ? props.ganttBGColour : 'white',
+			},
+			trackHeight: 35,
 
-      innerGridTrack: { fill: props.ganttBGColour ? props.ganttBGColour : 'white' },
-      innerGridDarkTrack: { fill: props.ganttBGColour ? props.ganttBGColour : 'white' },
-      trackHeight: 35,
-      
-      barCornerRadius: 5,
-      barHeight: 24,
-      
-      labelStyle: {
-        fontName: "poppins",
-        fontSize: 14,
-      },
-      palette: [
-        {
-          "color": props.fontColour ? props.fontColour : "#906a64",
-          "dark": props.barColour ? props.barColour : "#FF8585",
-          "light": props.NOTselected ? props.NOTselected : "#ffded9",
-        }
-      ]
-    },
-  };
+			barCornerRadius: 5,
+			barHeight: 24,
 
-  // a note: theres literally no simple way to get rid of the pop up when you hover on the bars ;-;
-  // its called a tooltip but google-charts does not support the customisation of it in Gantt Charts.
-  // if we REALLY don't want it then I'll get rid of it, otherwise I've beautified it to match our style atm.
+			labelStyle: {
+				fontName: 'poppins',
+				fontSize: 14,
+			},
+			palette: [
+				{
+					color: props.fontColour ? props.fontColour : '#906a64',
+					dark: props.barColour ? props.barColour : '#FF8585',
+					light: props.NOTselected ? props.NOTselected : '#ffded9',
+				},
+			],
+		},
+	};
 
-  return (
-    <>
-      <div className={styles.chartContainer} >
-        <Chart 
-          chartType='Gantt'
-          loader={<center><p>Loading Chart...</p></center>}
-          data={ganttChartData}
-          width={'100%'}
-          className={styles.ganttChart}
-          options={options}
-          chartEvents={chartEvents}
-        />
-      </div>
-    </>
-  )
+	// a note: theres literally no simple way to get rid of the pop up when you hover on the bars ;-;
+	// its called a tooltip but google-charts does not support the customisation of it in Gantt Charts.
+	// if we REALLY don't want it then I'll get rid of it, otherwise I've beautified it to match our style atm.
 
+	return (
+		<>
+			<div className={styles.chartContainer}>
+				<Chart
+					chartType="Gantt"
+					loader={
+						<center>
+							<p>Loading Chart...</p>
+						</center>
+					}
+					data={ganttChartData}
+					width={'100%'}
+					className={styles.ganttChart}
+					options={options}
+					chartEvents={chartEvents}
+				/>
+			</div>
+		</>
+	);
 }
 
 export default GanttChart;

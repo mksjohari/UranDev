@@ -74,12 +74,9 @@ export const lockBg = (e) => {
 	if (e.target.tagName === 'SPAN' || e.target.tagName === 'I') {
 		e.target = e.target.parentNode;
 	}
-	console.log(e.target.id);
 	const body = document.getElementsByTagName('body')[0];
 	const overlayId = e.target.id + '_popContent';
 	const overlay = document.getElementById(overlayId);
-	console.log(overlayId);
-	console.log(overlay);
 	overlay.style.display = 'flex';
 	body.style.height = `${window.innerHeight}px`;
 	body.style.overflow = 'hidden';

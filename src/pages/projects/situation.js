@@ -150,10 +150,7 @@ function Situation(props) {
 }
 export default withContext(Situation);
 
-const validateSituation = (
-	values,
-	props /* only available when using withFormik */
-) => {
+const validateSituation = (values) => {
 	const errors = {};
 
 	if (!values.summary) {
@@ -162,12 +159,14 @@ const validateSituation = (
 	if (!values.role) {
 		errors.role = 'Please enter role.';
 	}
+	if (!values.budget) {
+		values.budget = 0;
+	}
 	if (
 		(values.projectDates.startDate === null) |
 		(values.projectDates.endDate === null)
 	) {
 		errors.projectDates = 'Please enter project dates.';
-		console.log('error project dates');
 	}
 
 	return errors;

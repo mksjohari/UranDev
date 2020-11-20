@@ -67,9 +67,7 @@ export const SignUp = React.memo((props) => {
 								lastName,
 							});
 						});
-						console.log('Created account', uuid);
 					} else {
-						console.log('Account already exists');
 					}
 				})
 				.catch(function (error) {

@@ -9,7 +9,7 @@ import styles from '../../modules/createProject.module.scss';
 function TasksActions(props) {
 	const prevStep = props.prevStep;
 	const nextStep = props.nextStep;
-	// const [hasDates, setHasDates] = useState(false);
+
 	return (
 		<div>
 			<Formik
@@ -18,8 +18,8 @@ function TasksActions(props) {
 				}}
 				validate={validateTaskActions}
 				onSubmit={(values, actions) => {
-					props.editTasks(values);
-					alert(JSON.stringify(values, 2));
+					// setTasks(values);
+					props.editTasks(values.tasks);
 					actions.setSubmitting(false);
 				}}
 			>
@@ -47,7 +47,6 @@ function TasksActions(props) {
 								onClick={() => {
 									props.handleSubmit();
 									prevStep();
-									console.log('back results');
 								}}
 							/>
 							<Button
@@ -79,7 +78,6 @@ const validateTaskActions = (values) => {
 		} else {
 			if (!task.startDate | !task.endDate) {
 				errors.tasks = 'taskDates';
-				// console.log("error task dates");
 			}
 		}
 		task.actions.forEach((action, index) => {

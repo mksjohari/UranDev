@@ -10,9 +10,9 @@ function DateSelect(props) {
 		<>
 			<DateRangePicker
 				startDate={props.value.startDate} // momentPropTypes.momentObj or null,
-				startDateId={props.taskId + '_startDate'} // PropTypes.string.isRequired,
+				startDateId={props.id + '_startDate'} // PropTypes.string.isRequired,
 				endDate={props.value.endDate} // momentPropTypes.momentObj or null,
-				endDateId={props.taskId + '_endDate'} // PropTypes.string.isRequired,
+				endDateId={props.id + '_endDate'} // PropTypes.string.isRequired,
 				onDatesChange={({ startDate, endDate }) =>
 					props.handleClick({ startDate, endDate })
 				} // PropTypes.func.isRequired,

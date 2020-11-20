@@ -24,7 +24,6 @@ const SignUp = (props) => {
 				lastName: state.lastName,
 			});
 		} else {
-			console.log('redirect to main page');
 			history.push('/');
 		}
 	}, [state, history]);

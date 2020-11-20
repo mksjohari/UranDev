@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 // import DnD from "../../shared/DnD";
 import * as moment from 'moment';
 // import Data from "../../shared/reactDnD/sampleData";
@@ -7,14 +7,14 @@ import GanttChart from '../../shared/GanttChart';
 import PDFPreview from '../../shared/sandbox/PDFPreview';
 import Button from '../../shared/sandbox/Button';
 
-
 const TmpTest = (props) => {
-
-	const [PDF, setPDF] = useState("");
+	const [PDF, setPDF] = useState('');
 	const [imageSection, setImageSection] = useState(false);
 	const [PDFSection, setPDFSection] = useState(false);
-	const handleClose = (str) => (str === 'pdf' ? setPDFSection(false) : setImageSection(false));
-	const handleShow = (str) => (str === 'pdf' ? setPDFSection(true) : setImageSection(true));
+	const handleClose = (str) =>
+		str === 'pdf' ? setPDFSection(false) : setImageSection(false);
+	const handleShow = (str) =>
+		str === 'pdf' ? setPDFSection(true) : setImageSection(true);
 
 	const showImages = () => {
 		handleClose('pdf');
@@ -26,46 +26,48 @@ const TmpTest = (props) => {
 	};
 
 	function handleChange(event) {
-		setPDF(
-			event.target.files[0]
-			);
-		console.log(PDF);
+		setPDF(event.target.files[0]);
 	}
 
-	
 	function sampleChartFunc(id) {
 		console.log(id);
 	}
-	
-	console.log('tmp props', props);
-
 
 	return (
 		<div className="tmp">
 			<div>
 				<p>What are you uploading?</p>
 				<div>
-					(for Michelle) this is just an example, I think that Segment tab you did would work well for this :)
+					(for Michelle) this is just an example, I think that Segment
+					tab you did would work well for this :)
 				</div>
-				<Button type='button' text='Images' onClick={showImages} />
-				<Button type='button' text="PDF's" onClick={showPDFs} />
+				<Button type="button" text="Images" onClick={showImages} />
+				<Button type="button" text="PDF's" onClick={showPDFs} />
 			</div>
-			{imageSection ? 
-				(
+			{imageSection ? (
 				<div>
-					<p>
-						Image result section
-					</p>
+					<p>Image result section</p>
 				</div>
-				)
-				: ("") 
-			}
-			{PDFSection ? 
-				(<>
-				<p>Please select ONE pdf file</p>
-					<div className={""} style={{width: '100px', border:'solid 1px', borderRadius: '15px' }} >
+			) : (
+				''
+			)}
+			{PDFSection ? (
+				<>
+					<p>Please select ONE pdf file</p>
+					<div
+						className={''}
+						style={{
+							width: '100px',
+							border: 'solid 1px',
+							borderRadius: '15px',
+						}}
+					>
 						<label>
-							<input type="file" accept="pdf" onChange={handleChange} />
+							<input
+								type="file"
+								accept="pdf"
+								onChange={handleChange}
+							/>
 							<i
 								className="fas fa-file"
 								style={{ marginRight: 5 }}
@@ -74,10 +76,10 @@ const TmpTest = (props) => {
 						</label>
 					</div>
 					<PDFPreview file={PDF} />
-				</>)
-
-			: ("")
-			}
+				</>
+			) : (
+				''
+			)}
 			<GanttChart data={projectData} chartEvent={sampleChartFunc} />
 			{/* 
 			<Popup

@@ -121,7 +121,6 @@ function Settings(props) {
 											<label
 												className={`${buttonStyle.upload_pdf_btn} ${buttonStyle.button}`}
 											>
-												{console.log(value)}
 												<input
 													type="file"
 													onChange={(event) => {
