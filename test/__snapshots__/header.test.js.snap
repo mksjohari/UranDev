@@ -5,22 +5,6 @@ exports[`<Header /> component runs without errors Header component (not logged i
   className="header"
 >
   <div
-    style={
-      Object {
-        "position": "absolute",
-        "right": 800,
-        "top": 100,
-      }
-    }
-  >
-    <button
-      onClick={[Function]}
-      type="button"
-    >
-      test Redux
-    </button>
-  </div>
-  <div
     className="container"
   >
     <div
@@ -34,11 +18,7 @@ exports[`<Header /> component runs without errors Header component (not logged i
         <img
           alt="Uran Logo ..."
           className="imageLogo"
-          src={
-            Object {
-              "process": [Function],
-            }
-          }
+          src="https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2Flogo.svg?alt=media&token=f5038044-a679-4a90-a782-3a101ba42a94"
         />
         <div
           className="uran"
