@@ -60,27 +60,56 @@ If you would like to locally test out our product follow the following steps :sm
 
 You will need npm and firebase-cli to repcliate this project
 You can get npm from here: (https://www.npmjs.com/get-npm)
-* firebase
+* git
+* npm
+* firebase-cli
+
 ```sh
 npm install -g firebase-tools
 ```
 
 ### Installation
-
-1. Create a free Firebase project at [https://console.firebase.google.com/](https://console.firebase.google.com/)
-2. Clone the repo
+1. Clone the repo
 ```sh
 git clone https://github.com/mksjohari/UranDev
 ```
-3. Install NPM packages
+2. Install NPM packages
 ```sh
 npm install
 ```
-4. Add environment variables to firebase project
-```JS
-firebase functions:config:set google.id="THE CLIENT ID"
+3. Create a free Firebase project at [https://console.firebase.google.com/](https://console.firebase.google.com/)
+4. Find the config under project settings (Should look like this)
+```js
+var firebaseConfig = {
+  apiKey: "AIzaSyDOCAbC123dEf456GhI789jKl01-MnO",
+  authDomain: "myapp-project-123.firebaseapp.com",
+  databaseURL: "https://myapp-project-123.firebaseio.com",
+  projectId: "myapp-project-123",
+  storageBucket: "myapp-project-123.appspot.com",
+  messagingSenderId: "65211879809",
+  appId: "1:65211879909:web:3ae38ef1cdcb2e01fe5f0c",
+  measurementId: "G-8GSGZQ44ST"
+};
 ```
-5. Play around yourself!
+5. Replace these values in the config file found in src/shared/firebase/config 
+6. Create a Cloud SQL Instance on the Google Cloud Platform and copy down these key values
+```JS
+ {
+    "host": "**.**.****.***",
+    "path": "*:*:*",
+    "database": "development",
+    "port": "3306",
+    "connectionname": "*:*:*",
+    "ip": "***.***.***.***",
+    "user": "***",
+    "pass": "***********"
+  }
+```
+7. Add these SQL variables to firebase environment variables
+```JS
+firebase functions:config:set cloudSQL.id={step5}
+```
+8. Play around yourself!
 ```JS
 npm start
 ```
