@@ -5,6 +5,7 @@ import Button from "../sandbox/Button";
 import { close, lockBg } from "../sandbox/Popup";
 import Droparea from "../sandbox/Droparea";
 import Alert from "../sandbox/Alert";
+import SectionFiles from "../../shared/input/SectionFiles";
 import PDFPreview from "../../shared/sandbox/PDFPreview";
 import {
     SectionGrid,
@@ -20,10 +21,6 @@ function ResultSection(props) {
     const [meta] = useField(props.name);
     const { form, push, remove } = props;
     const { value } = meta;
-    const [type, setType] = useState("Image");
-
-    const isSelected = (v) =>
-        `${tab.role} ${v === type ? tab.role_active : ""}`;
 
     function SectionPopup(index) {
         return (
@@ -71,103 +68,11 @@ function ResultSection(props) {
                     </div>
                 ) : null}
                 <br />
-                <label className={popup.subtitle}>
+                <label htmlFor="files" className={popup.subtitle}>
                     What are you uploading?
                 </label>
-                {/* resets files to no value */}
-                <Field name={`sections[${index}].files`}>
-                    {({ field: { value }, form: { setFieldValue } }) => (
-                        <div className={tab.segmented_tab}>
-                            <button
-                                type="button"
-                                className={isSelected("Image")}
-                                onClick={() => {
-                                    setType("Image");
-                                    setFieldValue(
-                                        `sections[${index}].files`,
-                                        ""
-                                    );
-                                }}
-                            >
-                                Images
-                            </button>
-                            <button
-                                type="button"
-                                className={isSelected("PDF")}
-                                onClick={() => {
-                                    setType("PDF");
-                                    setFieldValue(
-                                        `sections[${index}].files`,
-                                        ""
-                                    );
-                                }}
-                            >
-                                PDF File
-                            </button>
-                        </div>
-                    )}
-                </Field>
-                <br />
-                {type === "Image" ? (
-                    <div>
-                        <label htmlFor="files" className={popup.subtitle}>
-                            Upload at most 10 images to showcase your work
-                            (.png, .jpeg)
-                        </label>
-                        <Field
-                            as={Droparea}
-                            name={`sections[${index}].files`}
-                        />
-                    </div>
-                ) : (
-                    <div>
-                        <Field name={`sections[${index}].files`}>
-                            {({
-                                field: { value },
-                                form: { setFieldValue },
-                            }) => (
-                                <div className={styles.pdf_display}>
-                                    <label
-                                        className={`${buttonStyle.upload_pdf_btn} ${buttonStyle.button}`}
-                                    >
-                                        <input
-                                            type="file"
-                                            accept="pdf"
-                                            onChange={(event) => {
-                                                const file = [
-                                                    event.target.files[0],
-                                                ];
-                                                Object.assign(file[0], {
-                                                    preview:
-                                                        file.type ===
-                                                        "application/pdf"
-                                                            ? URL.createObjectURL(
-                                                                  file
-                                                              )
-                                                            : "",
-                                                });
-                                                setFieldValue(
-                                                    `sections[${index}].files`,
-                                                    file
-                                                );
-                                            }}
-                                        />
-                                        <i
-                                            className="fas fa-file"
-                                            style={{ marginRight: 5 }}
-                                        />
-                                        Upload a PDF
-                                    </label>
-                                    {value ? (
-                                        <PDFPreview file={value[0]} />
-                                    ) : (
-                                        ""
-                                    )}
-                                </div>
-                            )}
-                        </Field>
-                    </div>
-                )}
+                <Field as={SectionFiles} name={`sections[${index}].files`} />
+
                 <br />
                 <div className={popup.btnsRow}>
                     <Button
@@ -197,7 +102,8 @@ function ResultSection(props) {
             {value.map((section, index) => {
                 return (
                     <div className={styles.section_card} key={index}>
-                        {section.files.length &&
+                        {console.log(section.files)}
+                        {section.files.length > 0 &&
                         section.files[0].type.match(/image/g) ? (
                             <SectionGrid section={section} />
                         ) : (

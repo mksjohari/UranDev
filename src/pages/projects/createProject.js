@@ -56,7 +56,7 @@ async function addSkillsToolsSQL(user, project) {
 function CreateProject(props) {
 	const [percent, setPercent] = useState(0);
 	const [step, setStep] = useState(0);
-	const [project, setProject] = useState(projectData);
+	const [project, setProject] = useState({...projectData});
 	const history = useHistory();
 	useEffect(() => {
 		setProject(projectData);

@@ -10,97 +10,85 @@ import popup from "../../modules/popup.module.scss";
 import styles from "../../modules/DnD.module.scss";
 
 const TaskCard = (props) => {
-    const [edit, setEdit] = useState(props.newTask);
+    const [edit, setEdit] = useState(false);
     const deleteTask = props.deleteTask;
+    // console.log(props.errors)
 
     const saveTask = () => {
         return (
-            <Formik
-                initialValues={{
-                    taskTitle: props.task.title,
-                    taskDescription: props.task.description,
-                    taskDates: {
-                        startDate: props.task.startDate,
-                        endDate: props.task.endDate,
-                    },
-                }}
-                validate={validateTask}
-                onSubmit={(values, actions) => {
-                    // alert(JSON.stringify(values, 2));
-                    props.editTask(values);
-                    props.setTaskDates(values.taskDates);
-                    actions.setSubmitting(false);
-                    setEdit(false);
-                }}
-            >
-                {(props) => (
-                    <form onSubmit={props.handleSubmit} className={styles.form}>
-                        <div className={styles.col_input}>
-                            <label
-                                htmlFor="taskTitle"
-                                className={styles.action_subtitle}
-                            >
-                                Task title:
-                            </label>
-                            <Field
-                                as="input"
-                                name="taskTitle"
-                                className={`${styles.title} inp-field`}
-                                placeholder="New task title"
-                            />
-                            {props.errors.taskTitle ? (
-                                <div className={styles.error}>
-                                    {props.errors.taskTitle}
-                                </div>
-                            ) : null}
-                            <br />
-                            <label
-                                htmlFor="taskTitle"
-                                className={styles.action_subtitle}
-                            >
-                                Task description:
-                            </label>
-                            <Field
-                                as="textarea"
-                                name="taskDescription"
-                                className={`${styles.description_textbox} inp-field`}
-                                placeholder="Give this task a summary."
-                            />
-                            <br />
-                            <label
-                                htmlFor="taskDates"
-                                className={styles.action_subtitle}
-                            >
-                                Task dates:
-                            </label>
-                            <div className={styles.root_column}>
-                                <Field name="taskDates">
-                                    {({
-                                        field: { value },
-                                        form: { setFieldValue },
-                                    }) => (
-                                        <DateSelect
-                                            value={value}
-                                            handleClick={(v) =>
-                                                setFieldValue("taskDates", v)
-                                            }
-                                            // required
-                                            // isSubmittable
-                                            // onSubmit={props.handleSubmit}
-                                        />
-                                    )}
-                                </Field>
-                            </div>
-                            {props.errors.taskDates ? (
-                                <div className={styles.error}>
-                                    {props.errors.taskDates}
-                                </div>
-                            ) : null}
+            <div className={styles.form}>
+                <div className={styles.col_input}>
+                    <label htmlFor="title" className={styles.action_subtitle}>
+                        Task title:
+                    </label>
+                    <Field
+                        as="input"
+                        name={`tasks[${props.currentTask}].title`}
+                        className={`${styles.title} inp-field`}
+                        placeholder="New task title"
+                    />
+                    {props.errors && props.errors === "taskTitle" ? (
+                        <div className={styles.error}>
+                            Please enter a task title.
                         </div>
-                        {props.readOnly ? (
-                            ""
-                        ) : (
-                            <div className={styles.task_footer}>
+                    ) : null}
+                    <br />
+                    <label
+                        htmlFor="taskTitle"
+                        className={styles.action_subtitle}
+                    >
+                        Task description:
+                    </label>
+                    <Field
+                        as="textarea"
+                        name={`tasks[${props.currentTask}].description`}
+                        className={`${styles.description_textbox} inp-field`}
+                        placeholder="Give this task a summary."
+                    />
+                    <br />
+                    <label
+                        htmlFor="taskDates"
+                        className={styles.action_subtitle}
+                    >
+                        Task dates:
+                    </label>
+                    <div className={styles.root_column}>
+                        <Field name={`tasks[${props.currentTask}]`}>
+                            {({
+                                field: { value },
+                                form: { setFieldValue },
+                            }) => (
+                                <DateSelect
+                                    value={value}
+                                    handleClick={(v) => {
+                                        setFieldValue(
+                                            `tasks[${props.currentTask}].startDate`,
+                                            v.startDate
+                                        );
+                                        setFieldValue(
+                                            `tasks[${props.currentTask}].endDate`,
+                                            v.endDate
+                                        );
+                                    }}
+                                    // required
+                                    // isSubmittable
+                                    // onSubmit={props.handleSubmit}
+                                />
+                            )}
+                        </Field>
+                    </div>
+                    {props.errors && props.errors === "taskDates" ? (
+                        <div className={styles.error}>
+                            Please enter valid task dates.
+                        </div>
+                    ) : null}
+                </div>
+                {props.readOnly ? (
+                    ""
+                ) : (
+                    <div className={styles.task_footer}>
+                        {deleteTask ? (
+                            <>
                                 <Button
                                     colour="reddo"
                                     id={"delTask"}
@@ -112,41 +100,31 @@ const TaskCard = (props) => {
                                     className={popup.popupContainer}
                                     id={"delTask_popContent"}
                                 >
-                                    {deleteTask ? (
-                                        <Alert
-                                            id={"delTask"}
-                                            type="task"
-                                            hasConfirm
-                                            confirmBtnLabel="Yes, delete"
-                                            closeBtnLabel="No, go back"
-                                            onConfirm={deleteTask}
-                                        />
-                                    ) : (
-                                        <Alert
-                                            id={"delTask"}
-                                            type="task"
-                                            heading="Task can't be deleted"
-                                            message="Opps! A project must have at least one task."
-                                            closeBtnLabel="Ok, go back"
-                                        />
-                                    )}
+                                    <Alert
+                                        id={"delTask"}
+                                        type="task"
+                                        hasConfirm
+                                        confirmBtnLabel="Yes, delete"
+                                        closeBtnLabel="No, go back"
+                                        onConfirm={deleteTask}
+                                    />
                                 </div>
-                                <Button
-                                    iconL={<i className="fas fa-check"></i>}
-                                    text="Save"
-                                    onClick={() => {
-                                        props.submitForm();
-                                    }}
-                                />
-                            </div>
+                            </>
+                        ) : (
+                            ""
                         )}
-                    </form>
+                        <Button
+                            iconL={<i className="fas fa-check"></i>}
+                            text="Save"
+                            onClick={() => setEdit(false)}
+                        />
+                    </div>
                 )}
-            </Formik>
+            </div>
         );
     };
     const viewTask = () => {
-        console.log(props.task);
+        // console.log(props.task);
         return (
             <div className={styles.form}>
                 <div className={styles.title}>
@@ -201,23 +179,3 @@ const TaskCard = (props) => {
     );
 };
 export default TaskCard;
-
-const validateTask = (
-    values,
-    props /* only available when using withFormik */
-) => {
-    const errors = {};
-
-    if (!values.taskTitle) {
-        errors.taskTitle = "Please enter a task title.";
-    }
-    if (!values.taskDates.startDate && !values.taskDates.endDate) {
-    } else {
-        if (!values.taskDates.startDate | !values.taskDates.endDate) {
-            errors.taskDates = "Please enter valid task dates.";
-            console.log("error task dates");
-        }
-    }
-
-    return errors;
-};
