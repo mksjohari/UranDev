@@ -99,6 +99,7 @@ export const Header = (props) => {
 								Manage Projects
 							</NavLink>
 						)}
+						{/* Determine whether user is logged in and display the menu or sign in */}
 						{user && <Menu />}
 						{!user && (
 							<div className={styles.buttons}>

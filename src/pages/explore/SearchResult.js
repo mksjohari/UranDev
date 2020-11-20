@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from '../../modules/searchresult.module.scss';
 
+// User result used to show minimal profile details but maximising search
 function SearchResult(props) {
 	const history = useHistory();
 	return (

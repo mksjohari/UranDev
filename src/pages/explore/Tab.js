@@ -4,6 +4,7 @@ import Button from '../../shared/sandbox/Button';
 import SubjectOptions from '../../shared/sandbox/SubjectOptions';
 import styles from '../../modules/tab.module.scss';
 
+// Search tabs on the explore page
 function Tab(props) {
 	const [tabOne, setTabOne] = useState(true);
 	const [firstName, setFirstName] = useState('');

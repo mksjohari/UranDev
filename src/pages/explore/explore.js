@@ -11,6 +11,7 @@ import {
 } from '../../shared/firebase/firebase';
 import Placeholder from '../../shared/sandbox/Placeholder';
 
+// Returns all users based on the limit and page given
 const getAllUsers = async (setUsers, setLoading, limit, page) => {
 	const results = await getExploreUsers({ limit, page });
 	if (!results.data || results.data.length === 0) {
@@ -37,10 +38,6 @@ const getCount = async (limit, setPageNumbers) => {
 		setPageNumbers(pageNumbers);
 	}
 };
-
-// const getFilterUsers = async (filter, setusers, limit, page) => {
-// 	console.log('getting filtered users');
-// };
 
 const Explore = () => {
 	const [users, setUsers] = useState([]);
@@ -86,6 +83,7 @@ const Explore = () => {
 	useEffect(() => {
 		getAllUsers(setUsers, setLoading, limit, page);
 	}, [page, limit]);
+
 	const handleClick = (event) => {
 		setPage(Number(event.target.id));
 		setCurrentPage(Number(event.target.id));
@@ -120,6 +118,8 @@ const Explore = () => {
 			</div>
 			<div className={styles.div3}>
 				<h6 className={styles.h6}>Search results ({users.length})</h6>
+
+				{/* Loading screen while data is being loaded from databases */}
 				{loading ? (
 					placeHolder.map((page, index) => (
 						<Placeholder key={index} />

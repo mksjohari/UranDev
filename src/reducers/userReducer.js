@@ -45,7 +45,6 @@ export default (state = notLoggedUserInfo, action) => {
 			};
 
 		case 'UPDATE_FROM_COMPLETE_SIGNUP':
-			// need to add  email
 			return {
 				...state,
 				uuid: action.uuid,
@@ -88,6 +87,7 @@ export default (state = notLoggedUserInfo, action) => {
 				description: action.userInfo.description,
 				socials: action.userInfo.socials,
 			};
+		// Adds new project skills and tools to state after creating a new project
 		case 'ADD_SKILLS_TOOLS':
 			const userStats = state;
 			const skills = action.newSkills;
