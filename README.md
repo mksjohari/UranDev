@@ -33,9 +33,9 @@
 <img src="https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2Fdisplay.png?alt=media&token=7aadf899-005c-44d9-bf59-d6c82c9f9710" alt="Logo" width="100%" >
 
 ### What Uran is
-* Linkedin's long lost brother
-* An Eportfolio website that allows anyone to demonstrate their strengths easily
-* A project creation process that's driven around the popular STAR method
+* LinkedIns more practical Twin
+* An Eportfolio website that enables anyone to demonstrate their strengths easily
+* A seemless project creation process that's driven around the popular STAR method
 
 ### Built With
 Uran was built using popular frameworks and technologies including
