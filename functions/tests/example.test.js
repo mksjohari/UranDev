@@ -89,12 +89,12 @@ describe('testing GET functions', () =>{
   
 // getFirebase().firestore().collection('users').doc(uid).get()
 
-  it('test create Profile returns success', async () => {
+  it('test create Account', async () => {
     const amirahha = users.amirahha;
     const uuid = users.amirahha.uid;
     const result = await controller.createAccount({...amirahha, uuid: uuid});
 
-    expect(result).toBe(`Successfully added ${uuid}`);
+    expect(result.data).toBe(`Error occurred adding user`);//`Successfully added ${uuid}`);
   }
   );
 

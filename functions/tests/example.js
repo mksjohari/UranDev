@@ -9,6 +9,5 @@ exports.basicTest = function(){
 }
 
 exports.helloWorld = functions.https.onRequest((req, res) => {
-  console.log(res, res.status);
   res.send('Hello World');
 });
