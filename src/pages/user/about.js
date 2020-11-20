@@ -5,10 +5,12 @@ import SkillToolProgress from './skillToolProgress';
 import styles from '../../modules/profile.module.scss';
 
 function About(props) {
+	const endorseSkills = Object.entries(props.endorseSkills);
+	const endorseTools = Object.entries(props.endorseTools);
 	const skills = Object.entries(props.skills);
 	const tools = Object.entries(props.tools);
-	const sortedSkills = skills.sort((a, b) => b.value - a.value);
-	const sortedTools = tools.sort((a, b) => b.value - a.value);
+	const sortedSkills = endorseSkills.sort((a, b) => b.value - a.value);
+	const sortedTools = endorseTools.sort((a, b) => b.value - a.value);
 
 	return (
 		<div className={styles.about}>

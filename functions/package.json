@@ -25,9 +25,17 @@
 		"typeorm": "^0.2.26"
 	},
 	"devDependencies": {
+		"@babel/preset-env": "^7.12.1",
+		"@babel/plugin-transform-runtime": "^7.12.1",
+		"babel-jest": "^26.6.3",
 		"firebase-functions-test": "^0.2.0",
+		"firestore-jest-mock": "^0.7.0",
 		"jest": "^26.6.3",
-		"typescript": "^3.8.0"
+		"ts-jest": "^26.4.4",
+		"typescript": "^3.9.7"
+	},
+	"jest": {
+		"verbose": true
 	},
 	"private": true
 }
