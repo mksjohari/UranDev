@@ -76,6 +76,8 @@ const User = (props) => {
 						setSelectedTools={setSelectedTools}
 						skills={details.skills}
 						tools={details.tools}
+						endorseSkills={details.endorseSkills}
+						endorseTools={details.endorseTools}
 					/>
 				) : (
 					<MyProjects

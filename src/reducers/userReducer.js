@@ -13,6 +13,10 @@ export const notLoggedUserInfo = {
 	location: '',
 	socials: [],
 	expertise: [],
+	skills: [],
+	tools: [],
+	endorseSkills: [],
+	endorseTools: [],
 };
 
 export default (state = notLoggedUserInfo, action) => {
@@ -35,6 +39,8 @@ export default (state = notLoggedUserInfo, action) => {
 				expertise: action.userInfo.expertise,
 				skills: action.userInfo.skills,
 				tools: action.userInfo.tools,
+				endorseSkills: action.userInfo.endorseSkills,
+				endorseTools: action.userInfo.endorseTools,
 				logged: action.logged,
 			};
 
@@ -56,6 +62,8 @@ export default (state = notLoggedUserInfo, action) => {
 				logged: action.logged,
 				skills: {},
 				tools: {},
+				endorseSkills: {},
+				endorseTools: {},
 				status: action.status,
 			};
 		case 'UPDATE_FROM_SIGNUP':
