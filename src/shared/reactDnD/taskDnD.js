@@ -36,7 +36,7 @@ function TaskDnD(props) {
     const [meta] = useField(props.name);
     const { form, push, remove, replace, move } = props;
     const { value } = meta;
-    console.log(form);
+    // console.log(form.errors);
 
     const [currentTask, setCurrentTask] = useState(0); // index of currentTask object
     const [switching, setSwitch] = useState(false); // index of currentTask object
@@ -45,8 +45,6 @@ function TaskDnD(props) {
         setCurrentTask(0);
         setSwitch(false);
     }, [switching]);
-
-    const addTask = () => push(newTask);
 
     function deleteTask(index) {
         setSwitch(true);
@@ -122,7 +120,10 @@ function TaskDnD(props) {
                                         className={styles.button_add_task}
                                         iconL={<i className="fas fa-plus"></i>}
                                         text="Add new task"
-                                        onClick={() => addTask()}
+                                        onClick={() => {
+                                            push(newTask);
+                                            setCurrentTask(value.length - 1);
+                                        }}
                                     />
                                 )}
                             </div>
@@ -131,7 +132,7 @@ function TaskDnD(props) {
                 </div>
                 <div className={` ${styles.section_action}`}>
                     <div className={styles.heading}>
-                        {console.log(value)}
+                        {/* {console.log(value)} */}
                         {!switching &&
                             `Task ${currentTask + 1}: ${
                                 value[currentTask].title

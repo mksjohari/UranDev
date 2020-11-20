@@ -12,6 +12,7 @@ import styles from "../../modules/DnD.module.scss";
 const TaskCard = (props) => {
     const [edit, setEdit] = useState(false);
     const deleteTask = props.deleteTask;
+    // console.log(props.errors)
 
     const saveTask = () => {
         return (
@@ -26,11 +27,6 @@ const TaskCard = (props) => {
                         className={`${styles.title} inp-field`}
                         placeholder="New task title"
                     />
-                    {/* {props.errors.taskTitle ? (
-                        <div className={styles.error}>
-                            {props.errors.taskTitle}
-                        </div>
-                    ) : null} */}
                     {props.errors && props.errors === "taskTitle" ? (
                         <div className={styles.error}>
                             Please enter a task title.
@@ -81,11 +77,11 @@ const TaskCard = (props) => {
                             )}
                         </Field>
                     </div>
-                    {/* {props.errors.taskDates ? (
+                    {props.errors && props.errors === "taskDates" ? (
                         <div className={styles.error}>
-                            {props.errors.taskDates}
+                            Please enter valid task dates.
                         </div>
-                    ) : null} */}
+                    ) : null}
                 </div>
                 {props.readOnly ? (
                     ""
@@ -128,7 +124,7 @@ const TaskCard = (props) => {
         );
     };
     const viewTask = () => {
-        console.log(props.task);
+        // console.log(props.task);
         return (
             <div className={styles.form}>
                 <div className={styles.title}>

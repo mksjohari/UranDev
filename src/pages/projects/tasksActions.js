@@ -69,6 +69,40 @@ function TasksActions(props) {
 }
 export default withContext(TasksActions);
 
+const validateActionForm = (
+    values,
+    props /* only available when using withFormik */
+) => {
+    const errors = {};
+
+    if (!values.title) {
+        errors.title = "Please enter an action title.";
+    }
+    if (!values.description) {
+        errors.description = "Please enter a description.";
+    }
+
+    return errors;
+};
+
+const validateTask = (values) => {
+    console.log(values);
+    const errors = {};
+
+    if (!values.taskTitle) {
+        errors.taskTitle = "Please enter a task title.";
+    }
+    if (!values.taskDates.startDate && !values.taskDates.endDate) {
+    } else {
+        if (!values.taskDates.startDate | !values.taskDates.endDate) {
+            errors.taskDates = "Please enter valid task dates.";
+            console.log("error task dates");
+        }
+    }
+
+    return errors;
+};
+
 const validateTaskActions = (
     values,
     props /* only available when using withFormik */
@@ -82,16 +116,16 @@ const validateTaskActions = (
         if (!task.startDate && !task.endDate) {
         } else {
             if (!task.startDate | !task.endDate) {
-                errors.tasks = "Please enter valid task dates.";
+                errors.tasks = "taskDates";
                 // console.log("error task dates");
             }
         }
         task.actions.map((action, index) => {
             if (!action.title) {
-                errors.tasks = "Please enter an action title.";
+                errors.tasks = "actionTitle";
             }
             if (!action.description) {
-                errors.tasks = "Please enter a description.";
+                errors.tasks = "actionDescription";
             }
         })
     })

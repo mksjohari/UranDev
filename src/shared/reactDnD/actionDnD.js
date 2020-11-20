@@ -21,9 +21,9 @@ const newAction = {
 
 const ActionDnD = (props) => {
     const [meta] = useField(`tasks[${props.currentTask}].actions`);
-    const { push, remove, replace, move } = props.arrayHelpers;
+    const { form, push, remove, replace, move } = props.arrayHelpers;
     const { value } = meta;
-    // console.log(value);
+    console.log(form);
 
     function onDragEnd(result) {
         const { source, destination } = result;
@@ -70,7 +70,7 @@ const ActionDnD = (props) => {
                                                 currentTask={props.currentTask}
                                                 snapshot={snapshot}
                                                 readOnly={props.readOnly}
-                                                // editAction={(v, t, s) => editAction(index, v, t, s)}
+                                                errors={form.errors.tasks}
                                                 deleteAction={() =>
                                                     remove(index)
                                                 }

@@ -113,6 +113,7 @@ const ActionCard = (props) => {
                             action={props.action}
                             currentTask={props.currentTask}
                             index={props.index}
+                            errors={props.errors}
                         />
                     </div>
                 </div>

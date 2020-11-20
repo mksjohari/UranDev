@@ -21,6 +21,7 @@ const dropdownConverter = (data) => {
 
 function ActionForm(props) {
     const actionId = props.newAction ? "newAction" : props.action.actionId;
+    // console.log(props.errors);
 
     return (
         <div className={popup.form_container}>
@@ -28,7 +29,6 @@ function ActionForm(props) {
                 className={popup.form}
                 style={{ width: window.innerWidth * 0.6 }}
             >
-                {/* {console.log(props)} */}
                 <h3>Edit Action</h3>
                 <div>
                     <div className={popup.root_column}>
@@ -41,11 +41,12 @@ function ActionForm(props) {
                             className={`inp-field`}
                             placeholder="Title of your action..."
                         />
-                        {/* {props.errors.title ? (
+
+                        {props.errors && props.errors === "actionTitle" ? (
                             <div className={styles.error}>
-                                {props.errors.title}
+                                Please enter an action title.
                             </div>
-                        ) : null} */}
+                        ) : null}
                     </div>
                     <br />
 
@@ -119,11 +120,11 @@ function ActionForm(props) {
                         className={`inp-field ${popup.descEdit}`}
                         placeholder="Give this action a description."
                     />
-                    {/* {props.errors.description ? (
+                    {props.errors && props.errors === "actionDescription" ? (
                         <div className={styles.error}>
-                            {props.errors.description}
+                            Please describe your action.
                         </div>
-                    ) : null} */}
+                    ) : null}
                     <br />
                     <label htmlFor="files" className={popup.subtitle}>
                         Add files to show your work in progress. (Optional, max
@@ -159,4 +160,3 @@ const Options = {
     tools: [],
     skills: [],
 };
-
