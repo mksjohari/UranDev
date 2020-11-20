@@ -47,7 +47,7 @@ beforeAll(() =>{
     index = require('./example');
     jest.mock('../../src/shared/firebase/firebase');
     jest.mock('mysql');
-    // console.log(index);
+    
     return;
 });
 
@@ -57,18 +57,6 @@ afterAll(() =>{
   jest.clearAllMocks();
 });
 
-// jest.mock(connect = async () => {
-//   return await createConnection({
-//       type: "mysql",
-//       host: testEnv.mockConfig({ cloudsql: { host: 'localhost' }}),
-//       port: testEnv.mockConfig({ cloudsql: { port: '8888' }}),
-//       username: testEnv.mockConfig({ cloudsql: { user: 'me' }}),
-//       password: testEnv.mockConfig({ cloudsql: { pass: '' }}),
-//       database: testEnv.mockConfig({ cloudsql: { database: 'test' }}),
-//       //entities: [Users, Seeker, Skills, Tools, Expertise],
-//       synchronize: true,
-//   });
-// });
 
 // TESTS //
 describe('testing GET functions', () =>{
@@ -82,24 +70,47 @@ describe('testing GET functions', () =>{
       .get().then(doc => {
           expect(mockCollection).toHaveBeenCalledWith('users');
           expect(doc.exists).toBe(true);
-          expect(doc.id).toBe(users.amirahha.uid);
+          expect(doc.ref.id).toBe(users.amirahha.uid);
       });
       
   });
+
+  // it('test create Account', async () => {
+  //   const amirahha = users.amirahha;
+  //   const uuid = users.amirahha.uid;
+  //   const result = await controller.createAccount({...amirahha, uuid: uuid});
+
+  //   expect(result.data).toBe(`Error occurred adding user`);//`Successfully added ${uuid}`);
+  // }
+  // );
+
+  it('test Add Account Details', () => {
+    const signUpAma = users.signUpAma;
+
+    const firebase = require('firebase'); // or import firebase from 'firebase';
+    const db = firebase.firestore();
   
-// getFirebase().firestore().collection('users').doc(uid).get()
-
-  it('test create Account', async () => {
-    const amirahha = users.amirahha;
-    const uuid = users.amirahha.uid;
-    const result = await controller.createAccount({...amirahha, uuid: uuid});
-
-    expect(result.data).toBe(`Error occurred adding user`);//`Successfully added ${uuid}`);
-  }
-  );
-
-  it('test function returns 6', () =>{
-    expect(index.basicTest()).toBe(6);
+    return db
+      .collection('users')
+      .doc(signUpAma.uid)
+      .set({
+        uid: signUpAma.uid,
+        firstName: signUpAma.firstStep.firstName,
+        lastName: signUpAma.firstStep.lastName,
+        role: signUpAma.firstStep.role,
+        photoUrl: signUpAma.photoURL,
+        occupation: signUpAma.secondStep.occupation,
+        location: signUpAma.secondStep.location,
+        description: signUpAma.secondStep.description,
+        expertise: signUpAma.allExpertise,
+        socials: signUpAma.thirdStep,
+        skills: {},
+        tools: {},
+      })
+      .then(doc => {
+        expect(doc.exists).toBe(true);
+        expect(doc.ref.id).toBe(signUpAma.uid);
+      })
   });
 
   it('firebase HTML function test', (done) =>{
