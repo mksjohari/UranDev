@@ -140,6 +140,8 @@ export default class BubbleChart extends Component {
                 return d.data.color ? d.data.color : color(nodes.indexOf(d));
             })
             .style("z-index", 1)
+            .style("transition", "0.3s all ease-in-out")
+            .style("cursor", "pointer")
             .on("mouseover", function (event, d) {
                 d3.select(this).attr("r", d.r * 1.04);
             })
