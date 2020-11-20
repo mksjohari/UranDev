@@ -23,7 +23,6 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
 
 
 
