@@ -39,10 +39,6 @@ mockFirebase({
       {
         ...users.amirahha,
         id: users.amirahha.uid
-      },
-      {
-        ...users.john,
-        id: users.john.uid
       }
     ],
   },
@@ -62,6 +58,20 @@ describe('testing GET functions', () =>{
           expect(mockCollection).toHaveBeenCalledWith('users');
           expect(doc.exists).toBe(true);
           expect(doc.ref.id).toBe(users.amirahha.uid);
+      });
+      
+  });
+
+  it('Get user NOT in database', () => {
+    const firebase = require('firebase'); // or import firebase from 'firebase';
+    const db = firebase.firestore();
+  
+    return db
+      .collection('users')
+      .doc(users.john.uid)
+      .get().then(doc => {
+          expect(mockCollection).toHaveBeenCalledWith('users');
+          expect(doc.exists).toBe(false);
       });
       
   });
