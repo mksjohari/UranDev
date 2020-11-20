@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "./static/css/main.3a6a8466.chunk.css",
+    "main.js": "./static/js/main.99cff7a6.chunk.js",
+    "main.js.map": "./static/js/main.99cff7a6.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.560b22e6.js",
+    "runtime-main.js.map": "./static/js/runtime-main.560b22e6.js.map",
+    "static/css/2.67860a28.chunk.css": "./static/css/2.67860a28.chunk.css",
+    "static/js/2.aaa174d1.chunk.js": "./static/js/2.aaa174d1.chunk.js",
+    "static/js/2.aaa174d1.chunk.js.map": "./static/js/2.aaa174d1.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.92a5fab56c44883a240589578c9c2e9d.js": "./precache-manifest.92a5fab56c44883a240589578c9c2e9d.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.67860a28.chunk.css.map": "./static/css/2.67860a28.chunk.css.map",
+    "static/css/main.3a6a8466.chunk.css.map": "./static/css/main.3a6a8466.chunk.css.map",
+    "static/js/2.aaa174d1.chunk.js.LICENSE.txt": "./static/js/2.aaa174d1.chunk.js.LICENSE.txt",
+    "static/js/pdf.worker.entry.6f75799f.worker.js": "./static/js/pdf.worker.entry.6f75799f.worker.js",
+    "static/js/pdf.worker.entry.6f75799f.worker.js.LICENSE.txt": "./static/js/pdf.worker.entry.6f75799f.worker.js.LICENSE.txt",
+    "static/js/pdf.worker.entry.6f75799f.worker.js.map": "./static/js/pdf.worker.entry.6f75799f.worker.js.map",
+    "static/media/404error.svg": "./static/media/404error.c8041878.svg",
+    "static/media/developer.svg": "./static/media/developer.6fb10754.svg",
+    "static/media/findjob.svg": "./static/media/findjob.457d79fa.svg",
+    "static/media/jobsearch.png": "./static/media/jobsearch.3cc024d6.png",
+    "static/media/jobsearch.svg": "./static/media/jobsearch.548b6a7e.svg",
+    "static/media/logo.svg": "./static/media/logo.4322bef8.svg",
+    "static/media/network.svg": "./static/media/network.36e93fc1.svg",
+    "static/media/index.css": "./static/media/poppins-latin-900italic.f3c803b2.woff2",
+    "static/media/createProject.module.scss": "./static/media/projectBg3.31d23a46.svg",
+    "static/media/draftProject.module.scss": "./static/media/resume.f2400dcc.svg",
+    "static/media/settings.module.scss": "./static/media/settings.4dc78a5a.svg",
+    "static/media/skills.svg": "./static/media/skills.c5ad67af.svg",
+    "static/media/typing.png": "./static/media/typing.2002f472.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.560b22e6.js",
+    "static/css/2.67860a28.chunk.css",
+    "static/js/2.aaa174d1.chunk.js",
+    "static/css/main.3a6a8466.chunk.css",
+    "static/js/main.99cff7a6.chunk.js"
+  ]
+}

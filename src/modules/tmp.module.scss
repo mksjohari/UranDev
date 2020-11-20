@@ -1,0 +1,232 @@
+
+@import "variable";
+
+// some fancy scrollbars i stole from web it
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.4);
+}
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+
+.container {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 8px 150px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: show;
+};
+
+.taskCol {
+    border: none;
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px 0px;
+    margin: 10px;
+    min-width: 400px;
+    width: 400px;
+    box-shadow: 0px 2px 16px $shadow;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.dropArea {
+    background-color: $darkpink;
+    padding: 15px 15px;
+    margin-bottom: 25px;
+    min-height: 100%;
+}
+
+.blank {
+    min-height: 75%;
+}
+
+.taskTitle {
+    width: 300px;
+    font-size: 18px;
+    resize: none;
+    border: none;
+};
+
+.taskHeader {
+    display: flow-root;
+    padding: 10px 20px 0px 20px;
+}
+
+.taskInfo {
+    padding: 10px 25px;
+    position: relative;
+}
+
+.taskDesc {
+    width: 100%;
+    font-size: 14px;
+    resize: none;
+    border: none;
+};
+
+.taskDuration {
+    font-size: 12px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.actionsCard {
+    display: flex;
+    flex-direction: row;
+    align-content: top;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 20px;
+    margin: 12px 0px;
+    background-color: white;
+    min-height: 160px;
+    box-shadow: 0px 2px 5px $shadow;
+};
+
+.editAction {
+    display: none;
+}
+
+.actions {
+    padding: 10px 0px;
+    min-width: 70%;
+}
+
+.dragHandle {
+    font-size: 24px;
+    text-align: right;
+    color: $midgrey;
+    position: relative;
+    float: right;
+    min-height: 60px;
+    min-width: 60px;
+}
+
+.editBtn {
+    font-size: 20px;
+    text-align: right;
+    color: $midgrey;
+    position: absolute;
+    right: 0px;
+    bottom: 10px;
+    min-height: 30px;
+    min-width: 60px;
+}
+
+.deleteBtn {
+    font-size: 20px;
+    position: absolute;
+    float: right;
+    text-align: right;
+    color: $reddo;
+    bottom: 10px;
+    right: 50px;
+    min-height: 30px;
+    min-width: 30px;
+}
+
+.deleteTaskBtn {
+    font-size: 20px;
+    position: absolute;
+    float: right;
+    text-align: right;
+    color: $reddo;
+    bottom: 10px;
+    right: 30px;
+    min-height: 30px;
+    min-width: 30px;
+}
+
+.editBtn i, .deleteBtn i ,.deleteTaskBtn i{
+    &:hover {
+		transform: scale(1.05);
+		transition: transform 0.5s;
+        cursor: pointer;
+    }
+    &:active {
+		transform: scale(0.97);
+		transition: transform 0.3s, background-color 0.2s;
+	}
+}
+
+.addActionBtn {
+    height: 80px;
+    width: 100%;
+    padding: 27px;
+    font-size: 20px;
+    color:  $darkpink;
+    background-color: $pink;
+    border-radius: 25px;
+    text-align: center;
+    
+}
+
+.addTaskBtn {
+    margin: 10px;
+    height: 80px;
+    min-width: 400px;
+    padding: 27px;
+    font-size: 20px;
+    border-radius: 25px;
+}
+
+.draggingOver {
+    background-color: lightblue;
+}
+
+.toolsEdit, .skillsEdit {
+    width: 100%;
+}
+
+.descEdit {
+    width: 100%;
+    resize: none;
+}
+
+.actionContent {
+    width: 240px;
+}
+
+.tools, .skills {
+    display: inline-block;
+    width: 260px;
+}
+
+.toolItem, .skillItem {
+    padding: 0px 15px;
+    margin: 2px 2px;
+    border-radius: 50px;
+    background-color: $blue;
+    color: $darkblue;
+    font-style: italic;
+    overflow-inline: normal;
+    float: left;
+}
+
+.skillItem {
+    background-color: $yellow;
+}
+
+.description {
+    padding: 10px 10px;
+}
+
+.btnCol {
+    position: relative;
+    min-width: 30%;
+}

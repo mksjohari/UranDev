@@ -1,0 +1,44 @@
+@import 'variable';
+
+.title {
+	display: flex;
+	line-height: initial;
+}
+
+.title h3 {
+	margin: auto 5px !important;
+}
+
+.title i {
+	font-size: 20px;
+}
+
+.checkContainer {
+	display: flex;
+	line-height: initial;
+}
+
+.checkContainer label {
+	margin-left: 0px !important;
+}
+
+.checkbox_row {
+	align-items: center;
+	justify-content: center;
+}
+
+.listContainer {
+	padding: 20px 20px;
+}
+.skillsToolsContainer {
+	display: flex;
+	flex-direction: row;
+}
+
+.closeBtn {
+	margin: 30px auto 0px auto !important;
+	display: block !important;
+}
+.left_padding {
+	padding: 0rem 1rem;
+}

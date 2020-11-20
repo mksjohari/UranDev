@@ -1,0 +1,242 @@
+@import "variable";
+
+.header {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid $lightgrey;
+}
+
+.container {
+    max-width: 940px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+}
+
+.uran {
+    color: #4d4d4d;
+    font-size: 36px;
+    font-weight: 500;
+    padding-left: 20px;
+}
+
+.headerLink {
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+    width: 170px;
+}
+
+.imageLogo {
+    width: 45px;
+}
+
+.navContainer {
+    display: inline-block;
+    width: 100%;
+    height: fit-content;
+}
+
+.navBar {
+    position: relative;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+.navItem {
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 25px;
+    text-decoration: none;
+    &:hover {
+        color: $darkpink !important;
+    }
+}
+
+.activeNavItem {
+    color: black !important;
+    font-weight: 600;
+}
+
+.tabTop {
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #d9d9d9;
+    margin: 3em 0em 0em 0em;
+}
+.tabBottom {
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid #d9d9d9;
+    margin: 1em 0em;
+}
+
+.tabItem {
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 2px 25px 0 25px;
+    text-decoration: none;
+    &:hover {
+        color: $navy !important;
+    }
+}
+
+.activeTabItem {
+    color: $navy !important;
+    border-top: 2px solid $navy;
+}
+
+.projectTab {
+    position: relative;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0 25px 2px 25px;
+    text-decoration: none;
+    &:hover {
+        color: $darkpink !important;
+    }
+}
+
+.activeProjectTab {
+    color: $darkpink !important;
+    border-bottom: 2px solid $darkpink;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons button {
+    min-width: 100px;
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+.toggle,
+#label {
+    display: none;
+    color: $darkgrey;
+}
+
+#nav_icon {
+    width: 20px;
+    height: 15px;
+    position: relative;
+    margin: 10px auto;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+}
+
+.nav_icon1,
+.nav_icon2,
+.nav_icon3,
+.nav_icon4 {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: $darkgrey;
+    border-radius: 5px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+}
+
+.nav_icon1 {
+    top: 0px;
+}
+
+.nav_icon2,
+.nav_icon3 {
+    top: 6px;
+}
+
+.nav_icon4 {
+    top: 12px;
+}
+
+@media screen and (max-width: 991px) {
+    #label {
+        display: flex;
+        cursor: pointer;
+    }
+    .uran {
+        font-size: 1.6rem;
+    }
+    .container {
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .headerContainer {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        justify-content: space-between;
+        padding: 0 36px;
+        width: 100%;
+    }
+    .navContainer {
+        width: 100%;
+        position: absolute;
+        top: 91.28px;
+        z-index: 1;
+        background: rgb(250, 250, 250);
+    }
+    .navBar {
+        display: none;
+        float: unset;
+        flex-direction: column;
+        margin-top: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ededed;
+    }
+    .navItem {
+        margin-right: 0rem;
+        padding: 15px 0;
+    }
+    .buttons button {
+        margin: 0 8px;
+    }
+    .toggle:checked ~ .navBar {
+        display: flex;
+    }
+
+    .open1 {
+        top: 6px;
+        width: 0%;
+        left: 50%;
+    }
+
+    .open2 {
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    .open3 {
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    .open4 {
+        top: 6px;
+        width: 0%;
+        left: 50%;
+    }
+}

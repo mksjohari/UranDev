@@ -1,0 +1,66 @@
+@import "variable";
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    width: 90%;
+    flex-grow: 1;
+    margin: 63px 80px 0px 80px;
+    padding: 20px 130px;
+    overflow: visible;
+    align-self: center;
+}
+
+// .content {
+// 	width: 100%;
+// 	flex-grow: 1;
+// 	background-color: $ivory;
+// 	padding: 90px 107px 90px 90px;
+// 	overflow: visible;
+// 	align-self: center;
+// }
+
+.content.profile {
+    background-color: $grey;
+    box-shadow: 0px 0px 40px 0px $shadow;
+    border-radius: 700px 700px 700px 50px;
+}
+
+.content.projects {
+    background-color: $grey;
+    box-shadow: 0px 0px 40px 0px $shadow;
+    border-radius: 700px 50px 50px 50px;
+}
+
+.content.create {
+    background-color: $grey;
+    box-shadow: 0px 0px 40px 0px $shadow;
+    border-radius: 50px 700px 50px 50px;
+    margin: 70px 80px;
+    padding: 70px 130px;
+}
+
+.content.settings {
+    background-color: $grey;
+    box-shadow: 0px 0px 40px 0px $shadow;
+    border-radius: 50px 700px 700px 700px;
+}
+@media screen and (max-width: 991px) {
+    .container {
+        width: 100vw;
+    }
+    .content {
+        width: 100vw;
+        padding: 0px;
+        margin: 0px;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-width: 479px) {
+}

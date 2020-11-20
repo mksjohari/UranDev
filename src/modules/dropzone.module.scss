@@ -1,0 +1,96 @@
+@import 'variable';
+
+.droparea {
+	width: 100%;
+	background-color: white;
+	border: 1px solid $midgrey;
+	color: $midgrey;
+	border-radius: 15px;
+	padding: 20px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.droparea i {
+	padding: 20px;
+	font-size: 40px;
+}
+
+.thumbsContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-top: 16px;
+}
+
+.thumbImg {
+	display: block !important;
+	max-width: 9999px !important;
+	width: auto !important;
+	height: 200% !important;
+}
+
+.thumb {
+	display: inline-flex;
+	border-radius: 2px;
+	border: 1px solid $deeppink;
+	margin-bottom: 8px;
+	margin-right: 8px;
+	width: 100px;
+	height: 100px;
+	padding: 4px;
+	box-sizing: border-box;
+	background-color: white;
+	overflow: hidden;
+	position: relative;
+}
+
+.thumbInner {
+	display: flex;
+	min-width: 0px;
+	overflow: hidden !important;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.thumbsWrapper {
+	display: flex;
+	flex-direction: column;
+	margin: 0 5px;
+}
+
+.fileName {
+	display: flex;
+	justify-content: center;
+}
+
+.flexWrap {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.container_carousel {
+	display: grid;
+	grid-template-columns: 12px auto 12px;
+}
+.carousel_chevron {
+	align-self: center;
+	z-index: 10;
+	cursor: pointer;
+}
+.carousel {
+	grid-column: 2 / 3;
+	margin: 0 8px;
+	height: 30vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.carousel_img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}

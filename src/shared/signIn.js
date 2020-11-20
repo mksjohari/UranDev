@@ -1,140 +1,114 @@
-import React, { useState } from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
-import { getFirebase } from './firebase';
-import styles from './modules/signIn.module.scss';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Button from "./sandbox/Button";
+import "../modules/loginformz.scss";
 
-import { updateUser } from '../actions/userAction.js';
-
-const signInWithGoogle = async (updateUser) => {
-	getFirebase(firebase)
-		.auth()
-		.signInWithPopup(googleProvider)
-		.then(function (result) {
-			updateUser(result);
-		})
-		.catch(function (error) {
-			// Handle Errors here.
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			// The email of the user's account used.
-			const email = error.email;
-			// The firebase.auth.AuthCredential type that was used.
-			const credential = error.credential;
-			console.log(email, credential, errorCode, errorMessage);
-			// ...
-		});
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/functions";
+import { getFirebase } from "./firebase/firebase";
+import { checkUserExists, createAccount } from "./firebase/functions";
+export const signInWithGoogle = async () => {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    getFirebase()
+        .auth()
+        .signInWithPopup(googleProvider)
+        .then(async (result) => {
+            const uuid = getFirebase().auth().currentUser.uid;
+            const exists = await checkUserExists({ uuid: uuid });
+            console.log(exists);
+            if (exists.data === false) {
+                await createAccount({
+                    uid: uid,
+                    firstName: result.additionalUserInfo.profile.given_name,
+                    lastName: result.additionalUserInfo.profile.family_name,
+                    email: result.additionalUserInfo.profile.email,
+                });
+                console.log("Created account", uuid);
+            } else {
+                console.log("Account exists");
+            }
+        })
+        .catch(function (error) {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            const credential = error.credential;
+            console.log(email, credential, errorCode, errorMessage);
+            // ...
+        });
 };
 
-const SignIn = (props) => {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [error] = useState(null);
+const SignIn = React.memo((props) => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errormsg, setErrormsg] = useState(""); //Error message: 'Invalid email or password. Try again.'
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert(`Submitting Form ${email + password}`);
+    };
+    return (
+        <form className="login-form" onSubmit={handleSubmit}>
+            <i className="fas fa-times" onClick={props.onClose} />
+            <h2 style={{ margin: "0 0 12px 0" }}>Sign In</h2>
+            <input
+                className="inp-text"
+                placeholder="&#xf0e0;   Email"
+                type="text"
+                onChange={(e) => setEmail(e.target.value)}
+                required
+            />
+            <input
+                className="inp-text"
+                placeholder="&#xf070;   Password"
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+            />
+            <a
+                className="small-text"
+                href="http://www.google.com"
+                style={{ textAlign: "right", width: "250px" }}
+            >
+                Forgot password?
+            </a>
+            {errormsg ? <p className="error">{errormsg}</p> : ""}
+            <input
+                className="pink login button"
+                id="login"
+                type="submit"
+                value="Login"
+            />
+            <span className="divider">
+                <hr style={{ width: "100px" }} />
+                <span className="small-text">or</span>
+                <hr style={{ width: "100px" }} />
+            </span>
+            <Button
+                type="button"
+                iconL={<i className="fab fa-google-plus-g" />}
+                id="google"
+                text="Sign in with Google"
+                onClick={() => {
+                    signInWithGoogle();
+                }}
+            />
+            <span className="small-text">
+                Don't have an account?{" "}
+                <Link
+                    className="link"
+                    to="/"
+                    onClick={() => props.toSignUp()}
+                    style={{ textAlign: "right" }}
+                >
+                    Create one.
+                </Link>
+            </span>
+        </form>
+    );
+});
 
-	const signInWithEmailAndPasswordHandler = (event, email, password) => {
-		event.preventDefault();
-		console.log(event, email, password);
-	};
-
-	const onChangeHandler = (event) => {
-		const { name, value } = event.currentTarget;
-
-		if (name === 'userEmail') {
-			setEmail(value);
-		} else if (name === 'userPassword') {
-			setPassword(value);
-		}
-	};
-	return (
-		<div className={styles.loginContainer}>
-			<div className={styles.loginForm}>
-				<h1>Sign In</h1>
-				{error !== null && <div>{error}</div>}
-				<form>
-					<label className={styles.label} htmlFor="userEmail">
-						Email:
-					</label>
-					<br />
-
-					<input
-						type="email"
-						name="userEmail"
-						value={email}
-						placeholder="E.g: uran@gmail.com"
-						id="userEmail"
-						onChange={(event) => onChangeHandler(event)}
-					/>
-					<br />
-					<label className={styles.label} htmlFor="userPassword">
-						Password:
-					</label>
-					<br />
-
-					<input
-						type="password"
-						name="userPassword"
-						value={password}
-						placeholder="Your Password"
-						id="userPassword"
-						onChange={(event) => onChangeHandler(event)}
-					/>
-					<br />
-					<Button
-						style={{ marginTop: 10 }}
-						color="primary"
-						variant="contained"
-						onClick={(event) => {
-							signInWithEmailAndPasswordHandler(
-								event,
-								email,
-								password
-							);
-						}}
-					>
-						Sign in
-					</Button>
-				</form>
-				<p className="text-center my-3">
-					Don't have an account? <Link to="/">Sign up here</Link>{' '}
-					<br /> <Link to="/">Forgot Password?</Link>
-				</p>
-				<hr />
-				<Button
-					color="secondary"
-					variant="contained"
-					onClick={() => {
-						console.log('hello');
-						signInWithGoogle(props.updateUser);
-					}}
-				>
-					Sign in with Google
-				</Button>
-				{'   '}
-				<Button
-					color="default"
-					variant="contained"
-					onClick={() => {
-						console.log(getFirebase(firebase).auth().currentUser);
-					}}
-				>
-					Test Log
-				</Button>
-				{'   '}
-				<Button
-					color="default"
-					variant="contained"
-					onClick={() => {
-						getFirebase(firebase).auth().signOut();
-					}}
-				>
-					Sign Out
-				</Button>
-			</div>
-		</div>
-	);
-};
-export default connect(null, { updateUser })(SignIn);
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
+export default SignIn;

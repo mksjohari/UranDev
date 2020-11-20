@@ -1,0 +1,106 @@
+@import 'variable';
+
+@keyframes overlay {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.popupContainer {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	display: none;
+	overflow-y: scroll;
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	padding: 100px;
+	justify-content: center;
+	pointer-events: auto;
+	z-index: 10;
+}
+
+.contentContainer {
+	padding: 2.4rem;
+	height: fit-content;
+	border-radius: 25px;
+	margin: 0;
+	z-index: 20;
+	pointer-events: auto;
+}
+
+.btnsRow {
+	padding: 20px 50px 0px 50px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.closeBtn {
+	margin: auto !important;
+	display: block !important;
+}
+
+.lock {
+	overflow: hidden;
+	z-index: -1;
+}
+
+.form_container {
+	background-color: $ivory;
+	padding: 2.4rem;
+	height: fit-content;
+	border-radius: 25px;
+	margin: 0;
+	z-index: 20;
+	pointer-events: auto;
+}
+.form {
+	margin: 0;
+}
+.descEdit {
+	width: 100%;
+	height: 80px;
+	resize: none;
+}
+
+.subtitle {
+	padding: 10px 0px;
+}
+
+.alert {
+	font-size: 40px;
+	color: $reddo;
+	padding: 10px;
+}
+
+.alert_container {
+	width: 500px;
+	background-color: white;
+}
+.title {
+	display: flex;
+	line-height: initial;
+}
+
+.title h3 {
+	margin: auto 5px !important;
+}
+
+.msg {
+	padding: 15px 70px;
+}
+.root_column {
+	display: flex;
+	flex-direction: column;
+}
+.section_columns {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}

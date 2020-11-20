@@ -1,0 +1,78 @@
+@import 'variable';
+
+.logout {
+	position: relative;
+	display: inline-block;
+	z-index: 10;
+}
+
+.crop {
+	width: 70px;
+	overflow: hidden;
+}
+
+.profile_pic {
+	height: 60px;
+	width: 60px;
+	border-radius: 8px;
+	margin-bottom: 0;
+	object-fit: cover;
+}
+
+.name {
+	font-size: 15px;
+	font-weight: 500;
+	margin: 0;
+}
+
+.logout_btn {
+	display: inline-flex;
+	gap: 15px;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	background-color: white;
+	&:hover {
+		color: $midgrey;
+		transition: 0.3s color ease-in-out;
+	}
+}
+
+.option {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	padding: 7px 12px;
+	margin: 0;
+	&:hover {
+		background: $ivory;
+		transition: 0.2s background ease-in-out;
+	}
+	&:hover:last-child {
+		border-radius: 0 0 10px 10px;
+	}
+}
+
+.menu_hide {
+	display: none;
+}
+
+.menu_show {
+	position: absolute;
+	display: block;
+	border-radius: 0 0 12px 12px;
+	width: 100%;
+	background-color: white;
+	box-shadow: 0px 2px 8px 1px #00000020;
+}
+
+.settings_icon {
+	color: black;
+	height: 15px;
+}
+
+.logout_icon {
+	height: 15px;
+	color: red;
+}

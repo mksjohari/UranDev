@@ -2,8 +2,13 @@
 **/*.js
 **/*.js.map
 
+# Don't ignore test files
+!tests/*
+
 # TypeScript v1 declaration files
 typings/
 
 # Node.js dependency directory
 node_modules/
+
+.runtimeconfig.json

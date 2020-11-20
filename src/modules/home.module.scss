@@ -1,0 +1,111 @@
+@import 'variable';
+
+.body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.filter {
+	background: $ivory;
+	border-radius: 16px;
+	padding: 20px 25px;
+	width: 250px;
+	margin-left: auto;
+}
+
+.container {
+	margin-top: 30px;
+	display: grid;
+	grid-template-columns: 30% 65%;
+}
+
+.results {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.h6 {
+	width: 700px;
+}
+
+.section {
+	background: $ivory;
+	display: grid;
+	width: 100%;
+	padding: 60px 250px;
+	grid-auto-columns: 1fr;
+	grid-column-gap: 60px;
+	grid-row-gap: 60px;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: auto;
+	width: 100vw;
+}
+
+.h5 {
+	font-size: 22px;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	margin: 20px 0;
+	margin-bottom: 16px;
+}
+
+.desc {
+	font-size: 15px;
+}
+
+.comingSoon {
+	font-size: 18px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.card_img {
+	width: 64px;
+}
+
+.column {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.jobsearch_img {
+	width: 560px;
+	position: relative;
+	float: left;
+	min-height: 1px;
+	margin: 0 20px;
+	z-index: -1;
+}
+
+.hero {
+	display: flex;
+	height: auto;
+	margin-bottom: 80px;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen and (max-width: 991px) {
+	.hero {
+		display: flex;
+		flex-direction: column;
+		margin: 40px 0;
+		gap: 30px;
+		justify-content: center;
+		align-items: center;
+	}
+	.column {
+		width: 70%;
+	}
+	.section {
+		padding: 50px;
+		grid-auto-columns: 3fr;
+		grid-template-columns: auto;
+		grid-template-rows: 1fr 1fr 1fr;
+	}
+}

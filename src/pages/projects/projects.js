@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import MyProjects from './myProjects';
 
-const Projects = () => {
+const mapStateToProps = (state) => {
+	return { user: state.user };
+};
+
+const Projects = (props) => {
+	const history = useHistory();
+	const uid = props.match.params.uid;
+	useEffect(() => {
+		if (uid !== props.user.uid) {
+			history.push('/');
+		}
+	}, [history, uid, props.user.uid]);
 	return (
 		<div>
-			<h1>Hello,</h1>
-			<p>I'm Projects</p>
+			<MyProjects user={props.user} fromManage={true} view="edit" />
 		</div>
 	);
 };
 
-export default Projects;
+export default connect(mapStateToProps)(Projects);

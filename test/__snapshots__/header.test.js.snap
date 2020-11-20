@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> component runs without errors Header component (not logged in) matches previous snapshots 1`] = `
+<header
+  className="header"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="headerContainer"
+    >
+      <a
+        className="headerLink"
+        href="/"
+        onClick={[Function]}
+      >
+        <img
+          alt="Uran Logo ..."
+          className="imageLogo"
+          src="https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2Flogo.svg?alt=media&token=f5038044-a679-4a90-a782-3a101ba42a94"
+        />
+        <div
+          className="uran"
+        >
+          URAN
+        </div>
+      </a>
+      <label
+        id="label"
+        onClick={[Function]}
+      >
+        <div
+          id="nav_icon"
+        >
+          <span
+            className=" nav_icon1 "
+          />
+          <span
+            className=" nav_icon2 "
+          />
+          <span
+            className=" nav_icon3 "
+          />
+          <span
+            className=" nav_icon4 "
+          />
+        </div>
+      </label>
+    </div>
+    <div
+      className="navContainer"
+    >
+      <input
+        className="toggle"
+        id="toggle"
+        type="checkbox"
+      />
+      <nav
+        className="navBar"
+      >
+        <a
+          aria-current="page"
+          className="navItem activeNavItem"
+          href="/"
+          onClick={[Function]}
+          style={Object {}}
+        >
+          Home
+        </a>
+        <a
+          aria-current={null}
+          className="navItem"
+          href="/explore"
+          onClick={[Function]}
+        >
+          Explore
+        </a>
+        <div
+          className="buttons"
+        >
+          <button
+            className="undefined signUp"
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+            type="button"
+          >
+            
+            <span>
+              Sign Up
+            </span>
+            
+            
+          </button>
+          <button
+            className="yellow undefined"
+            style={
+              Object {
+                "display": "inline",
+              }
+            }
+            type="button"
+          >
+            
+            <span>
+              Sign In
+            </span>
+            
+            
+          </button>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+`;
