@@ -3,13 +3,14 @@
 <!-- Uran -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://www.uran-28-12-98.web.app/">
     <img src="https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2Flogo.svg?alt=media&token=f5038044-a679-4a90-a782-3a101ba42a94" alt="Logo" width="80" height="80">
   </a>
-
   <h3 align="center">Uran</h3>
+  <hr />
 </p>
 
+<a href="https://www.uran-28-12-98.web.app/"><h2> [Live Demo] </h2></a>
 
 
 <!-- TABLE OF CONTENTS -->
