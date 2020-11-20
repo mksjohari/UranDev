@@ -13,16 +13,24 @@ const testEnv = require('firebase-functions-test')(
 );
 
 const users = require('./users');
-const controller = require('../../src/shared/firebase/firebase');
 const admin = require('firebase-admin');
-const mysql = require('mysql');
 const { mockFirebase } = require('firestore-jest-mock');
 const { mockCollection } = require('firestore-jest-mock/mocks/firestore');
-// const { StatusType, Users, UserType } = require("../src/entity/users");
-// const { Seeker } = require("../src/entity/seeker");
-// const { Expertise } = require("../src/entity/expertise");
-// const { Skills } = require("../src/entity/skills");
-// const { Tools } =require("../src/entity/tools");
+
+// CLEANING/ SETTING UP //
+let index, adminStub;
+beforeAll(() =>{
+    adminStub = jest.spyOn(admin, 'initializeApp');
+  
+    return;
+});
+
+afterAll(() =>{
+  adminStub.mockRestore();
+  testEnv.cleanup();
+  jest.clearAllMocks();
+});
+
 
 // Create a fake Firestore with a `users` and `posts` collection
 mockFirebase({
@@ -38,23 +46,6 @@ mockFirebase({
       }
     ],
   },
-});
-
-// CLEANING/ SETTING UP //
-let index, adminStub;
-beforeAll(() =>{
-    adminStub = jest.spyOn(admin, 'initializeApp');
-    index = require('./example');
-    jest.mock('../../src/shared/firebase/firebase');
-    jest.mock('mysql');
-    
-    return;
-});
-
-afterAll(() =>{
-  adminStub.mockRestore();
-  testEnv.cleanup();
-  jest.clearAllMocks();
 });
 
 
@@ -86,7 +77,6 @@ describe('testing GET functions', () =>{
 
   it('test Add Account Details', () => {
     const signUpAma = users.signUpAma;
-
     const firebase = require('firebase'); // or import firebase from 'firebase';
     const db = firebase.firestore();
   
@@ -111,21 +101,6 @@ describe('testing GET functions', () =>{
         expect(doc.exists).toBe(true);
         expect(doc.ref.id).toBe(signUpAma.uid);
       })
-  });
-
-  it('firebase HTML function test', (done) =>{
-    // A fake request object
-    const req = {};
-    // A fake response object, with a send
-    const res = {
-      send: (response) => {
-        //Run the test in response callback of the HTTPS function
-        expect(response).toBe('Hello World');
-        //done() is to be triggered to finish the function
-        done();
-      }
-    };
-    index.helloWorld(req,res);
   });
 
 });
