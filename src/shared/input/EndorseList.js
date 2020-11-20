@@ -18,29 +18,6 @@ function EndorseList(props) {
 	const data = props.data;
 	const user = props.user;
 
-	const setChecked = (id, setId) => {
-		const count = props.data.list[id];
-		if (props.data[id] === true) {
-			setId({
-				...props.data,
-				[id]: false,
-				list: {
-					...props.data.list,
-					[id]: count - 1,
-				},
-			});
-		} else {
-			setId({
-				...props.data,
-				[id]: true,
-				list: {
-					...props.data.list,
-					[id]: count + 1,
-				},
-			});
-		}
-	};
-	console.log(user);
 	const endorsement = {
 		uid: user.uid,
 		comment: '', //
