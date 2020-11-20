@@ -45,10 +45,10 @@ Uran was built using popular frameworks and technologies including
 
 ### Built By
 Uran was built by 4 main contributers
-* Angelina
-* Hao Yuan Cheang
-* Khairi
-* Michelle
+* [Angelina Lim](https://github.com/Angelinalim911)
+* [Hao Yuan Cheang](https://github.com/cheang-haoyuan)
+* [Khairi Johari](https://github.com/mksjohari)
+* [Michelle Edhie Wahidin](https://github.com/michelle-ew)
 
 <!-- GETTING STARTED -->
 ## Getting Started
