@@ -5,7 +5,7 @@ const RedirectProject = (props) => {
 	const history = useHistory();
 	const uid = props.match.params.uid;
 	const pid = props.match.params.pid;
-	history.push(`/users/${uid}/projects/${pid}`);
+	history.push(`/users/${uid}/projects/${pid}`, { uid, pid });
 	return <div>Redirect</div>;
 };
 

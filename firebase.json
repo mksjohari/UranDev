@@ -14,7 +14,7 @@
 			},
 			{
 				"source": "/users/:uid/projects/:pid",
-				"destination": "https://uran-28-12-98.web.app/redirect-:uid-projects-:pid",
+				"destination": "https://uran-28-12-98.web.app/redirect-:uid-project-:pid",
 				"type": 301
 			}
 		],

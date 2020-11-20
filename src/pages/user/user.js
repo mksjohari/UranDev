@@ -12,7 +12,9 @@ function mapStateToProps(state) {
 	return { user: state.user };
 }
 
-const getDetails = async (uid, setDetails, setChecked) => {
+export const getDetails = async (uid, setDetails, setChecked) => {
+	console.log('nani');
+
 	const userInfo = await getFirebase()
 		.firestore()
 		.collection('users')

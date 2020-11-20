@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import { NavLink, useHistory } from 'react-router-dom';
 import SkillsTab from './skillsTab';
-import TaskDnD from '../../shared/reactDnD/taskDnD';
-import project from '../../modules/previewProject.module.scss';
-import styles from '../../modules/createProject.module.scss';
-import buttonStyle from '../../modules/_button.module.scss';
-import header from '../../modules/header.module.scss';
 import { getFirebase } from '../../shared/firebase/config';
 import { connect } from 'react-redux';
 import {
@@ -14,6 +9,19 @@ import {
 	addToStats,
 	storage,
 } from '../../shared/firebase/firebase';
+import { getDetails } from '../user/user';
+
+import Button from '../../shared/sandbox/Button';
+import { lockBg } from '../../shared/sandbox/Popup';
+import EndorseList from '../../shared/input/EndorseList';
+
+import project from '../../modules/previewProject.module.scss';
+import styles from '../../modules/createProject.module.scss';
+import buttonStyle from '../../modules/_button.module.scss';
+import popup from '../../modules/popup.module.scss';
+import header from '../../modules/header.module.scss';
+import logout from '../../modules/logout.module.scss';
+
 // import { SectionGrid, SectionGridless } from "./previewProject";
 
 const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
@@ -157,9 +165,16 @@ function ProjectPage(props) {
 	const [tasks, setTasks] = useState();
 	const [overview, setOverview] = useState(true);
 	const [user, setUser] = useState();
+	const [checked, setChecked] = useState(false);
+	const [endorsements, setEndorsements] = useState(endorsementData);
 	const history = useHistory();
 	useEffect(() => {
-		setUser(props.location.state.user);
+		if (props.location.state.user) {
+			setUser(props.location.state.user);
+			setChecked(true);
+		} else {
+			getDetails(uid, setUser, setChecked);
+		}
 		if (!dataLoaded) {
 			getProjectInfo(uid, pid, setData, setLoading, setDataLoaded);
 		} else {
@@ -169,9 +184,12 @@ function ProjectPage(props) {
 		}
 		props.user.uid === uid ? setIsMe(true) : setIsMe(false);
 	}, [uid, pid, data, dataLoaded, props]);
-	if (loading === true || dataLoaded === false) {
-		return <div>Loading</div>;
+	if (checked === false || loading === true || dataLoaded === false) {
+		return <div>Loading {console.log(checked, loading, dataLoaded)}</div>;
 	}
+	const editEndorsements = (values) => {
+		setEndorsements(endorsements.push(values));
+	};
 	return (
 		<div>
 			<div className={project.cover_div}>
@@ -331,10 +349,44 @@ function ProjectPage(props) {
 				<div className={project.project_ctn}>
 					<div className={project.project_section}>
 						<h1 className={project.h1}>Tasks & Actions</h1>
-						<TaskDnD data={tasks} readOnly />
+						{/* <TaskDnD data={tasks} readOnly /> */}
 					</div>
 				</div>
 			)}
+			<div className={project.project_ctn}>
+				<div className={project.section_footer}>
+					<h1 className={project.h1}>Endorsements</h1>
+					<Button
+						id={data.pid}
+						className={`yellow`}
+						iconR={<i className="fas fa-check"></i>}
+						text="Endorse Project"
+						onClick={lockBg}
+					/>
+					<div
+						className={popup.popupContainer}
+						id={data.pid + '_popContent'}
+					>
+						{console.log(data)}
+						<EndorseList
+							id={data.pid}
+							skills={skills}
+							tools={tools}
+							editEndorsements={editEndorsements}
+							data={data}
+						/>
+					</div>
+				</div>
+				{endorsements.map((endorsement, index) => (
+					<div className={styles.section_card} key={index}>
+						<img
+							className={logout.profile_pic}
+							src={endorsement.photoUrl}
+							alt="profile"
+						/>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 }
@@ -346,3 +398,24 @@ export function dateToDMY(date) {
 		date.getUTCMonth() + 1
 	}/${date.getUTCFullYear()}`;
 }
+
+const endorsementData = [
+	{
+		uid: 'uid',
+		comment: '', //
+		skills: [], //
+		tools: [], //
+		date: '',
+		photoUrl: '',
+		name: '',
+	},
+	{
+		uid: 'uid',
+		comment: '', //
+		skills: [], //
+		tools: [], //
+		date: '',
+		photoUrl: '',
+		name: '',
+	},
+];
