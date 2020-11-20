@@ -10,7 +10,8 @@
   <hr />
 </p>
 
-<a href="https://www.uran-28-12-98.web.app/"><h2> [Live Demo] </h2></a>
+<a href="https://www.uran-28-12-98.web.app/"><h2> [Live Demo]</h2>
+<img src="https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2Fdisplay.png?alt=media&token=7aadf899-005c-44d9-bf59-d6c82c9f9710" alt="Logo" width="100%" ></a>
 
 
 <!-- TABLE OF CONTENTS -->
@@ -30,7 +31,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2Fdisplay.png?alt=media&token=7aadf899-005c-44d9-bf59-d6c82c9f9710" alt="Logo" width="100%" >
 
 ### What Uran is
 * LinkedIns more practical Twin
