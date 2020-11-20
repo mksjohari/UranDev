@@ -8,7 +8,7 @@ import ActionDnD from './actionDnD';
 
 import styles from '../../modules/DnD.module.scss';
 const newTask = {
-	taskId: `task-${new Date().getTime()}`,
+	tid: `task-${new Date().getTime()}`,
 	title: 'New Task',
 	description: '',
 	startDate: null,
@@ -29,7 +29,7 @@ function TaskDnD(props) {
 	const [meta] = useField(props.name);
 	const { form, push, remove, move } = props;
 	const { value } = meta;
-	// console.log(form.errors);
+	console.log(value);
 
 	const [currentTask, setCurrentTask] = useState(0); // index of currentTask object
 	const [switching, setSwitch] = useState(false); // index of currentTask object
@@ -72,8 +72,8 @@ function TaskDnD(props) {
 							>
 								{value.map((task, index) => (
 									<Draggable
-										key={task.taskId}
-										draggableId={task.taskId}
+										key={task.tid}
+										draggableId={task.tid}
 										index={index}
 										isDragDisabled={props.readOnly}
 									>
@@ -87,7 +87,7 @@ function TaskDnD(props) {
 												}
 											>
 												<TaskCard
-													key={task.taskId}
+													key={task.tid}
 													task={task}
 													index={index}
 													snapshot={snapshot}

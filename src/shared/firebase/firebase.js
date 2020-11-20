@@ -94,10 +94,12 @@ export const uploadProject = async (uid, project, addSkillsTools) => {
 			teamSize: project.situation.teamSize,
 			currency: project.situation.currency,
 			budget: project.situation.budget,
-			startDate: new Date(
-				project.situation.projectDates.startDate.format()
-			),
-			endDate: new Date(project.situation.projectDates.endDate.format()),
+			projectDates: {
+				startDate: new Date(
+					project.situation.projectDates.startDate.format()
+				),
+				endDate: new Date(project.situation.projectDates.endDate.format()),
+			}
 		},
 		created: new Date(),
 	};

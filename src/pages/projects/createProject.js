@@ -81,12 +81,6 @@ function CreateProject(props) {
 			setStep(step - 1);
 		}
 	}
-	// function addSection(values) {
-	// 	const newSections = [...project.results.sections, values];
-	// 	const newProject = { ...project };
-	// 	newProject.results.sections = newSections;
-	// 	setProject(newProject);
-	// }
 	function editProjectDetails(values) {
 		const newProject = { ...project };
 		newProject.status = values.status;
@@ -118,15 +112,6 @@ function CreateProject(props) {
 		newProject.cover.changed = true;
 		setProject(newProject);
 	}
-	// function editSections(index, values) {
-	//     const newSections = [...project.results.sections];
-	//     newSections[index].description = values.description;
-	//     newSections[index].sectionLink = values.sectionLink;
-	//     newSections[index].files = values.files;
-	//     const newProject = { ...project };
-	//     newProject.results.sections[index] = newSections;
-	//     setProject(newProject);
-	// }
 	const uploadToFirestore = async (addSkillsTools) => {
 		console.log(project);
 		uploadProject(props.user.uid, project, addSkillsTools);
@@ -285,7 +270,7 @@ const projectData = {
 	},
 	tasks: [
 		{
-			taskId: `task-${new Date().getTime()}`,
+			tid: `task-${new Date().getTime()}`,
 			title: 'New task',
 			description:
 				'Longer description ayyyyyyy, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse',

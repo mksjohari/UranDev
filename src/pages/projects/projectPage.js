@@ -33,6 +33,9 @@ const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
 		.doc(pid);
 	const projectInfo = await ref.get();
 	const projectData = projectInfo.data();
+	projectData.situation.projectDates.startDate = new Date(projectData.situation.projectDates.startDate.toDate())
+	projectData.situation.projectDates.endDate = new Date(projectData.situation.projectDates.endDate.toDate())
+
 	const sections = [];
 	projectData.results.sections.forEach((section) => {
 		const files = [];
@@ -169,7 +172,7 @@ function ProjectPage(props) {
 	const [endorsements, setEndorsements] = useState(endorsementData);
 	const history = useHistory();
 	useEffect(() => {
-		if (props.location.state.user) {
+		if (props.location.state && props.location.state.user) {
 			setUser(props.location.state.user);
 			setChecked(true);
 		} else {
@@ -216,9 +219,9 @@ function ProjectPage(props) {
 							className="far fa-calendar"
 							style={{ margin: '10px' }}
 						/>
-						{`${dateToDMY(
-							data.situation.startDate.toDate()
-						)} - ${dateToDMY(data.situation.endDate.toDate())}`}
+						{/* {`${dateToDMY(
+							data.situation.projectDates.startDate.toDate()
+						)} - ${dateToDMY(data.situation.projectDates.endDate.toDate())}`} */}
 					</div>
 				</div>
 			</div>
