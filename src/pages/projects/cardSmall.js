@@ -1,11 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styles from '../../modules/projects.module.scss';
 import { dateToDMY } from './projectPage';
 
 function CardSmall(props) {
+	const history = useHistory();
+
 	return (
-		<Link to={`/users/${props.uid}/projects/${props.preview.pid}`}>
+		<div
+			onClick={() => {
+				history.push(
+					`/users/${props.user.uid}/projects/${props.preview.pid}`,
+					{ user: props.user }
+				);
+			}}
+		>
 			<div className={styles.card_small}>
 				<div className={styles.row_section}>
 					<div className={styles.row_top}>
@@ -68,7 +77,7 @@ function CardSmall(props) {
 					</div>
 				</div>
 			</div>
-		</Link>
+		</div>
 	);
 }
 export default CardSmall;

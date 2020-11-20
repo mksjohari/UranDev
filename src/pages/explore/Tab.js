@@ -49,7 +49,7 @@ function Tab(props) {
 						}`}
 						onClick={tabOne ? handleToggle : null}
 					>
-						Find a project
+						Find by skill/tool
 					</button>
 				</div>
 				{tabOne ? (

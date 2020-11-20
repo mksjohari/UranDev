@@ -159,7 +159,7 @@ function ProjectPage(props) {
 	const [user, setUser] = useState();
 	const history = useHistory();
 	useEffect(() => {
-		setUser(props.user);
+		setUser(props.location.state.user);
 		if (!dataLoaded) {
 			getProjectInfo(uid, pid, setData, setLoading, setDataLoaded);
 		} else {
@@ -168,7 +168,7 @@ function ProjectPage(props) {
 			}
 		}
 		props.user.uid === uid ? setIsMe(true) : setIsMe(false);
-	}, [uid, pid, data, dataLoaded, props.user]);
+	}, [uid, pid, data, dataLoaded, props]);
 	if (loading === true || dataLoaded === false) {
 		return <div>Loading</div>;
 	}

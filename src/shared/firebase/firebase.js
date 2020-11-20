@@ -238,7 +238,9 @@ export const uploadProject = async (uid, project, addSkillsTools) => {
 				});
 			});
 			await updateUserStats({ uid, skills: newSkills, tools: newTools });
-			addSkillsTools(newSkills, newTools);
+			if (project.fromEdit === false) {
+				addSkillsTools(newSkills, newTools);
+			}
 		});
 };
 

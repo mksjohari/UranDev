@@ -34,6 +34,7 @@ async function addSkillsToolsSQL(user, project) {
 				skills.push({
 					uuid: user.uuid,
 					uid: user.uid,
+					pid: project.pid,
 					skill,
 					created: date.toString(),
 				});
@@ -42,6 +43,7 @@ async function addSkillsToolsSQL(user, project) {
 				tools.push({
 					uuid: user.uuid,
 					uid: user.uid,
+					pid: project.pid,
 					tool,
 					created: date.toString(),
 				});
@@ -262,6 +264,7 @@ const ProjectForm = withFormik({
 export default connect(mapStateToProps)(withContext(ProjectForm));
 
 const projectData = {
+	fromEdit: false,
 	status: 'Ongoing',
 	visibility: 'Public',
 	title: 'New project',

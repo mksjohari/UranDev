@@ -9,6 +9,9 @@ export class Skills {
 	uid: String;
 
 	@PrimaryColumn({ type: String })
+	pid: String;
+
+	@PrimaryColumn({ type: String })
 	skill: String;
 
 	@Column({ type: String })

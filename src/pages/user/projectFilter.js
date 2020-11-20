@@ -10,7 +10,6 @@ function ProjectFilter(props) {
 	const setSelectedTools = props.setSelectedTools;
 	const skills = props.skills;
 	const tools = props.tools;
-	console.log(skills);
 
 	const isSkillSelected = (v) =>
 		`${styles.span_tab} ${

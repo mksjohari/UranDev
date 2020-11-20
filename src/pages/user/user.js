@@ -26,7 +26,7 @@ const getDetails = async (uid, setDetails, setChecked) => {
 	setChecked(true);
 };
 
-const profile = React.memo((props) => {
+const User = (props) => {
 	const [about, setAbout] = useState(true);
 	const [checked, setChecked] = useState(false);
 	const [details, setDetails] = useState({});
@@ -37,7 +37,7 @@ const profile = React.memo((props) => {
 	useEffect(() => {
 		if (uid === props.user.uid) {
 			setIsMe(true);
-			setDetails(props.user, setChecked);
+			setDetails(props.user);
 			setChecked(true);
 		} else {
 			getDetails(uid, setDetails, setChecked);
@@ -98,6 +98,6 @@ const profile = React.memo((props) => {
 			</div>
 		);
 	}
-});
+};
 
-export default connect(mapStateToProps)(profile);
+export default connect(mapStateToProps)(User);

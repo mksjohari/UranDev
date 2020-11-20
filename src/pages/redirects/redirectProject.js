@@ -1,10 +1,12 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const RedirectProject = (props) => {
-    const history = useHistory();
-    history.push(`/users/${props.uid}`);
-    return <div>Redirect</div>;
+	const history = useHistory();
+	const uid = props.match.params.uid;
+	const pid = props.match.params.pid;
+	history.push(`/users/${uid}/projects/${pid}`);
+	return <div>Redirect</div>;
 };
 
 export default RedirectProject;

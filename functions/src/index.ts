@@ -379,44 +379,30 @@ export const tempDeleteProjectStats = functions
 		const uid = data.uid;
 		const skills = data.oldSkills;
 		const tools = data.oldTools;
+		var newSkills;
+		var newTools;
 		console.log(skills, tools);
 		const ref = db.collection('users').doc(uid);
 		const userRawStats = await ref.get();
 		const userStats = userRawStats.data();
 		if (userStats) {
+			newSkills = { ...userStats.skills };
+			newTools = { ...userStats.tools };
+		}
+
+		if (userStats) {
 			for (const [key, value] of Object.entries(skills)) {
 				if (key in userStats.skills) {
-					ref.set(
-						{
-							skills: {
-								...userStats.skills,
-								[key]: minusSkillTool(
-									userStats.skills[key],
-									value
-								),
-							},
-						},
-						{ merge: true }
-					);
+					newSkills[key] = minusSkillTool(newSkills[key], value);
 				}
 			}
 			for (const [key, value] of Object.entries(tools)) {
 				if (key in userStats.tools) {
-					ref.set(
-						{
-							tools: {
-								...userStats.tools,
-								[key]: minusSkillTool(
-									userStats.tools[key],
-									value
-								),
-							},
-						},
-						{ merge: true }
-					);
+					newTools[key] = minusSkillTool(newTools[key], value);
 				}
 			}
 		}
+		ref.update({ skills: newSkills, tools: newTools });
 		return;
 	});
 

@@ -20,6 +20,7 @@ const getPublicPreview = async (
 ) => {
 	const previews = [];
 	var previewRaw;
+
 	const ref = await getFirebase()
 		.firestore()
 		.collection('users')
@@ -35,6 +36,7 @@ const getPublicPreview = async (
 	});
 	setPreviews(previews);
 	setAllPreviews(previews);
+
 	if (fromManage === false) {
 		applyFilter(selectedSkills, selectedTools, previews, setPreviews);
 	}
@@ -71,6 +73,7 @@ function MyProjects(props) {
 	const [showDrafts, setShowDrafts] = useState(true);
 	const [skills, setSkills] = useState([]);
 	const [tools, setTools] = useState([]);
+	const [user, setUser] = useState([]);
 	const fromManage = props.fromManage;
 	const selectedSkills = props.selectedSkills;
 	const selectedTools = props.selectedTools;
@@ -78,19 +81,18 @@ function MyProjects(props) {
 	const setSelectedTools = props.setSelectedTools;
 	const hideDrafts = () => setShowDrafts(false);
 	useEffect(() => {
-		if (props.user.logged) {
-			getPublicPreview(
-				props.user.uid,
-				fromManage,
-				selectedSkills,
-				selectedTools,
-				setPreviews,
-				setAllPreviews,
-				applyFilter
-			);
-			setSkills(Object.keys(props.user.skills));
-			setTools(Object.keys(props.user.tools));
-		}
+		setUser(props.user);
+		getPublicPreview(
+			props.user.uid,
+			fromManage,
+			selectedSkills,
+			selectedTools,
+			setPreviews,
+			setAllPreviews,
+			applyFilter
+		);
+		setSkills(Object.keys(props.user.skills));
+		setTools(Object.keys(props.user.tools));
 	}, [props.user, fromManage, selectedSkills, selectedTools]);
 	useEffect(() => {
 		if (fromManage === false) {
@@ -142,9 +144,9 @@ function MyProjects(props) {
 							return (
 								<CardSmall
 									key={index}
-									uid={props.user.uid}
 									preview={preview}
 									view={props.view}
+									user={user}
 								/>
 							);
 						})}
