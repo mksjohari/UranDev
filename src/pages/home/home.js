@@ -87,7 +87,7 @@ const Home = () => {
 						className="yellow"
 						text="Get started"
 						onClick={() => {
-							history.push('/createAccount');
+							history.push('/explore');
 						}}
 					/>
 				</div>

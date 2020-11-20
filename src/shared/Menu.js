@@ -48,7 +48,11 @@ function Menu(props) {
 			<div className={styles.logout_btn} onClick={() => setOpen(!open)}>
 				<img
 					className={styles.profile_pic}
-					src={user.photoUrl}
+					src={
+						user.photoUrl !== ''
+							? user.photoUrl
+							: 'https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2Fdefault.jpg?alt=media&token=dac35811-de8e-41c6-9915-ed31a077f641'
+					}
 					alt="profile"
 				/>
 

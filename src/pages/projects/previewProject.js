@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
-import { NavLink } from 'react-router-dom';
 import { addSkillsTools } from '../../actions/userAction';
 import Developer from '../../images/developer.svg';
-import JobSearch from '../../images/jobsearch.png';
 import Button from '../../shared/sandbox/Button';
 import Carousel from '../../shared/sandbox/Carousel';
 import ReadonlyDnD from '../../shared/reactDnD/readonlyDnD';
@@ -136,25 +134,23 @@ function PreviewProject(props) {
 				</div>
 			</div>
 			<div className={`${header.tabBottom}`}>
-				<NavLink
-					activeClassName={header.activeProjectTab}
-					to="#"
-					isActive={() => overview}
-					className={header.projectTab}
+				<span
+					className={`${header.projectTab} ${
+						overview ? header.activeProjectTab : ''
+					}`}
 					onClick={() => setOverview(true)}
 				>
 					Situation & Results
-				</NavLink>
+				</span>
 
-				<NavLink
-					activeClassName={header.activeProjectTab}
-					to="#"
-					isActive={() => !overview}
-					className={header.projectTab}
+				<span
+					className={`${header.projectTab} ${
+						!overview ? header.activeProjectTab : ''
+					}`}
 					onClick={() => setOverview(false)}
 				>
 					Tasks & Actions
-				</NavLink>
+				</span>
 			</div>
 			{overview ? (
 				<div className={project.project_ctn}>
@@ -213,11 +209,13 @@ function PreviewProject(props) {
 
 							<div className={project.user_div}>
 								<img
-									src={JobSearch}
+									src={props.user.photoUrl}
 									alt="jobsearch"
 									className={project.profile_pic}
 								></img>
-								<div className={project.name}>{name}</div>
+								<div
+									className={project.name}
+								>{`${props.user.firstName} ${props.user.lastName}`}</div>
 								<div className={project.details}>
 									{situation.role}
 								</div>
@@ -308,14 +306,8 @@ function PreviewProject(props) {
 	);
 }
 
-export default connect(null, { addSkillsTools })(PreviewProject);
+export default connect(mapStateToProps, { addSkillsTools })(PreviewProject);
 
-// const desc =
-// 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.';
-// const size = '5';
-// const budget = '100,000 AUD';
-// const title = 'Tech Consultant';
-// const date = '01/01/2011 - 20/02/2020';
-// const projectTitle = "Project Title";
-// const duration = "9 yrs 1 m";
-const name = 'John Doe';
+function mapStateToProps(state) {
+	return { user: state.user };
+}

@@ -1,6 +1,5 @@
 import React from 'react';
 import WordBubble from './wordBubble';
-import Button from '../../shared/sandbox/Button';
 import SkillToolProgress from './skillToolProgress';
 import styles from '../../modules/profile.module.scss';
 
@@ -34,13 +33,6 @@ function About(props) {
 						>
 							Skills
 						</h2>
-					</div>
-					<div className={styles.endorse_button}>
-						<Button
-							className={styles.endorse_skill}
-							iconR={<i className="fas fa-check"></i>}
-							text="Endorse a skill"
-						/>
 					</div>
 				</div>
 				{skills.length !== 0 ? (
@@ -76,13 +68,6 @@ function About(props) {
 						>
 							Tools
 						</h2>
-					</div>
-					<div className={styles.endorse_button}>
-						<Button
-							className={styles.endorse_tool}
-							iconR={<i className="fas fa-check"></i>}
-							text="Endorse a tool"
-						/>
 					</div>
 				</div>
 				{tools.length !== 0 ? (
