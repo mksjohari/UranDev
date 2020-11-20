@@ -20,7 +20,7 @@ import styles from '../../modules/createProject.module.scss';
 import buttonStyle from '../../modules/_button.module.scss';
 import popup from '../../modules/popup.module.scss';
 import header from '../../modules/header.module.scss';
-import logout from '../../modules/logout.module.scss';
+import EndorseCard from './endorseCard';
 
 // import { SectionGrid, SectionGridless } from "./previewProject";
 
@@ -153,6 +153,31 @@ function secondsToDate(seconds) {
 	}
 }
 
+const getEndorsers = async (uid, pid, setEndorsers) => {
+	const endorsers = [];
+	const endorsersRaw = await getFirebase()
+		.firestore()
+		.collection('users')
+		.doc(uid)
+		.collection('projects')
+		.doc(pid)
+		.collection('endorsements')
+		.get();
+	endorsersRaw.forEach((doc) => {
+		endorsers.push(doc.data());
+	});
+	setEndorsers(endorsers);
+};
+
+function CheckEndorseExists(user, endorsers) {
+	for (let i = 0; i < endorsers.length; i++) {
+		if (endorsers[i].uid === user.uid) {
+			return true;
+		}
+	}
+	return false;
+}
+
 function ProjectPage(props) {
 	const uid = props.match.params.uid;
 	const pid = props.match.params.pid;
@@ -166,7 +191,7 @@ function ProjectPage(props) {
 	const [overview, setOverview] = useState(true);
 	const [user, setUser] = useState();
 	const [checked, setChecked] = useState(false);
-	const [endorsements, setEndorsements] = useState(endorsementData);
+	const [endorsements, setEndorsements] = useState([]);
 	const history = useHistory();
 	useEffect(() => {
 		if (props.location.state.user) {
@@ -176,6 +201,7 @@ function ProjectPage(props) {
 			getDetails(uid, setUser, setChecked);
 		}
 		if (!dataLoaded) {
+			getEndorsers(uid, pid, setEndorsements);
 			getProjectInfo(uid, pid, setData, setLoading, setDataLoaded);
 		} else {
 			if (data !== null) {
@@ -188,7 +214,7 @@ function ProjectPage(props) {
 		return <div>Loading {console.log(checked, loading, dataLoaded)}</div>;
 	}
 	const editEndorsements = (values) => {
-		setEndorsements(endorsements.push(values));
+		setEndorsements([...endorsements, values]);
 	};
 	return (
 		<div>
@@ -355,36 +381,50 @@ function ProjectPage(props) {
 			)}
 			<div className={project.project_ctn}>
 				<div className={project.section_footer}>
-					<h1 className={project.h1}>Endorsements</h1>
-					<Button
-						id={data.pid}
-						className={`yellow`}
-						iconR={<i className="fas fa-check"></i>}
-						text="Endorse Project"
-						onClick={lockBg}
-					/>
+					<div className={styles.endorsements}>
+						<h1
+							className={project.h1}
+							style={{ marginRight: '10px' }}
+						>
+							Endorsements
+						</h1>
+						<Button
+							id={data.pid}
+							className={`yellow`}
+							style={{ marginTop: '4px' }}
+							iconR={<i className="fas fa-check"></i>}
+							text="Endorse Project"
+							onClick={(e) => {
+								if (
+									CheckEndorseExists(props.user, endorsements)
+								) {
+									alert('already Endorsed this project');
+								} else if (uid === props.user.uid) {
+									alert('Cant endorse your own project');
+								} else if (props.user.logged === false) {
+									alert('You must be signed in to endorse');
+								} else {
+									lockBg(e);
+								}
+							}}
+						/>
+					</div>
 					<div
 						className={popup.popupContainer}
 						id={data.pid + '_popContent'}
 					>
-						{console.log(data)}
 						<EndorseList
 							id={data.pid}
 							skills={skills}
 							tools={tools}
 							editEndorsements={editEndorsements}
 							data={data}
+							projectUser={uid}
 						/>
 					</div>
 				</div>
 				{endorsements.map((endorsement, index) => (
-					<div className={styles.section_card} key={index}>
-						<img
-							className={logout.profile_pic}
-							src={endorsement.photoUrl}
-							alt="profile"
-						/>
-					</div>
+					<EndorseCard key={index} user={endorsement} />
 				))}
 			</div>
 		</div>
@@ -398,24 +438,3 @@ export function dateToDMY(date) {
 		date.getUTCMonth() + 1
 	}/${date.getUTCFullYear()}`;
 }
-
-const endorsementData = [
-	{
-		uid: 'uid',
-		comment: '', //
-		skills: [], //
-		tools: [], //
-		date: '',
-		photoUrl: '',
-		name: '',
-	},
-	{
-		uid: 'uid',
-		comment: '', //
-		skills: [], //
-		tools: [], //
-		date: '',
-		photoUrl: '',
-		name: '',
-	},
-];

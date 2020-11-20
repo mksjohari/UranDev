@@ -7,6 +7,7 @@ import Button from '../../shared/sandbox/Button';
 
 import styles from '../../modules/endorseList.module.scss';
 import popup from '../../modules/popup.module.scss';
+import { addEndorsement } from '../firebase/firebase';
 
 const mapStateToProps = (state) => {
 	return { user: state.user };
@@ -17,12 +18,12 @@ function EndorseList(props) {
 	const tools = props.tools;
 	const data = props.data;
 	const user = props.user;
-
+	const projectUser = props.projectUser;
 	const endorsement = {
 		uid: user.uid,
-		comment: '', //
-		skills: [], //
-		tools: [], //
+		comment: '',
+		skills: [],
+		tools: [],
 		date: new Date().getTime(),
 		photoUrl: user.photoUrl,
 		name: `${user.firstName} ${user.lastName}`,
@@ -43,49 +44,71 @@ function EndorseList(props) {
 				}}
 				// validate={validateSituation}
 				onSubmit={async (values, actions) => {
-					endorsement.skills = values.endorseSkills;
-					endorsement.tools = values.endorseTools;
-					endorsement.comment = values.comment;
-					props.editEndorsements(endorsement);
-					// alert(JSON.stringify(endorsement, 2));
+					const newEndorse = {
+						uid: user.uid,
+						comment: values.comment, //
+						skills: values.endorseSkills, //
+						tools: values.endorseTools, //
+						date: new Date().getTime(),
+						photoUrl: user.photoUrl,
+						name: `${user.firstName} ${user.lastName}`,
+					};
+
+					props.editEndorsements(newEndorse);
+					await addEndorsement(
+						user.uid,
+						projectUser,
+						data.pid,
+						newEndorse
+					);
 					actions.setSubmitting(false);
 				}}
 			>
 				{(props) => (
 					<form onSubmit={props.handleSubmit}>
-						<div className={styles.listContainer}>
-							<label htmlFor="endorseTools">
-								<h6>Endorse project Tools:</h6>
-							</label>
-							{tools.map((tool, index) => (
-								<label className={styles.checkbox_row}>
-									<Field
-										type="checkbox"
-										name="endorseTools"
-										value={tool}
-									/>
-									<div className={styles.left_padding}>
-										{tool}
-									</div>
+						<div className={styles.skillsToolsContainer}>
+							<div className={styles.listContainer}>
+								<label htmlFor="endorseSkills">
+									<h6>Endorse project Skills:</h6>
 								</label>
-							))}
-						</div>
-						<div className={styles.listContainer}>
-							<label htmlFor="endorseSkills">
-								<h6>Endorse project Skills:</h6>
-							</label>
-							{skills.map((skill, index) => (
-								<label className={styles.checkbox_row}>
-									<Field
-										type="checkbox"
-										name="endorseSkills"
-										value={skill}
-									/>
-									<div className={styles.left_padding}>
-										{skill}
-									</div>
+								{skills.map((skill, index) => (
+									<label
+										key={index}
+										className={styles.checkbox_row}
+									>
+										<Field
+											type="checkbox"
+											name="endorseSkills"
+											value={skill}
+										/>
+										<span className={styles.left_padding}>
+											{skill}
+										</span>
+										<br />
+									</label>
+								))}
+							</div>
+							<div className={styles.listContainer}>
+								<label htmlFor="endorseTools">
+									<h6>Endorse project Tools:</h6>
 								</label>
-							))}
+								{tools.map((tool, index) => (
+									<label
+										key={index}
+										className={styles.checkbox_row}
+									>
+										<Field
+											type="checkbox"
+											name="endorseTools"
+											value={tool}
+										/>
+										<span className={styles.left_padding}>
+											{tool}
+										</span>
+										<br />
+									</label>
+								))}
+							</div>
 						</div>
 						<div className={styles.listContainer}>
 							<label htmlFor="endorseSkills">
@@ -94,6 +117,7 @@ function EndorseList(props) {
 							<Field
 								as="textarea"
 								className={`inp-field`}
+								style={{ width: '100%' }}
 								name="comment"
 								placeholder="Type here"
 							/>

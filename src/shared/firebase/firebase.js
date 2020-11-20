@@ -244,6 +244,28 @@ export const uploadProject = async (uid, project, addSkillsTools) => {
 		});
 };
 
+export const addEndorsement = async (
+	user_uid,
+	project_uid,
+	project_pid,
+	endorsement
+) => {
+	console.log(user_uid, project_uid, project_pid, endorsement);
+	const eid = `${user_uid}-${project_uid}-${Math.floor(
+		Math.random() * 1000000000
+	)}`;
+	endorsement.eid = eid;
+	await getFirebase()
+		.firestore()
+		.collection('users')
+		.doc(project_uid)
+		.collection('projects')
+		.doc(project_pid)
+		.collection('endorsements')
+		.doc(eid)
+		.set(endorsement);
+};
+
 // STORAGE //
 export const storage = getStorage(firebase);
 
