@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { shallow, configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-const renderer = require("react-test-renderer");
-configure({ adapter: new Adapter() });
 import { SignUp } from "../src/shared/signUpForm";
+configure({ adapter: new Adapter() });
+const renderer = require("react-test-renderer");
 
 describe("<SignUp /> component runs without errors", () => {
     it("SignUp component renders without crashing", () => {
@@ -23,7 +23,7 @@ describe("<SignUp /> component runs without errors", () => {
     });
 });
 
-describe("<SignUp /> component renders correctly", () => {
+describe("<SignUp /> component renders correct content", () => {
     let container = null;
     beforeAll(() => {
         // setup a DOM element as a render target
@@ -36,7 +36,6 @@ describe("<SignUp /> component renders correctly", () => {
             container
         );
     });
-
     afterAll(() => {
         // cleanup on exiting
         ReactDOM.unmountComponentAtNode(container);
@@ -47,7 +46,6 @@ describe("<SignUp /> component renders correctly", () => {
         expect(document.querySelector("form").className).toBe("login-form");
         expect(document.querySelector("h2").innerHTML).toBe("Sign Up");
     });
-
     it("Renders 5 <input> fields", () => {
         expect(document.getElementsByClassName("inp-text")).toHaveLength(5);
     });
@@ -118,7 +116,7 @@ describe("<SignUp /> component handles interactions", () => {
         expect(inputs.at(3).getDOMNode().value).toBe(user.password);
         expect(inputs.at(4).getDOMNode().value).toBe(user.confirmPass);
     });
-    it("Form calls onSubmit prop when submit button is clicked", () => {
+    it("onSubmit prop is called when submit button is clicked", () => {
         const loginButton = wrapper.find(".login");
         loginButton.simulate("submit", { preventDefault: () => {} });
         expect(handleSubmit).toHaveBeenCalled();
