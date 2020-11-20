@@ -5,9 +5,9 @@ module.exports = {
   preset: 'ts-jest',
   coverageDirectory: 'coverage',
   collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}', '!src/**/*.d.ts'],
-  roots: ["./src"],
+  roots: ['<rootDir>'],
   transform: {
-    "^.+\\.jsx?$": "babel-jest"
+    '^.+\\.tsx?$': 'babel-jest',
   },
   transformIgnorePatterns: [
     'node_modules/(?!@react-native-community/google-signin|react-native|reactxp-webview|react-pose-core|animated-pose|@react-native-community/async-storage|@invertase/react-native-apple-authentication)',

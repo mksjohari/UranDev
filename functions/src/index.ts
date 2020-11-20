@@ -12,7 +12,7 @@ import { Tools } from "./entity/tools";
 admin.initializeApp();
 const db = admin.firestore();
 
-const connect = async () => {
+export const connect = async () => {
     return await createConnection({
         type: "mysql",
         host: functions.config().cloudsql.host,
@@ -389,3 +389,5 @@ export const updateUserStats = functions
         }
         return;
     });
+
+export default admin;

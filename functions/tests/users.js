@@ -20,6 +20,10 @@ const amirahha = {
   },
   socials: {
     "figma": ""
+  },
+  _collections: {
+    projects: [],
+    projectPreviews: []
   }
 };
 
@@ -47,3 +51,8 @@ const john = {
     "figma": ""
   }
 };
+
+module.exports = {
+  amirahha,
+  john
+}
