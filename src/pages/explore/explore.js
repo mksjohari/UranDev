@@ -42,15 +42,38 @@ const getCount = async (limit, setPageNumbers) => {
 // 	console.log('getting filtered users');
 // };
 
-const Explore = (props) => {
+const Explore = () => {
 	const [users, setUsers] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
 	const [pageNumbers, setPageNumbers] = useState([1, 2]);
-	const [limit] = useState(5);
+	const [limit] = useState(10);
 	const [placeHolder, setPlaceHolder] = useState([]);
 
+	const filterSearch = async (tabOne, data) => {
+		var results;
+		if (tabOne) {
+			results = await getExploreUsers({
+				extraTabOne: data,
+				limit,
+				page,
+			});
+		} else {
+			results = await getExploreUsers({
+				extraTabTwo: data,
+				limit,
+				page,
+			});
+		}
+
+		if (!results.data || results.data.length === 0) {
+			setUsers([]);
+		} else {
+			setUsers(results.data);
+			setLoading(false);
+		}
+	};
 	useEffect(() => {
 		const holder = [];
 		for (var i = 0; i < limit; i++) {
@@ -82,7 +105,7 @@ const Explore = (props) => {
 	return (
 		<div className={styles.grid}>
 			<div id={styles.div1}>
-				<Tab />
+				<Tab filterSearch={filterSearch} />
 			</div>
 			<div id={styles.div2}>
 				<div className={styles.filter}>

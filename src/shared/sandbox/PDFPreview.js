@@ -12,7 +12,7 @@ import popup from "../../modules/popup.module.scss";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const PDFPreview = (props) => {
-    // console.log(props.file);
+    console.log(props.file);
 
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(0);
@@ -48,7 +48,7 @@ const PDFPreview = (props) => {
                         className={popup.popupContainer}
                         id={"showPreview_popContent"}
                     >
-                        <PDFScroll file={props.file} />
+                        <PDFScroll file={props.file[0].preview} />
                     </div>
                 </>
             ) : (
@@ -75,7 +75,7 @@ const PDFPreview = (props) => {
             </div>
             <center>
                 <Document
-                    file={props.file}
+                    file={props.file.preview}
                     onLoadSuccess={onDocumentLoadSuccess}
                 >
                     <Page width={700} pageNumber={pageNumber} />

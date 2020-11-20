@@ -4,6 +4,7 @@ import styles from "../../modules/dropzone.module.scss";
 
 export function Carousel(props) {
     const [index, setIndex] = useState(0);
+    console.log(props.files)
     const file = props.files[index];
     const nextFile = () => setIndex(index + 1);
     const prevFile = () => setIndex(index - 1);

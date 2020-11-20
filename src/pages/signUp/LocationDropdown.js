@@ -21,7 +21,6 @@ export default function LocationDropdown(props) {
 			location: results[0].formatted_address,
 		});
 		setAddress(results[0].formatted_address);
-		console.log(results);
 	};
 	return (
 		<PlacesAutocomplete
@@ -45,7 +44,7 @@ export default function LocationDropdown(props) {
 					/>
 					<div className={styles.location_dropdown}>
 						{loading && <div>Loading...</div>}
-						{suggestions.map((suggestion,index) => {
+						{suggestions.map((suggestion, index) => {
 							const className = suggestion.active
 								? styles.location_active
 								: styles.location;
@@ -59,7 +58,8 @@ export default function LocationDropdown(props) {
 										cursor: 'pointer',
 								  };
 							return (
-								<div key={index}
+								<div
+									key={index}
 									{...getSuggestionItemProps(suggestion, {
 										className,
 										style,

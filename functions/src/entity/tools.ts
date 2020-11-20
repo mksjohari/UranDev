@@ -9,6 +9,9 @@ export class Tools {
 	uid: String;
 
 	@PrimaryColumn({ type: String })
+	pid: String;
+
+	@PrimaryColumn({ type: String })
 	tool: String;
 
 	@Column({ type: String })

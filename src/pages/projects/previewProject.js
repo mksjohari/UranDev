@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { NavLink } from 'react-router-dom';
-
+import { addSkillsTools } from '../../actions/userAction';
 import Developer from '../../images/developer.svg';
 import JobSearch from '../../images/jobsearch.png';
 import Button from '../../shared/sandbox/Button';
@@ -14,6 +14,7 @@ import styles from '../../modules/createProject.module.scss';
 import buttonStyle from '../../modules/_button.module.scss';
 import dnd from '../../modules/DnD.module.scss';
 import header from '../../modules/header.module.scss';
+import { connect } from 'react-redux';
 
 export function SectionGrid(props) {
 	return (
@@ -45,6 +46,11 @@ export function SectionGrid(props) {
 	);
 }
 export function SectionGridless(props) {
+	console.log(props.section.files);
+	console.log(props.section.files);
+	if (props.section.files[0] === undefined) {
+		return <span>Loading...</span>;
+	}
 	return (
 		<div className={styles.section_left}>
 			<div className={styles.section_desc}>
@@ -63,13 +69,13 @@ export function SectionGridless(props) {
 			) : (
 				''
 			)}
-			{props.section.files.type === 'application/pdf' ? (
-				<div className={styles.pdf_display}>
-					<PDFPreview file={props.section.files} preview />
-				</div>
-			) : (
-				''
-			)}
+			{/* {props.section.files[0].length > 0 ? ( */}
+			<div className={styles.pdf_display}>
+				<PDFPreview file={props.section.files} preview />
+			</div>
+			{/* ) : (
+                ""
+            )} */}
 		</div>
 	);
 }
@@ -281,14 +287,14 @@ function PreviewProject(props) {
 					className={styles.save_draft}
 					iconR={<i className="fas fa-flag" />}
 					text="Complete Project"
-					onClick={props.finishProject}
+					onClick={() => props.finishProject(props.addSkillsTools)}
 				/>
 			</div>
 		</div>
 	);
 }
 
-export default PreviewProject;
+export default connect(null, { addSkillsTools })(PreviewProject);
 
 // const desc =
 // 	'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse.';
