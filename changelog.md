@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.0.8] - 20th November 2020
+
+### Added
+- Fixed deploy redirects
+- Added Unit testing using Jest
+- Save account settings to SQL
+- Project filters by Skills & Tools
+
+## [1.0.7] - 17th November 2020
+
+### Added
+- Account settings
+- Updated user bubble chart
+- Connected Firestore to Redux
+- Mvp of Project Creation
+
+## [1.0.6] - 11th November 2020
+
+### Added
+- Formik validation
+- Add project data to Firestore
+- Responsive layout
+
+## [1.0.5] - 4th November 2020
+
+### Added
+- Added results, sections and links
+- Fixed sign-up page layout
+- Added routing and Explore
+- Added carousel preview for Tasks & Actions
+
 ## [1.0.4] - 27th October 2020
 
 ### Added

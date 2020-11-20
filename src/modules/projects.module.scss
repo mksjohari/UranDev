@@ -42,7 +42,7 @@
 }
 .row_bottom {
 	grid-row: 2 / 3;
-	padding: 0% 3% 0% 3%;
+	padding: 0% 3% 3% 3%;
 }
 .card_text {
 	display: flex-inline;
@@ -69,6 +69,8 @@
 	flex-wrap: wrap;
 	justify-self: center;
 	padding-top: 1em;
+	padding-left: 2em;
+    align-items: center;
 }
 .tag_type {
 	padding: 1px 15px;

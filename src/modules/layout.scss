@@ -25,6 +25,11 @@
 // 	align-self: center;
 // }
 
+.content.explore {
+    margin: 20px 80px 0px 80px;
+    padding: 0px;
+}
+
 .content.profile {
     background-color: $grey;
     box-shadow: 0px 0px 40px 0px $shadow;

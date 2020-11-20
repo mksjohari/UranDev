@@ -35,28 +35,26 @@
 .skill {
 	background: $yellow;
 	color: $darkyellow;
-	padding: 0 5px;
-	margin: 0 2px;
+	border-radius: 20px;
+    padding: 4px 20px;
+    margin-right: 10px;
 }
 
 .skill_selected {
 	background: $orange;
 	color: $darkyellow;
-	padding: 0 5px;
-	margin: 0 2px;
 }
 
 .tool {
-	background: $blue;
-	color: $darkblue;
-	padding: 0 5px;
-	margin: 0 2px;
+	background: #afdee9;
+    color: #3b646d;
+    border-radius: 20px;
+    padding: 4px 20px;
+    margin-right: 10px;
 }
 .tool_selected {
 	background: $darkblue;
 	color: $yellow;
-	padding: 0 5px;
-	margin: 0 2px;
 }
 
 .p {
