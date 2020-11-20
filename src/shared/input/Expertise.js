@@ -20,7 +20,7 @@ function Expertise(props) {
                                 Business & Management
                             </div>
                         </label>
-                        <label className={styles.center_row}>
+                        <label className={settings.center_row}>
                             <Field
                                 type="checkbox"
                                 name="expertise"
@@ -30,7 +30,7 @@ function Expertise(props) {
                                 Creative Arts
                             </div>
                         </label>
-                        <label className={styles.center_row}>
+                        <label className={settings.center_row}>
                             <Field
                                 type="checkbox"
                                 name="expertise"
@@ -40,7 +40,7 @@ function Expertise(props) {
                                 Engineering & Mathematics
                             </div>
                         </label>
-                        <label className={styles.center_row}>
+                        <label className={settings.center_row}>
                             <Field
                                 type="checkbox"
                                 name="expertise"
@@ -50,7 +50,7 @@ function Expertise(props) {
                                 Humanities, Arts & Social Sciences
                             </div>
                         </label>
-                        <label className={styles.center_row}>
+                        <label className={settings.center_row}>
                             <Field
                                 type="checkbox"
                                 name="expertise"
@@ -62,7 +62,7 @@ function Expertise(props) {
                         </label>
                     </div>
                     <div className={styles.column}>
-                        <label className={styles.center_row}>
+                        <label className={settings.center_row}>
                             <Field
                                 type="checkbox"
                                 name="expertise"
@@ -72,7 +72,7 @@ function Expertise(props) {
                                 Law, Legal Studies & Justice
                             </div>
                         </label>
-                        <label className={styles.center_row}>
+                        <label className={settings.center_row}>
                             <Field
                                 type="checkbox"
                                 name="expertise"
@@ -82,7 +82,7 @@ function Expertise(props) {
                                 Medical & Health Sciences
                             </div>
                         </label>
-                        <label className={styles.center_row}>
+                        <label className={settings.center_row}>
                             <Field
                                 type="checkbox"
                                 name="expertise"
@@ -92,7 +92,7 @@ function Expertise(props) {
                                 Property & Built Environment
                             </div>
                         </label>
-                        <label className={styles.center_row}>
+                        <label className={settings.center_row}>
                             <Field
                                 type="checkbox"
                                 name="expertise"
@@ -102,7 +102,7 @@ function Expertise(props) {
                                 Sciences
                             </div>
                         </label>
-                        <label className={styles.center_row}>
+                        <label className={settings.center_row}>
                             <Field
                                 type="checkbox"
                                 name="expertise"
