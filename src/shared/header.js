@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 	return { user: state.user };
 }
 
-const Header = (props) => {
+export const Header = (props) => {
 	const [user, setUser] = useState();
 	const [open, setOpen] = useState(false);
 	useEffect(() => {

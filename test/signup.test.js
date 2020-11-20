@@ -4,8 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import { shallow, configure, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { SignUp } from "../src/shared/signUpForm";
-configure({ adapter: new Adapter() });
 const renderer = require("react-test-renderer");
+configure({ adapter: new Adapter() });
 
 describe("<SignUp /> component runs without errors", () => {
     it("SignUp component renders without crashing", () => {
