@@ -12,6 +12,7 @@ import styles from '../../modules/DnD.module.scss';
 const TaskCard = (props) => {
 	const [edit, setEdit] = useState(false);
 	const deleteTask = props.deleteTask;
+	const dndSnapshot = props.readOnly ? '' : props.snapshot;
 	// console.log(props.errors)
 
 	const saveTask = () => {
@@ -162,9 +163,9 @@ const TaskCard = (props) => {
 			<div
 				className={`${styles.card} ${
 					props.index === props.currentTask &&
-					!props.snapshot.isDragging &&
+					!dndSnapshot.isDragging &&
 					styles.task_current
-				} ${props.snapshot.isDragging && styles.task_dragging}`}
+				} ${dndSnapshot.isDragging && styles.task_dragging}`}
 			>
 				{props.index === props.currentTask && edit
 					? saveTask()

@@ -25,7 +25,6 @@ const ActionCard = (props) => {
 						>
 							Tools:
 						</div>
-						{console.log(props.action.tools)}
 						{props.action.tools.map((tool, index) => (
 							<div
 								key={`${index}-${Math.random() * 100000000}`}

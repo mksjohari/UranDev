@@ -125,7 +125,6 @@ function TaskDnD(props) {
 				</div>
 				<div className={` ${styles.section_action}`}>
 					<div className={styles.heading}>
-						{/* {console.log(value)} */}
 						{!switching &&
 							`Task ${currentTask + 1}: ${
 								value[currentTask].title

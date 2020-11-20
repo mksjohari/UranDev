@@ -14,6 +14,8 @@ import { getDetails } from '../user/user';
 import Button from '../../shared/sandbox/Button';
 import { lockBg } from '../../shared/sandbox/Popup';
 import EndorseList from '../../shared/input/EndorseList';
+import ReadonlyDnD from '../../shared/reactDnD/readonlyDnD';
+import { SectionGrid, SectionGridless } from './previewProject.js';
 
 import project from '../../modules/previewProject.module.scss';
 import styles from '../../modules/createProject.module.scss';
@@ -33,8 +35,12 @@ const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
 		.doc(pid);
 	const projectInfo = await ref.get();
 	const projectData = projectInfo.data();
-	projectData.situation.projectDates.startDate = new Date(projectData.situation.projectDates.startDate.toDate())
-	projectData.situation.projectDates.endDate = new Date(projectData.situation.projectDates.endDate.toDate())
+	projectData.situation.projectDates.startDate = new Date(
+		projectData.situation.projectDates.startDate.toDate()
+	);
+	projectData.situation.projectDates.endDate = new Date(
+		projectData.situation.projectDates.endDate.toDate()
+	);
 
 	const sections = [];
 	projectData.results.sections.forEach((section) => {
@@ -43,12 +49,12 @@ const getProjectInfo = async (uid, pid, setData, setLoading, setDataLoaded) => {
 			const url = await storage
 				.ref(`users/${uid}/projects/${pid}/results/${file.name}`)
 				.getDownloadURL();
-			files.push({ name: file.name, preview: url });
+			files.push({ name: file.name, type: file.type, preview: url });
 		});
 		section.files = files;
 		sections.push(section);
 	});
-	projectData.sections = sections;
+	projectData.results.sections = sections;
 	if (sections.length === projectData.results.sections.length) {
 		setData(projectData);
 		setLoading(false);
@@ -136,25 +142,6 @@ const editProject = async (project, tasks, history) => {
 	project.oldTools = oldTools;
 	history.push('/edit', { projectData: project });
 };
-
-function secondsToDate(seconds) {
-	var months = 0;
-	var days = 0;
-	while (Math.floor(seconds / 2592000) > 0) {
-		seconds = seconds - 2592000;
-		months += 1;
-	}
-	days = Math.ceil(seconds / 86400);
-	if (months === 0) {
-		return <span>{days} Days</span>;
-	} else {
-		return (
-			<span>
-				{months} Months {days} Days
-			</span>
-		);
-	}
-}
 
 const getEndorsers = async (uid, pid, setEndorsers) => {
 	const endorsers = [];
@@ -245,9 +232,9 @@ function ProjectPage(props) {
 							className="far fa-calendar"
 							style={{ margin: '10px' }}
 						/>
-						{/* {`${dateToDMY(
-							data.situation.projectDates.startDate.toDate()
-						)} - ${dateToDMY(data.situation.projectDates.endDate.toDate())}`} */}
+						{`${dateToDMY(
+							data.situation.projectDates.startDate
+						)} - ${dateToDMY(data.situation.projectDates.endDate)}`}
 					</div>
 				</div>
 			</div>
@@ -316,10 +303,20 @@ function ProjectPage(props) {
 										</div>
 									</div>
 									<div className={project.details}>
-										{secondsToDate(
-											data.situation.endDate -
-												data.situation.startDate
-										)}
+										{moment
+											.duration(
+												moment(
+													data.situation.projectDates
+														.endDate
+												).diff(
+													moment(
+														data.situation
+															.projectDates
+															.startDate
+													)
+												)
+											)
+											.humanize({ d: 7, w: 4 })}
 									</div>
 								</div>
 							</div>
@@ -364,21 +361,35 @@ function ProjectPage(props) {
 								{data.results.conclusion}
 							</div>
 						</div>
-						{data.results.sections.length
-							? data.results.sections.map((section, index) => (
-									<div
-										key={index}
-										className={`${project.top_margin}`}
-									></div>
-							  ))
-							: ''}
+						{data.results.sections.length > 0 &&
+							data.results.sections.map((section, index) => {
+								if (section.files.length > 0) {
+									if (
+										section.files[0].type === 'image/jpeg'
+									) {
+										return (
+											<SectionGrid section={section} />
+										);
+									} else {
+										return (
+											<SectionGridless
+												section={section}
+											/>
+										);
+									}
+								} else {
+									return (
+										<SectionGridless section={section} />
+									);
+								}
+							})}
 					</div>
 				</div>
 			) : (
 				<div className={project.project_ctn}>
 					<div className={project.project_section}>
 						<h1 className={project.h1}>Tasks & Actions</h1>
-						{/* <TaskDnD data={tasks} readOnly /> */}
+						<ReadonlyDnD data={tasks} />
 					</div>
 				</div>
 			)}

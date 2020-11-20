@@ -25,6 +25,17 @@
 			}
 		]
 	},
+	"headers": [
+		{
+			"source": "index.html",
+			"headers": [
+				{
+					"key": "Access-Control-Allow-Origin",
+					"value": "*"
+				}
+			]
+		}
+	],
 	"storage": {
 		"rules": "storage.rules"
 	},

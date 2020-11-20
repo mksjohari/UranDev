@@ -72,6 +72,8 @@ export const addUserDetails = async (
 		socials: thirdStep,
 		skills: {},
 		tools: {},
+		endorseSkills: {},
+		endorseTools: {},
 	});
 };
 
@@ -98,8 +100,10 @@ export const uploadProject = async (uid, project, addSkillsTools) => {
 				startDate: new Date(
 					project.situation.projectDates.startDate.format()
 				),
-				endDate: new Date(project.situation.projectDates.endDate.format()),
-			}
+				endDate: new Date(
+					project.situation.projectDates.endDate.format()
+				),
+			},
 		},
 		created: new Date(),
 	};
@@ -120,10 +124,12 @@ export const uploadProject = async (uid, project, addSkillsTools) => {
 						files.push(file.name);
 					});
 					action.files.forEach(async (file) => {
-						const path = storage.ref(
-							`users/${uid}/projects/${project.pid}/${file.name}`
-						);
-						await path.put(file);
+						if (file.size) {
+							const path = storage.ref(
+								`users/${uid}/projects/${project.pid}/${file.name}`
+							);
+							await path.put(file);
+						}
 					});
 					actions.push({
 						actionId: action.actionId,
@@ -171,14 +177,13 @@ export const uploadProject = async (uid, project, addSkillsTools) => {
 				links: project.results.links,
 			};
 			project.results.sections.forEach((section) => {
-				console.log(section);
 				const files = [];
 				section.files.forEach(async (file) => {
 					const path = storage.ref(
 						`users/${uid}/projects/${project.pid}/results/${file.name}`
 					);
 					path.put(file);
-					files.push({ name: file.name });
+					files.push({ name: file.name, type: file.type });
 				});
 				sections.push({
 					sectionId: section.sectionId,
@@ -191,13 +196,17 @@ export const uploadProject = async (uid, project, addSkillsTools) => {
 			var url =
 				'https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2FdefaultProject.png?alt=media&token=dfa29922-f6da-47f1-9b01-a50a3ac15266';
 			if (project.cover.changed === true) {
-				const path = storage.ref(
-					`users/${uid}/projects/${project.pid}/cover`
-				);
-				await path.put(project.cover.imgSrc);
-				url = await storage
-					.ref(`users/${uid}/projects/${project.pid}/cover`)
-					.getDownloadURL();
+				if (typeof project.cover.imgSrc !== 'string') {
+					const path = storage.ref(
+						`users/${uid}/projects/${project.pid}/cover`
+					);
+					await path.put(project.cover.imgSrc);
+					url = await storage
+						.ref(`users/${uid}/projects/${project.pid}/cover`)
+						.getDownloadURL();
+				} else {
+					url = project.cover.imgSrc;
+				}
 			}
 			if (project.fromEdit === true) {
 				await tempDeleteProjectStats({
@@ -221,7 +230,6 @@ export const uploadProject = async (uid, project, addSkillsTools) => {
 				skills: Object.keys(newSkills),
 				tools: Object.keys(newTools),
 			};
-			console.log(uid, project.pid, results);
 			await ref.update({ results: results });
 			await getFirebase()
 				.firestore()
@@ -252,7 +260,6 @@ export const addEndorsement = async (
 	project_pid,
 	endorsement
 ) => {
-	console.log(user_uid, project_uid, project_pid, endorsement);
 	const eid = `${user_uid}-${project_uid}-${Math.floor(
 		Math.random() * 1000000000
 	)}`;
