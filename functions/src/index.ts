@@ -406,6 +406,37 @@ export const tempDeleteProjectStats = functions
 		return;
 	});
 
+export const addEndorserStats = functions
+	.region('australia-southeast1')
+	.firestore.document('users/{uid}/{projects}/{pid}/endorsements/{eid}')
+	.onCreate(async (snap, context) => {
+		const endorse = snap.data();
+		const uid = context.params.uid;
+		const ref = db.collection('users').doc(uid);
+		const userRawStats = await ref.get();
+		const userStats = userRawStats.data();
+		if (userStats) {
+			var updatedSkills = userStats.endorseSkills || {};
+			var updatedTools = userStats.endorseSkills || {};
+		}
+		endorse.skills.forEach((skill: String) => {
+			if (`${skill}` in updatedSkills) updatedSkills[`${skill}`] += 1;
+			else {
+				updatedSkills[`${skill}`] = 1;
+			}
+		});
+		endorse.tools.forEach((tool: String) => {
+			if (`${tool}` in updatedTools) updatedTools[`${tool}`] += 1;
+			else {
+				updatedTools[`${tool}`] = 1;
+			}
+		});
+		ref.update({
+			endorseSkills: updatedSkills,
+			endorseTools: updatedTools,
+		});
+	});
+
 export const updateUserStats = functions
 	.region('australia-southeast1')
 	.https.onCall(async (data, context) => {
