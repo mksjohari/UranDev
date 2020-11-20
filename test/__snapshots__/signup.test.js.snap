@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignUp component matches previous snapshots 1`] = `
+exports[`<SignUp /> component runs SignUp component matches previous snapshots 1`] = `
 <form
   className="login-form"
   onSubmit={[Function]}
@@ -102,6 +102,7 @@ exports[`SignUp component matches previous snapshots 1`] = `
     placeholder="First Name"
     required={true}
     type="text"
+    value=""
   />
   <input
     className="inp-text"
@@ -109,6 +110,7 @@ exports[`SignUp component matches previous snapshots 1`] = `
     placeholder="Last Name"
     required={true}
     type="text"
+    value=""
   />
   <input
     className="inp-text"
@@ -116,6 +118,7 @@ exports[`SignUp component matches previous snapshots 1`] = `
     placeholder="   Email"
     required={true}
     type="text"
+    value=""
   />
   <span
     className="divider"
@@ -134,6 +137,7 @@ exports[`SignUp component matches previous snapshots 1`] = `
     placeholder="   Password"
     required={true}
     type="password"
+    value=""
   />
   <input
     className="inp-text"
@@ -141,6 +145,7 @@ exports[`SignUp component matches previous snapshots 1`] = `
     placeholder="   Confirm Password"
     required={true}
     type="password"
+    value=""
   />
   <div
     className="password-strength-meter"

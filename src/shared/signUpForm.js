@@ -109,6 +109,7 @@ export const SignUp = React.memo((props) => {
 				className="inp-text"
 				placeholder="First Name"
 				type="text"
+				value={firstName}
 				onChange={(e) => setFirstName(e.target.value)}
 				required
 			/>
@@ -116,6 +117,7 @@ export const SignUp = React.memo((props) => {
 				className="inp-text"
 				placeholder="Last Name"
 				type="text"
+				value={lastName}
 				onChange={(e) => setLastName(e.target.value)}
 				required
 			/>
@@ -123,6 +125,7 @@ export const SignUp = React.memo((props) => {
 				className="inp-text"
 				placeholder="&#xf0e0;   Email"
 				type="text"
+				value={email}
 				onChange={(e) => setEmail(e.target.value)}
 				required
 			/>
@@ -133,6 +136,7 @@ export const SignUp = React.memo((props) => {
 				className={!errormsg ? 'inp-text' : 'inp-text inp_error'}
 				placeholder="&#xf070;   Password"
 				type="password"
+				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 				required
 			/>
@@ -140,6 +144,7 @@ export const SignUp = React.memo((props) => {
 				className="inp-text"
 				placeholder="&#xf070;   Confirm Password"
 				type="password"
+				value={confirmPass}
 				onChange={(e) => setConfirmPass(e.target.value)}
 				required
 			/>
