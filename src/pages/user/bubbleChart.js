@@ -178,6 +178,7 @@ export default class BubbleChart extends Component {
             .style("stroke-width", () => {
                 return valueFont.lineWeight ? valueFont.lineWeight : 0;
             })
+            .style("cursor", "pointer")
             .text(function (d) {
                 return d.value;
             });
@@ -201,6 +202,7 @@ export default class BubbleChart extends Component {
             .style("stroke-width", () => {
                 return labelFont.lineWeight ? labelFont.lineWeight : 0;
             })
+            .style("cursor", "pointer")
             .text(function (d) {
                 // console.log("d label ", d.label, "d id ", d.id);
                 return d.label;
