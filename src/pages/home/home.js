@@ -24,7 +24,7 @@ const Home = () => {
 						className="blue"
 						text="Get started"
 						onClick={() => {
-							history.push('/createAccount');
+							history.push('/explore');
 						}}
 					/>
 				</div>
@@ -52,7 +52,7 @@ const Home = () => {
 						className="pink"
 						text="Get started"
 						onClick={() => {
-							history.push('/createAccount');
+							history.push('/explore');
 						}}
 					/>
 				</div>
@@ -87,7 +87,7 @@ const Home = () => {
 						className="yellow"
 						text="Get started"
 						onClick={() => {
-							history.push('/createAccount');
+							history.push('/explore');
 						}}
 					/>
 				</div>

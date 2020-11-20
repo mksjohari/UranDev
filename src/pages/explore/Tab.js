@@ -58,14 +58,14 @@ function Tab(props) {
 							<input
 								name="firstname"
 								className={`${styles.inp_text} ${styles.search}`}
-								placeholder="firstname"
+								placeholder="First name"
 								value={firstName}
 								onChange={(e) => setFirstName(e.target.value)}
 							/>
 							<input
 								name="lastname"
 								className={`${styles.inp_text} ${styles.search}`}
-								placeholder="lastname"
+								placeholder="Last name"
 								value={lastName}
 								onChange={(e) => setLastName(e.target.value)}
 							/>
@@ -91,14 +91,14 @@ function Tab(props) {
 							<input
 								name="skill"
 								className={`${styles.inp_text} ${styles.search}`}
-								placeholder="skill"
+								placeholder="Skill"
 								value={skill}
 								onChange={(e) => setSkill(e.target.value)}
 							/>
 							<input
 								name="tool"
 								className={`${styles.inp_text} ${styles.search}`}
-								placeholder="tool"
+								placeholder="Tool"
 								value={tool}
 								onChange={(e) => setTool(e.target.value)}
 							/>
