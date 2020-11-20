@@ -77,7 +77,7 @@ git clone https://github.com/mksjohari/UranDev
 ```sh
 npm install
 ```
-4. Enter your API in `config.js`
+4. Add environment variables to firebase project
 ```JS
 firebase functions:config:set google.id="THE CLIENT ID"
 ```
