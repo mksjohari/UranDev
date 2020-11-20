@@ -140,6 +140,8 @@ export default class BubbleChart extends Component {
                 return d.data.color ? d.data.color : color(nodes.indexOf(d));
             })
             .style("z-index", 1)
+            .style("transition", "0.3s all ease-in-out")
+            .style("cursor", "pointer")
             .on("mouseover", function (event, d) {
                 d3.select(this).attr("r", d.r * 1.04);
             })
@@ -176,6 +178,7 @@ export default class BubbleChart extends Component {
             .style("stroke-width", () => {
                 return valueFont.lineWeight ? valueFont.lineWeight : 0;
             })
+            .style("cursor", "pointer")
             .text(function (d) {
                 return d.value;
             });
@@ -199,6 +202,7 @@ export default class BubbleChart extends Component {
             .style("stroke-width", () => {
                 return labelFont.lineWeight ? labelFont.lineWeight : 0;
             })
+            .style("cursor", "pointer")
             .text(function (d) {
                 // console.log("d label ", d.label, "d id ", d.id);
                 return d.label;
