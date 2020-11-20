@@ -8,8 +8,10 @@ import '../../modules/signUp.module.scss';
 import 'react-step-progress-bar/styles.css';
 import styles from '../../modules/home.module.scss';
 import Button from '../../shared/sandbox/Button';
+import { useHistory } from 'react-router-dom';
 
-const Home = (props) => {
+const Home = () => {
+	const history = useHistory();
 	return (
 		<div className={styles.body}>
 			<div className={`${styles.hero}`}>
@@ -18,7 +20,13 @@ const Home = (props) => {
 					<p style={{ fontSize: '16px' }}>
 						Create your e-portfolio today!
 					</p>
-					<Button className="blue" text="Get started" />
+					<Button
+						className="blue"
+						text="Get started"
+						onClick={() => {
+							history.push('/createAccount');
+						}}
+					/>
 				</div>
 				<img
 					className={styles.jobsearch_img}
@@ -40,7 +48,13 @@ const Home = (props) => {
 						Gain credentials and recognition for the skills that you
 						have through recording your past experiences.
 					</p>
-					<Button className="pink" text="Get started" />
+					<Button
+						className="pink"
+						text="Get started"
+						onClick={() => {
+							history.push('/createAccount');
+						}}
+					/>
 				</div>
 				<div className={styles.card}>
 					<img
@@ -69,7 +83,13 @@ const Home = (props) => {
 						If you're looking for employees for a specific role,
 						find the best-suited candidate on URAN.
 					</p>
-					<Button className="yellow" text="Get started" />
+					<Button
+						className="yellow"
+						text="Get started"
+						onClick={() => {
+							history.push('/createAccount');
+						}}
+					/>
 				</div>
 			</section>
 		</div>

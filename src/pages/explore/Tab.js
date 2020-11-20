@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import Dropdown from "../../shared/sandbox/Dropdown";
-import Button from "../../shared/sandbox/Button";
-import SubjectOptions from "../../shared/sandbox/SubjectOptions";
-import SkillOptions from "../../shared/sandbox/SkillOptions";
-import styles from "../../modules/tab.module.scss";
+import React, { useState } from 'react';
+import Dropdown from '../../shared/sandbox/Dropdown';
+import Button from '../../shared/sandbox/Button';
+import SubjectOptions from '../../shared/sandbox/SubjectOptions';
+import styles from '../../modules/tab.module.scss';
 
-function Tab() {
+function Tab(props) {
 	const [tabOne, setTabOne] = useState(true);
-	const [name, setName] = useState("");
-	const [category, setCategory] = useState("");
-	const [location, setLocation] = useState("");
-	const [code, setCode] = useState("");
-	const [skill, setSkill] = useState("");
+	const [firstName, setFirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [expertise, setExpertise] = useState('');
+	const [skill, setSkill] = useState('');
+	const [tool, setTool] = useState('');
 
 	function handleToggle() {
 		setTabOne(!tabOne);
@@ -19,55 +18,70 @@ function Tab() {
 
 	function onHandleSubmit(e) {
 		e.preventDefault();
-		console.log("yea");
+		if (tabOne) {
+			props.filterSearch(tabOne, {
+				firstName,
+				lastName,
+				expertise: expertise.value,
+			});
+		} else {
+			props.filterSearch(tabOne, {
+				skill,
+				tool,
+			});
+		}
 	}
 	return (
 		<div>
 			<div className={styles.tab_div}>
 				<div className={styles.tab_list}>
 					<button
-						className={`${styles.tab} ${tabOne ? styles.tab_active : ""}`}
+						className={`${styles.tab} ${
+							tabOne ? styles.tab_active : ''
+						}`}
 						onClick={tabOne ? null : handleToggle}
 					>
 						Find a candidate
 					</button>
 					<button
-						className={`${styles.tab} ${tabOne ? "" : styles.tab_active}`}
+						className={`${styles.tab} ${
+							tabOne ? '' : styles.tab_active
+						}`}
 						onClick={tabOne ? handleToggle : null}
 					>
-						Find a project
+						Find by skill/tool
 					</button>
 				</div>
 				{tabOne ? (
 					<form onSubmit={onHandleSubmit}>
 						<div className={styles.tab_panel}>
 							<input
-								name='name'
+								name="firstname"
 								className={`${styles.inp_text} ${styles.search}`}
-								placeholder='Name'
-								value={name}
-								onChange={(e) => setName(e.target.value)}
-							/>
-							<Dropdown
-								width='200px'
-								colour='white'
-								text='Field of study'
-								options={SubjectOptions}
-								value={category}
-								onChange={(e) => setCategory(e)}
+								placeholder="firstname"
+								value={firstName}
+								onChange={(e) => setFirstName(e.target.value)}
 							/>
 							<input
-								name='location'
+								name="lastname"
 								className={`${styles.inp_text} ${styles.search}`}
-								placeholder='Location'
-								value={location}
-								onChange={(e) => setLocation(e.target.value)}
+								placeholder="lastname"
+								value={lastName}
+								onChange={(e) => setLastName(e.target.value)}
+							/>
+							<Dropdown
+								width="200px"
+								colour="white"
+								text="Expertise"
+								options={SubjectOptions}
+								value={expertise}
+								onChange={(e) => setExpertise(e)}
 							/>
 							<Button
-								type='submit'
-								colour='blue'
-								iconL={<i className='fas fa-search' />}
-								text='Search'
+								type="submit"
+								colour="blue"
+								iconL={<i className="fas fa-search" />}
+								text="Search"
 							/>
 						</div>
 					</form>
@@ -75,26 +89,24 @@ function Tab() {
 					<form onSubmit={onHandleSubmit}>
 						<div className={styles.tab_panel}>
 							<input
-								name='code'
+								name="skill"
 								className={`${styles.inp_text} ${styles.search}`}
-								placeholder='Project code'
-								value={code}
-								onChange={(e) => setCode(e.target.value)}
-							/>
-							<Dropdown
-								width='450px'
-								colour='white'
-								text='Skill'
-								options={SkillOptions}
-								isMulti={true}
+								placeholder="skill"
 								value={skill}
-								onChange={(e) => setSkill(e)}
+								onChange={(e) => setSkill(e.target.value)}
+							/>
+							<input
+								name="tool"
+								className={`${styles.inp_text} ${styles.search}`}
+								placeholder="tool"
+								value={tool}
+								onChange={(e) => setTool(e.target.value)}
 							/>
 							<Button
-								type='submit'
-								colour='pink'
-								iconL={<i className='fas fa-search' />}
-								text='Search'
+								type="submit"
+								colour="pink"
+								iconL={<i className="fas fa-search" />}
+								text="Search"
 							/>
 						</div>
 					</form>

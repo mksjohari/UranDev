@@ -20,8 +20,8 @@ const logout = async (logoutUser, history) => {
 const goProfile = async (user, history) => {
 	history.push(`/users/${user.uid}`);
 };
-const goProjects = async (user, history) => {
-	history.push(`/users/${user.uid}/projects`);
+const goSettings = async (history) => {
+	history.push(`/settings`);
 };
 
 function Menu(props) {
@@ -46,13 +46,12 @@ function Menu(props) {
 	return (
 		<div ref={node} className={styles.logout}>
 			<div className={styles.logout_btn} onClick={() => setOpen(!open)}>
-				
-					<img
-						className={styles.profile_pic}
-						src={user.photoUrl}
-						alt="profile"
-					/>
-				
+				<img
+					className={styles.profile_pic}
+					src={user.photoUrl}
+					alt="profile"
+				/>
+
 				<p className={styles.name}>{displayName}</p>
 				<ChevronDown size="20px" />
 			</div>
@@ -78,7 +77,12 @@ function Menu(props) {
 					<User className={styles.settings_icon} />
 					Projects
 				</p> */}
-				<p className={styles.option}>
+				<p
+					className={styles.option}
+					onClick={() => {
+						goSettings(history);
+					}}
+				>
 					<Settings className={styles.settings_icon} />
 					Account settings
 				</p>

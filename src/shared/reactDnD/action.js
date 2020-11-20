@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { lockBg } from '../sandbox/Popup';
-import AddActionForm from '../../shared/input/AddActionForm';
+import ActionForm from '../../shared/input/ActionForm';
 import Alert from '../sandbox/Alert';
 import Button from '../sandbox/Button';
 import Carousel from '../sandbox/Carousel';
@@ -107,10 +107,12 @@ const ActionCard = (props) => {
 						className={popup.popupContainer}
 						id={actionId + '_popContent'}
 					>
-						<AddActionForm
+						<ActionForm
 							id={actionId}
 							action={props.action}
-							editAction={props.editAction}
+							currentTask={props.currentTask}
+							index={props.index}
+							errors={props.errors}
 						/>
 					</div>
 				</div>

@@ -89,44 +89,44 @@ function Results(props) {
                         </div>
                     </div>
                     <br />
-                    {/* <div>
-						<label
-							htmlFor="sections"
-							className={` ${styles.section_header}`}
-						>
-							<div onClick={toggleSectionExpand}>
-								{sectionExpand ? (
-									<i className="fas fa-angle-up"></i>
-								) : (
-									<i className="fas fa-angle-down"></i>
-								)}
-							</div>
-							<div className={styles.header_style}>
-								Sections (optional)
-							</div>
-						</label>
+                    <div>
+                        <label
+                            htmlFor="sections"
+                            className={` ${styles.section_header}`}
+                        >
+                            <div onClick={toggleSectionExpand}>
+                                {sectionExpand ? (
+                                    <i className="fas fa-angle-up"></i>
+                                ) : (
+                                    <i className="fas fa-angle-down"></i>
+                                )}
+                            </div>
+                            <div className={styles.header_style}>
+                                Sections (optional)
+                            </div>
+                        </label>
 
-						{sectionExpand && (
-							<div
-								className={`${styles.section_hidden} ${styles.header_style}`}
-							>
-								<div className={styles.section_input}>
-									<div
-										className={`${styles.section_question}`}
-									>
-										Here's where you showcase your
-										accomplishments! Share your final by
-										videos, graphs, pictures, documents, or
-										even the product itself (via a link).
-									</div>
-									<FieldArray
-										name="sections"
-										component={ResultSection}
-									/>
-								</div>
-							</div>
-						)}
-					</div> */}
+                        {sectionExpand && (
+                            <div
+                                className={`${styles.section_hidden} ${styles.header_style}`}
+                            >
+                                <div className={styles.section_input}>
+                                    <div
+                                        className={`${styles.section_question}`}
+                                    >
+                                        Here's where you showcase your
+                                        accomplishments! Share your final by
+                                        videos, graphs, pictures, documents, or
+                                        even the product itself (via a link).
+                                    </div>
+                                    <FieldArray
+                                        name="sections"
+                                        component={ResultSection}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </div>
                     <div className={styles.button_footer}>
                         <Button
                             // type="submit"

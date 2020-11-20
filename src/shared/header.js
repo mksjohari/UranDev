@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import styles from '../modules/header.module.scss';
-import Logo from '../images/logo.svg';
 import Button from './sandbox/Button';
 import { getFirebase } from './firebase/config';
 import { logoutUser } from '../actions/userAction';
-import DevButton from './sandbox/devButton';
+// import DevButton from './sandbox/devButton';
 import Menu from './Menu';
 
 function mapStateToProps(state) {
@@ -27,18 +26,18 @@ export const Header = (props) => {
 	}, [props.user]);
 	return (
 		<header className={styles.header}>
-			<DevButton
+			{/* <DevButton
 				text="test Redux"
 				onClick={() => {
 					console.log(props.user);
 				}}
-			/>
+			/> */}
 			<div className={styles.container}>
 				<div className={styles.headerContainer}>
 					<Link className={styles.headerLink} to="/">
 						<img
 							className={styles.imageLogo}
-							src={Logo}
+							src="https://firebasestorage.googleapis.com/v0/b/uran-28-12-98.appspot.com/o/static%2Flogo.svg?alt=media&token=f5038044-a679-4a90-a782-3a101ba42a94"
 							alt="Uran Logo ..."
 						/>
 						<div className={styles.uran}>URAN</div>
@@ -91,14 +90,15 @@ export const Header = (props) => {
 						>
 							Explore
 						</NavLink>
-						{props.user.logged &&
+						{props.user.logged && (
 							<NavLink
-							activeClassName={styles.activeNavItem}
-							className={styles.navItem}
-							to={`/users/${props.user.uid}/projects`}
-						>
-							Manage Projects
-						</NavLink>}
+								activeClassName={styles.activeNavItem}
+								className={styles.navItem}
+								to={`/users/${props.user.uid}/projects`}
+							>
+								Manage Projects
+							</NavLink>
+						)}
 						{user && <Menu />}
 						{!user && (
 							<div className={styles.buttons}>
