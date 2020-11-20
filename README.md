@@ -108,7 +108,7 @@ var firebaseConfig = {
 ```
 7. Add these SQL variables to firebase environment variables
 ```JS
-firebase functions:config:set cloudSQL.id={step5}
+firebase functions:config:set cloudSQL.id={step 6 values}
 ```
 8. Play around yourself!
 ```JS
