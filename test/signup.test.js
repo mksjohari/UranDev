@@ -7,7 +7,7 @@ const renderer = require("react-test-renderer");
 configure({ adapter: new Adapter() });
 import { SignUp } from "../src/shared/signUpForm";
 
-describe("<SignUp /> component runs", () => {
+describe("<SignUp /> component runs without errors", () => {
     it("SignUp component renders without crashing", () => {
         shallow(<SignUp />);
     });
@@ -118,16 +118,9 @@ describe("<SignUp /> component handles interactions", () => {
         expect(inputs.at(3).getDOMNode().value).toBe(user.password);
         expect(inputs.at(4).getDOMNode().value).toBe(user.confirmPass);
     });
-    it("Form handles onSumbit prop", () => {
-        // wrapper.instance().handleSubmit = handleSubmit;
-        // const form = wrapper.find("form");
-        // // console.log(form.props());
-        // wrapper.find("form").simulate("submit", { preventDefault: () => {} });
-        // expect(handleSubmit).toHaveBeenCalled();
+    it("Form calls onSubmit prop when submit button is clicked", () => {
+        const loginButton = wrapper.find(".login");
+        loginButton.simulate("submit", { preventDefault: () => {} });
+        expect(handleSubmit).toHaveBeenCalled();
     });
 });
-
-// const handleChange = jest.spyOn(React, "useState");
-// handleChange.mockImplementation((errormsg) => [errormsg, setErrormsg]);
-// expect(setErrormsg).toBe("The passwords don't match. Try again.");
-// console.log(submit.debug());

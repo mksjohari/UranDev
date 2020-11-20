@@ -35,6 +35,7 @@ export const SignUp = React.memo((props) => {
 	const [svgOpacity, setOpacity] = useState(0);
 	let history = useHistory();
 	const handleSubmit = (e) => {
+		props.onSubmit();
 		e.preventDefault();
 		setIndex(1);
 		setOpacity(90);

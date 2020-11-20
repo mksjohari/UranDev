@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<SignUp /> component runs SignUp component matches previous snapshots 1`] = `
+exports[`<SignUp /> component runs without errors SignUp component matches previous snapshots 1`] = `
 <form
   className="login-form"
   onSubmit={[Function]}
